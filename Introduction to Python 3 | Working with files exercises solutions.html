@@ -3,7 +3,7 @@
 <head>
 
 <meta charset="utf-8" />
-<title>index</title>
+<title>Introduction to Python 3 | Working with files exercises solutions</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -177,10 +177,775 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Edinburgh-Genomics-Advanced-Python">Edinburgh Genomics Advanced Python<a class="anchor-link" href="#Edinburgh-Genomics-Advanced-Python">&#182;</a></h1><h2 id="August-2015">August 2015<a class="anchor-link" href="#August-2015">&#182;</a></h2><p><a href="Advanced Python | Classes and objects.html">Classes and objects</a></p>
+<p><h1 id="toctitle">Working with files exercise solutions</h1></p>
+<ul id="toc"/>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Splitting-genomic-DNA">Splitting genomic DNA<a class="anchor-link" href="#Splitting-genomic-DNA">&#182;</a></h2><p>We already have some of the solution from the previous session:</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">my_dna</span> <span class="o">=</span> <span class="s">&quot;ATCGATCGATCGATCGACTGACTAGTCATAGCTATGCATGTAGCTACTCGATCGATCGATCGATCGATCGATC GATCGATCGATCATGCTATCATCGATCGATATCGATGCATCGACTACTAT&quot;</span>
+<span class="n">exon1</span> <span class="o">=</span> <span class="n">my_dna</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">63</span><span class="p">]</span>
+<span class="n">intron</span> <span class="o">=</span> <span class="n">my_dna</span><span class="p">[</span><span class="mi">63</span><span class="p">:</span><span class="mi">90</span><span class="p">]</span>
+<span class="n">exon2</span> <span class="o">=</span> <span class="n">my_dna</span><span class="p">[</span><span class="mi">90</span><span class="p">:]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">exon1</span> <span class="o">+</span> <span class="n">intron</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">+</span> <span class="n">exon2</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ATCGATCGATCGATCGACTGACTAGTCATAGCTATGCATGTAGCTACTCGATCGATCGATCGAtcgatcgatc gatcgatcgatcatgcTATCATCGATCGATATCGATGCATCGACTACTAT
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What changes do we need to make? First, read sequence from a file instead of writing it in the code:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">dna_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;genomic_dna.txt&quot;</span><span class="p">)</span>
+<span class="n">my_dna</span> <span class="o">=</span> <span class="n">dna_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="n">my_dna</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&apos;ATCGATCGATCGATCGACTGACTAGTCATAGCTATGCATGTAGCTACTCGATCGATCGATCGATCGATCGATCGATCGATCGATCATGCTATCATCGATCGATATCGATGCATCGACTACTAT\n&apos;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Create two new file objects to hold the output:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">coding_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;coding_dna.txt&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">)</span>
+<span class="n">noncoding_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;noncoding_dna.txt&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Concatenate the two exon sequences and write them to the coding file, then write the intron sequence to the noncoding file;</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">coding_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">exon1</span> <span class="o">+</span> <span class="n">exon2</span><span class="p">)</span>
+<span class="n">noncoding_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">intron</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Putting it all together:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># open the file and read its contents</span>
+<span class="n">dna_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;genomic_dna.txt&quot;</span><span class="p">)</span>
+<span class="n">my_dna</span> <span class="o">=</span> <span class="n">dna_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="c"># extract the different bits of DNA sequence</span>
+<span class="n">exon1</span> <span class="o">=</span> <span class="n">my_dna</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">62</span><span class="p">]</span>
+<span class="n">intron</span> <span class="o">=</span> <span class="n">my_dna</span><span class="p">[</span><span class="mi">62</span><span class="p">:</span><span class="mi">90</span><span class="p">]</span>
+<span class="n">exon2</span> <span class="o">=</span> <span class="n">my_dna</span><span class="p">[</span><span class="mi">90</span><span class="p">:]</span>
+<span class="c"># open the two output files</span>
+<span class="n">coding_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;coding_dna.txt&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">)</span>
+<span class="n">noncoding_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;noncoding_dna.txt&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">)</span>
+<span class="c"># write the sequences to the output files</span>
+<span class="n">coding_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">exon1</span> <span class="o">+</span> <span class="n">exon2</span><span class="p">)</span>
+<span class="n">noncoding_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">intron</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Writing-a-FASTA-file">Writing a FASTA file<a class="anchor-link" href="#Writing-a-FASTA-file">&#182;</a></h2><p>First, create some variables: three for sequences and three for headers:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">header_1</span> <span class="o">=</span> <span class="s">&quot;ABC123&quot;</span>
+<span class="n">header_2</span> <span class="o">=</span> <span class="s">&quot;DEF456&quot;</span>
+<span class="n">header_3</span> <span class="o">=</span> <span class="s">&quot;HIJ789&quot;</span>
+<span class="n">seq_1</span> <span class="o">=</span> <span class="s">&quot;ATCGTACGATCGATCGATCGCTAGACGTATCG&quot;</span>
+<span class="n">seq_2</span> <span class="o">=</span> <span class="s">&quot;actgatcgacgatcgatcgatcacgact&quot;</span>
+<span class="n">seq_3</span> <span class="o">=</span> <span class="s">&quot;ACTGAC-ACTGT--ACTGTA----CATGTG&quot;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Start by printing FASTA output to the screen to check if it works:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="n">header_1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">seq_1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">header_2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">seq_2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">header_3</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">seq_3</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ABC123
+ATCGTACGATCGATCGATCGCTAGACGTATCG
+DEF456
+actgatcgacgatcgatcgatcacgact
+HIJ789
+ACTGAC-ACTGT--ACTGTA----CATGTG
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We forgot the <code>&gt;</code> character. Plus, we can do each header/sequence on one line by using a newline character:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">header_1</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">seq_1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">header_2</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">seq_2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">header_3</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">seq_3</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&gt;ABC123
+ATCGTACGATCGATCGATCGCTAGACGTATCG
+&gt;DEF456
+actgatcgacgatcgatcgatcacgact
+&gt;HIJ789
+ACTGAC-ACTGT--ACTGTA----CATGTG
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Next, fix the sequences - change the second one to upper case and replace dashes in the third one:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">header_1</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">seq_1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">header_2</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">seq_2</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">header_3</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">seq_3</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;-&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&gt;ABC123
+ATCGTACGATCGATCGATCGCTAGACGTATCG
+&gt;DEF456
+ACTGATCGACGATCGATCGATCACGACT
+&gt;HIJ789
+ACTGACACTGTACTGTACATGTG
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now switch from printed output to file output. We need newlines at the end of each <code>write()</code> statement. Also, remember to close the file:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;sequences.fasta&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">)</span>
+<span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">header_1</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">seq_1</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+<span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">header_2</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">seq_2</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+<span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">header_3</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">seq_3</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;-&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+<span class="n">output</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>All steps together:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># set the values of all the header variables</span>
+<span class="n">header_1</span> <span class="o">=</span> <span class="s">&quot;ABC123&quot;</span>
+<span class="n">header_2</span> <span class="o">=</span> <span class="s">&quot;DEF456&quot;</span>
+<span class="n">header_3</span> <span class="o">=</span> <span class="s">&quot;HIJ789&quot;</span>
+
+<span class="c"># set the values of all the sequence variables</span>
+
+<span class="n">seq_1</span> <span class="o">=</span> <span class="s">&quot;ATCGTACGATCGATCGATCGCTAGACGTATCG&quot;</span>
+<span class="n">seq_2</span> <span class="o">=</span> <span class="s">&quot;actgatcgacgatcgatcgatcacgact&quot;</span>
+<span class="n">seq_3</span> <span class="o">=</span> <span class="s">&quot;ACTGAC-ACTGT—ACTGTA----CATGTG&quot;</span>
+
+<span class="c"># make a new file to hold the output</span>
+<span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;sequences.fasta&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">)</span>
+<span class="c"># write the header and sequence for seq1</span>
+<span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">header_1</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">seq_1</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+<span class="c"># write the header and uppercase sequences for seq2</span>
+<span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">header_2</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">seq_2</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+<span class="c"># write the header and sequence for seq3 with hyphens removed</span>
+<span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">header_3</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">seq_3</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;-&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Writing-multiple-FASTA-files">Writing multiple FASTA files<a class="anchor-link" href="#Writing-multiple-FASTA-files">&#182;</a></h2><p>Just a slight modification needed to the previous solution. We need to carefully construct the filenames for the output files by joining the header names with the <code>.fasta</code> extension:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">output_1</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">header_1</span> <span class="o">+</span> <span class="s">&quot;.fasta&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">)</span>
+<span class="n">output_2</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">header_2</span> <span class="o">+</span> <span class="s">&quot;.fasta&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">)</span>
+<span class="n">output_3</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">header_3</span> <span class="o">+</span> <span class="s">&quot;.fasta&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we write each sequence out to a separate file:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># write one sequence to each output file</span>
+<span class="n">output_1</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">header_1</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">seq_1</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span> 
+<span class="n">output_2</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">header_2</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">seq_2</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span> 
+<span class="n">output_3</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">header_3</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">seq_3</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;-&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>and close each file</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">output_1</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">output_2</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">output_3</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>All together:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># set the values of all the header variables </span>
+<span class="n">header_1</span> <span class="o">=</span> <span class="s">&quot;ABC123&quot;</span> 
+<span class="n">header_2</span> <span class="o">=</span> <span class="s">&quot;DEF456&quot;</span> 
+<span class="n">header_3</span> <span class="o">=</span> <span class="s">&quot;HIJ789&quot;</span> 
+ 
+<span class="c"># set the values of all the sequence variables </span>
+<span class="n">seq_1</span> <span class="o">=</span> <span class="s">&quot;ATCGTACGATCGATCGATCGCTAGACGTATCG&quot;</span> 
+<span class="n">seq_2</span> <span class="o">=</span> <span class="s">&quot;actgatcgacgatcgatcgatcacgact&quot;</span> 
+<span class="n">seq_3</span> <span class="o">=</span> <span class="s">&quot;ACTGAC-ACTGT—ACTGTA----CATGTG&quot;</span> 
+ 
+<span class="c"># make three files to hold the output </span>
+<span class="n">output_1</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">header_1</span> <span class="o">+</span> <span class="s">&quot;.fasta&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">)</span> 
+<span class="n">output_2</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">header_2</span> <span class="o">+</span> <span class="s">&quot;.fasta&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">)</span> 
+<span class="n">output_3</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">header_3</span> <span class="o">+</span> <span class="s">&quot;.fasta&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">)</span> 
+ 
+<span class="c"># write one sequence to each output file</span>
+<span class="n">output_1</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">header_1</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">seq_1</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span> 
+<span class="n">output_2</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">header_2</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">seq_2</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span> 
+<span class="n">output_3</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span> <span class="o">+</span> <span class="n">header_3</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">+</span> <span class="n">seq_3</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;-&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">&#39;</span><span class="p">)</span> 
+
+<span class="n">output_1</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">output_2</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+<span class="n">output_3</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There's a lot of repeated code here; next session we will look at how to avoid that.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[127]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># ignore this cell, it&#39;s for loading custom js code</span>
+<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">Javascript</span>
+<span class="n">Javascript</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">&quot;custom.js&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[127]:</div>
+
+
+<div class="output_subarea output_javascript output_execute_result">
+<script type="text/javascript">
+var currenth1=0;
+ 
+function regentoc() {
+document.getElementById("toc").innerHTML = "";
+var currenth2 = 0;
+$("h2,h3").not("#Contents").each(function(mainIndex) {
+    el = $(this);
+    title = el.attr("id");
+    text = el.html();
+    link = "#" + el.attr("id");
+    if ( document.getElementById(title).tagName == "H2" ) {
+        currenth2 += 1;
+        newLine =
+            "<li class='maintoc'>" +
+               "<a href='" + link + "'>" + text + "</a>" +
+            "</li>" +
+            "<ul id='h2" + currenth2 + "'></ul>";
+        document.getElementById("toc").innerHTML += newLine;
+    } else if ( document.getElementById(title).tagName=="H3" ) {
+        h1list = document.getElementById("h2"+currenth2);
+        newLine = "<li class='subtoc'>" + "<a href='" + link + "'>" + text + "</a>" + "</li>";
+        h1list.innerHTML += newLine;
+    }
+});
+}
+ 
+setInterval(regentoc,1000);
+
+</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[129]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># ignore this cell, it&#39;s for loading custom css code</span>
+<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">&quot;custom_css.txt&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[129]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<style>
+/*
+
+    Name:       Base16 Solarized Light
+    Author:     Ethan Schoonover (http://ethanschoonover.com/solarized)
+
+    CodeMirror template adapted for IPython Notebook by Nikhil Sonnad (https://github.com/nsonnad/base16-ipython-notebook)
+    CodeMirror template by Jan T. Sott (https://github.com/idleberg/base16-chrome-devtools)
+    Original Base16 color scheme by Chris Kempson (https://github.com/chriskempson/base16)
+
+*/
+
+div.output_text{
+        max-height:400px;
+        overflow:scroll;
+}
+
+div#notebook {
+  font-family: 'PT Serif' !important;
+} 
+
+div.CodeMirror, div.output_area pre, div.output_wrapper, div.prompt {
+  font-family: 'Source Code Pro', monospace !important;
+}
+
+.output_text {
+  background-color: #f0f0f0;
+}
+
+.prompt { display: none; }
+div.output_subarea { max-width: calc(100%); }
+
+
+/* GLOBALS */
+body {background-color: #fdf6e3;}
+a {color: #268bd2;}
+
+/* INTRO PAGE */
+.toolbar_info, .list-container {color: #073642;}
+
+/* NOTEBOOK */
+
+/* comment out this line to bring the toolbar back */
+/* div#maintoolbar, div#header {display: none !important;} */
+
+div#notebook {border-top: none;}
+
+div.input_prompt {color: #6c71c4;}
+div.output_prompt {color: #d33682;}
+div.input_area {
+  border-radius: 0px;
+  border: 1px solid #93a1a1;
+}
+div.output_area pre {font-weight: normal; color: #586e75;}
+div.output_subarea {font-weight: normal; color: #586e75;}
+
+.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td {
+  border: 1px  #657b83 solid;
+  color: #657b83;
+}
+div.output_html { font-family: sans-serif; }
+table.dataframe tr {border: 1px #586e75;}
+
+div.cell.selected {border-radius: 0px;}
+div.cell.edit_mode {border-radius: 0px; border: thin solid #d33682;}
+div.text_cell_render, div.output_html {color: #586e75;}
+
+span.ansiblack {color: #073642;}
+span.ansiblue {color: #2aa198;}
+span.ansigray {color: #839496;}
+span.ansigreen {color: #859900;}
+span.ansipurple {color: #6c71c4;}
+span.ansired {color: #dc322f;}
+span.ansiyellow {color: #b58900;}
+
+div.output_stderr {background-color: #dc322f;}
+div.output_stderr pre {color: #eee8d5;}
+
+.cm-s-ipython.CodeMirror {background: #fdf6e3; color: #073642;}
+.cm-s-ipython div.CodeMirror-selected {background: #eee8d5 !important;}
+.cm-s-ipython .CodeMirror-gutters {background: #fdf6e3; border-right: 0px;}
+.cm-s-ipython .CodeMirror-linenumber {color: #839496;}
+.cm-s-ipython .CodeMirror-cursor {border-left: 1px solid #657b83 !important;}
+
+.cm-s-ipython span.cm-comment {color: #d33682;}
+.cm-s-ipython span.cm-atom {color: #6c71c4;}
+.cm-s-ipython span.cm-number {color: #6c71c4;}
+
+.cm-s-ipython span.cm-property, .cm-s-ipython span.cm-attribute {color: #859900;}
+.cm-s-ipython span.cm-keyword {color: #dc322f;}
+.cm-s-ipython span.cm-string {color: #b58900;}
+.cm-s-ipython span.cm-operator {color: #d33682;}
+.cm-s-ipython span.cm-builtin {color: #6c71c4;}
+
+.cm-s-ipython span.cm-variable {color: #859900;}
+.cm-s-ipython span.cm-variable-2 {color: #268bd2;}
+.cm-s-ipython span.cm-def {color: #cb4b16;}
+.cm-s-ipython span.cm-error {background: #dc322f; color: #657b83;}
+.cm-s-ipython span.cm-bracket {color: #586e75;}
+.cm-s-ipython span.cm-tag {color: #dc322f;}
+.cm-s-ipython span.cm-link {color: #6c71c4;}
+
+/*  html output highlighting*/
+
+
+div.input_area>div.highlight {background: #fdf6e3; color: #073642;}
+.cm-s-ipython div.CodeMirror-selected {background: #eee8d5 !important;}
+.cm-s-ipython .CodeMirror-gutters {background: #fdf6e3; border-right: 0px;}
+.cm-s-ipython .CodeMirror-linenumber {color: #839496;}
+.cm-s-ipython .CodeMirror-cursor {border-left: 1px solid #657b83 !important;}
+
+.highlight span.c {color: #d33682;}
+.cm-s-ipython span.cm-atom {color: #6c71c4;}
+.highlight span.mi {color: #6c71c4;}
+
+.cm-s-ipython span.cm-property, .cm-s-ipython span.cm-attribute {color: #859900;}
+.highlight span.kn {color: #dc322f;}
+.highlight span.k {color: #dc322f;}
+.highlight span.ow {color: #dc322f;}
+
+.highlight span.o {color: #d33682; font-weight: bold;}
+
+.cm-s-ipython span.cm-string {color: #b58900;}
+.highlight span.nb {color: #6c71c4;}
+
+.highlight span.n {color: #859900;}
+.highlight span.nn {color: #859900; font-weight: }
+.cm-s-ipython span.cm-def {color: #cb4b16;}
+.cm-s-ipython span.cm-error {background: #dc322f; color: #657b83;}
+.cm-s-ipython span.cm-bracket {color: #586e75;}
+.cm-s-ipython span.cm-tag {color: #dc322f;}
+.cm-s-ipython span.cm-link {color: #6c71c4;}
+
+
+</style>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
     </div>
   </div>

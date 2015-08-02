@@ -3,7 +3,7 @@
 <head>
 
 <meta charset="utf-8" />
-<title>index</title>
+<title>Introduction to Python 2 | Text manipulation</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -177,10 +177,1460 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Edinburgh-Genomics-Advanced-Python">Edinburgh Genomics Advanced Python<a class="anchor-link" href="#Edinburgh-Genomics-Advanced-Python">&#182;</a></h1><h2 id="August-2015">August 2015<a class="anchor-link" href="#August-2015">&#182;</a></h2><p><a href="Advanced Python | Classes and objects.html">Classes and objects</a></p>
+<p><h1 id="toctitle">Text manipulation</h1></p>
+<ul id="toc"/>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Parts-of-code">Parts of code<a class="anchor-link" href="#Parts-of-code">&#182;</a></h2><h3 id="Statements,-functions,-arguments">Statements, functions, arguments<a class="anchor-link" href="#Statements,-functions,-arguments">&#182;</a></h3><p>Start with the very short Python program from the last session:</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="s">&quot;Hello World&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Hello World
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>print</code> is the name of a <strong>function</strong>.</p>
+<p><code>"Hello World"</code> is the function <strong>arguments</strong>.</p>
+<p>The whole thing <code>print("Hello World")</code> is a <strong>statement</strong> (one instruction).</p>
+<p>Things in quotes are strings (of characters) - either single or double is fine:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="s">&quot;Hello world&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Hello world
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="s">&#39;Hello world&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Hello world
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="s">&quot;She said, &#39;Hello world&#39;&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>She said, &apos;Hello world&apos;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Comments">Comments<a class="anchor-link" href="#Comments">&#182;</a></h3><p>To include a bit of text for humans to read, start with <code>#</code>. We call this a <strong>comment</strong>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># print a friendly greeting</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Hello world&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Hello world
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Some characters in Python have a special meaning: for example <code>\n</code> means <em>start a new line</em>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># print the same greeting, over two lines</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Hello</span><span class="se">\n</span><span class="s">world&quot;</span><span class="p">)</span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Hello
+world
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Variables">Variables<a class="anchor-link" href="#Variables">&#182;</a></h3><p>To store a bit of text to use later, we use a <strong>variable</strong>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># store a DNA sequence in the variable my_dna</span>
+<span class="n">my_dna</span> <span class="o">=</span> <span class="s">&quot;ATGCGTA&quot;</span>
+
+<span class="c"># now print the DNA sequence</span>
+<span class="k">print</span><span class="p">(</span><span class="n">my_dna</span><span class="p">)</span>
+
+<span class="c"># change the value of my_dna</span>
+<span class="n">my_dna</span> <span class="o">=</span> <span class="s">&quot;TGGTCCA&quot;</span>
+
+<span class="c"># print it again</span>
+<span class="k">print</span><span class="p">(</span><span class="n">my_dna</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ATGCGTA
+TGGTCCA
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Variable names can be whatever we want - this code is exactly the same as the previous one:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># store a DNA sequence in the variable banana</span>
+<span class="n">banana</span> <span class="o">=</span> <span class="s">&quot;ATGCGTA&quot;</span>
+
+<span class="c"># now print the DNA sequence</span>
+<span class="k">print</span><span class="p">(</span><span class="n">banana</span><span class="p">)</span>
+
+<span class="c"># change the value of banana</span>
+<span class="n">banana</span> <span class="o">=</span> <span class="s">&quot;TGGTCCA&quot;</span>
+
+<span class="c"># print it again</span>
+<span class="c">##print(banana)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ATGCGTA
+TGGTCCA
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Manipulating-text-(strings)">Manipulating text (strings)<a class="anchor-link" href="#Manipulating-text-(strings)">&#182;</a></h2><h3 id="Concatenation">Concatenation<a class="anchor-link" href="#Concatenation">&#182;</a></h3><p>We can join two strings together with <code>+</code>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="s">&quot;AATT&quot;</span> <span class="o">+</span> <span class="s">&quot;GGCC&quot;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[9]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&apos;AATTGGCC&apos;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Important: anywhere we can use a string written with quotes, we can also use a variable that stores a string:</strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">upstream</span> <span class="o">=</span> <span class="s">&quot;AAA&quot;</span>
+<span class="n">my_dna</span> <span class="o">=</span> <span class="n">upstream</span> <span class="o">+</span> <span class="s">&quot;ATGC&quot;</span>
+<span class="n">my_dna</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[10]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&apos;AAAATGC&apos;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">upstream</span> <span class="o">=</span> <span class="s">&quot;AAA&quot;</span>
+<span class="n">downstream</span> <span class="o">=</span> <span class="s">&quot;GGG&quot;</span>
+<span class="n">my_dna</span> <span class="o">=</span> <span class="n">upstream</span> <span class="o">+</span> <span class="s">&quot;ATGC&quot;</span> <span class="o">+</span> <span class="n">downstream</span>
+<span class="n">my_dna</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[12]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&apos;AAAATGCGGG&apos;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The result of concatenating two (or more) strings is also a string:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="s">&quot;Hello&quot;</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="s">&quot;world&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Hello world
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Lengths">Lengths<a class="anchor-link" href="#Lengths">&#182;</a></h3><p>To find the length of a string, use the <code>len()</code> function:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="nb">len</span><span class="p">(</span><span class="s">&quot;AGTC&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[14]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>4</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What you need to know about <code>len()</code>:</p>
+<ul>
+<li><code>len()</code> is a function</li>
+<li>it takes one argument</li>
+<li>the argument has to be a string</li>
+<li>it returns the length of the string</li>
+<li>we have to do something with the returned value</li>
+<li><strong>the length is a number, not a string!</strong></li>
+</ul>
+<p>Numbers and strings are different:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[15]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>4</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="s">&quot;abc&quot;</span> <span class="o">+</span> <span class="s">&quot;def&quot;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[16]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&apos;abcdef&apos;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="mi">2</span> <span class="o">+</span> <span class="s">&quot;abc&quot;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansired">---------------------------------------------------------------------------</span>
+<span class="ansired">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansigreen">&lt;ipython-input-17-093439028cde&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
+<span class="ansigreen">----&gt; 1</span><span class="ansiyellow"> </span><span class="ansicyan">2</span> <span class="ansiyellow">+</span> <span class="ansiblue">&quot;abc&quot;</span><span class="ansiyellow"></span>
+
+<span class="ansired">TypeError</span>: unsupported operand type(s) for +: &apos;int&apos; and &apos;str&apos;</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Division-is-strange-in-Python">Division is strange in Python<a class="anchor-link" href="#Division-is-strange-in-Python">&#182;</a></h3><p>By default, Python rounds decimal numbers down to the nearest whole number:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="mi">10</span> <span class="o">/</span> <span class="mi">3</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[18]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To make it behave properly, we need to include this line at the start of our programs:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice that the word <code>future</code> is surrounded by <strong>two</strong> underscores.</p>
+<p>Now division will give the correct answer:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="mi">10</span> <span class="o">/</span> <span class="mi">3</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[20]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>3.3333333333333335</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Remember to put this line at the start of all your programs!</p>
+<p>This has been fixed in Python 3.</p>
+<h3 id="Converting-between-numbers-and-strings">Converting between numbers and strings<a class="anchor-link" href="#Converting-between-numbers-and-strings">&#182;</a></h3><p><code>str()</code> will take a number and turn it into a string:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="mi">4</span> <span class="o">+</span> <span class="s">&quot;abc&quot;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansired">---------------------------------------------------------------------------</span>
+<span class="ansired">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansigreen">&lt;ipython-input-22-852e8952ee4e&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
+<span class="ansigreen">----&gt; 1</span><span class="ansiyellow"> </span><span class="ansicyan">4</span> <span class="ansiyellow">+</span> <span class="ansiblue">&quot;abc&quot;</span><span class="ansiyellow"></span>
+
+<span class="ansired">TypeError</span>: unsupported operand type(s) for +: &apos;int&apos; and &apos;str&apos;</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="nb">str</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;abc&quot;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[28]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&apos;4abc&apos;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We often want to do this so that we can print a number:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">my_dna</span> <span class="o">=</span> <span class="s">&quot;ATGCGAGT&quot;</span>
+<span class="n">dna_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">my_dna</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;length of the DNA sequence is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dna_length</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>length of the DNA sequence is 8
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>int()</code> will take a string and turn it into a number:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="s">&quot;6&quot;</span> <span class="o">+</span> <span class="mi">7</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansired">---------------------------------------------------------------------------</span>
+<span class="ansired">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansigreen">&lt;ipython-input-25-604537da9995&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
+<span class="ansigreen">----&gt; 1</span><span class="ansiyellow"> </span><span class="ansiblue">&quot;6&quot;</span> <span class="ansiyellow">+</span> <span class="ansicyan">7</span><span class="ansiyellow"></span>
+
+<span class="ansired">TypeError</span>: cannot concatenate &apos;str&apos; and &apos;int&apos; objects</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="nb">int</span><span class="p">(</span><span class="s">&quot;6&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">7</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[26]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>13</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We will see later why this is useful.</p>
+<h3 id="Changing-case">Changing case<a class="anchor-link" href="#Changing-case">&#182;</a></h3><p>To turn a string into lower case, use a <strong>method</strong> called <code>lower()</code>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">my_dna</span> <span class="o">=</span> <span class="s">&quot;ATGC&quot;</span>
+<span class="c"># print my_dna in lower case</span>
+<span class="k">print</span><span class="p">(</span><span class="n">my_dna</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>atgc
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Look closely at how this works:</p>
+<ul>
+<li><code>lower()</code> is a <strong>method</strong>, not a <strong>function</strong></li>
+<li>we write the name of the variable first, then a dot, then the method name</li>
+<li><code>lower()</code> has no arguments</li>
+<li><code>lower()</code> only works on strings, not numbers</li>
+<li><strong><code>lower()</code> doesn't change the variable, it returns a lower case version</strong></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">my_dna</span> <span class="o">=</span> <span class="s">&quot;ATGC&quot;</span>
+
+<span class="c"># print the variable</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;before: &quot;</span> <span class="o">+</span> <span class="n">my_dna</span><span class="p">)</span>
+
+<span class="c"># run the lower method and store the result</span>
+<span class="n">lowercase_dna</span> <span class="o">=</span> <span class="n">my_dna</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">lowercase_dna</span><span class="p">)</span>
+
+<span class="c"># print the variable again</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;after: &quot;</span> <span class="o">+</span> <span class="n">my_dna</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>before: ATGC
+atgc
+after: ATGC
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Find-and-replace-in-strings">Find and replace in strings<a class="anchor-link" href="#Find-and-replace-in-strings">&#182;</a></h3><p>Use the <code>replace()</code> method:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">protein</span> <span class="o">=</span> <span class="s">&quot;vlspadktnv&quot;</span>
+<span class="k">print</span><span class="p">(</span><span class="n">protein</span><span class="p">)</span>
+
+<span class="c"># replace valine with tyrosine</span>
+<span class="k">print</span><span class="p">(</span><span class="n">protein</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot;v&quot;</span><span class="p">,</span> <span class="s">&quot;y&quot;</span> <span class="p">))</span>
+
+<span class="c"># we can replace more than one character</span>
+<span class="k">print</span><span class="p">(</span><span class="n">protein</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot;vls&quot;</span><span class="p">,</span> <span class="s">&quot;ymt&quot;</span> <span class="p">))</span>
+
+<span class="c"># the original variable is not affected</span>
+<span class="k">print</span><span class="p">(</span><span class="n">protein</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>vlspadktnv
+ylspadktny
+ymtpadktnv
+vlspadktnv
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Extracting-part-of-a-string">Extracting part of a string<a class="anchor-link" href="#Extracting-part-of-a-string">&#182;</a></h3><p>To get just part of a string, put square brackets after the variable name with the start and stop positions separated by a colon.</p>
+<p>We start counting at <strong>zero</strong> rather than one.
+Positions are <strong>inclusive</strong> at the start and <strong>exclusive</strong> at the end.</p>
+<p>Get positions 3 to 5 of the protein:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">protein</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[37]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&apos;pa&apos;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To go to the end of the string, just leave out the stop position:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">protein</span><span class="p">[</span><span class="mi">5</span><span class="p">:]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[39]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&apos;dktnv&apos;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Counting-substrings">Counting substrings<a class="anchor-link" href="#Counting-substrings">&#182;</a></h3><p>The <code>count()</code> method will tell you how many times a short string occurs inside a long one:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">protein</span> <span class="o">=</span> <span class="s">&quot;vlspadktnv&quot;</span>
+<span class="c"># count amino acid residues</span>
+<span class="n">valine_count</span> <span class="o">=</span> <span class="n">protein</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;v&#39;</span><span class="p">)</span>
+<span class="n">lsp_count</span> <span class="o">=</span> <span class="n">protein</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;lsp&#39;</span><span class="p">)</span>
+<span class="n">tryptophan_count</span> <span class="o">=</span> <span class="n">protein</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;w&#39;</span><span class="p">)</span>
+ 
+<span class="c"># now print the counts</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;valines: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">valine_count</span> <span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;lsp: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">lsp_count</span> <span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;tryptophans: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">tryptophan_count</span> <span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>valines: 2
+lsp: 1
+tryptophans: 0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Finding-positions-of-substrings">Finding positions of substrings<a class="anchor-link" href="#Finding-positions-of-substrings">&#182;</a></h3><p>The <code>find()</code> will tell you the position of a short string inside a long one:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">protein</span> <span class="o">=</span> <span class="s">&quot;vlspadktnv&quot;</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">protein</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;p&#39;</span> <span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">protein</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;kt&#39;</span> <span class="p">)))</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">protein</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&#39;w&#39;</span> <span class="p">)))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>3
+6
+-1
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Remember:</p>
+<ul>
+<li>we start counting fromn zero</li>
+<li>if the short string isn't there, we get <code>-1</code></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Summary-of-all-the-things!">Summary of all the things!<a class="anchor-link" href="#Summary-of-all-the-things!">&#182;</a></h2><ul>
+<li>Functions<ul>
+<li><code>print()</code> for showing text on the screen</li>
+<li><code>len()</code> for finding the length of a string</li>
+<li><code>str()</code> for converting a number to a string</li>
+<li><code>int()</code> for converting a string to a number</li>
+</ul>
+</li>
+<li>String methods<ul>
+<li><code>upper()</code> for changing to upper case</li>
+<li><code>replace()</code> for changing parts of a string</li>
+<li><code>count()</code> for counting substrings</li>
+<li><code>find()</code> for locating substrings</li>
+</ul>
+</li>
+<li>Types of things<ul>
+<li>strings are always surrounded by quotes</li>
+<li>numbers are always written without quotes</li>
+</ul>
+</li>
+<li>Other tools<ul>
+<li><code>+</code> can add numbers together (also <code>/</code>, <code>*</code> and <code>-</code>)</li>
+<li><code>[1:2]</code> can get parts of a string</li>
+<li><code>\n</code> means start a new line</li>
+</ul>
+</li>
+<li>Parts of code<ul>
+<li>function</li>
+<li>method</li>
+<li>arguments</li>
+<li>statement</li>
+<li>quotes</li>
+<li>comments</li>
+<li>variables</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h2 id="Exercises">Exercises<a class="anchor-link" href="#Exercises">&#182;</a></h2><h3 id="Calculating-AT-content">Calculating AT content<a class="anchor-link" href="#Calculating-AT-content">&#182;</a></h3><p>Here's a short DNA sequence:</p>
+<p><code>ACTGATCGATTACGTATAGTATTTGCTATCATACATATATATCGATGCGTTCAT</code></p>
+<p>Write a program that will print out the AT content of this DNA sequence. Hint: you can use normal mathematical symbols like add (<code>+</code>), subtract (<code>-</code>), multiply (<code>*</code>), divide (<code>/</code>) and parentheses to carry out calculations on numbers in Python.</p>
+<h3 id="Complementing-DNA">Complementing DNA<a class="anchor-link" href="#Complementing-DNA">&#182;</a></h3><p>Here's a short DNA sequence:</p>
+<p><code>ACTGATCGATTACGTATAGTATTTGCTATCATACATATATATCGATGCGTTCAT</code></p>
+<p>Write a program that will print the complement of this sequence. (<strong>Not the reverse complement!</strong>)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Restriction-fragment-lengths">Restriction fragment lengths<a class="anchor-link" href="#Restriction-fragment-lengths">&#182;</a></h3><p>Here's a short DNA sequence:</p>
+<p><code>ACTGATCGATTACGTATAGTAGAATTCTATCATACATATATATCGATGCGTTCAT</code></p>
+<p>The sequence contains a recognition site for the <em>EcoRI</em> restriction enzyme, which cuts at the motif <code>G*AATTC</code> (the position of the cut is indicated by an asterisk). Write a program which will calculate the size of the two fragments that will be produced when the DNA sequence is digested with <em>EcoRI</em>.</p>
+<h3 id="Splicing-out-introns">Splicing out introns<a class="anchor-link" href="#Splicing-out-introns">&#182;</a></h3><p>Here's a short section of genomic DNA:</p>
+<p><code>ATCGATCGATCGATCGACTGACTAGTCATAGCTATGCATGTAGCTACTCGATCGATCGATCGATCGATCGATCGATCGATCGATCATGCTATCATCGATCGATATCGATGCATCGACTACTAT</code></p>
+<p>It comprises two exons and an intron. The first exon runs from the start of the sequence to the sixty-third character, and the second exon runs from the ninety-first character to the end of the sequence. Write a program that will print just the coding regions of the DNA sequence.</p>
+<p>Write a program that will calculate what percentage of the DNA sequence is coding.</p>
+<p>Write a program that will print out the original genomic DNA sequence with coding bases in uppercase and non-coding bases in lowercase.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># ignore this cell, it&#39;s for loading custom js code</span>
+<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">Javascript</span>
+<span class="n">Javascript</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">&quot;custom.js&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[46]:</div>
+
+
+<div class="output_subarea output_javascript output_execute_result">
+<script type="text/javascript">
+alert('hi');
+
+var currenth1=0;
+ 
+function regentoc() {
+    document.getElementById("toc").innerHTML = "";
+    var currenth2 = 0;
+    $("h2,h3").not("#Contents").each(function(mainIndex) {
+        el = $(this);
+        title = el.attr("id");
+        text = el.html();
+        link = "#" + el.attr("id");
+        if ( document.getElementById(title).tagName == "H2" ) {
+            currenth2 += 1;
+            newLine =
+                "<li class='maintoc'>" +
+                   "<a href='" + link + "'>" + text + "</a>" +
+                "</li>" +
+                "<ul id='h2" + currenth2 + "'></ul>";
+            document.getElementById("toc").innerHTML += newLine;
+        } else if ( document.getElementById(title).tagName=="H3" ) {
+            h1list = document.getElementById("h2"+currenth2);
+            newLine = "<li class='subtoc'>" + "<a href='" + link + "'>" + text + "</a>" + "</li>";
+            h1list.innerHTML += newLine;
+        }
+    });
+}
+ 
+setInterval(regentoc,1000);
+
+</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># ignore this cell, it&#39;s for loading custom css code</span>
+<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">&quot;custom.css&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[44]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<style>
+div.output_text{
+        max-height:400px;
+        overflow:scroll;
+}
+
+div#notebook {
+  font-family: 'PT Serif' !important;
+} 
+
+div.CodeMirror, div.output_area pre, div.output_wrapper, div.prompt {
+  font-family: 'Source Code Pro', monospace !important;
+}
+
+.output_text {
+  background-color: #f0f0f0;
+}
+
+
+.prompt { display: none; }
+div.output_subarea { max-width: calc(100%); }
+</style>
+
+
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
     </div>
   </div>

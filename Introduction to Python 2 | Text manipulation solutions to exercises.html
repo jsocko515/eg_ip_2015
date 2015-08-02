@@ -3,7 +3,7 @@
 <head>
 
 <meta charset="utf-8" />
-<title>index</title>
+<title>Introduction to Python 2 | Text manipulation solutions to exercises</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -177,10 +177,974 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Edinburgh-Genomics-Advanced-Python">Edinburgh Genomics Advanced Python<a class="anchor-link" href="#Edinburgh-Genomics-Advanced-Python">&#182;</a></h1><h2 id="August-2015">August 2015<a class="anchor-link" href="#August-2015">&#182;</a></h2><p><a href="Advanced Python | Classes and objects.html">Classes and objects</a></p>
+<h1 id="Text-manipulation-solutions-to-exercises">Text manipulation solutions to exercises<a class="anchor-link" href="#Text-manipulation-solutions-to-exercises">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
 
 </div>
 </div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><h1 id="toctitle">Contents</h1></p>
+<ul id="toc"/>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Calculating-AT-content">Calculating AT content<a class="anchor-link" href="#Calculating-AT-content">&#182;</a></h2><p>First, we need to store the information we need - the A and T count, and the length of the DNA sequence:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">my_dna</span> <span class="o">=</span> <span class="s">&quot;ACTGATCGATTACGTATAGTATTTGCTATCATACATATATATCGATGCGTTCAT&quot;</span>
+<span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">my_dna</span><span class="p">)</span>
+<span class="n">a_count</span> <span class="o">=</span> <span class="n">my_dna</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">)</span>
+<span class="n">t_count</span> <span class="o">=</span> <span class="n">my_dna</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can print these out to check that they look OK:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="s">&quot;length: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">length</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;A count: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">a_count</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;T count: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">t_count</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>length: 54
+A count: 16
+T count: 21
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now let's try the calculation:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">at_content</span> <span class="o">=</span> <span class="n">a_count</span> <span class="o">+</span> <span class="n">t_count</span> <span class="o">/</span> <span class="n">length</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;AT content is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">at_content</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>AT content is 16
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is definitely not right, it should be between zero and one! We need parentheses:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">at_content</span> <span class="o">=</span> <span class="p">(</span><span class="n">a_count</span> <span class="o">+</span> <span class="n">t_count</span><span class="p">)</span> <span class="o">/</span> <span class="n">length</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;AT content is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">at_content</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>AT content is 0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Remember to include the line for division:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+
+<span class="n">at_content</span> <span class="o">=</span> <span class="p">(</span><span class="n">a_count</span> <span class="o">+</span> <span class="n">t_count</span><span class="p">)</span> <span class="o">/</span> <span class="n">length</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;AT content is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">at_content</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>AT content is 0.685185185185
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Final version:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">my_dna</span> <span class="o">=</span> <span class="s">&quot;ACTGATCGATTACGTATAGTATTTGCTATCATACATATATATCGATGCGTTCAT&quot;</span>
+<span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">my_dna</span><span class="p">)</span>
+<span class="n">a_count</span> <span class="o">=</span> <span class="n">my_dna</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">)</span>
+<span class="n">t_count</span> <span class="o">=</span> <span class="n">my_dna</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">)</span>
+<span class="n">at_content</span> <span class="o">=</span> <span class="p">(</span><span class="n">a_count</span> <span class="o">+</span> <span class="n">t_count</span><span class="p">)</span> <span class="o">/</span> <span class="n">length</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;AT content is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">at_content</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>AT content is 0.685185185185
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Complementing-DNA">Complementing DNA<a class="anchor-link" href="#Complementing-DNA">&#182;</a></h2><p>The obvious thing doesn't work:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">my_dna</span> <span class="o">=</span> <span class="s">&quot;ACTGATCGATTACGTATAGTATTTGCTATCATACATATATATCGATGCGTTCAT&quot;</span>
+<span class="c"># replace A with T</span>
+<span class="n">replacement1</span> <span class="o">=</span> <span class="n">my_dna</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">)</span>
+<span class="c"># replace T with A</span>
+<span class="n">replacement2</span> <span class="o">=</span> <span class="n">replacement1</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">)</span>
+<span class="c"># replace C with G</span>
+<span class="n">replacement3</span> <span class="o">=</span> <span class="n">replacement2</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">)</span>
+<span class="c"># replace G with C</span>
+<span class="n">replacement4</span> <span class="o">=</span> <span class="n">replacement3</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
+<span class="c"># print the result of the final replacement</span>
+<span class="k">print</span><span class="p">(</span><span class="n">replacement4</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ACACAACCAAAACCAAAACAAAAACCAAACAAACAAAAAAAACCAACCCAACAA
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Because we change the A to T then back to A. To avoid it, we need to either use an intermediate step:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">my_dna</span> <span class="o">=</span> <span class="s">&quot;ACTGATCGATTACGTATAGTATTTGCTATCATACATATATATCGATGCGTTCAT&quot;</span>
+<span class="n">replacement1</span> <span class="o">=</span> <span class="n">my_dna</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;H&#39;</span><span class="p">)</span>
+<span class="n">replacement2</span> <span class="o">=</span> <span class="n">replacement1</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;J&#39;</span><span class="p">)</span>
+<span class="n">replacement3</span> <span class="o">=</span> <span class="n">replacement2</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;K&#39;</span><span class="p">)</span>
+<span class="n">replacement4</span> <span class="o">=</span> <span class="n">replacement3</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;L&#39;</span><span class="p">)</span>
+<span class="n">replacement5</span> <span class="o">=</span> <span class="n">replacement4</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;H&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">)</span>
+<span class="n">replacement6</span> <span class="o">=</span> <span class="n">replacement5</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;J&#39;</span><span class="p">,</span> <span class="s">&#39;A&#39;</span><span class="p">)</span>
+<span class="n">replacement7</span> <span class="o">=</span> <span class="n">replacement6</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;K&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">)</span>
+<span class="n">replacement8</span> <span class="o">=</span> <span class="n">replacement7</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">replacement8</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>TGACTAGCTAATGCATATCATAAACGATAGTATGTATATATAGCTACGCAAGTA
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>or do the replacement in a different case:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">my_dna</span> <span class="o">=</span> <span class="s">&quot;ACTGATCGATTACGTATAGTATTTGCTATCATACATATATATCGATGCGTTCAT&quot;</span>
+<span class="n">replacement1</span> <span class="o">=</span> <span class="n">my_dna</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;t&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">replacement1</span><span class="p">)</span>
+<span class="n">replacement2</span> <span class="o">=</span> <span class="n">replacement1</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;a&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">replacement2</span><span class="p">)</span>
+<span class="n">replacement3</span> <span class="o">=</span> <span class="n">replacement2</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;g&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">replacement3</span><span class="p">)</span>
+<span class="n">replacement4</span> <span class="o">=</span> <span class="n">replacement3</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">replacement4</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">replacement4</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>tCTGtTCGtTTtCGTtTtGTtTTTGCTtTCtTtCtTtTtTtTCGtTGCGTTCtT
+tCaGtaCGtaatCGatatGataaaGCataCtatCtatatataCGtaGCGaaCta
+tgaGtagGtaatgGatatGataaaGgatagtatgtatatatagGtaGgGaagta
+tgactagctaatgcatatcataaacgatagtatgtatatatagctacgcaagta
+TGACTAGCTAATGCATATCATAAACGATAGTATGTATATATAGCTACGCAAGTA
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Restriction-fragment-lengths">Restriction fragment lengths<a class="anchor-link" href="#Restriction-fragment-lengths">&#182;</a></h2><p>We can kind of see the answer just by looking at the sequence:</p>
+<p><code>0         1         2         3         4         5</code>
+<code>0123456789012345678901234567890123456789012345678901234</code>
+<code>ACTGATCGATTACGTATAGTA</code><strong><code>GAATTC</code></strong><code>TATCATACATATATATCGATGCGTTCAT</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>First fragment will be position 0 to 21, second from 22 to the end, so the lengths are 22 and 33.</p>
+<p>The same idea in code:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">my_dna</span> <span class="o">=</span> <span class="s">&quot;ACTGATCGATTACGTATAGTAGAATTCTATCATACATATATATCGATGCGTTCAT&quot;</span>
+<span class="n">frag1_length</span> <span class="o">=</span> <span class="n">my_dna</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&quot;GAATTC&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">frag2_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">my_dna</span><span class="p">)</span> <span class="o">-</span> <span class="n">frag1_length</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;length of fragment one is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">frag1_length</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;length of fragment two is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">frag2_length</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>length of fragment one is 22
+length of fragment two is 33
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Splicing-out-introns">Splicing out introns<a class="anchor-link" href="#Splicing-out-introns">&#182;</a></h2><p>First, store the DNA and extract the exons as separate variables:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">my_dna</span> <span class="o">=</span><span class="s">&quot;ATCGATCGATCGATCGACTGACTAGTCATAGCTATGCATGTAGCTACTCGATCGATCGATCGATCGATCGATCGATCGATCGATCATGCTATCATCGATCGATATCGATGCATCGACTACTAT&quot;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Remember that we start counting from zero, and that positions are inclusive at the start and exclusive at the end:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">exon1</span> <span class="o">=</span> <span class="n">my_dna</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">63</span><span class="p">]</span>
+<span class="n">exon2</span> <span class="o">=</span> <span class="n">my_dna</span><span class="p">[</span><span class="mi">90</span><span class="p">:]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we can just join the two exons and print them out:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="n">exon1</span> <span class="o">+</span> <span class="n">exon2</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ATCGATCGATCGATCGACTGACTAGTCATAGCTATGCATGTAGCTACTCGATCGATCGATCGAATCATCGATCGATATCGATGCATCGACTACTAT
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To calculate the coding percentage, we just have to take the length of the exons, divide by the length of the sequence, and multiply by 100:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">coding_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">exon1</span> <span class="o">+</span> <span class="n">exon2</span><span class="p">)</span>
+<span class="n">total_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">my_dna</span><span class="p">)</span>
+<span class="k">print</span><span class="p">((</span><span class="n">coding_length</span> <span class="o">/</span> <span class="n">total_length</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>78.0487804878
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To print out the upper/lower case version, we need to take the middle bit i.e. the intron and convert it to lower case, then join the bits back together:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">exon1</span> <span class="o">=</span> <span class="n">my_dna</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">63</span><span class="p">]</span>
+<span class="n">intron</span> <span class="o">=</span> <span class="n">my_dna</span><span class="p">[</span><span class="mi">63</span><span class="p">:</span><span class="mi">90</span><span class="p">]</span>
+<span class="n">exon2</span> <span class="o">=</span> <span class="n">my_dna</span><span class="p">[</span><span class="mi">90</span><span class="p">:]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">exon1</span> <span class="o">+</span> <span class="n">intron</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">+</span> <span class="n">exon2</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ATCGATCGATCGATCGACTGACTAGTCATAGCTATGCATGTAGCTACTCGATCGATCGATCGAtcgatcgatcgatcgatcgatcatgctATCATCGATCGATATCGATGCATCGACTACTAT
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[127]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># ignore this cell, it&#39;s for loading custom js code</span>
+<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">Javascript</span>
+<span class="n">Javascript</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">&quot;custom.js&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[127]:</div>
+
+
+<div class="output_subarea output_javascript output_execute_result">
+<script type="text/javascript">
+var currenth1=0;
+ 
+function regentoc() {
+document.getElementById("toc").innerHTML = "";
+var currenth2 = 0;
+$("h2,h3").not("#Contents").each(function(mainIndex) {
+    el = $(this);
+    title = el.attr("id");
+    text = el.html();
+    link = "#" + el.attr("id");
+    if ( document.getElementById(title).tagName == "H2" ) {
+        currenth2 += 1;
+        newLine =
+            "<li class='maintoc'>" +
+               "<a href='" + link + "'>" + text + "</a>" +
+            "</li>" +
+            "<ul id='h2" + currenth2 + "'></ul>";
+        document.getElementById("toc").innerHTML += newLine;
+    } else if ( document.getElementById(title).tagName=="H3" ) {
+        h1list = document.getElementById("h2"+currenth2);
+        newLine = "<li class='subtoc'>" + "<a href='" + link + "'>" + text + "</a>" + "</li>";
+        h1list.innerHTML += newLine;
+    }
+});
+}
+ 
+setInterval(regentoc,1000);
+
+</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[129]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># ignore this cell, it&#39;s for loading custom css code</span>
+<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">&quot;custom_css.txt&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[129]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<style>
+/*
+
+    Name:       Base16 Solarized Light
+    Author:     Ethan Schoonover (http://ethanschoonover.com/solarized)
+
+    CodeMirror template adapted for IPython Notebook by Nikhil Sonnad (https://github.com/nsonnad/base16-ipython-notebook)
+    CodeMirror template by Jan T. Sott (https://github.com/idleberg/base16-chrome-devtools)
+    Original Base16 color scheme by Chris Kempson (https://github.com/chriskempson/base16)
+
+*/
+
+div.output_text{
+        max-height:400px;
+        overflow:scroll;
+}
+
+div#notebook {
+  font-family: 'PT Serif' !important;
+} 
+
+div.CodeMirror, div.output_area pre, div.output_wrapper, div.prompt {
+  font-family: 'Source Code Pro', monospace !important;
+}
+
+.output_text {
+  background-color: #f0f0f0;
+}
+
+.prompt { display: none; }
+div.output_subarea { max-width: calc(100%); }
+
+
+/* GLOBALS */
+body {background-color: #fdf6e3;}
+a {color: #268bd2;}
+
+/* INTRO PAGE */
+.toolbar_info, .list-container {color: #073642;}
+
+/* NOTEBOOK */
+
+/* comment out this line to bring the toolbar back */
+/* div#maintoolbar, div#header {display: none !important;} */
+
+div#notebook {border-top: none;}
+
+div.input_prompt {color: #6c71c4;}
+div.output_prompt {color: #d33682;}
+div.input_area {
+  border-radius: 0px;
+  border: 1px solid #93a1a1;
+}
+div.output_area pre {font-weight: normal; color: #586e75;}
+div.output_subarea {font-weight: normal; color: #586e75;}
+
+.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td {
+  border: 1px  #657b83 solid;
+  color: #657b83;
+}
+div.output_html { font-family: sans-serif; }
+table.dataframe tr {border: 1px #586e75;}
+
+div.cell.selected {border-radius: 0px;}
+div.cell.edit_mode {border-radius: 0px; border: thin solid #d33682;}
+div.text_cell_render, div.output_html {color: #586e75;}
+
+span.ansiblack {color: #073642;}
+span.ansiblue {color: #2aa198;}
+span.ansigray {color: #839496;}
+span.ansigreen {color: #859900;}
+span.ansipurple {color: #6c71c4;}
+span.ansired {color: #dc322f;}
+span.ansiyellow {color: #b58900;}
+
+div.output_stderr {background-color: #dc322f;}
+div.output_stderr pre {color: #eee8d5;}
+
+.cm-s-ipython.CodeMirror {background: #fdf6e3; color: #073642;}
+.cm-s-ipython div.CodeMirror-selected {background: #eee8d5 !important;}
+.cm-s-ipython .CodeMirror-gutters {background: #fdf6e3; border-right: 0px;}
+.cm-s-ipython .CodeMirror-linenumber {color: #839496;}
+.cm-s-ipython .CodeMirror-cursor {border-left: 1px solid #657b83 !important;}
+
+.cm-s-ipython span.cm-comment {color: #d33682;}
+.cm-s-ipython span.cm-atom {color: #6c71c4;}
+.cm-s-ipython span.cm-number {color: #6c71c4;}
+
+.cm-s-ipython span.cm-property, .cm-s-ipython span.cm-attribute {color: #859900;}
+.cm-s-ipython span.cm-keyword {color: #dc322f;}
+.cm-s-ipython span.cm-string {color: #b58900;}
+.cm-s-ipython span.cm-operator {color: #d33682;}
+.cm-s-ipython span.cm-builtin {color: #6c71c4;}
+
+.cm-s-ipython span.cm-variable {color: #859900;}
+.cm-s-ipython span.cm-variable-2 {color: #268bd2;}
+.cm-s-ipython span.cm-def {color: #cb4b16;}
+.cm-s-ipython span.cm-error {background: #dc322f; color: #657b83;}
+.cm-s-ipython span.cm-bracket {color: #586e75;}
+.cm-s-ipython span.cm-tag {color: #dc322f;}
+.cm-s-ipython span.cm-link {color: #6c71c4;}
+
+/*  html output highlighting*/
+
+
+div.input_area>div.highlight {background: #fdf6e3; color: #073642;}
+.cm-s-ipython div.CodeMirror-selected {background: #eee8d5 !important;}
+.cm-s-ipython .CodeMirror-gutters {background: #fdf6e3; border-right: 0px;}
+.cm-s-ipython .CodeMirror-linenumber {color: #839496;}
+.cm-s-ipython .CodeMirror-cursor {border-left: 1px solid #657b83 !important;}
+
+.highlight span.c {color: #d33682;}
+.cm-s-ipython span.cm-atom {color: #6c71c4;}
+.highlight span.mi {color: #6c71c4;}
+
+.cm-s-ipython span.cm-property, .cm-s-ipython span.cm-attribute {color: #859900;}
+.highlight span.kn {color: #dc322f;}
+.highlight span.k {color: #dc322f;}
+.highlight span.ow {color: #dc322f;}
+
+.highlight span.o {color: #d33682; font-weight: bold;}
+
+.cm-s-ipython span.cm-string {color: #b58900;}
+.highlight span.nb {color: #6c71c4;}
+
+.highlight span.n {color: #859900;}
+.highlight span.nn {color: #859900; font-weight: }
+.cm-s-ipython span.cm-def {color: #cb4b16;}
+.cm-s-ipython span.cm-error {background: #dc322f; color: #657b83;}
+.cm-s-ipython span.cm-bracket {color: #586e75;}
+.cm-s-ipython span.cm-tag {color: #dc322f;}
+.cm-s-ipython span.cm-link {color: #6c71c4;}
+
+
+</style>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
     </div>
   </div>

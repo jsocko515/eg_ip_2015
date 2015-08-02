@@ -1,4 +1,6 @@
+alert('hi');
 
+ 
 function regentoc() {
     document.getElementById("toc").innerHTML = "";
     var currenth2 = 0;

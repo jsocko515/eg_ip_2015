@@ -16,8 +16,5 @@ div.CodeMirror, div.output_area pre, div.output_wrapper, div.prompt {
   background-color: #f0f0f0;
 }
 
-
-.prompt { display: none; }
-div.output_subarea { max-width: calc(100%); }
 </style>
 

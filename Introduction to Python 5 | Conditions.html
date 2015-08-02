@@ -3,7 +3,7 @@
 <head>
 
 <meta charset="utf-8" />
-<title>index</title>
+<title>Introduction to Python 5 | Conditions</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -177,10 +177,1083 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Edinburgh-Genomics-Advanced-Python">Edinburgh Genomics Advanced Python<a class="anchor-link" href="#Edinburgh-Genomics-Advanced-Python">&#182;</a></h1><h2 id="August-2015">August 2015<a class="anchor-link" href="#August-2015">&#182;</a></h2><p><a href="Advanced Python | Classes and objects.html">Classes and objects</a></p>
+<p><h1 id="toctitle">Conditions</h1></p>
+<ul id="toc"/>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="True-and-False">True and False<a class="anchor-link" href="#True-and-False">&#182;</a></h2><p><strong>Conditions</strong> are things that can be evaluated as either true or false:</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">5</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="mi">3</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="mi">3</span> <span class="o">&lt;=</span> <span class="mi">5</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="s">&quot;ATGC&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">5</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;GAATTC&quot;</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&quot;T&quot;</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;ATGCTT&quot;</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&quot;ATG&quot;</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;ATGCTT&quot;</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&quot;TTT&quot;</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;ATGCTT&quot;</span><span class="o">.</span><span class="n">isupper</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;ATGCTT&quot;</span><span class="o">.</span><span class="n">islower</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;V&quot;</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&quot;V&quot;</span><span class="p">,</span> <span class="s">&quot;W&quot;</span><span class="p">,</span> <span class="s">&quot;L&quot;</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>False
+False
+True
+False
+True
+True
+False
+True
+False
+True
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>There are a bunch of different types of true/false conditions in Python:</p>
+<ul>
+<li>equals (and not equals with <code>!=</code>)</li>
+<li>numerical comparisons (<code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>)</li>
+<li>string methods (<code>startswith</code>, <code>isupper</code>)</li>
+<li>is a value in a list</li>
+</ul>
+<p>We can experiment by typing in at the console:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="mi">4</span> <span class="o">!=</span> <span class="mi">5</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Using-conditions">Using conditions<a class="anchor-link" href="#Using-conditions">&#182;</a></h2><h3 id="if-statements"><code>if</code> statements<a class="anchor-link" href="#if-statements">&#182;</a></h3><p>The simplest thing we can do with a condition is execute some code if it's true:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">expression_level</span> <span class="o">=</span> <span class="mi">125</span>
+<span class="k">if</span> <span class="n">expression_level</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;gene is highly expressed&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>gene is highly expressed
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice that</p>
+<ul>
+<li>the condition line starts with <code>if</code></li>
+<li>the thing we want to test goes after the <code>if</code></li>
+<li>the line ends with a colon</li>
+<li>just like with loops, the body is indented</li>
+<li>can have multiple lines in the body</li>
+</ul>
+<p>A more interesting example:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">accs</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;ab56&#39;</span><span class="p">,</span> <span class="s">&#39;bh84&#39;</span><span class="p">,</span> <span class="s">&#39;hv76&#39;</span><span class="p">,</span> <span class="s">&#39;ay93&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">accession</span> <span class="ow">in</span> <span class="n">accs</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">accession</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">accession</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ab56
+ay93
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Code with conditions often involves mulitple levels of indentation. Watch out for <code>IndentationErrors</code> and indentation mistakes.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="else-statements"><code>else</code> statements<a class="anchor-link" href="#else-statements">&#182;</a></h3><p>The <code>if</code> examples above are yes/no - either we execute the bit of code, or we do nothing.</p>
+<p>Sometimes we want either/or - two different branches:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">accs</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;ab56&#39;</span><span class="p">,</span> <span class="s">&#39;bh84&#39;</span><span class="p">,</span> <span class="s">&#39;hv76&#39;</span><span class="p">,</span> <span class="s">&#39;ay93&#39;</span><span class="p">,</span> <span class="s">&#39;ap97&#39;</span><span class="p">,</span> <span class="s">&#39;bd72&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">accession</span> <span class="ow">in</span> <span class="n">accs</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">accession</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">accession</span>  <span class="o">+</span> <span class="s">&quot; starts with a&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">accession</span>  <span class="o">+</span> <span class="s">&quot; doesn&#39;t start with a&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ab56 starts with a
+bh84 doesn&apos;t start with a
+hv76 doesn&apos;t start with a
+ay93 starts with a
+ap97 starts with a
+bd72 doesn&apos;t start with a
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>else</code> line has nothing on it. The <code>else</code> block is indented and is run when the condition is false.</p>
+<h3 id="elif-statements"><code>elif</code> statements<a class="anchor-link" href="#elif-statements">&#182;</a></h3><p>Sometimes we want multiple branches. We can nest conditions like this:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">accs</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;ab56&#39;</span><span class="p">,</span> <span class="s">&#39;bh84&#39;</span><span class="p">,</span> <span class="s">&#39;hv76&#39;</span><span class="p">,</span> <span class="s">&#39;ay93&#39;</span><span class="p">,</span> <span class="s">&#39;ap97&#39;</span><span class="p">,</span> <span class="s">&#39;bd72&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">accession</span> <span class="ow">in</span> <span class="n">accs</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">accession</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">accession</span>  <span class="o">+</span> <span class="s">&quot; starts with a&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">accession</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;b&#39;</span><span class="p">):</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">accession</span>  <span class="o">+</span> <span class="s">&quot; starts with b&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">accession</span>  <span class="o">+</span> <span class="s">&quot; starts with something else&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ab56 starts with a
+bh84 starts with b
+hv76 starts with something else
+ay93 starts with a
+ap97 starts with a
+bd72 starts with b
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>But each extra option needs an extra level of indentation. Better to use <code>elif</code>:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">accs</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;ab56&#39;</span><span class="p">,</span> <span class="s">&#39;bh84&#39;</span><span class="p">,</span> <span class="s">&#39;hv76&#39;</span><span class="p">,</span> <span class="s">&#39;ay93&#39;</span><span class="p">,</span> <span class="s">&#39;ap97&#39;</span><span class="p">,</span> <span class="s">&#39;bd72&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">accession</span> <span class="ow">in</span> <span class="n">accs</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">accession</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">accession</span>  <span class="o">+</span> <span class="s">&quot; starts with a&quot;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">accession</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;b&#39;</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">accession</span>  <span class="o">+</span> <span class="s">&quot; starts with b&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">accession</span>  <span class="o">+</span> <span class="s">&quot; starts with something else&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ab56 starts with a
+bh84 starts with b
+hv76 starts with something else
+ay93 starts with a
+ap97 starts with a
+bd72 starts with b
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Much easier to read, and we can add as many conditions as we like:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">accs</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;ab56&#39;</span><span class="p">,</span> <span class="s">&#39;eh84&#39;</span><span class="p">,</span> <span class="s">&#39;hv76&#39;</span><span class="p">,</span> <span class="s">&#39;ay93&#39;</span><span class="p">,</span> <span class="s">&#39;zp97&#39;</span><span class="p">,</span> <span class="s">&#39;cd72&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">accession</span> <span class="ow">in</span> <span class="n">accs</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">accession</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;a!&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">accession</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;b&#39;</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;b!&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">accession</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;c&#39;</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;c!&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">accession</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;d&#39;</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;d!&#39;</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">accession</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;e&#39;</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;e!&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&#39;sometheing else!&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>a!
+e!
+sometheing else!
+a!
+sometheing else!
+c!
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>else</code> and <code>elif</code> are good when we have <em>mutually excluside</em> posibilities. If more than one can be true, then use multiple <code>if</code> lines:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">accs</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;ab56&#39;</span><span class="p">,</span> <span class="s">&#39;bh84&#39;</span><span class="p">,</span> <span class="s">&#39;hv76&#39;</span><span class="p">,</span> <span class="s">&#39;ay93&#39;</span><span class="p">,</span> <span class="s">&#39;ap97&#39;</span><span class="p">,</span> <span class="s">&#39;bd72&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">accession</span> <span class="ow">in</span> <span class="n">accs</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">accession</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">accession</span>  <span class="o">+</span> <span class="s">&quot; starts with a&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">accession</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;6&#39;</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">accession</span>  <span class="o">+</span> <span class="s">&quot; ends with 6&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ab56 starts with a
+ab56 ends with 6
+hv76 ends with 6
+ay93 starts with a
+ap97 starts with a
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Complex-conditions">Complex conditions<a class="anchor-link" href="#Complex-conditions">&#182;</a></h2><h3 id="and"><code>and</code><a class="anchor-link" href="#and">&#182;</a></h3><p>We can join together two conditions with <code>and</code> to make a complex one that's only true if both of the simple ones are true:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">accs</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;ab56&#39;</span><span class="p">,</span> <span class="s">&#39;bh84&#39;</span><span class="p">,</span> <span class="s">&#39;hv76&#39;</span><span class="p">,</span> <span class="s">&#39;ay93&#39;</span><span class="p">,</span> <span class="s">&#39;ap97&#39;</span><span class="p">,</span> <span class="s">&#39;bd72&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">accs</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">a</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;3&#39;</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;both conditions are true for &quot;</span> <span class="o">+</span> <span class="n">a</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>both conditions are true for ay93
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="or"><code>or</code><a class="anchor-link" href="#or">&#182;</a></h3><p>We can do the same with <code>or</code> and it will be true if either of the simple conditions are true:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">accs</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;ab56&#39;</span><span class="p">,</span> <span class="s">&#39;bh84&#39;</span><span class="p">,</span> <span class="s">&#39;hv76&#39;</span><span class="p">,</span> <span class="s">&#39;ay93&#39;</span><span class="p">,</span> <span class="s">&#39;ap97&#39;</span><span class="p">,</span> <span class="s">&#39;bd72&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">accs</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">a</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">a</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;3&#39;</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;at least one condition is true for &quot;</span> <span class="o">+</span> <span class="n">a</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>at least one condition is true for ab56
+at least one condition is true for ay93
+at least one condition is true for ap97
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can even join together complex conditions in this way:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">accs</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;ab56&#39;</span><span class="p">,</span> <span class="s">&#39;bh84&#39;</span><span class="p">,</span> <span class="s">&#39;hv76&#39;</span><span class="p">,</span> <span class="s">&#39;ay93&#39;</span><span class="p">,</span> <span class="s">&#39;ap97&#39;</span><span class="p">,</span> <span class="s">&#39;bd72&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">accs</span><span class="p">:</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;b&#39;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">a</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;h&#39;</span><span class="p">))</span> <span class="ow">and</span> <span class="n">a</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;4&#39;</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;complex condition is true for &quot;</span> <span class="o">+</span> <span class="n">a</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>complex condition is true for bh84
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Complex conditions can be hard to read. If we put parentheses around the whole thing, then we are allowed to split it up over multiple lines:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">accs</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;ab56&#39;</span><span class="p">,</span> <span class="s">&#39;bh84&#39;</span><span class="p">,</span> <span class="s">&#39;hv76&#39;</span><span class="p">,</span> <span class="s">&#39;ay93&#39;</span><span class="p">,</span> <span class="s">&#39;ap97&#39;</span><span class="p">,</span> <span class="s">&#39;bd72&#39;</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">accs</span><span class="p">:</span>
+    <span class="k">if</span> <span class="p">(</span>
+        <span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;b&#39;</span><span class="p">)</span> 
+        <span class="ow">or</span> <span class="n">a</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;h&#39;</span><span class="p">))</span> 
+        <span class="ow">and</span> <span class="n">a</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;4&#39;</span><span class="p">)</span>
+    <span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;complex condition is true for &quot;</span> <span class="o">+</span> <span class="n">a</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>complex condition is true for bh84
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exercises">Exercises<a class="anchor-link" href="#Exercises">&#182;</a></h2><h3 id="Processing-tabular-data">Processing tabular data<a class="anchor-link" href="#Processing-tabular-data">&#182;</a></h3><p>Open the text file called <em>data.csv</em>, which contains some made-up data for a number of genes. Each line contains the following fields for a single gene in this order: species name, sequence, gene name, expression level. The fields are separated by commas (hence the name of the file – <strong>csv</strong> stands for <strong>Comma Separated Values</strong>):</p>
+
+<pre><code>Drosophila yakuba,cgcgcgc...gatgc,hdt739,85</code></pre>
+<p>Think of it as a representation of a table in a spreadsheet – each line is a row, and each field in a line is a column.</p>
+<p>Print out the gene names for all genes belonging to Drosophila melanogaster or Drosophila simulans.</p>
+<p>Print out the gene names for all genes between 90 and 110 bases long.</p>
+<p>Print out the gene names for all genes whose AT content is less than 0.5 and whose expression level is greater than 200.</p>
+<p>Print out the gene names for all genes whose name begins with "k" or "h" except those belonging to Drosophila melanogaster.</p>
+<p>For each gene, print out a message giving the gene name and saying whether its AT content is high (greater than 0.65), low (less than 0.45) or medium (between 0.45 and 0.65).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Pairwise-distance">Pairwise distance<a class="anchor-link" href="#Pairwise-distance">&#182;</a></h3><p>Here is a list of DNA sequences:</p>
+<p><code>['ATTGTACGG', 'AATGAACCG', 'AATGAACCC', 'AATGGGAAT']</code></p>
+<p>Write a program that calculates and prints, for each pair of sequences, the percentage of identical positions.</p>
+<p>Hint:</p>
+
+<pre><code>if base1 == base2:
+    # do something</code></pre>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Kmer-counting">Kmer counting<a class="anchor-link" href="#Kmer-counting">&#182;</a></h3><p>Write a program that, given a DNA sequence, will print all the k-mers (e.g. 4-mers) that occur more than n times.</p>
+<p>E.g. with dna="ATGCATCATG", k=2 and n=2 print:</p>
+<p>AT</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># ignore this cell, it&#39;s for loading custom js code</span>
+<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">Javascript</span>
+<span class="n">Javascript</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">&quot;custom.js&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[40]:</div>
+
+
+<div class="output_subarea output_javascript output_execute_result">
+<script type="text/javascript">
+alert('hi');
+
+ 
+function regentoc() {
+    document.getElementById("toc").innerHTML = "";
+    var currenth2 = 0;
+    $("h2,h3").not("#Contents").each(function(mainIndex) {
+        el = $(this);
+        title = el.attr("id");
+        text = el.html();
+        link = "#" + el.attr("id");
+        if ( document.getElementById(title).tagName == "H2" ) {
+            currenth2 += 1;
+            newLine =
+                "<li class='maintoc'>" +
+                   "<a href='" + link + "'>" + text + "</a>" +
+                "</li>" +
+                "<ul id='h2" + currenth2 + "'></ul>";
+            document.getElementById("toc").innerHTML += newLine;
+        } else if ( document.getElementById(title).tagName=="H3" ) {
+            h1list = document.getElementById("h2"+currenth2);
+            newLine = "<li class='subtoc'>" + "<a href='" + link + "'>" + text + "</a>" + "</li>";
+            h1list.innerHTML += newLine;
+        }
+    });
+}
+ 
+setInterval(regentoc,1000);
+
+</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># ignore this cell, it&#39;s for loading custom css code</span>
+<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">&quot;custom.css&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[37]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<style>
+div.output_text{
+        max-height:400px;
+        overflow:scroll;
+}
+
+div#notebook {
+  font-family: 'PT Serif' !important;
+} 
+
+div.CodeMirror, div.output_area pre, div.output_wrapper, div.prompt {
+  font-family: 'Source Code Pro', monospace !important;
+}
+
+.output_text {
+  background-color: #f0f0f0;
+}
+
+
+.prompt { display: none; }
+div.output_subarea { max-width: calc(100%); }
+</style>
+
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span><span class="s">&#39;&lt;p onclick=&quot;regentoc();&quot;&gt;rebuild&lt;/p&gt;&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[39]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<p onclick="regentoc();">rebuild</p>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
 </div>
     </div>
   </div>

@@ -3,7 +3,7 @@
 <head>
 
 <meta charset="utf-8" />
-<title>index</title>
+<title>Introduction to Python 3 | Working with files</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -177,10 +177,592 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Edinburgh-Genomics-Advanced-Python">Edinburgh Genomics Advanced Python<a class="anchor-link" href="#Edinburgh-Genomics-Advanced-Python">&#182;</a></h1><h2 id="August-2015">August 2015<a class="anchor-link" href="#August-2015">&#182;</a></h2><p><a href="Advanced Python | Classes and objects.html">Classes and objects</a></p>
+<p><h1 id="toctitle">Working with files</h1></p>
+<ul id="toc"/>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Files are important in bioinformatics. We have many file formats:</p>
+<ul>
+<li>FASTA</li>
+<li>GenBank</li>
+<li>FASTQ</li>
+<li>VCF</li>
+<li>BlAST output</li>
+<li>SAM</li>
+</ul>
+<p>Often, we need to take a file an tweak its format for existing tools (e.g. fussy FASTA headers).</p>
+<p>Other times we need to write a program that will either create input for, or accept output from, other tools.</p>
+<p>Today we will talk about:</p>
+<ul>
+<li>reading text</li>
+<li>processing lines in a file</li>
+<li>creating new files</li>
+<li>appending and writing data to files</li>
+</ul>
+<p>Later we will talk about:</p>
+<ul>
+<li>renaming</li>
+<li>moving</li>
+<li>copying</li>
+<li>deleting</li>
+<li>doing stuff to each file in a folder</li>
+</ul>
+<p><strong>Important note</strong>: for all the examples and exercises in this (and future) sessions you will need to download and unzip <a href="https://github.com/mojones/eg_ip_2015/archive/gh-pages.zip">the course files from here</a>.</p>
+<h2 id="Getting-data-from-a-file">Getting data from a file<a class="anchor-link" href="#Getting-data-from-a-file">&#182;</a></h2><h3 id="Opening-a-file">Opening a file<a class="anchor-link" href="#Opening-a-file">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Getting data out of a file is a two step process: open then read.</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">my_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;dna.txt&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>open()</code> is a function that takes on string argument - the name of the file - and returns a <strong>File object</strong>.</p>
+<p>File objects are a new type of data that represent a file on disk. They have useful methods, like strings (but unlike strings we can't really print them):</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="n">my_file</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>&lt;open file &apos;dna.txt&apos;, mode &apos;r&apos; at 0x7fe246e364b0&gt;
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Reading-file-contents">Reading file contents<a class="anchor-link" href="#Reading-file-contents">&#182;</a></h3><p><code>read()</code> is a File object method that returns the contents as a string. It has no arguments.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">my_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;dna.txt&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">my_file</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ACTGTACGTGCACTGATC
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Remember the special character <code>\n</code>. Every line includes this new line character at the end. Remove it with the <code>rstrip()</code> method:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">my_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;dna.txt&quot;</span><span class="p">)</span>
+<span class="n">my_file_contents</span> <span class="o">=</span> <span class="n">my_file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="c"># remove the newline from the end of the file contents</span>
+<span class="n">my_dna</span> <span class="o">=</span> <span class="n">my_file_contents</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">my_dna</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ACTGTACGTGCACTGATC
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice how this version doesn't have the extra empty line.</p>
+<h2 id="Writing-to-files">Writing to files<a class="anchor-link" href="#Writing-to-files">&#182;</a></h2><p>To write to a file we have to use a second argument to open:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">my_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;out.txt&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>w</code> stands for write. Once we have opened a file for writing, we can use the <code>write()</code> method:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">my_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;Hello world&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>How can we tell if this has worked? We need to open the file in a text editor (IDLE will do fine).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Closing-files">Closing files<a class="anchor-link" href="#Closing-files">&#182;</a></h2><p>Once we've finished writing data to a file, we have to close it:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">my_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;out.txt&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">)</span>
+<span class="n">my_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;Hello world&quot;</span><span class="p">)</span>
+<span class="c"># remember to close the file</span>
+<span class="n">my_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Summary-of-all-things!">Summary of all things!<a class="anchor-link" href="#Summary-of-all-things!">&#182;</a></h2><table>
+<thead><tr>
+<th><strong>Name</strong></th>
+<th><strong>Job</strong></th>
+<th><strong>Argument</strong></th>
+<th><strong>Returns</strong></th>
+<th><strong>Type</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>open()</code></td>
+<td>opens a file for reading or writing</td>
+<td>filename, optional mode (both strings)</td>
+<td>File object</td>
+<td>built in function</td>
+</tr>
+<tr>
+<td><code>read()</code></td>
+<td>reads the contents of a file</td>
+<td>none</td>
+<td>String</td>
+<td>method of File objects</td>
+</tr>
+<tr>
+<td><code>rstrip()</code></td>
+<td>removes characters from end of string (usually newline)</td>
+<td>string to remove</td>
+<td>string</td>
+<td>method of string objects</td>
+</tr>
+<tr>
+<td><code>write()</code></td>
+<td>writes text to a file</td>
+<td>string to write</td>
+<td>nothing</td>
+<td>method of File objects</td>
+</tr>
+<tr>
+<td><code>close()</code></td>
+<td>closes a file</td>
+<td>none</td>
+<td>nothing</td>
+<td>method of File objects</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exercises">Exercises<a class="anchor-link" href="#Exercises">&#182;</a></h2><p>You'll need to use the string manipulation material from previous session, so have it open somewhere.</p>
+<h3 id="Splitting-genomic-DNA">Splitting genomic DNA<a class="anchor-link" href="#Splitting-genomic-DNA">&#182;</a></h3><p>Look at the file called <em>genomic_dna.txt</em> – it contains the same piece of genomic DNA that we were using in the final exercise from the previous session. The first exon runs from the start of the sequence to the sixty-third character, and the second exon runs from the ninety-first character to the end of the sequence.</p>
+<p>Write a program that will split the genomic DNA into coding and non-coding parts, and write these sequences to two separate files. Hint: use your solution to the last exercise from the previous session as a starting point.</p>
+<h3 id="Writing-a-FASTA-file">Writing a FASTA file<a class="anchor-link" href="#Writing-a-FASTA-file">&#182;</a></h3><p>A FASTA file stores sequence data and looks like this:</p>
+
+<pre><code>&gt;sequence_one
+cgatcgatcatcgatgcattgtagctatcg
+&gt;sequence_two
+acagtagctacgtgtgtcgta</code></pre>
+<p>Write a program that will create a FASTA file for the following three sequences – make sure that all sequences are in upper case and only contain the bases A, T, G and C.</p>
+<table>
+<thead><tr>
+<th><strong>Sequence header</strong></th>
+<th><strong>Sequence</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ABC123</td>
+<td>ATCGTACGATCGATCGATCGCTAGACGTATCG</td>
+</tr>
+<tr>
+<td>DEF456</td>
+<td>actgatcgacgatcgatcgatcacgact</td>
+</tr>
+<tr>
+<td>HIJ789</td>
+<td>ACTGAC-ACTGT--ACTGTA----CATGTG</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Writing-multiple-FASTA-files">Writing multiple FASTA files<a class="anchor-link" href="#Writing-multiple-FASTA-files">&#182;</a></h3><p>Use the data from the previous exercise, but instead of creating a <strong>single</strong> FASTA file, create <strong>three</strong> new FASTA files – one per sequence. The names of the FASTA files should be the same as the sequence header names, with the extension .fasta.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[127]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># ignore this cell, it&#39;s for loading custom js code</span>
+<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">Javascript</span>
+<span class="n">Javascript</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">&quot;custom.js&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[127]:</div>
+
+
+<div class="output_subarea output_javascript output_execute_result">
+<script type="text/javascript">
+var currenth1=0;
+ 
+function regentoc() {
+document.getElementById("toc").innerHTML = "";
+var currenth2 = 0;
+$("h2,h3").not("#Contents").each(function(mainIndex) {
+    el = $(this);
+    title = el.attr("id");
+    text = el.html();
+    link = "#" + el.attr("id");
+    if ( document.getElementById(title).tagName == "H2" ) {
+        currenth2 += 1;
+        newLine =
+            "<li class='maintoc'>" +
+               "<a href='" + link + "'>" + text + "</a>" +
+            "</li>" +
+            "<ul id='h2" + currenth2 + "'></ul>";
+        document.getElementById("toc").innerHTML += newLine;
+    } else if ( document.getElementById(title).tagName=="H3" ) {
+        h1list = document.getElementById("h2"+currenth2);
+        newLine = "<li class='subtoc'>" + "<a href='" + link + "'>" + text + "</a>" + "</li>";
+        h1list.innerHTML += newLine;
+    }
+});
+}
+ 
+setInterval(regentoc,1000);
+
+</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[129]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># ignore this cell, it&#39;s for loading custom css code</span>
+<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">&quot;custom_css.txt&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[129]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<style>
+/*
+
+    Name:       Base16 Solarized Light
+    Author:     Ethan Schoonover (http://ethanschoonover.com/solarized)
+
+    CodeMirror template adapted for IPython Notebook by Nikhil Sonnad (https://github.com/nsonnad/base16-ipython-notebook)
+    CodeMirror template by Jan T. Sott (https://github.com/idleberg/base16-chrome-devtools)
+    Original Base16 color scheme by Chris Kempson (https://github.com/chriskempson/base16)
+
+*/
+
+div.output_text{
+        max-height:400px;
+        overflow:scroll;
+}
+
+div#notebook {
+  font-family: 'PT Serif' !important;
+} 
+
+div.CodeMirror, div.output_area pre, div.output_wrapper, div.prompt {
+  font-family: 'Source Code Pro', monospace !important;
+}
+
+.output_text {
+  background-color: #f0f0f0;
+}
+
+.prompt { display: none; }
+div.output_subarea { max-width: calc(100%); }
+
+
+/* GLOBALS */
+body {background-color: #fdf6e3;}
+a {color: #268bd2;}
+
+/* INTRO PAGE */
+.toolbar_info, .list-container {color: #073642;}
+
+/* NOTEBOOK */
+
+/* comment out this line to bring the toolbar back */
+/* div#maintoolbar, div#header {display: none !important;} */
+
+div#notebook {border-top: none;}
+
+div.input_prompt {color: #6c71c4;}
+div.output_prompt {color: #d33682;}
+div.input_area {
+  border-radius: 0px;
+  border: 1px solid #93a1a1;
+}
+div.output_area pre {font-weight: normal; color: #586e75;}
+div.output_subarea {font-weight: normal; color: #586e75;}
+
+.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td {
+  border: 1px  #657b83 solid;
+  color: #657b83;
+}
+div.output_html { font-family: sans-serif; }
+table.dataframe tr {border: 1px #586e75;}
+
+div.cell.selected {border-radius: 0px;}
+div.cell.edit_mode {border-radius: 0px; border: thin solid #d33682;}
+div.text_cell_render, div.output_html {color: #586e75;}
+
+span.ansiblack {color: #073642;}
+span.ansiblue {color: #2aa198;}
+span.ansigray {color: #839496;}
+span.ansigreen {color: #859900;}
+span.ansipurple {color: #6c71c4;}
+span.ansired {color: #dc322f;}
+span.ansiyellow {color: #b58900;}
+
+div.output_stderr {background-color: #dc322f;}
+div.output_stderr pre {color: #eee8d5;}
+
+.cm-s-ipython.CodeMirror {background: #fdf6e3; color: #073642;}
+.cm-s-ipython div.CodeMirror-selected {background: #eee8d5 !important;}
+.cm-s-ipython .CodeMirror-gutters {background: #fdf6e3; border-right: 0px;}
+.cm-s-ipython .CodeMirror-linenumber {color: #839496;}
+.cm-s-ipython .CodeMirror-cursor {border-left: 1px solid #657b83 !important;}
+
+.cm-s-ipython span.cm-comment {color: #d33682;}
+.cm-s-ipython span.cm-atom {color: #6c71c4;}
+.cm-s-ipython span.cm-number {color: #6c71c4;}
+
+.cm-s-ipython span.cm-property, .cm-s-ipython span.cm-attribute {color: #859900;}
+.cm-s-ipython span.cm-keyword {color: #dc322f;}
+.cm-s-ipython span.cm-string {color: #b58900;}
+.cm-s-ipython span.cm-operator {color: #d33682;}
+.cm-s-ipython span.cm-builtin {color: #6c71c4;}
+
+.cm-s-ipython span.cm-variable {color: #859900;}
+.cm-s-ipython span.cm-variable-2 {color: #268bd2;}
+.cm-s-ipython span.cm-def {color: #cb4b16;}
+.cm-s-ipython span.cm-error {background: #dc322f; color: #657b83;}
+.cm-s-ipython span.cm-bracket {color: #586e75;}
+.cm-s-ipython span.cm-tag {color: #dc322f;}
+.cm-s-ipython span.cm-link {color: #6c71c4;}
+
+/*  html output highlighting*/
+
+
+div.input_area>div.highlight {background: #fdf6e3; color: #073642;}
+.cm-s-ipython div.CodeMirror-selected {background: #eee8d5 !important;}
+.cm-s-ipython .CodeMirror-gutters {background: #fdf6e3; border-right: 0px;}
+.cm-s-ipython .CodeMirror-linenumber {color: #839496;}
+.cm-s-ipython .CodeMirror-cursor {border-left: 1px solid #657b83 !important;}
+
+.highlight span.c {color: #d33682;}
+.cm-s-ipython span.cm-atom {color: #6c71c4;}
+.highlight span.mi {color: #6c71c4;}
+
+.cm-s-ipython span.cm-property, .cm-s-ipython span.cm-attribute {color: #859900;}
+.highlight span.kn {color: #dc322f;}
+.highlight span.k {color: #dc322f;}
+.highlight span.ow {color: #dc322f;}
+
+.highlight span.o {color: #d33682; font-weight: bold;}
+
+.cm-s-ipython span.cm-string {color: #b58900;}
+.highlight span.nb {color: #6c71c4;}
+
+.highlight span.n {color: #859900;}
+.highlight span.nn {color: #859900; font-weight: }
+.cm-s-ipython span.cm-def {color: #cb4b16;}
+.cm-s-ipython span.cm-error {background: #dc322f; color: #657b83;}
+.cm-s-ipython span.cm-bracket {color: #586e75;}
+.cm-s-ipython span.cm-tag {color: #dc322f;}
+.cm-s-ipython span.cm-link {color: #6c71c4;}
+
+
+</style>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
     </div>
   </div>

@@ -3,7 +3,7 @@
 <head>
 
 <meta charset="utf-8" />
-<title>index</title>
+<title>Introduction to Python 4 | Lists and loops exercise solutions</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -177,10 +177,1245 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Edinburgh-Genomics-Advanced-Python">Edinburgh Genomics Advanced Python<a class="anchor-link" href="#Edinburgh-Genomics-Advanced-Python">&#182;</a></h1><h2 id="August-2015">August 2015<a class="anchor-link" href="#August-2015">&#182;</a></h2><p><a href="Advanced Python | Classes and objects.html">Classes and objects</a></p>
+<p><h1 id="toctitle">Lists and loops exercise solutions</h1></p>
+<ul id="toc"/>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Processing-DNA-in-a-file">Processing DNA in a file<a class="anchor-link" href="#Processing-DNA-in-a-file">&#182;</a></h2><p>First, just read each line and print to the screen:</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;input.txt&quot;</span><span class="p">)</span> 
+<span class="k">for</span> <span class="n">dna</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span> 
+    <span class="k">print</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ATTCGATTATAAGCTCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATC
+
+ATTCGATTATAAGCACTGATCGATCGATCGATCGATCGATGCTATCGTCGT
+
+ATTCGATTATAAGCATCGATCACGATCTATCGTACGTATGCATATCGATATCGATCGTAGTC
+
+ATTCGATTATAAGCACTATCGATGATCTAGCTACGATCGTAGCTGTA
+
+ATTCGATTATAAGCACTAGCTAGTCTCGATGCATGATCAGCTTAGCTGATGATGCTATGCA
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we can grab the bit of the sequence from 15th base to the end:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;input.txt&quot;</span><span class="p">)</span> 
+<span class="k">for</span> <span class="n">dna</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span>
+    <span class="n">trimmed_dna</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="mi">14</span><span class="p">:]</span> 
+    <span class="k">print</span><span class="p">(</span><span class="n">trimmed_dna</span><span class="p">)</span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>TCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATC
+
+ACTGATCGATCGATCGATCGATCGATGCTATCGTCGT
+
+ATCGATCACGATCTATCGTACGTATGCATATCGATATCGATCGTAGTC
+
+ACTATCGATGATCTAGCTACGATCGTAGCTGTA
+
+ACTAGCTAGTCTCGATGCATGATCAGCTTAGCTGATGATGCTATGCA
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Looks good, the printed sequences are definitely shorter!</p>
+<p>Now switch to writing to a file:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;input.txt&quot;</span><span class="p">)</span> 
+<span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;trimmed.txt&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">)</span> 
+<span class="k">for</span> <span class="n">dna</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span> 
+    <span class="n">trimmed_dna</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="mi">14</span><span class="p">:]</span> 
+    <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">trimmed_dna</span><span class="p">)</span> 
+<span class="n">output</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice where we open, write, and close - before, during, and after the loop.</p>
+<p>Add one more statement to print the length of the trimmed sequence to the screen:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># open the input file </span>
+<span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;input.txt&quot;</span><span class="p">)</span> 
+ 
+<span class="c"># open the output file </span>
+<span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;trimmed.txt&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">)</span> 
+ 
+<span class="c"># go through the input file one line at a time </span>
+<span class="k">for</span> <span class="n">dna</span> <span class="ow">in</span> <span class="nb">file</span><span class="p">:</span> 
+
+    <span class="c"># get the substring from the 15th character to the end </span>
+    <span class="n">trimmed_dna</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="mi">14</span><span class="p">:]</span>
+
+    <span class="c"># print out the trimmed sequence</span>
+    <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">trimmed_dna</span><span class="p">)</span>
+
+    <span class="c"># print out the length to the screen</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;processed sequence with length &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">trimmed_dna</span><span class="p">)))</span> 
+<span class="n">output</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>processed sequence with length 43
+processed sequence with length 38
+processed sequence with length 49
+processed sequence with length 34
+processed sequence with length 48
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Multiple-exons-from-genomic-DNA">Multiple exons from genomic DNA<a class="anchor-link" href="#Multiple-exons-from-genomic-DNA">&#182;</a></h2><p>There are two files involved here - the DNA and the exon locations. Start with the locations:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">exon_locations</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;exons.txt&quot;</span><span class="p">)</span> 
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">exon_locations</span><span class="p">:</span> 
+    <span class="k">print</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>5,58
+
+72,133
+
+190,276
+
+340,398
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Use <code>split()</code> to turn each line into a list of two elements:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">exon_locations</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;exons.txt&quot;</span><span class="p">)</span> 
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">exon_locations</span><span class="p">:</span> 
+    <span class="n">positions</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;,&#39;</span><span class="p">)</span> 
+    <span class="k">print</span><span class="p">(</span><span class="n">positions</span><span class="p">)</span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[&apos;5&apos;, &apos;58\n&apos;]
+[&apos;72&apos;, &apos;133\n&apos;]
+[&apos;190&apos;, &apos;276\n&apos;]
+[&apos;340&apos;, &apos;398\n&apos;]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To make it easier to work with, let's assign the start and stop to variables:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">exon_locations</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;exons.txt&quot;</span><span class="p">)</span> 
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">exon_locations</span><span class="p">:</span> 
+    <span class="n">positions</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;,&#39;</span><span class="p">)</span> 
+    <span class="n">start</span> <span class="o">=</span> <span class="n">positions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
+    <span class="n">stop</span> <span class="o">=</span> <span class="n">positions</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> 
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;start is &quot;</span> <span class="o">+</span> <span class="n">start</span> <span class="o">+</span> <span class="s">&quot;, stop is &quot;</span> <span class="o">+</span> <span class="n">stop</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>start is 5, stop is 58
+
+start is 72, stop is 133
+
+start is 190, stop is 276
+
+start is 340, stop is 398
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Looks good. Next we tackle the DNA part: open and read the sequence, then use the start/stop positions to extract the exon:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">genomic_dna</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;genomic_dna2.txt&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> 
+<span class="n">exon_locations</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;exons.txt&quot;</span><span class="p">)</span> 
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">exon_locations</span><span class="p">:</span> 
+    <span class="n">positions</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;,&#39;</span><span class="p">)</span> 
+    <span class="n">start</span> <span class="o">=</span> <span class="n">positions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> 
+    <span class="n">stop</span> <span class="o">=</span> <span class="n">positions</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> 
+    <span class="n">exon</span> <span class="o">=</span> <span class="n">genomic_dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="p">]</span> 
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;exon is: &quot;</span> <span class="o">+</span> <span class="n">exon</span><span class="p">)</span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansired">---------------------------------------------------------------------------</span>
+<span class="ansired">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansigreen">&lt;ipython-input-15-4fdfd2098f8d&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
+<span class="ansigreen">      5</span>     start <span class="ansiyellow">=</span> positions<span class="ansiyellow">[</span><span class="ansicyan">0</span><span class="ansiyellow">]</span><span class="ansiyellow"></span>
+<span class="ansigreen">      6</span>     stop <span class="ansiyellow">=</span> positions<span class="ansiyellow">[</span><span class="ansicyan">1</span><span class="ansiyellow">]</span><span class="ansiyellow"></span>
+<span class="ansigreen">----&gt; 7</span><span class="ansiyellow">     </span>exon <span class="ansiyellow">=</span> genomic_dna<span class="ansiyellow">[</span>start<span class="ansiyellow">:</span>stop<span class="ansiyellow">]</span><span class="ansiyellow"></span>
+<span class="ansigreen">      8</span>     <span class="ansigreen">print</span><span class="ansiyellow">(</span><span class="ansiblue">&quot;exon is: &quot;</span> <span class="ansiyellow">+</span> exon<span class="ansiyellow">)</span><span class="ansiyellow"></span>
+
+<span class="ansired">TypeError</span>: slice indices must be integers or None or have an __index__ method</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Problem: when we split a string, the resulting elements of the list are strings. Look at the output from this:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="s">&quot;123,456,789&quot;</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;,&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[12]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&apos;123&apos;, &apos;456&apos;, &apos;789&apos;]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>and notice how the numbers are surrounded by quotes. We need to turn them into numbers with</p>
+<div class="highlight"><pre><span class="n">start</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">positions</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> 
+    <span class="n">stop</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">positions</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">genomic_dna</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;genomic_dna2.txt&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> 
+<span class="n">exon_locations</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;exons.txt&quot;</span><span class="p">)</span> 
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">exon_locations</span><span class="p">:</span> 
+    <span class="n">positions</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;,&#39;</span><span class="p">)</span> 
+    <span class="n">start</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">positions</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> 
+    <span class="n">stop</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">positions</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">exon</span> <span class="o">=</span> <span class="n">genomic_dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="p">]</span> 
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;exon is: &quot;</span> <span class="o">+</span> <span class="n">exon</span><span class="p">)</span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>exon is: CGTACCGTCGACGATGCTACGATCGTCGATCGTAGTCGATCATCGATCGATCG
+exon is: CGATCGATCGATATCGATCGATATCATCGATGCATCGATCATCGATCGATCGATCGATCGA
+exon is: CGATCGATCGATCGTAGCTAGCTAGCTAGATCGATCATCATCGTAGCTAGCTCGACTAGCTACGTACGATCGATGCATCGATCGTA
+exon is: CGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGTAGCTAGCTACGATCG
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>OK. Next step - do something useful with the exons. We have to concatenate them all to make one long coding sequence. Because we are only dealing with a single exon at a time, we have to do it inside the loop. Here's the easiest way:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">genomic_dna</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;genomic_dna2.txt&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> 
+<span class="n">exon_locations</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;exons.txt&quot;</span><span class="p">)</span> 
+
+<span class="c"># create a new variable to hold the coding sequence</span>
+<span class="c"># at first it is just an empty string</span>
+<span class="n">coding_sequence</span> <span class="o">=</span> <span class="s">&quot;&quot;</span> 
+
+
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">exon_locations</span><span class="p">:</span> 
+    <span class="n">positions</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;,&#39;</span><span class="p">)</span> 
+    <span class="n">start</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">positions</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> 
+    <span class="n">stop</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">positions</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> 
+    <span class="n">exon</span> <span class="o">=</span> <span class="n">genomic_dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="p">]</span> 
+    
+    <span class="c"># take the original coding sequence,</span>
+    <span class="c"># add the new exon on to the end, </span>
+    <span class="c"># then store the result back in the coding sequence variable</span>
+    <span class="n">coding_sequence</span> <span class="o">=</span> <span class="n">coding_sequence</span> <span class="o">+</span> <span class="n">exon</span> 
+    
+    
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;coding sequence is : &quot;</span> <span class="o">+</span> <span class="n">coding_sequence</span><span class="p">)</span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>coding sequence is : CGTACCGTCGACGATGCTACGATCGTCGATCGTAGTCGATCATCGATCGATCG
+coding sequence is : CGTACCGTCGACGATGCTACGATCGTCGATCGTAGTCGATCATCGATCGATCGCGATCGATCGATATCGATCGATATCATCGATGCATCGATCATCGATCGATCGATCGATCGA
+coding sequence is : CGTACCGTCGACGATGCTACGATCGTCGATCGTAGTCGATCATCGATCGATCGCGATCGATCGATATCGATCGATATCATCGATGCATCGATCATCGATCGATCGATCGATCGACGATCGATCGATCGTAGCTAGCTAGCTAGATCGATCATCATCGTAGCTAGCTCGACTAGCTACGTACGATCGATGCATCGATCGTA
+coding sequence is : CGTACCGTCGACGATGCTACGATCGTCGATCGTAGTCGATCATCGATCGATCGCGATCGATCGATATCGATCGATATCATCGATGCATCGATCATCGATCGATCGATCGATCGACGATCGATCGATCGTAGCTAGCTAGCTAGATCGATCATCATCGTAGCTAGCTCGACTAGCTACGTACGATCGATGCATCGATCGTACGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGTAGCTAGCTACGATCG
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice how the coding sequence gets longer each time round the loop as more exons are added to it.</p>
+<p>After the loop has finished we can write the coding sequence to a file. Final version:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># open the genomic dna file and read the contents </span>
+<span class="n">genomic_dna</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;genomic_dna2.txt&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span> 
+ 
+<span class="c"># open the exons locations file </span>
+<span class="n">exon_locations</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;exons.txt&quot;</span><span class="p">)</span> 
+ 
+<span class="c"># create a variable to hold the coding sequence </span>
+<span class="n">coding_sequence</span> <span class="o">=</span> <span class="s">&quot;&quot;</span> 
+ 
+<span class="c"># go through each line in the exon locations file </span>
+<span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">exon_locations</span><span class="p">:</span> 
+
+    <span class="c"># split the line using a comma </span>
+    <span class="n">positions</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;,&#39;</span><span class="p">)</span> 
+
+    <span class="c"># get the start and stop positions </span>
+    <span class="n">start</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">positions</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> 
+    <span class="n">stop</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">positions</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> 
+
+    <span class="c"># extract the exon from the genomic dna </span>
+    <span class="n">exon</span> <span class="o">=</span> <span class="n">genomic_dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="p">]</span> 
+
+    <span class="c"># append the exon to the end of the current coding sequence </span>
+    <span class="n">coding_sequence</span> <span class="o">=</span> <span class="n">coding_sequence</span> <span class="o">+</span> <span class="n">exon</span> 
+
+<span class="c"># write the coding sequence to an output file </span>
+<span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;coding_sequence.txt&quot;</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">)</span> 
+<span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">coding_sequence</span><span class="p">)</span> 
+<span class="n">output</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Bonus-exercise:-sliding-windows">Bonus exercise: sliding windows<a class="anchor-link" href="#Bonus-exercise:-sliding-windows">&#182;</a></h3><p>We can start by defining some variables: a DNA sequence and a window size.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;aacgtcgat&quot;</span>
+<span class="n">window_size</span> <span class="o">=</span> <span class="mi">4</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Let's get the first few windows manually:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">window1</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">window2</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">window3</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">window1</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">window2</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">window3</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>aacg
+acgt
+cgtc
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can see the pattern here:</p>
+<ul>
+<li>the stop position of the window is always 4 more than the start (or whatever the window size is)</li>
+<li>the start position increases by one each time</li>
+</ul>
+<p>So we can use <code>range()</code> to generate the list of start positions:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">start_positions</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">start_positions</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[0, 1, 2, 3, 4, 5, 6, 7, 8]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>And now write a loop to get the window for each start position:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)):</span>
+    <span class="n">stop</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">window_size</span>
+    <span class="n">window</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="p">]</span>
+    <span class="k">print</span> <span class="n">window</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>aacg
+acgt
+cgtc
+gtcg
+tcga
+cgat
+gat
+at
+t
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can see what's going on even more clearly if we print some spaces at the start of the window to make it line up with the original sequence. Use <code>*</code> to repeat a string:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)):</span>
+    <span class="n">stop</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">window_size</span>
+    <span class="n">window</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="p">]</span>
+    <span class="k">print</span> <span class="p">(</span><span class="s">&#39; &#39;</span> <span class="o">*</span> <span class="n">start</span><span class="p">)</span> <span class="o">+</span> <span class="n">window</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>aacgtcgat
+aacg
+ acgt
+  cgtc
+   gtcg
+    tcga
+     cgat
+      gat
+       at
+        t
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Notice that we have some incomplete windows at the end. If we want to avoid this, we need to stop the <code>range()</code> while there are still enough bases at the end:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">-</span> <span class="n">window_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">stop</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">window_size</span>
+    <span class="n">window</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="p">]</span>
+    <span class="k">print</span> <span class="p">(</span><span class="s">&#39; &#39;</span> <span class="o">*</span> <span class="n">start</span><span class="p">)</span> <span class="o">+</span> <span class="n">window</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>aacgtcgat
+aacg
+ acgt
+  cgtc
+   gtcg
+    tcga
+     cgat
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now that we have a loop to generate all the windows, it's easy to calculate their AT content (remember the first line!)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">-</span> <span class="n">window_size</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="n">stop</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">window_size</span>
+    <span class="n">window</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="p">]</span>
+    <span class="n">at</span> <span class="o">=</span> <span class="p">(</span><span class="n">window</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">window</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;t&#39;</span><span class="p">))</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">window</span><span class="p">,</span> <span class="n">at</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(0, &apos;aacg&apos;, 0.5)
+(1, &apos;acgt&apos;, 0.5)
+(2, &apos;cgtc&apos;, 0.25)
+(3, &apos;gtcg&apos;, 0.25)
+(4, &apos;tcga&apos;, 0.5)
+(5, &apos;cgat&apos;, 0.5)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If we want to include partial windows and the start and end, we just have to adjust the call to <code>range()</code> so that it starts with a negative number and ends at the length of the sequence. For the negative start positions we have to bump them up to zero:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">division</span>
+<span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">window_size</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)):</span>
+    <span class="n">stop</span> <span class="o">=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">window_size</span>
+    <span class="k">if</span> <span class="n">start</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span>
+    
+    
+    <span class="n">window</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">stop</span><span class="p">]</span>
+    <span class="n">at</span> <span class="o">=</span> <span class="p">(</span><span class="n">window</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">window</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&#39;t&#39;</span><span class="p">))</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">window</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">start</span><span class="p">,</span><span class="n">window</span><span class="p">,</span><span class="n">at</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(0, &apos;a&apos;, 1.0)
+(0, &apos;aa&apos;, 1.0)
+(0, &apos;aac&apos;, 0.6666666666666666)
+(0, &apos;aacg&apos;, 0.5)
+(1, &apos;acgt&apos;, 0.5)
+(2, &apos;cgtc&apos;, 0.25)
+(3, &apos;gtcg&apos;, 0.25)
+(4, &apos;tcga&apos;, 0.5)
+(5, &apos;cgat&apos;, 0.5)
+(6, &apos;gat&apos;, 0.6666666666666666)
+(7, &apos;at&apos;, 1.0)
+(8, &apos;t&apos;, 1.0)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[127]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># ignore this cell, it&#39;s for loading custom js code</span>
+<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">Javascript</span>
+<span class="n">Javascript</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">&quot;custom.js&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[127]:</div>
+
+
+<div class="output_subarea output_javascript output_execute_result">
+<script type="text/javascript">
+var currenth1=0;
+ 
+function regentoc() {
+document.getElementById("toc").innerHTML = "";
+var currenth2 = 0;
+$("h2,h3").not("#Contents").each(function(mainIndex) {
+    el = $(this);
+    title = el.attr("id");
+    text = el.html();
+    link = "#" + el.attr("id");
+    if ( document.getElementById(title).tagName == "H2" ) {
+        currenth2 += 1;
+        newLine =
+            "<li class='maintoc'>" +
+               "<a href='" + link + "'>" + text + "</a>" +
+            "</li>" +
+            "<ul id='h2" + currenth2 + "'></ul>";
+        document.getElementById("toc").innerHTML += newLine;
+    } else if ( document.getElementById(title).tagName=="H3" ) {
+        h1list = document.getElementById("h2"+currenth2);
+        newLine = "<li class='subtoc'>" + "<a href='" + link + "'>" + text + "</a>" + "</li>";
+        h1list.innerHTML += newLine;
+    }
+});
+}
+ 
+setInterval(regentoc,1000);
+
+</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[129]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="c"># ignore this cell, it&#39;s for loading custom css code</span>
+<span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
+<span class="n">HTML</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">&quot;custom_css.txt&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[129]:</div>
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<style>
+/*
+
+    Name:       Base16 Solarized Light
+    Author:     Ethan Schoonover (http://ethanschoonover.com/solarized)
+
+    CodeMirror template adapted for IPython Notebook by Nikhil Sonnad (https://github.com/nsonnad/base16-ipython-notebook)
+    CodeMirror template by Jan T. Sott (https://github.com/idleberg/base16-chrome-devtools)
+    Original Base16 color scheme by Chris Kempson (https://github.com/chriskempson/base16)
+
+*/
+
+div.output_text{
+        max-height:400px;
+        overflow:scroll;
+}
+
+div#notebook {
+  font-family: 'PT Serif' !important;
+} 
+
+div.CodeMirror, div.output_area pre, div.output_wrapper, div.prompt {
+  font-family: 'Source Code Pro', monospace !important;
+}
+
+.output_text {
+  background-color: #f0f0f0;
+}
+
+.prompt { display: none; }
+div.output_subarea { max-width: calc(100%); }
+
+
+/* GLOBALS */
+body {background-color: #fdf6e3;}
+a {color: #268bd2;}
+
+/* INTRO PAGE */
+.toolbar_info, .list-container {color: #073642;}
+
+/* NOTEBOOK */
+
+/* comment out this line to bring the toolbar back */
+/* div#maintoolbar, div#header {display: none !important;} */
+
+div#notebook {border-top: none;}
+
+div.input_prompt {color: #6c71c4;}
+div.output_prompt {color: #d33682;}
+div.input_area {
+  border-radius: 0px;
+  border: 1px solid #93a1a1;
+}
+div.output_area pre {font-weight: normal; color: #586e75;}
+div.output_subarea {font-weight: normal; color: #586e75;}
+
+.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td {
+  border: 1px  #657b83 solid;
+  color: #657b83;
+}
+div.output_html { font-family: sans-serif; }
+table.dataframe tr {border: 1px #586e75;}
+
+div.cell.selected {border-radius: 0px;}
+div.cell.edit_mode {border-radius: 0px; border: thin solid #d33682;}
+div.text_cell_render, div.output_html {color: #586e75;}
+
+span.ansiblack {color: #073642;}
+span.ansiblue {color: #2aa198;}
+span.ansigray {color: #839496;}
+span.ansigreen {color: #859900;}
+span.ansipurple {color: #6c71c4;}
+span.ansired {color: #dc322f;}
+span.ansiyellow {color: #b58900;}
+
+div.output_stderr {background-color: #dc322f;}
+div.output_stderr pre {color: #eee8d5;}
+
+.cm-s-ipython.CodeMirror {background: #fdf6e3; color: #073642;}
+.cm-s-ipython div.CodeMirror-selected {background: #eee8d5 !important;}
+.cm-s-ipython .CodeMirror-gutters {background: #fdf6e3; border-right: 0px;}
+.cm-s-ipython .CodeMirror-linenumber {color: #839496;}
+.cm-s-ipython .CodeMirror-cursor {border-left: 1px solid #657b83 !important;}
+
+.cm-s-ipython span.cm-comment {color: #d33682;}
+.cm-s-ipython span.cm-atom {color: #6c71c4;}
+.cm-s-ipython span.cm-number {color: #6c71c4;}
+
+.cm-s-ipython span.cm-property, .cm-s-ipython span.cm-attribute {color: #859900;}
+.cm-s-ipython span.cm-keyword {color: #dc322f;}
+.cm-s-ipython span.cm-string {color: #b58900;}
+.cm-s-ipython span.cm-operator {color: #d33682;}
+.cm-s-ipython span.cm-builtin {color: #6c71c4;}
+
+.cm-s-ipython span.cm-variable {color: #859900;}
+.cm-s-ipython span.cm-variable-2 {color: #268bd2;}
+.cm-s-ipython span.cm-def {color: #cb4b16;}
+.cm-s-ipython span.cm-error {background: #dc322f; color: #657b83;}
+.cm-s-ipython span.cm-bracket {color: #586e75;}
+.cm-s-ipython span.cm-tag {color: #dc322f;}
+.cm-s-ipython span.cm-link {color: #6c71c4;}
+
+/*  html output highlighting*/
+
+
+div.input_area>div.highlight {background: #fdf6e3; color: #073642;}
+.cm-s-ipython div.CodeMirror-selected {background: #eee8d5 !important;}
+.cm-s-ipython .CodeMirror-gutters {background: #fdf6e3; border-right: 0px;}
+.cm-s-ipython .CodeMirror-linenumber {color: #839496;}
+.cm-s-ipython .CodeMirror-cursor {border-left: 1px solid #657b83 !important;}
+
+.highlight span.c {color: #d33682;}
+.cm-s-ipython span.cm-atom {color: #6c71c4;}
+.highlight span.mi {color: #6c71c4;}
+
+.cm-s-ipython span.cm-property, .cm-s-ipython span.cm-attribute {color: #859900;}
+.highlight span.kn {color: #dc322f;}
+.highlight span.k {color: #dc322f;}
+.highlight span.ow {color: #dc322f;}
+
+.highlight span.o {color: #d33682; font-weight: bold;}
+
+.cm-s-ipython span.cm-string {color: #b58900;}
+.highlight span.nb {color: #6c71c4;}
+
+.highlight span.n {color: #859900;}
+.highlight span.nn {color: #859900; font-weight: }
+.cm-s-ipython span.cm-def {color: #cb4b16;}
+.cm-s-ipython span.cm-error {background: #dc322f; color: #657b83;}
+.cm-s-ipython span.cm-bracket {color: #586e75;}
+.cm-s-ipython span.cm-tag {color: #dc322f;}
+.cm-s-ipython span.cm-link {color: #6c71c4;}
+
+
+</style>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
 </div>
     </div>
   </div>
