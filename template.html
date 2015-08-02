@@ -177,23 +177,14 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Title">Title<a class="anchor-link" href="#Title">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><h1 id="toctitle">Contents</h1></p>
+<p><h1 id="toctitle">Title</h1></p>
 <ul id="toc"/>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[127]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># ignore this cell, it&#39;s for loading custom js code</span>
@@ -209,35 +200,34 @@ div#notebook {
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[127]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
 
 
 <div class="output_subarea output_javascript output_execute_result">
 <script type="text/javascript">
-var currenth1=0;
- 
+
 function regentoc() {
-document.getElementById("toc").innerHTML = "";
-var currenth2 = 0;
-$("h2,h3").not("#Contents").each(function(mainIndex) {
-    el = $(this);
-    title = el.attr("id");
-    text = el.html();
-    link = "#" + el.attr("id");
-    if ( document.getElementById(title).tagName == "H2" ) {
-        currenth2 += 1;
-        newLine =
-            "<li class='maintoc'>" +
-               "<a href='" + link + "'>" + text + "</a>" +
-            "</li>" +
-            "<ul id='h2" + currenth2 + "'></ul>";
-        document.getElementById("toc").innerHTML += newLine;
-    } else if ( document.getElementById(title).tagName=="H3" ) {
-        h1list = document.getElementById("h2"+currenth2);
-        newLine = "<li class='subtoc'>" + "<a href='" + link + "'>" + text + "</a>" + "</li>";
-        h1list.innerHTML += newLine;
-    }
-});
+    document.getElementById("toc").innerHTML = "";
+    var currenth2 = 0;
+    $("h2,h3").not("#Contents").each(function(mainIndex) {
+        el = $(this);
+        title = el.attr("id");
+        text = el.html();
+        link = "#" + el.attr("id");
+        if ( document.getElementById(title).tagName == "H2" ) {
+            currenth2 += 1;
+            newLine =
+                "<li class='maintoc'>" +
+                   "<a href='" + link + "'>" + text + "</a>" +
+                "</li>" +
+                "<ul id='h2" + currenth2 + "'></ul>";
+            document.getElementById("toc").innerHTML += newLine;
+        } else if ( document.getElementById(title).tagName=="H3" ) {
+            h1list = document.getElementById("h2"+currenth2);
+            newLine = "<li class='subtoc'>" + "<a href='" + link + "'>" + text + "</a>" + "</li>";
+            h1list.innerHTML += newLine;
+        }
+    });
 }
  
 setInterval(regentoc,1000);
@@ -253,12 +243,12 @@ setInterval(regentoc,1000);
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[129]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># ignore this cell, it&#39;s for loading custom css code</span>
 <span class="kn">from</span> <span class="nn">IPython.core.display</span> <span class="kn">import</span> <span class="n">HTML</span>
-<span class="n">HTML</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">&quot;custom_css.txt&quot;</span><span class="p">)</span>
+<span class="n">HTML</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s">&quot;custom.css&quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -269,21 +259,10 @@ setInterval(regentoc,1000);
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[129]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <style>
-/*
-
-    Name:       Base16 Solarized Light
-    Author:     Ethan Schoonover (http://ethanschoonover.com/solarized)
-
-    CodeMirror template adapted for IPython Notebook by Nikhil Sonnad (https://github.com/nsonnad/base16-ipython-notebook)
-    CodeMirror template by Jan T. Sott (https://github.com/idleberg/base16-chrome-devtools)
-    Original Base16 color scheme by Chris Kempson (https://github.com/chriskempson/base16)
-
-*/
-
 div.output_text{
         max-height:400px;
         overflow:scroll;
@@ -301,112 +280,11 @@ div.CodeMirror, div.output_area pre, div.output_wrapper, div.prompt {
   background-color: #f0f0f0;
 }
 
+
 .prompt { display: none; }
 div.output_subarea { max-width: calc(100%); }
-
-
-/* GLOBALS */
-body {background-color: #fdf6e3;}
-a {color: #268bd2;}
-
-/* INTRO PAGE */
-.toolbar_info, .list-container {color: #073642;}
-
-/* NOTEBOOK */
-
-/* comment out this line to bring the toolbar back */
-/* div#maintoolbar, div#header {display: none !important;} */
-
-div#notebook {border-top: none;}
-
-div.input_prompt {color: #6c71c4;}
-div.output_prompt {color: #d33682;}
-div.input_area {
-  border-radius: 0px;
-  border: 1px solid #93a1a1;
-}
-div.output_area pre {font-weight: normal; color: #586e75;}
-div.output_subarea {font-weight: normal; color: #586e75;}
-
-.rendered_html table, .rendered_html th, .rendered_html tr, .rendered_html td {
-  border: 1px  #657b83 solid;
-  color: #657b83;
-}
-div.output_html { font-family: sans-serif; }
-table.dataframe tr {border: 1px #586e75;}
-
-div.cell.selected {border-radius: 0px;}
-div.cell.edit_mode {border-radius: 0px; border: thin solid #d33682;}
-div.text_cell_render, div.output_html {color: #586e75;}
-
-span.ansiblack {color: #073642;}
-span.ansiblue {color: #2aa198;}
-span.ansigray {color: #839496;}
-span.ansigreen {color: #859900;}
-span.ansipurple {color: #6c71c4;}
-span.ansired {color: #dc322f;}
-span.ansiyellow {color: #b58900;}
-
-div.output_stderr {background-color: #dc322f;}
-div.output_stderr pre {color: #eee8d5;}
-
-.cm-s-ipython.CodeMirror {background: #fdf6e3; color: #073642;}
-.cm-s-ipython div.CodeMirror-selected {background: #eee8d5 !important;}
-.cm-s-ipython .CodeMirror-gutters {background: #fdf6e3; border-right: 0px;}
-.cm-s-ipython .CodeMirror-linenumber {color: #839496;}
-.cm-s-ipython .CodeMirror-cursor {border-left: 1px solid #657b83 !important;}
-
-.cm-s-ipython span.cm-comment {color: #d33682;}
-.cm-s-ipython span.cm-atom {color: #6c71c4;}
-.cm-s-ipython span.cm-number {color: #6c71c4;}
-
-.cm-s-ipython span.cm-property, .cm-s-ipython span.cm-attribute {color: #859900;}
-.cm-s-ipython span.cm-keyword {color: #dc322f;}
-.cm-s-ipython span.cm-string {color: #b58900;}
-.cm-s-ipython span.cm-operator {color: #d33682;}
-.cm-s-ipython span.cm-builtin {color: #6c71c4;}
-
-.cm-s-ipython span.cm-variable {color: #859900;}
-.cm-s-ipython span.cm-variable-2 {color: #268bd2;}
-.cm-s-ipython span.cm-def {color: #cb4b16;}
-.cm-s-ipython span.cm-error {background: #dc322f; color: #657b83;}
-.cm-s-ipython span.cm-bracket {color: #586e75;}
-.cm-s-ipython span.cm-tag {color: #dc322f;}
-.cm-s-ipython span.cm-link {color: #6c71c4;}
-
-/*  html output highlighting*/
-
-
-div.input_area>div.highlight {background: #fdf6e3; color: #073642;}
-.cm-s-ipython div.CodeMirror-selected {background: #eee8d5 !important;}
-.cm-s-ipython .CodeMirror-gutters {background: #fdf6e3; border-right: 0px;}
-.cm-s-ipython .CodeMirror-linenumber {color: #839496;}
-.cm-s-ipython .CodeMirror-cursor {border-left: 1px solid #657b83 !important;}
-
-.highlight span.c {color: #d33682;}
-.cm-s-ipython span.cm-atom {color: #6c71c4;}
-.highlight span.mi {color: #6c71c4;}
-
-.cm-s-ipython span.cm-property, .cm-s-ipython span.cm-attribute {color: #859900;}
-.highlight span.kn {color: #dc322f;}
-.highlight span.k {color: #dc322f;}
-.highlight span.ow {color: #dc322f;}
-
-.highlight span.o {color: #d33682; font-weight: bold;}
-
-.cm-s-ipython span.cm-string {color: #b58900;}
-.highlight span.nb {color: #6c71c4;}
-
-.highlight span.n {color: #859900;}
-.highlight span.nn {color: #859900; font-weight: }
-.cm-s-ipython span.cm-def {color: #cb4b16;}
-.cm-s-ipython span.cm-error {background: #dc322f; color: #657b83;}
-.cm-s-ipython span.cm-bracket {color: #586e75;}
-.cm-s-ipython span.cm-tag {color: #dc322f;}
-.cm-s-ipython span.cm-link {color: #6c71c4;}
-
-
 </style>
+
 
 </div>
 
