@@ -3,7 +3,7 @@
 <head>
 
 <meta charset="utf-8" />
-<title>Introduction to Python 7 | Dictionaries exercise solutions</title>
+<title>Introduction to Python 10 | BioPython</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -176,7 +176,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><h1 id="toctitle">Dictionaries exercise solutions</h1></p>
+<p><h1 id="toctitle">Introduction to Python 10 | BioPython</h1></p>
 <ul id="toc"/>
 </div>
 </div>
@@ -186,48 +186,36 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="DNA-translation">DNA translation<a class="anchor-link" href="#DNA-translation">&#182;</a></h2><p>First, we need to think about splitting up the DNA into codons. We can do the first few manually:</p>
+<h2 id="The-structure-of-BioPython">The structure of BioPython<a class="anchor-link" href="#The-structure-of-BioPython">&#182;</a></h2><p>We have seen some modules that come with Python:</p>
+<ul>
+<li><code>re</code> for regular expressions</li>
+<li><code>sys</code> for system interaction e.g. command line arguments</li>
+<li><code>os</code> and <code>shutil</code> for working with filesystems</li>
+</ul>
+<p>Modules are collections of related functions/methods/data types.</p>
+<p><strong>BioPython</strong> is a collection of related <em>modules</em> for working with biological data:</p>
+<ul>
+<li><strong>sequences and annotations</strong></li>
+<li>multiple sequence alignments</li>
+<li>similarity searching</li>
+<li><strong>querying databases</strong></li>
+<li>protein structures</li>
+<li>population genetics</li>
+<li>phylogenetics and trees</li>
+<li>domain motifs</li>
+<li>clustering methods</li>
+<li>machine learning</li>
+</ul>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ATGTTCGGT&quot;</span>
-<span class="n">codon1</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
-<span class="n">codon2</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
-<span class="n">codon3</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="mi">6</span><span class="p">:</span><span class="mi">9</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">codon1</span><span class="p">,</span> <span class="n">codon2</span><span class="p">,</span> <span class="n">codon3</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>(&apos;ATG&apos;, &apos;TTC&apos;, &apos;GGT&apos;)
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>until we see the pattern. The start position goes up by three each time, and the stop position is always three greater than the start. So with a range:</p>
+<h2 id="Sequence-objects">Sequence objects<a class="anchor-link" href="#Sequence-objects">&#182;</a></h2><p>BioPython has objects to represent sequences which can do common tasks. We can do a lot with very little code:</p>
 
 </div>
 </div>
@@ -237,10 +225,11 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ATGTTCGGT&quot;</span> 
-<span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span> 
-    <span class="n">codon</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> 
-    <span class="k">print</span><span class="p">(</span><span class="s">&quot;one codon is &quot;</span> <span class="o">+</span> <span class="n">codon</span><span class="p">)</span> 
+<div class=" highlight hl-ipython2"><pre><span class="kn">from</span> <span class="nn">Bio.Seq</span> <span class="kn">import</span> <span class="n">Seq</span>
+<span class="n">my_sequence</span> <span class="o">=</span> <span class="n">Seq</span><span class="p">(</span><span class="s">&quot;ATGCGGTGC&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">my_sequence</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">my_sequence</span><span class="o">.</span><span class="n">reverse_complement</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="n">my_sequence</span><span class="o">.</span><span class="n">translate</span><span class="p">())</span>
 </pre></div>
 
 </div>
@@ -253,9 +242,9 @@ div#notebook {
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>one codon is ATG
-one codon is TTC
-one codon is GGT
+<pre>ATGCGGTGC
+GCACCGCAT
+MRC
 </pre>
 </div>
 </div>
@@ -269,221 +258,7 @@ one codon is GGT
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This works for the particular sequence, but we need a more general solution. We always start at zero, and always go up by three, but the middle argument to range is tricky. We need the last start position to be two bases back from the end of the sequence:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ATGTTCGTGACGAGGGT&quot;</span> 
-
-<span class="c"># calculate the start position for the final codon</span>
-<span class="n">last_codon_start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> 
-
-<span class="c"># process the dna sequence in three base chunks</span>
-<span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">last_codon_start</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span> 
-    <span class="n">codon</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> 
-    <span class="k">print</span><span class="p">(</span><span class="s">&quot;one codon is &quot;</span> <span class="o">+</span> <span class="n">codon</span><span class="p">)</span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>one codon is ATG
-one codon is TTC
-one codon is GTG
-one codon is ACG
-one codon is AGG
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This version will work for any length DNA sequence.</p>
-<p>Getting the amino acid for a given codon is quite easy, just look it up:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">gencode</span> <span class="o">=</span> <span class="p">{</span>
-<span class="s">&#39;ATA&#39;</span><span class="p">:</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;ATC&#39;</span><span class="p">:</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;ATT&#39;</span><span class="p">:</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;ATG&#39;</span><span class="p">:</span><span class="s">&#39;M&#39;</span><span class="p">,</span>
-<span class="s">&#39;ACA&#39;</span><span class="p">:</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;ACC&#39;</span><span class="p">:</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;ACG&#39;</span><span class="p">:</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;ACT&#39;</span><span class="p">:</span><span class="s">&#39;T&#39;</span><span class="p">,</span>
-<span class="s">&#39;AAC&#39;</span><span class="p">:</span><span class="s">&#39;N&#39;</span><span class="p">,</span> <span class="s">&#39;AAT&#39;</span><span class="p">:</span><span class="s">&#39;N&#39;</span><span class="p">,</span> <span class="s">&#39;AAA&#39;</span><span class="p">:</span><span class="s">&#39;K&#39;</span><span class="p">,</span> <span class="s">&#39;AAG&#39;</span><span class="p">:</span><span class="s">&#39;K&#39;</span><span class="p">,</span>
-<span class="s">&#39;AGC&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="s">&#39;AGT&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="s">&#39;AGA&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="s">&#39;AGG&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span>
-<span class="s">&#39;CTA&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="s">&#39;CTC&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="s">&#39;CTG&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="s">&#39;CTT&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span>
-<span class="s">&#39;CCA&#39;</span><span class="p">:</span><span class="s">&#39;P&#39;</span><span class="p">,</span> <span class="s">&#39;CCC&#39;</span><span class="p">:</span><span class="s">&#39;P&#39;</span><span class="p">,</span> <span class="s">&#39;CCG&#39;</span><span class="p">:</span><span class="s">&#39;P&#39;</span><span class="p">,</span> <span class="s">&#39;CCT&#39;</span><span class="p">:</span><span class="s">&#39;P&#39;</span><span class="p">,</span>
-<span class="s">&#39;CAC&#39;</span><span class="p">:</span><span class="s">&#39;H&#39;</span><span class="p">,</span> <span class="s">&#39;CAT&#39;</span><span class="p">:</span><span class="s">&#39;H&#39;</span><span class="p">,</span> <span class="s">&#39;CAA&#39;</span><span class="p">:</span><span class="s">&#39;Q&#39;</span><span class="p">,</span> <span class="s">&#39;CAG&#39;</span><span class="p">:</span><span class="s">&#39;Q&#39;</span><span class="p">,</span>
-<span class="s">&#39;CGA&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="s">&#39;CGC&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="s">&#39;CGG&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="s">&#39;CGT&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span>
-<span class="s">&#39;GTA&#39;</span><span class="p">:</span><span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="s">&#39;GTC&#39;</span><span class="p">:</span><span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="s">&#39;GTG&#39;</span><span class="p">:</span><span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="s">&#39;GTT&#39;</span><span class="p">:</span><span class="s">&#39;V&#39;</span><span class="p">,</span>
-<span class="s">&#39;GCA&#39;</span><span class="p">:</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;GCC&#39;</span><span class="p">:</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;GCG&#39;</span><span class="p">:</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;GCT&#39;</span><span class="p">:</span><span class="s">&#39;A&#39;</span><span class="p">,</span>
-<span class="s">&#39;GAC&#39;</span><span class="p">:</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;GAT&#39;</span><span class="p">:</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;GAA&#39;</span><span class="p">:</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;GAG&#39;</span><span class="p">:</span><span class="s">&#39;E&#39;</span><span class="p">,</span>
-<span class="s">&#39;GGA&#39;</span><span class="p">:</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;GGC&#39;</span><span class="p">:</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;GGG&#39;</span><span class="p">:</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;GGT&#39;</span><span class="p">:</span><span class="s">&#39;G&#39;</span><span class="p">,</span>
-<span class="s">&#39;TCA&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="s">&#39;TCC&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="s">&#39;TCG&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="s">&#39;TCT&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span>
-<span class="s">&#39;TTC&#39;</span><span class="p">:</span><span class="s">&#39;F&#39;</span><span class="p">,</span> <span class="s">&#39;TTT&#39;</span><span class="p">:</span><span class="s">&#39;F&#39;</span><span class="p">,</span> <span class="s">&#39;TTA&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="s">&#39;TTG&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span>
-<span class="s">&#39;TAC&#39;</span><span class="p">:</span><span class="s">&#39;Y&#39;</span><span class="p">,</span> <span class="s">&#39;TAT&#39;</span><span class="p">:</span><span class="s">&#39;Y&#39;</span><span class="p">,</span> <span class="s">&#39;TAA&#39;</span><span class="p">:</span><span class="s">&#39;_&#39;</span><span class="p">,</span> <span class="s">&#39;TAG&#39;</span><span class="p">:</span><span class="s">&#39;_&#39;</span><span class="p">,</span>
-<span class="s">&#39;TGC&#39;</span><span class="p">:</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;TGT&#39;</span><span class="p">:</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;TGA&#39;</span><span class="p">:</span><span class="s">&#39;_&#39;</span><span class="p">,</span> <span class="s">&#39;TGG&#39;</span><span class="p">:</span><span class="s">&#39;W&#39;</span><span class="p">}</span>
-
-
-<span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ATGTTCGTGACGAGGGT&quot;</span> 
-
-<span class="n">last_codon_start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> 
-
-<span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">last_codon_start</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span> 
-    <span class="n">codon</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> 
-    <span class="n">aa</span> <span class="o">=</span> <span class="n">gencode</span><span class="p">[</span><span class="n">codon</span><span class="p">]</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">codon</span><span class="p">,</span> <span class="n">aa</span><span class="p">)</span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>(&apos;ATG&apos;, &apos;M&apos;)
-(&apos;TTC&apos;, &apos;F&apos;)
-(&apos;GTG&apos;, &apos;V&apos;)
-(&apos;ACG&apos;, &apos;T&apos;)
-(&apos;AGG&apos;, &apos;R&apos;)
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now all we need to do is build up the protein sequence one amino acid at a time:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ATGTTCGTGACGAGGGT&quot;</span> 
-
-<span class="n">last_codon_start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> 
-
-<span class="n">protein</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
-<span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">last_codon_start</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span> 
-    <span class="n">codon</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> 
-    <span class="n">aa</span> <span class="o">=</span> <span class="n">gencode</span><span class="p">[</span><span class="n">codon</span><span class="p">]</span>
-    <span class="n">protein</span> <span class="o">=</span> <span class="n">protein</span> <span class="o">+</span> <span class="n">aa</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">codon</span><span class="p">,</span> <span class="n">aa</span><span class="p">,</span> <span class="n">protein</span><span class="p">)</span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>(&apos;ATG&apos;, &apos;M&apos;, &apos;M&apos;)
-(&apos;TTC&apos;, &apos;F&apos;, &apos;MF&apos;)
-(&apos;GTG&apos;, &apos;V&apos;, &apos;MFV&apos;)
-(&apos;ACG&apos;, &apos;T&apos;, &apos;MFVT&apos;)
-(&apos;AGG&apos;, &apos;R&apos;, &apos;MFVTR&apos;)
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We can see how one amino acid gets added to the <code>protein</code> string each time round the loop. At the end of the loop we have the complete protein:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ATGTTCGTGACGAGGGT&quot;</span> 
-
-<span class="n">last_codon_start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> 
-
-<span class="n">protein</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
-<span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">last_codon_start</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span> 
-    <span class="n">codon</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> 
-    <span class="n">aa</span> <span class="o">=</span> <span class="n">gencode</span><span class="p">[</span><span class="n">codon</span><span class="p">]</span>
-    <span class="n">protein</span> <span class="o">=</span> <span class="n">protein</span> <span class="o">+</span> <span class="n">aa</span>
-    
-<span class="k">print</span><span class="p">(</span><span class="n">protein</span><span class="p">)</span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>MFVTR
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This is a good candidate for a function, so let's turn it into one:</p>
+<h2 id="Reading-sequence-files">Reading sequence files<a class="anchor-link" href="#Reading-sequence-files">&#182;</a></h2><h3 id="FASTA">FASTA<a class="anchor-link" href="#FASTA">&#182;</a></h3><p>It also has methods for reading and parsing common file formats. We can read a file of FASTA records and translate them easily:</p>
 
 </div>
 </div>
@@ -493,69 +268,12 @@ one codon is AGG
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">translate_dna</span><span class="p">(</span><span class="n">dna</span><span class="p">):</span> 
-    <span class="n">last_codon_start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> 
-    <span class="n">protein</span> <span class="o">=</span> <span class="s">&quot;&quot;</span> 
-    <span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">last_codon_start</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span> 
-        <span class="n">codon</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> 
-        <span class="n">aa</span> <span class="o">=</span> <span class="n">gencode</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">codon</span><span class="p">)</span> 
-        <span class="n">protein</span> <span class="o">=</span> <span class="n">protein</span> <span class="o">+</span> <span class="n">aa</span> 
-    <span class="k">return</span> <span class="n">protein</span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;ATGTTCGTGACGAGGGT&quot;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&apos;MFVTR&apos;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>And we'll try a few more DNA sequences to see what happens:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;ATGTTCGGT&quot;</span><span class="p">))</span> 
-<span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;ATCGATCGATCGTTGCTTATCGATCAG&quot;</span><span class="p">))</span> 
-<span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;actgatcgtagctagctgacgtatcgtat&quot;</span><span class="p">))</span> 
-<span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;ACGATCGATCGTNACGTACGATCGTACTCG&quot;</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span class="kn">from</span> <span class="nn">Bio</span> <span class="kn">import</span> <span class="n">SeqIO</span>
+<span class="n">records</span> <span class="o">=</span> <span class="n">SeqIO</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s">&quot;sequences.fasta&quot;</span><span class="p">,</span> <span class="s">&quot;fasta&quot;</span><span class="p">)</span>
+<span class="c"># records behaves like a list</span>
+<span class="k">for</span> <span class="n">seq_record</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">seq_record</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">seq_record</span><span class="o">.</span><span class="n">seq</span><span class="o">.</span><span class="n">translate</span><span class="p">())</span>
 </pre></div>
 
 </div>
@@ -568,30 +286,13 @@ one codon is AGG
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>MFG
-IDRSLLIDQ
+<pre>ABC123
+IVRSIDR*TY
+DEF456
+TDRRSIDHD
+HIJ789
+TDTVLYM
 </pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-12-06b698e53bf6&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">      1</span> <span class="ansigreen">print</span><span class="ansiyellow">(</span>translate_dna<span class="ansiyellow">(</span><span class="ansiblue">&quot;ATGTTCGGT&quot;</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">      2</span> <span class="ansigreen">print</span><span class="ansiyellow">(</span>translate_dna<span class="ansiyellow">(</span><span class="ansiblue">&quot;ATCGATCGATCGTTGCTTATCGATCAG&quot;</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">----&gt; 3</span><span class="ansiyellow"> </span><span class="ansigreen">print</span><span class="ansiyellow">(</span>translate_dna<span class="ansiyellow">(</span><span class="ansiblue">&quot;actgatcgtagctagctgacgtatcgtat&quot;</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">      4</span> <span class="ansigreen">print</span><span class="ansiyellow">(</span>translate_dna<span class="ansiyellow">(</span><span class="ansiblue">&quot;ACGATCGATCGTNACGTACGATCGTACTCG&quot;</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-
-<span class="ansigreen">&lt;ipython-input-10-fee9713c4113&gt;</span> in <span class="ansicyan">translate_dna</span><span class="ansiblue">(dna)</span>
-<span class="ansigreen">      5</span>         codon <span class="ansiyellow">=</span> dna<span class="ansiyellow">[</span>start<span class="ansiyellow">:</span>start<span class="ansiyellow">+</span><span class="ansicyan">3</span><span class="ansiyellow">]</span><span class="ansiyellow"></span>
-<span class="ansigreen">      6</span>         aa <span class="ansiyellow">=</span> gencode<span class="ansiyellow">.</span>get<span class="ansiyellow">(</span>codon<span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">----&gt; 7</span><span class="ansiyellow">         </span>protein <span class="ansiyellow">=</span> protein <span class="ansiyellow">+</span> aa<span class="ansiyellow"></span>
-<span class="ansigreen">      8</span>     <span class="ansigreen">return</span> protein<span class="ansiyellow"></span>
-
-<span class="ansired">TypeError</span>: cannot concatenate &apos;str&apos; and &apos;NoneType&apos; objects</pre>
 </div>
 </div>
 
@@ -604,7 +305,7 @@ IDRSLLIDQ
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We get an error on the third DNA sequence because it's in lower case. Change everything to upper case:</p>
+<p>or we can turn them into a dict:</p>
 
 </div>
 </div>
@@ -614,30 +315,14 @@ IDRSLLIDQ
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">translate_dna</span><span class="p">(</span><span class="n">dna</span><span class="p">):</span> 
-    <span class="n">last_codon_start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> 
-    <span class="n">protein</span> <span class="o">=</span> <span class="s">&quot;&quot;</span> 
-    <span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">last_codon_start</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span> 
-        <span class="n">codon</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> 
-        <span class="n">aa</span> <span class="o">=</span> <span class="n">gencode</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">codon</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span> 
-        <span class="n">protein</span> <span class="o">=</span> <span class="n">protein</span> <span class="o">+</span> <span class="n">aa</span> 
-    <span class="k">return</span> <span class="n">protein</span> 
-</pre></div>
+<div class=" highlight hl-ipython2"><pre><span class="kn">from</span> <span class="nn">Bio</span> <span class="kn">import</span> <span class="n">SeqIO</span>
+<span class="n">records</span> <span class="o">=</span> <span class="n">SeqIO</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s">&quot;sequences.fasta&quot;</span><span class="p">,</span> <span class="s">&quot;fasta&quot;</span><span class="p">)</span>
 
-</div>
-</div>
-</div>
 
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;ATGTTCGGT&quot;</span><span class="p">))</span> 
-<span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;ATCGATCGATCGTTGCTTATCGATCAG&quot;</span><span class="p">))</span> 
-<span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;actgatcgtagctagctgacgtatcgtat&quot;</span><span class="p">))</span> 
-<span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;ACGATCGATCGTNACGTACGATCGTACTCG&quot;</span><span class="p">))</span>
+<span class="c"># or we can turn the list of records into a dict</span>
+<span class="c"># id is the key, records are values</span>
+<span class="n">seqs</span> <span class="o">=</span> <span class="n">SeqIO</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">records</span><span class="p">)</span>
+<span class="n">seqs</span>
 </pre></div>
 
 </div>
@@ -648,33 +333,15 @@ IDRSLLIDQ
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>MFG
-IDRSLLIDQ
-TDRS_LTYR
-</pre>
-</div>
+<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&apos;ABC123&apos;: SeqRecord(seq=Seq(&apos;ATCGTACGATCGATCGATCGCTAGACGTATCG&apos;, SingleLetterAlphabet()), id=&apos;ABC123&apos;, name=&apos;ABC123&apos;, description=&apos;ABC123&apos;, dbxrefs=[]),
+ &apos;DEF456&apos;: SeqRecord(seq=Seq(&apos;ACTGATCGACGATCGATCGATCACGACT&apos;, SingleLetterAlphabet()), id=&apos;DEF456&apos;, name=&apos;DEF456&apos;, description=&apos;DEF456&apos;, dbxrefs=[]),
+ &apos;HIJ789&apos;: SeqRecord(seq=Seq(&apos;ACTGACACTGTACTGTACATGTG&apos;, SingleLetterAlphabet()), id=&apos;HIJ789&apos;, name=&apos;HIJ789&apos;, description=&apos;HIJ789&apos;, dbxrefs=[])}</pre>
 </div>
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-14-06b698e53bf6&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">      2</span> <span class="ansigreen">print</span><span class="ansiyellow">(</span>translate_dna<span class="ansiyellow">(</span><span class="ansiblue">&quot;ATCGATCGATCGTTGCTTATCGATCAG&quot;</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">      3</span> <span class="ansigreen">print</span><span class="ansiyellow">(</span>translate_dna<span class="ansiyellow">(</span><span class="ansiblue">&quot;actgatcgtagctagctgacgtatcgtat&quot;</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">----&gt; 4</span><span class="ansiyellow"> </span><span class="ansigreen">print</span><span class="ansiyellow">(</span>translate_dna<span class="ansiyellow">(</span><span class="ansiblue">&quot;ACGATCGATCGTNACGTACGATCGTACTCG&quot;</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-
-<span class="ansigreen">&lt;ipython-input-13-e1bb02e8b8c0&gt;</span> in <span class="ansicyan">translate_dna</span><span class="ansiblue">(dna)</span>
-<span class="ansigreen">      5</span>         codon <span class="ansiyellow">=</span> dna<span class="ansiyellow">[</span>start<span class="ansiyellow">:</span>start<span class="ansiyellow">+</span><span class="ansicyan">3</span><span class="ansiyellow">]</span><span class="ansiyellow"></span>
-<span class="ansigreen">      6</span>         aa <span class="ansiyellow">=</span> gencode<span class="ansiyellow">.</span>get<span class="ansiyellow">(</span>codon<span class="ansiyellow">.</span>upper<span class="ansiyellow">(</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">----&gt; 7</span><span class="ansiyellow">         </span>protein <span class="ansiyellow">=</span> protein <span class="ansiyellow">+</span> aa<span class="ansiyellow"></span>
-<span class="ansigreen">      8</span>     <span class="ansigreen">return</span> protein<span class="ansiyellow"></span>
-
-<span class="ansired">TypeError</span>: cannot concatenate &apos;str&apos; and &apos;NoneType&apos; objects</pre>
-</div>
 </div>
 
 </div>
@@ -686,7 +353,7 @@ TDRS_LTYR
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now the third DNA sequence works but we get an error on the fourth one. What is wrong? Let's print out the codon at each step to figure it out:</p>
+<h3 id="GenBank">GenBank<a class="anchor-link" href="#GenBank">&#182;</a></h3><p>A more impressive trick is parsing GenBank files:</p>
 
 </div>
 </div>
@@ -696,16 +363,15 @@ TDRS_LTYR
 <div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">translate_dna</span><span class="p">(</span><span class="n">dna</span><span class="p">):</span> 
-    <span class="n">last_codon_start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> 
-    <span class="n">protein</span> <span class="o">=</span> <span class="s">&quot;&quot;</span> 
-    <span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">last_codon_start</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span> 
-        <span class="n">codon</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> 
-        <span class="k">print</span><span class="p">(</span><span class="n">codon</span><span class="p">)</span>
-        <span class="n">aa</span> <span class="o">=</span> <span class="n">gencode</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">codon</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span> 
-        <span class="n">protein</span> <span class="o">=</span> <span class="n">protein</span> <span class="o">+</span> <span class="n">aa</span> 
-    <span class="k">return</span> <span class="n">protein</span> 
-<span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;ACGATCGATCGTNACGTACGATCGTACTCG&quot;</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span class="kn">from</span> <span class="nn">Bio</span> <span class="kn">import</span> <span class="n">SeqIO</span>
+<span class="n">records</span> <span class="o">=</span> <span class="n">SeqIO</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s">&quot;sequence.gb&quot;</span><span class="p">,</span> <span class="s">&quot;genbank&quot;</span><span class="p">)</span>
+<span class="n">mt</span> <span class="o">=</span> <span class="n">records</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">mt</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">mt</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">mt</span><span class="o">.</span><span class="n">description</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">mt</span><span class="o">.</span><span class="n">annotations</span><span class="p">[</span><span class="s">&#39;taxonomy&#39;</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">mt</span><span class="o">.</span><span class="n">seq</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -718,33 +384,12 @@ TDRS_LTYR
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>ACG
-ATC
-GAT
-CGT
-NAC
+<pre>NC_001861.1
+NC_001861
+Onchocerca volvulus mitochondrion, complete genome.
+[&apos;Eukaryota&apos;, &apos;Metazoa&apos;, &apos;Ecdysozoa&apos;, &apos;Nematoda&apos;, &apos;Chromadorea&apos;, &apos;Spirurida&apos;, &apos;Filarioidea&apos;, &apos;Onchocercidae&apos;, &apos;Onchocerca&apos;]
+GTAATATTAGTATAATTTTATTATTTTTAATTTTCGATTAAAAGATTTTTTATTATTAGTAGGTTTTTTGTTAGTTTTCTAAACTGATTTTGAGTTTTTTGCTCGTCTATTTTGTTATTTTTTGTTTTTTTTTTATTATTGTTTTTGAGTTTTATTAATTTTTGTGTTGTTGATTATATTGTTTGGTGGAGGATTTTTGTTATTTGTACTTTTGTTTTTGTTTTTCTTGTTGGTGGTGAGTTGGGATTTAGAAGTTGTTTGGTTAATTATTATGTTATTCAAGAAGTTTGTGGTTATTATTTTTTGGTTTTTGATGGTTGGAAGTTGCAATTTTTATTGCTTATGTTGAAGTCAGGTTCTTCTCCTTTTCATTTTTGACTTTTTAGTGTTTTGGGTGGTTTGAATAAGTGGTTTGTTTTGTGGTTTTTAACTTTGCAAAAATTGCCTTATTTTGTTGTTTTGGTTAATTTTTGTGGTGATTTTTTTTTTTTGTTTTTGTTTTTTGGTATGATTTTTTGTTATTTTCAATTTTTTTTGTTGCGTAGTTATCGTGATTTGCTGGTTGTGGGCTCTGCTGAATCTTTTAATTGGTTGTTATTATTGGGTATTTTTTCTTTTAATGAAGTGTTTGTTTTGTTTTTTTTTTATTATTTTGTTATATTTTTTGTTATTTCTTATGTGTATGGGGGATTTTTGGGTTTTTTGAGTTTAGAGATATTGATGTTTTTTTTTAATGTTCCTTTGAGGATTACTTTTTTTTTGAAGGTTATTGTGTTGTTTGGTTCTTCTTTTTTTGTTGGTTTTTATTATTTATTTTTGTTGTTGTTTATGCCTTTGATGTCTTTGGGTGTGGGTTATTTGTTTTTTTTGGTTTCTATGATGAGTTTTAATTGTGGTTTTAAGTATTATGATTATTTTGTTTATGTTTTGTTTTGTATTGGGCTGTTGTCTTGTTTTTAGGTTTTTTGCTGTTTTAGTTTAATTTTTTAAAATTCCTAATTTGTAATTAGGGGATTAATCTCAGTTTGTTGTATTTGTTTTTTTTTGTTGTTTTGTTGTTTTTTTTTAGTCCTTTTTTATTTTTTGTTTTTTTTATGTTTTTTGTTTTATATGGGTTTTTTGATTATTCCTGGTTTGGTTGTTTGTTTTTTTTTGATTCTTTTAATTTTGTTTTTTTGTCTTTTATGAGTGTTTTTGTTATGGGGTTTATTTGTGTATCTGAATTGTTGAGTGGTTTAGTTTTTTATAGTTGCCTTGTAGTGTTTTTTAGTGTTTGTTTTTTTTATTCTGGTAGTTTTTTGATATTGTATGTTTTTTATGAGTTGACTATAGTACCTATTTTGTTTTGTTTGTTAGGGTATGGTCGTCAGGTGGAGAAGATTAGGGCTTGTTATTATTTAATTTTTTATACTTTATTTTTTGGGATGCCTTATTTGTTTTTGTATAGTCATGTTTTTTTTTTTTTGAATTTTGTTTATTATGATTTTTTTGTTTCTTATGAATTTATTTTTTTGTTAAGTTTGTGTTTTTTGGTAAAGTTCCCTGTTTATTTTTTTCATGTTTGATTGCCTAAGGTTCATGTTGAGGCCCCCACTAGTGCTAGAATGATTTTGGCTGGTGTTATGTTGAAGTTGGGGGGAGCAGGTGTTTATCGTATTAGTAAGTCTTTAAATTTTTTTGGTTTTGAAATGTTGATTTTTTTTTCTTTAATTAGGATGGTTTTTTGTTCTTTTATTTGTGTTGTTCAGAGGGATTGTAAGTCTTTGGCTGCCTATTCTTCTGTTTGTCATATGGGTTTTGTGTTGCTTTCTGAGATTAGTATGGTTTATTATGGTAAGTCTATAGCTTTGGTGATGATGTTGGCTCATGGTTATACTTCTGTTTTGATGTTTTATTTTATTGGTGAGTTTTATCATATTGCTAATAGGCGTTTAATTTATTATTTGCGTGGATATTTTAATGTTAGTATGTTGTTTTGTTTGATGTTTTGTTTGACTATGGTTTCTAATTTTAGTTTTCCTGTGTCTGTTTCTTTTTTTTCTGAGTATTTGATGTTGAATTTTTTTAGATCTGTTTTTTATGTTGGTTTTTTGTTTTTGTTTTTTTATTATTTGGTTTCTTTTTATTATTCTGTTTATATTTTGGTTTGTTTTTTGGTCGGCGGTAAGGTGAGTTATGTTTGTGATGGTCGTAGTGTAGTTTGTTTACCTTTGGTTTTTATGATATATAATTTTTTTTGGTTTATTTTTGTTATTTAATATGAATATTTTTTGTGGAATGACTTTTGGCAATAGTATGAAGCAGAGTATTATTAATACTGTGAATCATAAGACTATTGGTACTTATTATATTGTTTTAGGCTATTGGGCTGGTTTAGGTGGTTCTGTTTTATCTATGTTGATTCGTTTTGAGTTGTCTAGTCCTGGTGGTCATTTGTTTTTTGGAAGTGGTCAGGTTTATAATTCTGTTCTTACTATGCATGGTGTTTTGATGATTTTTTTTTTAGTTATGCCTATTTTGATTGGTGGTTTTGGTAATTGGATGTTGCCTTTGATGTTGGGGGCTCCTGAGATGGCGTTTCCTCGGGTAAATGCTTTATCTTTTTGGTTTACTTTTGTGGCTTTATTGATAGTTTATCAGTCTTTTTTTATTGGGGGTGGTCCTGGTAGGAGTTGGACTTTTTATCCTCCTCTTAGGGTTGAAGGTCAACCAGAATTGTCTTTAGATACTATGATTTTAGGTTTACATACTGTAGGAATTGGTTCTTTGTTGGGTGCTATTAATTTTATGGTAACTACTCAGAATATACGGTCTACTGCTGTGACTTTGGATCAAATTAGTATGTTTGTTTGGACTTCTTATTTGACTTCTTTTTTATTAGTTTTATCTGTGCCTGTTTTGGCTGGTTCTTTATTGTTTTTGTTGTTGGATCGTAATTTTAATACTTCTTTTTATGATACTAAGAAGGGGGGTAATCCTTTGTTGTATCAGCATTTGTTTTGATTTTTTGGTCATCCTGAGGTGTATGTTATTATTTTACCTGTTTTTGGTATTATTAGGGAGGCTGTTTTATTTTTGACTGATAAGGATCGTTTGTTTGGTCAGACTAGGATGACTTTTGCTTCTATTTGGATTGCTGTTTTAGGTACTTCTGTATGGGGCCATCATATGTATACGGCTGGTTTGGATATTGATACTCGTACTTATTTTAGTGCTGCTACTATGATTATTGCTATTCCTAGGGCTGTTAAGATTTTTAATTGATTGGGTACTTTTTTTGGTTCTAATCAAAAGATGCAGCCATTATGATGTTGAACTTATAGTTTTATTTTTCTTTTTACTGTGGGTGGATTAAGTGGAATTATTTTGAGGGCTGCTAGTTTGGATATTATTTTGCATGATACTTATTATGTTGTGGCTCATTTTCATTATACTTTGAGTTTGGGTGCTATTTATGGTATTTTTTGTGGTTTTTGTTTGTGACTTCCTTATATGTACGGTATTTCTTTTGATAGGGTTATGATAATAGCTGTTTTTGTTTGTTTTTTTGTTGGTACTAATATAACGTTTTTTCCTATGCATTTTGCTGGTTTACAGGGTATGCCTCGTAAGATTTTGGATTATCCTGATTGTTATTCTACTTTTCAAATCATTTCTTCTTTAGGTTCTGTTATTACTTTTGTTGGTTTTGTTTTGTTTAATTATTTGTTGATTGATTCTATTTTTTTTTCTCGTTTTTTGGGAGTTTCTTTTTATAATTATCATAGTCCGGCTTATGCTTTAAATGTTCCTCCTTTGCCGGATTCTTTTACTGAAGAGGCTTTTATTATAGGTCTCCATTGGAAGATTATTAGTAAGGATACTCCTTCTTACAGTTATCGTCGGGTTGGTTATGGTTATCATAGTAAGTAGTTTTTTTTGTAGATTTAGGTTAAATTAAAACTATTAGTTTTCAAAACTAAAGATTTTGTTCTATTAGAGCTTTTAAAAATAATGATTTTTGGGTTTTTGGGTTTTTTGTTTATTTTTTTTTATGTTAGGGTATTTTTTGCTTTTGTTTTTTTTTGTTTGAGTTTTTTGGATTGGGATCCGTTGAAAAGTTGTGTTATAATGTGTTTAGGTGTTATGTCTATAAGTTGTTATGTTTCTTTAGGTGTTCATGTATGGTATTCTTATTTTGTTGTTTTAATTTTTTTTAGTGGTATTTTTTCTTTGTTGACTTATTTTTGTAGTATGAGTAATTTTATTTTTTATTATAATTATTTTTTTTTTTTTTCTTTGTTTTTGGTTAGTTTTTTTTTTGTATTTGTTGTAGATTTTGATTTTTCTTTGTTTTTTTCTGATTTTAATTTTCTTTATGTTTGTTATGATTTTAGTTATTATTATGTTTTTTGAGTAGTTTTTATTTTGTTTTTATTTTTGATTTTGATTAGATTTAGACTTAATGGTTTCGGTTATATGCGTAGTTTGTAGTAGGATGGAATATAAAATAGATTTTACTATATCTGATTACGGCTCAGCTAGAATTATATTTTTTTGGATTTAGTTTAATTAAAATTTTTGTTTTTGGATCAAGAGATGTTTCCAAGGTTATTGCTATTTTTAATTCTTTAGTTTTTTTGCCTGCTAGTTTTACTTTAAGTTATATGTGGAATTTTGGTAGTATGTTAGGCATTATGTTGATGTCTCAGATTTTAACTGGTTTTTTTTTGACTTTTTATTATACGGCGGGGGAAGCTTTTAGGTCTGTTCAGTATATTATGTTTGAGGTTAATTTGGGCTGGTTGCTGCGTATTATGCATTCTAATGGGGCTTCTATGTTTTTTTTATTTATTTATTTACATATTTTTAAGGGTTTAATTTATGGTAGATATCGTCTTATTGGTGTGTGATTGAGTGGTATTTTTATTTATTTTTTATTAATAGGTATTGCCTTTACTGGTTATGTTTTGATTTGAGGCCAAATAAGTTATTGGGCGGCAGTAGTTATTACTAGTCTGATGACTTCTGTTCCTTATTTGGGCAAGTATTTGGTTTGATGGATTTGGGGGAGTTTTAGTGTTTGTGAGAACACTTTGAAGTTTTTTTATTCTGTTCATTTTATTTTACCTTGGTCTTTGATAGTTTTAGTTGTTTTTCATTTGTTTTTTTTGCATTTTACTGGTTCTAGTTCTAGTTTGTATTGTCATGGAGATTATGATAAGATTCATTTTTTTCCTAGTTTTTGATTGAAGGATGGTTTTGATATTTTTTTTTATTTTTTTTTGATTTTGTTTAGACTTTATTTTTCTTTTGATTTAAGTGATCCTATGATTTTTGTGGAGTCTGATTCTATGGCTAGTCCTGCGCATGTTGTACCTGAGTGGTATTTTTTATTCGCTTTTACTATTTTACGTTCTGTTCCTAGTAAGTTATTGGGGGTTATTTTAATATTTAGTTCTGTTTTTGTGTTAACTATTCTTATTTGACCTGGTAGTTATCGTTCTATTTTAGATAATTTTTTATATTTTTTTGTTATGTGTTTTGTTTGGGTTTTTTTTTGGTTAACTTGAGCTGGTCATTATCCTACTGATTATCCTTTTAACTATTTTAATTTGTTTTGTACTTTTTTTTATTTTTGTTGTATTTTTTTTGTTTGTTTGATTAATTTTTTTAGTGATAAGTTGTTTAGTTAATTGTATTTTTAGTATAATAAGTATGGCAAATTTAGGTTTTGTTGGTTATTAATATAATTTTGTTGAAGTTTCGTAAATATCATAAAATGGAGTATAGTTATTATCCTTTGATAGTTGGGGTGGGTATTTTAGGTTTTGATGTTAGTTTGGTTTTATTTATAGGTATAGGTATGTTTTATTCTATTTTTATTTGTTTTTTGTATTTGGTTTATGTTTTTTTTTTGTGGATTAAGGATGTTATTTTAGAGGATATTAGTGGTCAATATTCTTTCTATGATTATCGTATGTTTAACCAAGGTTTTCGTTTGTTTCTTTTTAGTGAATTAACTTTGTTTGTTTCTATTTTTTGAACTTTTTTGGATACGGCTTTGTGTCCTTTAACTTGGTTAAGTGGGGTTTGGTCCCCATTGGGGATTTTATCACCTGATTATTTGGGTTTGAATGGTATGGCTAGTTTATTTTTAATAATGAATAGGCAAGTTTTGAAGTATTCTCGTCGTTATTTGTGTTTGAATAGCTCTAAGTGTGAAGAGTTTTTGTTAGTTTGTATTTTTATTGGAGTTGGTTTTTTGTGTTTTCAGTTTTATGAATATAATAACAATTCGTTTGTTATGAGTGATAGTGCTTATGGTAGTATTTTTTATATAGGTACTGGTTTGCATGGTTTGCATGTTTTTGTTGGTGTTTGTTTTCTTATTGTTAATTTTTTTCGTGTTAAGTTGTTCAACTTTAATTGATATCATATCCAGGCTTATGATATATCTATTGATTATTGGCGTTTTTTAGAGTGAATGTGAGGTGTTATGTTTTGTTTATTATATGTTTGAGGTTCTTAATTTCTTTGTTGTGGAGGGATATTTTACTTTTTACTTTTTTTTTACTTTTTTTTTATGATAATATTTTTTATTTATGTGTTTTGTTTTTTGATTTTAAGTTTTTAACATTTTTTCAATACACTATATTCTATAGTGTTAGTAATTATTAGTATAATAATTACTAAAATAAATTCAATTCCCAGAGTATTATATTACTTAATAATATAATACTCTATTGGGAATTGAATTTAATATAATGTAAATATCTCTCTCAAATAAAAAAAAGAAAAATTTATATATAAGTAATATAATAATAAATAAATTGTTGTTATTGTGTATATATTATAAATAAAATTATATTTGATTTGCATTCATAAGATATTTATACACGAGATTTGTTAAACTTTATAGTATAATAAGTATAGTCGTTTTAAGCACGGTTGGTTTTTAAGTTAGAATTTTTAGTATAATTTTTGGTACGGTTAATTGTTGATTAGCAGGTTTTGAAGTTCTTTTTTTTTTGAAATATGGTAGGATAAAGAAAAAAGTCTGTGAGATTCATATTTTCGAGGTAATCCATATTTAAAGGATTATTTTAAGTTTAGAATTTTTGACTCTTAATCAAAAGGTTTGTTTCTTTATTGTTTTTATTTTTTTTTTCTTTTTTATTTCTTTTTTTTAAATATGAGCGTTTAGTATTTATTTTGTTGGGTATTGAATTTTTGTTTTTTTCTCTGTTAGTTTATTATGTTTTTTTGTTTGAGTCTGTTATGTTTTTTTATTTTTTGTGTTTTGGTTTAATGTCTGGTGTGTTAGGTTTGGTGATTTTTTTTTTTTGTGTTAAGGGTTTTGGTGTAGATAAGGTTATGTTTTATTTTTTATAATTTTAAGTTTGATTTTGGTTTAGGTTGTATTAAGATAGTATTACTTATTTTTAGTTTACTTAGTGTGTTAATTTTTGTACACTGGTAGTTTTTTGATTGTTTTATTAACGTTCCAGAATAATCGGCTATGCGTTTTAATTTTTGACTCTATTTGTTGTGGTGCTATGAGTTTTTAGTTTGTTTTTATATTGTTTTTTGTAAAATATTTTAATTTTTTTTTTAGTTTCTTATGGTATCAAAAATTTGTTTTTTGAACTGGATTAGTACCCAGGTAATCAAAATTTAATAATTCGGGAGTAAAGTTTTATTTAAACCGAAAAAATATTGACTGACTTTAGATTTTTCTTTGGAATATGTGATTTGCTGGAGAGCCCTCTTTTTTGGTGAATTTTGTTGGCACATGTATGATTGTTTAGTTTTTATTTTATTTTGTAATGCTTTATTGTTTTGGCATTAAAAACAGATATATATTTGGCTTATGAATTTATGTTTCATGTGTTACTATTATGAATTTTTTTTGGATTAGTTTTTTATTTTTTTTTGAAATTGGAAAAGAAAGTAATTTTTTCTTAATGTTTTAATGAATTTAATAAATAAGGTGGTACAAACCATCCGTCAATGGCCTAAAGGGGCGTAAGTTGTAGTATGGTAGAAGTAAGGAAACTTGTTTCTATTTTTTGAAGTTTTAGTTTATTTTTTTTTAGAATAAAGAATTGTAAATTCTTAGGATTTTGCTTTGGTTATTTTTTATTATTTGGGGTTGTTGGTTATGATTGTTTTTATTTTGCAGGCTATTGCCTTTTTAGTTTTGTTAGAGCGTCATTTTTTGGGTGGTTCCCAGTGTCGTGTTGGTCCTAATAAGGTGGGTTATTGTGGTGTTTTGCAGGCTTTATTTGATGGCTTAAAGTTGTTAAAGAAGGAGCAGTTGTTGTTGTGTTTTTCTTCTTGGTTATCTTTTTTGTTTATGCCTATTTGTGGTTTTGTTTTGATGGTTTTTTTTTGATTTACTTTACCTTATTTTTTTTCTTTTTTGTCTTTTGAATATTCTGGTGTTTTTTTGTTTTGTCTTATAGGAGTTTCTGTTTATTTTATTATGCTTTCTGGTGTTTTTAGTGGTAGTAAGTATTCTCTTATTGGTGGGTTGCGTGCTTGTGTTCAGAGTTATTCTTATGAGATTGCTTTTTCTATTTATTTGTTAGTTTTTTTGTTGTTTAATAAGGGTTTATGTTTGTCTTTTAGTTTTTGTTTATTTTTTTTTTTGTTTTTTTTTCCTTTTTTTTGTTTGGTTCTTGTTGATTTGCATCGGGCCCCTTTTGATCTTTCTGAGTGTGAAAGTGAGCTGGTAAGGGGGTTTAATGTTGAGTACTCTGGAGTTGGTTTTGCTGCTTTGTTTTTAGGGGAGTATGGTAATTTACTTTATTTTGGTTGTTTGACTTCTAGTTTGTTTTTTGGTATAAGTTTTTTTTTTTTTTATTTTATTGTGTGCATGATTGTTTTTTCTCGTAGAGCTTATCCTCGTTTTCGTTTTGATAAGTTGATGGGTGTTTGTTGGTTTTTGTTTTTGCCTATTGGTTTTTATTTTTTTGGTTTGTCTTTTGTTGTTTTTATGTTGTGCTTATTTAGTTTAATTTTTTAGAATTATATTTTGAAAAGATATGGGTATTTTTAGGCAATTTTGTTATTTTTTTTTATTTGATTTTGATTGGTTTTTTATTTGTTTTATATGGAGTTGAGTAAGTTTAGTAGTTTGGGAATTTTAGGTGTTTTTGTTAATGTTTTAGTTTCTAGATTTTCTCATCAGGGTTTTCAGTCTAACGTTTTTTTTAAGTTTGTTGTTTTTTTTCTCTTGGTTTTTTGAATGAGAGGGTTATTGTTTCCTTTGTTTAGTCCTTGAGCTTGTGTGGGTTTTTTGTTTTTTATTACTAATTTTTCTTGATTGGGTGTTCGTACTTTTACTTTAGCTGTTGATAGTTTTTTAATTTTTTTTGAAAGGGATCATTCTTGGGAGTGGTTTTCTAGGTTAGTTATGTTTTTTTCTCATTGGTTAAGATTTTTGATGAGGGGGGTAGCTTTAACTTTGCGTATTAGTATTATTTTTTTAATTGGTCATTTTCTAATGTTTACTGTTTTGGATATGAGTGTATTTTATTCTTTGTTTTTTTTGTTGTTAGTTGTTCCGGTGGAGTTGTTTTTTGCTTTTTTACAGAGTTATATTTTTTTGACTTTGGTTTGTATGTTTTTACTTAATATGATTTAGTTTAAGGGTGGTTTTGTTATAGTAGTTTAATTTTAGAATTTTGTTTTGATGGGACAGAGGTTATTATAATTTTTTTGTGGCTTTTTAGTATTATTTTGGTATTTTTGTTTTCCAAACAAAGGGTTCTTAAGCTAATAATTTATTTGCAGAATTATGTGTTTCCTATTCCCGGAAATTCTTATGTATTTTGTTGTTATTATATTCATAATTACTATTCTCACATTATTTTTTTTGGTTTTTTTGTAATGTTTTTGGTTAGTGGCGGGATTTATTTTTTTGGTAATTCTTTTAAGTTTAATTTGAAGCGTAGAGATAGTCGTATAATTGAGTTAATTTTACAGGTGTTAATTGTTAATTTTTTAATTATGATGGCTGGTCCTGGTTTTTGGTTGATTCAATATCAGGGACGTATATTTCGTCAATCTGAGTTGACTTTGAAGGTTATTGGTCACCAATGGTATTGAAGTTATGAATATGGAGATAGTGGAAAATTATGTTTTGATTCATTTATGAAGTCTTTAGATGATTTGTCTTTAGGGGATTTTCGGTTATTTGATGTTGATAATCGGTGTGTTTTGCCTGTAGGTGTAAATGTTGGTGTGTATTGTACTTCTAGTGATGTTATTCATTCTTTTGCGATTCCTAAGTGTTTTATTAAGATGGATGCTTTAAATGGTTTGTTAACTAAGGTTACTTGTAGTTTTTCTTGTTCTGGTTTGTTTTTTGGGCAGTGTTCTGAAATTTGTGGTGCTAATCATAGGTTTATGCCTATTGTGTTGGAGTTGACTTCTTTGGAGTGTTGGAAGGGTTGATCAGTTAATTATTTATTGGGTTAAATTTTCTAGTTTAATTATATTTAAAATATTTAGTTGTGGTCTAAAAGATTTGAAAATTTTTGTTTTTTAAGTTTTATTATTTGGTATTGCATATCAGTAGAAGTTTTTATCATAGCTATGAGTAATAGAATTAAAATGGTTAAATTGAATTTGTTTCTTTTTTACGAAATTAATAATATTTTTATTTAGTATTGATATAACGTATTTTTATTTCTGTTTATTTGTTATTTATAGGTTAAGTTATATTATTTTTTGTTTGTAAATTTTTTAAATTTTTGTTGTTGTTTTATAAATGTTGTGTGTTTTACATAGATTTTTATTTTTTTTTTTTTTTTTTTTTTTTGATTAATTTTTTAATTGATTTATGATTTTTACTTTAGTAATTTTTATTGTTTTGATAGGTTTGTTTTTGAATTTGTGTTTTTGAACTGGTTTTGTTGCTAAATGTTTATTAAAAACTTAGGTTTTTATGTAAAATTGTCTTCTGCTCTATGAGTTTTTAAATGGCAGCCTTAGCGTGATGGCATAAAAGTAGCGTAAGTGATTTGTTTTTTTAATGGTTTCAAGTATGAATGAAGTTTTTAGCAGCTTTTTTATTTACTTTTTGTTTGAATTATTTTTTTAATTAAAAATTATTAGTTAAGGTATTACAAAGATAAGTCTTCGGAAATTTTGTTTTGAATTTTGAAATTTTTATTTTTAATTTTTTCTTGGGGATGGATTTTAAGAAAGTTTTATACTATTGTTATTATTAAAAATTACTCCGGAGTTAACAGGGCTGTAGACATATAAATAGGTTTTTATATTAGTGTGCTGCGCTACATCGATGTTGTATATTTTTTTTGATAATGGAGAGGTTTTTTTTGTTTTGAGACTGTTCTTCTTGTATAAAAAATTGACTTGATATTAGTTTAGTTCGTCGTGAGACAGAGCGGTTTATCTTGTGTATTTTTGGTGCTTGGCGGTGTTAGTACGAAAGGAATGCAATGTGGGTTTATATTTATGACTTTTTTATTTTGATGGATTTTTTCTTTTTTTAAATTTTATTGTTATTTTTTTTTTTTCTTTTTTGGTTCCTTTTGGTATGTATTTGTTGTCTTTTTTTGTGTCTTTTAAGGATTTTTATGGTGCTAAATTAAGTTCTTATGAGTGTGGTTTTGATGTTGTGAAGAAGGTTCATGTTGGTTTTAATTTGGTTTTTTTTTCTATTGTTTTGTTATTTGTTGTTTTTGAGTTGGAAGTTTTGATTTTTATTATTTTGATTCAGGGTGATTTTTATAGTTTGTTGTCTTTTTTTGTTTTTTTTTTTTATGTTGTTTTTAGTTTTTATATGGAGTGGTGTTTTGGTAAGTTGATTTGGTTTTGTTAGGGGTTTTTAGTATAATTTTTAATACTTTTGATTGCAGATCATTTAATTTATAGCCTTGAGTTAATTTTTTAAGTTTTGAAAACTTTTATTAGATTTTTGGTCTTTAACTTGTTTTTTTTTTTGCTGAAATAGTTTAAGTTTTAAAATGAGATGTTAGGGGCGTTTGGATTTTTTCAGTTTTTTTAAAGATTTAGTATATGTTTTTTTGAGTATTATTTGTTGTCTGCAAATAGGATTTGATCTTTTTGGTCTTTTAGTTTATTTTGGAATTTTTTATTTACTATAAAAAGGTTTTGTAGACTTTTGTTATTGTTTGTTTGATATGTTCTTATTTTTTATTTTTTTTTGGTTGTTATTTTTTTGTTTGTTCCTTATGGTAAGTGGAGTTATAGTTTTGGTTTTAGTGATTATTTTAATTTTACTTTTATTTATAATTTTGAGGTTTGTTTGTTTTTTTTAGTTTTGTTGTTGGTTTCTTTTATGGTTTTTGTTTATGGTTCTTTTTATATGGTTGGGGTTTCTCGTTTGTTTTATTTTTTTTTTTTTTTATTTTTGTTTGTGTTGAGGATGGGTGGTTTGATTGTTTTTAGGGGTAGTATTGTTTTAACTTTGGTTTTTTGAGATTTTTTGGGGGTTAGTAGTTTTTTTTTGGTTTTGTTTTATGGTAATGTTAGTGCTCGGAGGGGTGCTATGAGTACTGTGTTTACTAATCGTATTGGTGATTTTTGTATTTTTTTGTTTTTTAATGGTTTTGTTTTGTTTTCTATGAGTTTTTTGTCTTATCAGTTTTTTGGTTCTTTGTTAGTTTTTATGTTGTTTGTTTCTTCTATTATTAAGGGTGGTCAGTATCCTTTTGGTAGTTGGTTGCCTAAGGCTATGGCGGCTCCTACTCCTGTTAGTTGTTTGGTTCATAGTAGTACTTTAGTTACTGCTGGTGTTATGTTGATGGATTGTTATGTTTATGTTTCTTTGAATTCTGATGTTTTGTCTTTTGTTTTTTATGTTGGTTTTTTTACTATGGTTTTTTCTGGTTTTTGTGCTTTGGTAGAGGAGGATGCTAAGAAGATTGTTGCTTTGAGTACTATGTCTCAAATTGGTTTTTGTTTTTTGGCTATTGGTAGGGGTTTGCATTATTTGTCTTATGTTCATATGATTAGACATTCTTTTTTTAAGAGGTTATTGTTTATGCAGATGGGTTATTTGATTTTTATTAATTTTGGTCAACAGGATTATCGTGGTTATTCTTTTTTTGGTTTTTGTGCTCCGGTTTTGGTTCAGTTGCAGATTTTTTTATCTGTGTTTTGTTTGTGTGGTTTGTTGTTTACTAGGGGTAGTTGTAGTAAGGAATATTTTATGTCTCGTTTTTATTATGATTCTTATGGTTTTTTTTTAGTTTTTTTTTATTTTTTTGGTGTATTTTTGACTTTTTGTTATTGTTATCGGATGTTTTTTTTGTTTCGTGTGGGAGCTTTTGGTTTTGATTATGTGGGTTTTTCTAGTAAGTTGTTTTATTTTTCTTGTTTTTTTTTGGTTTTTTTTTCTGTTGTTTTTACTTTTTGGTGGGTTTTTAGTTTATTGTCTTTTTCTGTGGCTTTTAATCGTTTTGAGTTTTTGGTTGTTTATTTTTATTTGTTTTTTGTTTATTGTTTTTGTGGTTATTTTTTTCGTTATTTTGTGGTTGAGTTTAAGGGTAAATTTTTTATAGACCATTATGCTTGTTTTATTTATAAGATTTTTCCTAGTTTTTTTTATTTTGATGTTTTTATTATGGGTTTTAATTATTTTTTTTTTGGTTTATTTCGGTTATTTTCTTTTTTTTTTTTTTCTTGGTTTCGGGGGTTTTATCATGTTGGTGTTTTAATTGTTTTTTTTTTTATGTTGTTTTTTTTGTTTTTTTAGATGAAGAAGAGG
 </pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-17-5f05fd02ac2b&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">      8</span>         protein <span class="ansiyellow">=</span> protein <span class="ansiyellow">+</span> aa<span class="ansiyellow"></span>
-<span class="ansigreen">      9</span>     <span class="ansigreen">return</span> protein<span class="ansiyellow"></span>
-<span class="ansigreen">---&gt; 10</span><span class="ansiyellow"> </span><span class="ansigreen">print</span><span class="ansiyellow">(</span>translate_dna<span class="ansiyellow">(</span><span class="ansiblue">&quot;ACGATCGATCGTNACGTACGATCGTACTCG&quot;</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-
-<span class="ansigreen">&lt;ipython-input-17-5f05fd02ac2b&gt;</span> in <span class="ansicyan">translate_dna</span><span class="ansiblue">(dna)</span>
-<span class="ansigreen">      6</span>         <span class="ansigreen">print</span><span class="ansiyellow">(</span>codon<span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">      7</span>         aa <span class="ansiyellow">=</span> gencode<span class="ansiyellow">.</span>get<span class="ansiyellow">(</span>codon<span class="ansiyellow">.</span>upper<span class="ansiyellow">(</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">----&gt; 8</span><span class="ansiyellow">         </span>protein <span class="ansiyellow">=</span> protein <span class="ansiyellow">+</span> aa<span class="ansiyellow"></span>
-<span class="ansigreen">      9</span>     <span class="ansigreen">return</span> protein<span class="ansiyellow"></span>
-<span class="ansigreen">     10</span> <span class="ansigreen">print</span><span class="ansiyellow">(</span>translate_dna<span class="ansiyellow">(</span><span class="ansiblue">&quot;ACGATCGATCGTNACGTACGATCGTACTCG&quot;</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-
-<span class="ansired">TypeError</span>: cannot concatenate &apos;str&apos; and &apos;NoneType&apos; objects</pre>
 </div>
 </div>
 
@@ -757,32 +402,22 @@ NAC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The error comes from the codon <code>NAC</code> i.e. there is an N in the sequence. The best way to fix it is to say that the amino acid for any codon that isn't in the dict is <code>X</code>, meaning unknown. To do this we just swich from</p>
-<div class="highlight"><pre><span class="n">aa</span> <span class="o">=</span> <span class="n">gencode</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">codon</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
-</pre></div>
-<p>to</p>
-<div class="highlight"><pre><span class="n">aa</span> <span class="o">=</span> <span class="n">gencode</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">codon</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="s">&#39;X&#39;</span><span class="p">)</span>
-</pre></div>
-<p>like this:</p>
+<h3 id="Dealing-with-features">Dealing with features<a class="anchor-link" href="#Dealing-with-features">&#182;</a></h3><p>GenBank files contain records, which contain features:</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">translate_dna</span><span class="p">(</span><span class="n">dna</span><span class="p">):</span> 
-    <span class="n">last_codon_start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> 
-    <span class="n">protein</span> <span class="o">=</span> <span class="s">&quot;&quot;</span> 
-    <span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">last_codon_start</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span> 
-        <span class="n">codon</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> 
-        <span class="k">print</span><span class="p">(</span><span class="n">codon</span><span class="p">)</span>
-        <span class="n">aa</span> <span class="o">=</span> <span class="n">gencode</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">codon</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="s">&#39;X&#39;</span><span class="p">)</span> 
-        <span class="n">protein</span> <span class="o">=</span> <span class="n">protein</span> <span class="o">+</span> <span class="n">aa</span> 
-    <span class="k">return</span> <span class="n">protein</span> 
-<span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;ACGATCGATCGTNACGTACGATCGTACTCG&quot;</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span class="kn">from</span> <span class="nn">Bio</span> <span class="kn">import</span> <span class="n">SeqIO</span>
+<span class="n">records</span> <span class="o">=</span> <span class="n">SeqIO</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s">&quot;sequence.gb&quot;</span><span class="p">,</span> <span class="s">&quot;genbank&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">seq_record</span> <span class="ow">in</span> <span class="n">records</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">seq_record</span><span class="o">.</span><span class="n">features</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">feature</span><span class="o">.</span><span class="n">type</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">feature</span><span class="o">.</span><span class="n">location</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -795,17 +430,106 @@ NAC
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>ACG
-ATC
-GAT
-CGT
-NAC
-GTA
-CGA
-TCG
-TAC
-TCG
-TIDRXVRSYS
+<pre>source
+[0:13747](+)
+tRNA
+[0:57](+)
+tRNA
+[58:112](+)
+gene
+[108:960](+)
+CDS
+[108:960](+)
+tRNA
+[967:1026](+)
+gene
+[1025:2258](+)
+CDS
+[1025:2258](+)
+gene
+[2265:3912](+)
+CDS
+[2265:3912](+)
+tRNA
+[3920:3977](+)
+gene
+[4023:4473](+)
+CDS
+[4023:4473](+)
+tRNA
+[4480:4535](+)
+tRNA
+[4536:4589](+)
+gene
+[4592:5675](+)
+CDS
+[4592:5675](+)
+tRNA
+[5677:5731](+)
+gene
+[5731:6511](+)
+CDS
+[5731:6511](+)
+tRNA
+[6517:6571](+)
+misc_feature
+[6571:6823](+)
+tRNA
+[6823:6880](+)
+tRNA
+[6891:6945](+)
+tRNA
+[6945:7003](+)
+tRNA
+[7013:7074](+)
+gene
+[7131:7374](+)
+CDS
+[7131:7374](+)
+rRNA
+[7374:8058](+)
+tRNA
+[8058:8114](+)
+gene
+[8110:9010](+)
+CDS
+[8110:9010](+)
+tRNA
+[8987:9046](+)
+gene
+[9046:9631](+)
+CDS
+[9046:9631](+)
+tRNA
+[9646:9702](+)
+tRNA
+[9709:9765](+)
+gene
+[9768:10467](+)
+CDS
+[9768:10467](+)
+tRNA
+[10466:10525](+)
+rRNA
+[10525:11497](+)
+gene
+[11497:11836](+)
+CDS
+[11497:11836](+)
+tRNA
+[11836:11893](+)
+tRNA
+[11893:11947](+)
+tRNA
+[11970:12028](+)
+tRNA
+[12020:12082](+)
+tRNA
+[12082:12139](+)
+gene
+[12139:13735](+)
+CDS
+[12139:13735](+)
 </pre>
 </div>
 </div>
@@ -819,14 +543,433 @@ TIDRXVRSYS
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now we get a complete protein tranlsation - Notice that it has an X in the middle.</p>
+<h3 id="Feature-qualifiers">Feature qualifiers<a class="anchor-link" href="#Feature-qualifiers">&#182;</a></h3><p>Features have a dict of qualifiers which we can read:</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="kn">from</span> <span class="nn">Bio</span> <span class="kn">import</span> <span class="n">SeqIO</span>
+<span class="n">records</span> <span class="o">=</span> <span class="n">SeqIO</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s">&quot;sequence.gb&quot;</span><span class="p">,</span> <span class="s">&quot;genbank&quot;</span><span class="p">)</span>
+
+<span class="n">first_record</span> <span class="o">=</span> <span class="n">records</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
+<span class="n">my_feature</span> <span class="o">=</span> <span class="n">first_record</span><span class="o">.</span><span class="n">features</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">my_feature</span><span class="o">.</span><span class="n">qualifiers</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[29]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&apos;codon_start&apos;: [&apos;1&apos;],
+ &apos;db_xref&apos;: [&apos;GI:5835444&apos;, &apos;GeneID:808147&apos;],
+ &apos;gene&apos;: [&apos;ND2&apos;],
+ &apos;product&apos;: [&apos;NADH dehydrogenase subunit 2&apos;],
+ &apos;protein_id&apos;: [&apos;NP_008368.1&apos;],
+ &apos;transl_table&apos;: [&apos;5&apos;],
+ &apos;translation&apos;: [&apos;MLLFFVFFLLLFLSFINFCVVDYIVWWSIFVICTFVFVFLVGGELGFSSCLVNYYVIQEVCGYYFLVFDGWKLQFLLLMLKSGSSPFHFWLFSVLGGLNKWFVLWFLTLQKLPYFVVLVNFCGDFFFLFLFFGMIFCYFQFFLLRSYRDLLVVGSAESFNWLLLLGIFSFNEVFVLFFFYYFVMFFVISYVYGGFLGFLSLEMLMFFFNVPLSITFFLKVIVLFGSSFFVGFYYLFLLLFMPLMSLGVGYLFFLVSMMSFNCGFKYYDYFVYVLFCIGLLSCF&apos;]}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Getting-the-sequence-for-a-feature">Getting the sequence for a feature<a class="anchor-link" href="#Getting-the-sequence-for-a-feature">&#182;</a></h3><p>Extracting a feature creates a new record object:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">new_record</span> <span class="o">=</span> <span class="n">my_feature</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">first_record</span><span class="p">)</span>
+<span class="n">new_record</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">Out[30]:</div>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>SeqRecord(seq=Seq(&apos;ATTTTGTTATTTTTTGTTTTTTTTTTATTATTGTTTTTGAGTTTTATTAATTTT...TAG&apos;, IUPACAmbiguousDNA()), id=&apos;NC_001861.1&apos;, name=&apos;NC_001861&apos;, description=&apos;Onchocerca volvulus mitochondrion, complete genome.&apos;, dbxrefs=[])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Which allows us to get the actual sequence of a feature - in this case the <strong>ND2</strong> gene:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="n">new_record</span><span class="o">.</span><span class="n">seq</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ATTTTGTTATTTTTTGTTTTTTTTTTATTATTGTTTTTGAGTTTTATTAATTTTTGTGTTGTTGATTATATTGTTTGGTGGAGGATTTTTGTTATTTGTACTTTTGTTTTTGTTTTTCTTGTTGGTGGTGAGTTGGGATTTAGAAGTTGTTTGGTTAATTATTATGTTATTCAAGAAGTTTGTGGTTATTATTTTTTGGTTTTTGATGGTTGGAAGTTGCAATTTTTATTGCTTATGTTGAAGTCAGGTTCTTCTCCTTTTCATTTTTGACTTTTTAGTGTTTTGGGTGGTTTGAATAAGTGGTTTGTTTTGTGGTTTTTAACTTTGCAAAAATTGCCTTATTTTGTTGTTTTGGTTAATTTTTGTGGTGATTTTTTTTTTTTGTTTTTGTTTTTTGGTATGATTTTTTGTTATTTTCAATTTTTTTTGTTGCGTAGTTATCGTGATTTGCTGGTTGTGGGCTCTGCTGAATCTTTTAATTGGTTGTTATTATTGGGTATTTTTTCTTTTAATGAAGTGTTTGTTTTGTTTTTTTTTTATTATTTTGTTATATTTTTTGTTATTTCTTATGTGTATGGGGGATTTTTGGGTTTTTTGAGTTTAGAGATATTGATGTTTTTTTTTAATGTTCCTTTGAGGATTACTTTTTTTTTGAAGGTTATTGTGTTGTTTGGTTCTTCTTTTTTTGTTGGTTTTTATTATTTATTTTTGTTGTTGTTTATGCCTTTGATGTCTTTGGGTGTGGGTTATTTGTTTTTTTTGGTTTCTATGATGAGTTTTAATTGTGGTTTTAAGTATTATGATTATTTTGTTTATGTTTTGTTTTGTATTGGGCTGTTGTCTTGTTTTTAG
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Searching-the-GenBank-database">Searching the GenBank database<a class="anchor-link" href="#Searching-the-GenBank-database">&#182;</a></h2><p>We use the Entrez object to search GenBank for sequence records. First we must set our email address to be polite:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="kn">from</span> <span class="nn">Bio</span> <span class="kn">import</span> <span class="n">Entrez</span>
+<span class="n">Entrez</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="s">&quot;martin.jones@ed.ac.uk&quot;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we can search. We need three arguments:</p>
+<ul>
+<li>the name of the database e.g. <code>nucleotide</code></li>
+<li>the term we are searching for e.g. <code>COX1</code></li>
+<li>the number of results we want e.g. <code>1000</code></li>
+</ul>
+<p>Here we go:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">mysearch</span> <span class="o">=</span> <span class="n">Entrez</span><span class="o">.</span><span class="n">esearch</span><span class="p">(</span><span class="n">db</span><span class="o">=</span><span class="s">&quot;nucleotide&quot;</span><span class="p">,</span> <span class="n">term</span><span class="o">=</span><span class="s">&quot;COX1&quot;</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="s">&quot;1000&quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">Entrez</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">mysearch</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we have a result object. How many records did we find in total?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s">&#39;Count&#39;</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>173076
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>What are the accession numbers of the first 1000?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s">&#39;IdList&#39;</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[&apos;909639862&apos;, &apos;909639857&apos;, &apos;909639855&apos;, &apos;909639853&apos;, &apos;906347170&apos;, &apos;906347157&apos;, &apos;906347144&apos;, &apos;906347131&apos;, &apos;906347118&apos;, &apos;906346774&apos;, &apos;906346760&apos;, &apos;906346746&apos;, &apos;906346520&apos;, &apos;906346492&apos;, &apos;758821676&apos;, &apos;699037166&apos;, &apos;686285310&apos;, &apos;686285220&apos;, &apos;686282993&apos;, &apos;686282885&apos;, &apos;686261179&apos;, &apos;686261089&apos;, &apos;686260798&apos;, &apos;686260729&apos;, &apos;686258833&apos;, &apos;686258733&apos;, &apos;686258221&apos;, &apos;686258215&apos;, &apos;686257782&apos;, &apos;686257611&apos;, &apos;686255450&apos;, &apos;686254861&apos;, &apos;686238593&apos;, &apos;686238500&apos;, &apos;686237848&apos;, &apos;686236666&apos;, &apos;686236657&apos;, &apos;686236638&apos;, &apos;686230901&apos;, &apos;686194266&apos;, &apos;686192928&apos;, &apos;686192236&apos;, &apos;686189731&apos;, &apos;686187017&apos;, &apos;686183623&apos;, &apos;686182681&apos;, &apos;686178281&apos;, &apos;686177844&apos;, &apos;686131429&apos;, &apos;686128511&apos;, &apos;686126317&apos;, &apos;686124236&apos;, &apos;686118931&apos;, &apos;686116904&apos;, &apos;686113392&apos;, &apos;686113171&apos;, &apos;686109391&apos;, &apos;686107379&apos;, &apos;686105592&apos;, &apos;686104123&apos;, &apos;686097237&apos;, &apos;685994888&apos;, &apos;685994364&apos;, &apos;685992820&apos;, &apos;685939404&apos;, &apos;685937902&apos;, &apos;685937777&apos;, &apos;685901923&apos;, &apos;685901894&apos;, &apos;685901682&apos;, &apos;685901654&apos;, &apos;685901214&apos;, &apos;685901143&apos;, &apos;685900416&apos;, &apos;685900196&apos;, &apos;685899750&apos;, &apos;685899648&apos;, &apos;685899567&apos;, &apos;685899152&apos;, &apos;685897662&apos;, &apos;685896047&apos;, &apos;685894036&apos;, &apos;685893650&apos;, &apos;685893472&apos;, &apos;685890474&apos;, &apos;685889842&apos;, &apos;685888946&apos;, &apos;661308301&apos;, &apos;659051408&apos;, &apos;659051035&apos;, &apos;659050615&apos;, &apos;659050610&apos;, &apos;659049044&apos;, &apos;659048923&apos;, &apos;659048584&apos;, &apos;659047019&apos;, &apos;659046861&apos;, &apos;659043315&apos;, &apos;659043018&apos;, &apos;659042814&apos;, &apos;659042720&apos;, &apos;659042532&apos;, &apos;659041008&apos;, &apos;659038632&apos;, &apos;659037340&apos;, &apos;659035227&apos;, &apos;659033923&apos;, &apos;659033652&apos;, &apos;659033047&apos;, &apos;659030231&apos;, &apos;659029138&apos;, &apos;659027298&apos;, &apos;659025435&apos;, &apos;659025362&apos;, &apos;659024788&apos;, &apos;659022683&apos;, &apos;659022564&apos;, &apos;659022546&apos;, &apos;659021688&apos;, &apos;659020442&apos;, &apos;659019396&apos;, &apos;659014543&apos;, &apos;659012579&apos;, &apos;659009167&apos;, &apos;659006657&apos;, &apos;659004513&apos;, &apos;659002180&apos;, &apos;659000857&apos;, &apos;658997679&apos;, &apos;658997126&apos;, &apos;658993659&apos;, &apos;658992762&apos;, &apos;658990472&apos;, &apos;658990031&apos;, &apos;658989915&apos;, &apos;658988787&apos;, &apos;658988385&apos;, &apos;658988163&apos;, &apos;658983644&apos;, &apos;658983208&apos;, &apos;658982864&apos;, &apos;658981174&apos;, &apos;658979190&apos;, &apos;658967394&apos;, &apos;658967376&apos;, &apos;658966669&apos;, &apos;658966050&apos;, &apos;658965632&apos;, &apos;658964258&apos;, &apos;658959202&apos;, &apos;658959078&apos;, &apos;658958282&apos;, &apos;658958041&apos;, &apos;658955973&apos;, &apos;658955346&apos;, &apos;658953837&apos;, &apos;658953705&apos;, &apos;658953210&apos;, &apos;658952840&apos;, &apos;658951244&apos;, &apos;658948222&apos;, &apos;658947469&apos;, &apos;658946065&apos;, &apos;658945103&apos;, &apos;658941150&apos;, &apos;658939855&apos;, &apos;658939639&apos;, &apos;658938054&apos;, &apos;658936982&apos;, &apos;658936905&apos;, &apos;658936827&apos;, &apos;658934964&apos;, &apos;658934598&apos;, &apos;658933660&apos;, &apos;658932538&apos;, &apos;658931472&apos;, &apos;658930880&apos;, &apos;657847365&apos;, &apos;657844272&apos;, &apos;657844192&apos;, &apos;657843683&apos;, &apos;657732627&apos;, &apos;657732584&apos;, &apos;657732582&apos;, &apos;657732393&apos;, &apos;657732209&apos;, &apos;647229130&apos;, &apos;647097670&apos;, &apos;647096411&apos;, &apos;647058385&apos;, &apos;647048304&apos;, &apos;647046356&apos;, &apos;647044545&apos;, &apos;647028644&apos;, &apos;647005112&apos;, &apos;647004955&apos;, &apos;646997669&apos;, &apos;646992868&apos;, &apos;646992641&apos;, &apos;646990645&apos;, &apos;646979008&apos;, &apos;646977996&apos;, &apos;646977700&apos;, &apos;646977591&apos;, &apos;646927008&apos;, &apos;646925481&apos;, &apos;646891217&apos;, &apos;646822561&apos;, &apos;646806302&apos;, &apos;646793053&apos;, &apos;646790020&apos;, &apos;646591829&apos;, &apos;646580707&apos;, &apos;646515342&apos;, &apos;646513161&apos;, &apos;646507553&apos;, &apos;646468015&apos;, &apos;646467834&apos;, &apos;646447963&apos;, &apos;646442447&apos;, &apos;646441088&apos;, &apos;646404966&apos;, &apos;646404862&apos;, &apos;646369094&apos;, &apos;646366085&apos;, &apos;646362085&apos;, &apos;646361386&apos;, &apos;639885558&apos;, &apos;639881795&apos;, &apos;639879569&apos;, &apos;639874705&apos;, &apos;639819760&apos;, &apos;639576329&apos;, &apos;639573037&apos;, &apos;639552790&apos;, &apos;639551956&apos;, &apos;639551939&apos;, &apos;639103772&apos;, &apos;639022177&apos;, &apos;563391833&apos;, &apos;563390265&apos;, &apos;560999774&apos;, &apos;560997720&apos;, &apos;560886477&apos;, &apos;560885678&apos;, &apos;560885282&apos;, &apos;560884496&apos;, &apos;560883912&apos;, &apos;556502422&apos;, &apos;556502085&apos;, &apos;553802499&apos;, &apos;553802498&apos;, &apos;553802497&apos;, &apos;553801642&apos;, &apos;553801640&apos;, &apos;553801638&apos;, &apos;553801401&apos;, &apos;553801352&apos;, &apos;553801350&apos;, &apos;553801302&apos;, &apos;553801301&apos;, &apos;553801299&apos;, &apos;553801004&apos;, &apos;553801003&apos;, &apos;553800144&apos;, &apos;553800142&apos;, &apos;553800141&apos;, &apos;553797348&apos;, &apos;553797347&apos;, &apos;553796930&apos;, &apos;553796927&apos;, &apos;553796924&apos;, &apos;553796621&apos;, &apos;553796619&apos;, &apos;553796616&apos;, &apos;553794558&apos;, &apos;553794552&apos;, &apos;553794291&apos;, &apos;553794290&apos;, &apos;553793825&apos;, &apos;553793824&apos;, &apos;553793549&apos;, &apos;553793547&apos;, &apos;553793544&apos;, &apos;553793255&apos;, &apos;553793254&apos;, &apos;553792753&apos;, &apos;553792751&apos;, &apos;553792173&apos;, &apos;553792172&apos;, &apos;553790303&apos;, &apos;553790301&apos;, &apos;553790299&apos;, &apos;553789766&apos;, &apos;553787889&apos;, &apos;553786912&apos;, &apos;553786911&apos;, &apos;553786910&apos;, &apos;553785892&apos;, &apos;553785891&apos;, &apos;553785138&apos;, &apos;553785126&apos;, &apos;553785125&apos;, &apos;553785123&apos;, &apos;553783567&apos;, &apos;553782526&apos;, &apos;553782524&apos;, &apos;553782516&apos;, &apos;553781149&apos;, &apos;553781148&apos;, &apos;553781143&apos;, &apos;553779666&apos;, &apos;553779664&apos;, &apos;553778836&apos;, &apos;553777444&apos;, &apos;553777442&apos;, &apos;553773943&apos;, &apos;553773942&apos;, &apos;553772214&apos;, &apos;553772211&apos;, &apos;553772210&apos;, &apos;553770700&apos;, &apos;553770698&apos;, &apos;553768118&apos;, &apos;553768116&apos;, &apos;553768115&apos;, &apos;553766646&apos;, &apos;553764848&apos;, &apos;553764847&apos;, &apos;553764846&apos;, &apos;553761413&apos;, &apos;553761412&apos;, &apos;553761402&apos;, &apos;553758909&apos;, &apos;553758908&apos;, &apos;553758907&apos;, &apos;553757993&apos;, &apos;553757991&apos;, &apos;553756155&apos;, &apos;553756153&apos;, &apos;553756151&apos;, &apos;553754083&apos;, &apos;553754081&apos;, &apos;553752007&apos;, &apos;553750690&apos;, &apos;553750689&apos;, &apos;553750688&apos;, &apos;553749914&apos;, &apos;553749911&apos;, &apos;553749910&apos;, &apos;553749230&apos;, &apos;553749229&apos;, &apos;546182805&apos;, &apos;546181416&apos;, &apos;545122446&apos;, &apos;545122397&apos;, &apos;545081153&apos;, &apos;545081111&apos;, &apos;545078374&apos;, &apos;545077902&apos;, &apos;514956610&apos;, &apos;514956589&apos;, &apos;510934219&apos;, &apos;419756637&apos;, &apos;419755799&apos;, &apos;419755223&apos;, &apos;384145136&apos;, &apos;355654432&apos;, &apos;355654372&apos;, &apos;355654227&apos;, &apos;254234166&apos;, &apos;47097688&apos;, &apos;659054130&apos;, &apos;659052463&apos;, &apos;659052183&apos;, &apos;659040495&apos;, &apos;659039969&apos;, &apos;659036545&apos;, &apos;659034692&apos;, &apos;659031185&apos;, &apos;659031180&apos;, &apos;659023061&apos;, &apos;659018204&apos;, &apos;659016347&apos;, &apos;659015852&apos;, &apos;659006436&apos;, &apos;658972138&apos;, &apos;658962576&apos;, &apos;658962394&apos;, &apos;658941461&apos;, &apos;658941225&apos;, &apos;658938201&apos;, &apos;658938092&apos;, &apos;647086752&apos;, &apos;647078716&apos;, &apos;647074022&apos;, &apos;647065729&apos;, &apos;647025284&apos;, &apos;647023297&apos;, &apos;647013492&apos;, &apos;647013358&apos;, &apos;647003264&apos;, &apos;646984413&apos;, &apos;646983356&apos;, &apos;646983179&apos;, &apos;646982908&apos;, &apos;646898528&apos;, &apos;646770560&apos;, &apos;646765958&apos;, &apos;646727745&apos;, &apos;646707575&apos;, &apos;646695287&apos;, &apos;646651256&apos;, &apos;646622392&apos;, &apos;646604858&apos;, &apos;646563644&apos;, &apos;646555012&apos;, &apos;646498986&apos;, &apos;646487381&apos;, &apos;646480102&apos;, &apos;646461441&apos;, &apos;646449490&apos;, &apos;646435169&apos;, &apos;646426227&apos;, &apos;646417591&apos;, &apos;646413840&apos;, &apos;646380872&apos;, &apos;646380216&apos;, &apos;646380089&apos;, &apos;646378825&apos;, &apos;646357788&apos;, &apos;639029873&apos;, &apos;560887279&apos;, &apos;560887116&apos;, &apos;560886776&apos;, &apos;560886748&apos;, &apos;560886461&apos;, &apos;560886192&apos;, &apos;560886087&apos;, &apos;560885975&apos;, &apos;560885428&apos;, &apos;560885226&apos;, &apos;560884379&apos;, &apos;560884129&apos;, &apos;560883802&apos;, &apos;556925344&apos;, &apos;553801189&apos;, &apos;553801187&apos;, &apos;553798898&apos;, &apos;553798897&apos;, &apos;553798049&apos;, &apos;553797074&apos;, &apos;553797073&apos;, &apos;553794126&apos;, &apos;553794123&apos;, &apos;553794121&apos;, &apos;553793170&apos;, &apos;553793044&apos;, &apos;553791396&apos;, &apos;553790695&apos;, &apos;553790694&apos;, &apos;553790678&apos;, &apos;553788831&apos;, &apos;553788646&apos;, &apos;553788645&apos;, &apos;553784283&apos;, &apos;553784282&apos;, &apos;553782335&apos;, &apos;553782334&apos;, &apos;553782332&apos;, &apos;553782012&apos;, &apos;553777757&apos;, &apos;553777756&apos;, &apos;553776604&apos;, &apos;553776600&apos;, &apos;553776598&apos;, &apos;553773145&apos;, &apos;553773144&apos;, &apos;553773138&apos;, &apos;553773037&apos;, &apos;553771850&apos;, &apos;553771848&apos;, &apos;553771844&apos;, &apos;553771596&apos;, &apos;553771595&apos;, &apos;553769601&apos;, &apos;553769600&apos;, &apos;553768507&apos;, &apos;553768505&apos;, &apos;553766889&apos;, &apos;553766888&apos;, &apos;553766886&apos;, &apos;553766109&apos;, &apos;553766108&apos;, &apos;553764059&apos;, &apos;553764049&apos;, &apos;553762605&apos;, &apos;553762038&apos;, &apos;553762036&apos;, &apos;553762034&apos;, &apos;553760775&apos;, &apos;553760774&apos;, &apos;553760404&apos;, &apos;553760403&apos;, &apos;553757910&apos;, &apos;553757909&apos;, &apos;553757119&apos;, &apos;553755229&apos;, &apos;553755193&apos;, &apos;553753101&apos;, &apos;553750974&apos;, &apos;553750962&apos;, &apos;545084946&apos;, &apos;545084871&apos;, &apos;545084651&apos;, &apos;545084533&apos;, &apos;485462086&apos;, &apos;485053528&apos;, &apos;485053502&apos;, &apos;485053462&apos;, &apos;484230120&apos;, &apos;484229963&apos;, &apos;484229926&apos;, &apos;484067714&apos;, &apos;484067496&apos;, &apos;424802887&apos;, &apos;421517001&apos;, &apos;421514606&apos;, &apos;418588652&apos;, &apos;418587004&apos;, &apos;418585471&apos;, &apos;418584761&apos;, &apos;418584423&apos;, &apos;290954631&apos;, &apos;162448269&apos;, &apos;658956209&apos;, &apos;658955817&apos;, &apos;658949153&apos;, &apos;658948962&apos;, &apos;648172874&apos;, &apos;648172837&apos;, &apos;648118009&apos;, &apos;648116377&apos;, &apos;636853254&apos;, &apos;636853000&apos;, &apos;560887326&apos;, &apos;560887163&apos;, &apos;560887064&apos;, &apos;560886971&apos;, &apos;560886866&apos;, &apos;560886812&apos;, &apos;560886797&apos;, &apos;560886700&apos;, &apos;560886654&apos;, &apos;560886611&apos;, &apos;560886576&apos;, &apos;560886561&apos;, &apos;560886420&apos;, &apos;560886378&apos;, &apos;560886311&apos;, &apos;560886171&apos;, &apos;560886151&apos;, &apos;560886107&apos;, &apos;560885929&apos;, &apos;560885850&apos;, &apos;560885740&apos;, &apos;560885714&apos;, &apos;560885630&apos;, &apos;560885597&apos;, &apos;560885495&apos;, &apos;560885479&apos;, &apos;560885390&apos;, &apos;560885343&apos;, &apos;560885319&apos;, &apos;560885305&apos;, &apos;560885254&apos;, &apos;560885179&apos;, &apos;560885075&apos;, &apos;560884982&apos;, &apos;560884894&apos;, &apos;560884849&apos;, &apos;560884793&apos;, &apos;560884714&apos;, &apos;560884693&apos;, &apos;560884667&apos;, &apos;560884571&apos;, &apos;560884510&apos;, &apos;560884449&apos;, &apos;560884248&apos;, &apos;560884013&apos;, &apos;560883687&apos;, &apos;560879787&apos;, &apos;559778175&apos;, &apos;553793362&apos;, &apos;553793360&apos;, &apos;553793355&apos;, &apos;553789793&apos;, &apos;553789792&apos;, &apos;553786821&apos;, &apos;553786820&apos;, &apos;545081952&apos;, &apos;545081878&apos;, &apos;544649063&apos;, &apos;544648936&apos;, &apos;515023745&apos;, &apos;515022535&apos;, &apos;515022517&apos;, &apos;515022384&apos;, &apos;515021917&apos;, &apos;515021095&apos;, &apos;515021046&apos;, &apos;515020791&apos;, &apos;514954897&apos;, &apos;514954518&apos;, &apos;514930447&apos;, &apos;510946599&apos;, &apos;510946158&apos;, &apos;510933837&apos;, &apos;488486000&apos;, &apos;485462089&apos;, &apos;485046716&apos;, &apos;485046712&apos;, &apos;485046710&apos;, &apos;485046698&apos;, &apos;451986110&apos;, &apos;451986050&apos;, &apos;451984846&apos;, &apos;451984783&apos;, &apos;451982689&apos;, &apos;734704248&apos;, &apos;733372916&apos;, &apos;733372902&apos;, &apos;733372888&apos;, &apos;733372874&apos;, &apos;723782923&apos;, &apos;723782921&apos;, &apos;723782919&apos;, &apos;723782917&apos;, &apos;723782915&apos;, &apos;723782913&apos;, &apos;723782911&apos;, &apos;723782909&apos;, &apos;700367865&apos;, &apos;699128792&apos;, &apos;699128769&apos;, &apos;699128738&apos;, &apos;688321210&apos;, &apos;688321208&apos;, &apos;688321206&apos;, &apos;688321204&apos;, &apos;688321202&apos;, &apos;688321200&apos;, &apos;688321198&apos;, &apos;688321196&apos;, &apos;688321194&apos;, &apos;688321192&apos;, &apos;688321190&apos;, &apos;688321188&apos;, &apos;688321186&apos;, &apos;688321184&apos;, &apos;688321182&apos;, &apos;688321180&apos;, &apos;688321178&apos;, &apos;688321176&apos;, &apos;632796238&apos;, &apos;632796224&apos;, &apos;510786015&apos;, &apos;485060674&apos;, &apos;484082242&apos;, &apos;483980146&apos;, &apos;460016197&apos;, &apos;399531147&apos;, &apos;313004546&apos;, &apos;312840928&apos;, &apos;226331115&apos;, &apos;225001097&apos;, &apos;116619145&apos;, &apos;908468092&apos;, &apos;908433266&apos;, &apos;908371354&apos;, &apos;908368755&apos;, &apos;908365995&apos;, &apos;827029750&apos;, &apos;759395785&apos;, &apos;758194953&apos;, &apos;752535880&apos;, &apos;752535640&apos;, &apos;752533052&apos;, &apos;749295379&apos;, &apos;749295377&apos;, &apos;749295375&apos;, &apos;749295372&apos;, &apos;749295370&apos;, &apos;749295368&apos;, &apos;749295365&apos;, &apos;749295362&apos;, &apos;749295358&apos;, &apos;749295037&apos;, &apos;749293517&apos;, &apos;686450356&apos;, &apos;669176238&apos;, &apos;659057640&apos;, &apos;658609826&apos;, &apos;657935074&apos;, &apos;657934501&apos;, &apos;655976247&apos;, &apos;655974645&apos;, &apos;655973873&apos;, &apos;655480151&apos;, &apos;655479388&apos;, &apos;655471824&apos;, &apos;655470990&apos;, &apos;655443721&apos;, &apos;655443327&apos;, &apos;655354473&apos;, &apos;655352014&apos;, &apos;655351072&apos;, &apos;655350323&apos;, &apos;654703397&apos;, &apos;654701923&apos;, &apos;654701856&apos;, &apos;654699068&apos;, &apos;654697731&apos;, &apos;654680260&apos;, &apos;654678656&apos;, &apos;647214482&apos;, &apos;646778907&apos;, &apos;646595119&apos;, &apos;646590750&apos;, &apos;646359523&apos;, &apos;640501888&apos;, &apos;584595762&apos;, &apos;568306739&apos;, &apos;560153071&apos;, &apos;560107639&apos;, &apos;558672313&apos;, &apos;558665962&apos;, &apos;543973209&apos;, &apos;543941914&apos;, &apos;538320713&apos;, &apos;537083240&apos;, &apos;537083130&apos;, &apos;537078667&apos;, &apos;532530467&apos;, &apos;507519518&apos;, &apos;499074415&apos;, &apos;487233332&apos;, &apos;485063333&apos;, &apos;484214481&apos;, &apos;484211391&apos;, &apos;484209915&apos;, &apos;484203290&apos;, &apos;484203091&apos;, &apos;484202786&apos;, &apos;484202045&apos;, &apos;484106499&apos;, &apos;484029672&apos;, &apos;483630397&apos;, &apos;483553955&apos;, &apos;483381819&apos;, &apos;483381150&apos;, &apos;483380609&apos;, &apos;483379946&apos;, &apos;483378806&apos;, &apos;483378239&apos;, &apos;483377487&apos;, &apos;483319061&apos;, &apos;483315763&apos;, &apos;483313333&apos;, &apos;483313236&apos;, &apos;483121789&apos;, &apos;483029004&apos;, &apos;482948014&apos;, &apos;482947603&apos;, &apos;482947459&apos;, &apos;482944370&apos;, &apos;482821417&apos;, &apos;482821368&apos;, &apos;482821330&apos;, &apos;482821242&apos;, &apos;482821155&apos;, &apos;471335784&apos;, &apos;471265562&apos;, &apos;451171716&apos;, &apos;451171703&apos;, &apos;447915004&apos;, &apos;426406915&apos;, &apos;410023236&apos;, &apos;397652752&apos;, &apos;387781698&apos;, &apos;386081834&apos;, &apos;386062973&apos;, &apos;385230889&apos;, &apos;385223048&apos;, &apos;385221504&apos;, &apos;385219873&apos;, &apos;385218266&apos;, &apos;384896752&apos;, &apos;384893616&apos;, &apos;384892008&apos;, &apos;384890373&apos;, &apos;384888657&apos;, &apos;384128090&apos;, &apos;378769743&apos;, &apos;374318767&apos;, &apos;357409266&apos;, &apos;347611422&apos;, &apos;339484941&apos;, &apos;337744364&apos;, &apos;337277607&apos;, &apos;334143099&apos;, &apos;332304386&apos;, &apos;330806657&apos;, &apos;323524377&apos;, &apos;317050199&apos;, &apos;316931396&apos;, &apos;315500818&apos;, &apos;313681130&apos;, &apos;313671969&apos;, &apos;313669332&apos;, &apos;313199777&apos;, &apos;312137514&apos;, &apos;312112794&apos;, &apos;311103224&apos;, &apos;308183796&apos;, &apos;308182188&apos;, &apos;308175814&apos;, &apos;308047722&apos;, &apos;307719921&apos;, &apos;300857417&apos;, &apos;298735500&apos;, &apos;297625198&apos;, &apos;297620246&apos;, &apos;297537197&apos;, &apos;296137750&apos;, &apos;296112228&apos;, &apos;295131884&apos;, &apos;295129529&apos;, &apos;294514841&apos;, &apos;294510242&apos;, &apos;294083570&apos;, &apos;291612472&apos;, &apos;291481467&apos;, &apos;291294404&apos;, &apos;291276243&apos;, &apos;289546492&apos;, &apos;284027999&apos;, &apos;269958255&apos;, &apos;260060589&apos;, &apos;256831255&apos;, &apos;256823905&apos;, &apos;256821228&apos;, &apos;256818848&apos;, &apos;256368465&apos;, &apos;256014795&apos;, &apos;255961475&apos;, &apos;254796400&apos;, &apos;254778738&apos;, &apos;254499938&apos;, &apos;254499469&apos;, &apos;254292376&apos;, &apos;253997713&apos;, &apos;253995374&apos;, &apos;253698656&apos;, &apos;241665037&apos;, &apos;241661625&apos;, &apos;240849682&apos;, &apos;239825584&apos;, &apos;239813019&apos;, &apos;237653092&apos;, &apos;229915734&apos;, &apos;229586230&apos;, &apos;227831830&apos;, &apos;225849564&apos;, &apos;225847840&apos;, &apos;225629872&apos;, &apos;224988383&apos;, &apos;222823046&apos;, &apos;222109225&apos;, &apos;222053117&apos;, &apos;221638099&apos;, &apos;221229343&apos;, &apos;220933193&apos;, &apos;220915123&apos;, &apos;219846956&apos;, &apos;219666071&apos;, &apos;218665024&apos;, &apos;218528082&apos;, &apos;217976200&apos;, &apos;217971216&apos;, &apos;212637849&apos;, &apos;210134201&apos;, &apos;209883160&apos;, &apos;209406223&apos;, &apos;208433976&apos;, &apos;198282148&apos;, &apos;197116402&apos;, &apos;197103466&apos;, &apos;195952380&apos;, &apos;194335182&apos;, &apos;194097589&apos;, &apos;193211676&apos;, &apos;192358779&apos;, &apos;189913173&apos;, &apos;189912848&apos;, &apos;189909570&apos;, &apos;189499000&apos;, &apos;189345558&apos;, &apos;188995955&apos;, &apos;187927112&apos;, &apos;187925958&apos;, &apos;183219427&apos;, &apos;167643973&apos;, &apos;167621941&apos;, &apos;163838769&apos;, &apos;162958048&apos;, &apos;161620094&apos;, &apos;161617991&apos;, &apos;157964072&apos;, &apos;157959830&apos;, &apos;157826385&apos;, &apos;157803189&apos;, &apos;157736271&apos;, &apos;157412338&apos;, &apos;156740028&apos;, &apos;154250456&apos;, &apos;154173617&apos;, &apos;154147866&apos;, &apos;153010078&apos;, &apos;153007346&apos;, &apos;153002879&apos;, &apos;152998555&apos;, &apos;152979768&apos;, &apos;148659757&apos;, &apos;148651817&apos;, &apos;148558820&apos;, &apos;148557829&apos;, &apos;148552929&apos;, &apos;148550551&apos;, &apos;148545259&apos;, &apos;148262085&apos;, &apos;146305042&apos;, &apos;146291111&apos;, &apos;146280397&apos;, &apos;138893679&apos;, &apos;127510935&apos;, &apos;126460778&apos;, &apos;126432613&apos;, &apos;126172257&apos;, &apos;126090118&apos;, &apos;124265193&apos;, &apos;124024712&apos;, &apos;123965234&apos;, &apos;121602919&apos;, &apos;121592436&apos;, &apos;120608714&apos;, &apos;120601051&apos;, &apos;120552944&apos;, &apos;119943794&apos;, &apos;119773142&apos;, &apos;118602060&apos;, &apos;118474057&apos;, &apos;118462219&apos;, &apos;117923318&apos;, &apos;116747452&apos;, &apos;116326852&apos;, &apos;115522030&apos;, &apos;114797051&apos;, &apos;114568554&apos;, &apos;114561188&apos;, &apos;114330036&apos;, &apos;114319166&apos;, &apos;114045513&apos;, &apos;113968346&apos;, &apos;110632362&apos;, &apos;109896332&apos;, &apos;108796981&apos;, &apos;108562424&apos;, &apos;103485498&apos;, &apos;99079841&apos;, &apos;94967031&apos;, &apos;94308945&apos;, &apos;93004831&apos;, &apos;92115633&apos;, &apos;92109250&apos;, &apos;91974482&apos;, &apos;91791369&apos;, &apos;91785913&apos;, &apos;91204815&apos;, &apos;90421528&apos;, &apos;90019649&apos;, &apos;89898822&apos;, &apos;88607955&apos;, &apos;87198026&apos;, &apos;86156430&apos;, &apos;85372828&apos;, &apos;81298811&apos;, &apos;78778385&apos;, &apos;78776201&apos;, &apos;78355047&apos;]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can also use the Entrez object to download a single record (if we know the ID) and turn it into an object:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="kn">from</span> <span class="nn">Bio</span> <span class="kn">import</span> <span class="n">Entrez</span><span class="p">,</span> <span class="n">SeqIO</span>
+<span class="n">Entrez</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="s">&quot;martin.jones@ed.ac.uk&quot;</span>
+<span class="n">genbank</span> <span class="o">=</span> <span class="n">Entrez</span><span class="o">.</span><span class="n">efetch</span><span class="p">(</span><span class="n">db</span><span class="o">=</span><span class="s">&quot;nucleotide&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s">&#39;123456&#39;</span><span class="p">,</span> <span class="n">rettype</span><span class="o">=</span><span class="s">&quot;gb&quot;</span><span class="p">)</span>
+<span class="n">record</span> <span class="o">=</span> <span class="n">genbank</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>LOCUS       HOLE_ECOLI                76 aa            linear       01-DEC-1992
+DEFINITION  DNA POLYMERASE III, THETA SUBUNIT.
+ACCESSION   P28689
+VERSION     P28689  GI:123456
+DBSOURCE    UniProtKB: locus HOLE_ECOLI, accession P28689;
+            class: standard.
+            created: Dec 1, 1992.
+            sequence updated: Dec 1, 1992.
+            annotation updated: Dec 1, 1992.
+            xrefs: L04572.1, L05381.1
+            xrefs (non-sequence databases): ECOGENE:EG11505
+KEYWORDS    DNA-DIRECTED DNA POLYMERASE; DNA REPLICATION.
+SOURCE      Unknown.
+  ORGANISM  Unknown.
+            Unclassified.
+REFERENCE   1  (residues 1 to 76)
+  AUTHORS   O&apos;DONNELL M.
+  JOURNAL   BIOESSAYS 14, 105-111 (1992)
+  MEDLINE   92246902
+  REMARK    REVIEW.
+REFERENCE   2  (residues 1 to 76)
+  AUTHORS   CARTER J.R., FRANDEN M.A., AEBERSOLD R.H. and MCHENRY C.S.
+  JOURNAL   Unpublished
+  REMARK    SEQUENCE FROM N.A.
+REFERENCE   3  (residues 1 to 76)
+  AUTHORS   STUDWELL-VAUGHAN P.S. and O&apos;DONNELL M.
+  JOURNAL   Unpublished
+  REMARK    SEQUENCE FROM N.A.
+COMMENT     [WARNING] On Sep 14, 1993 this sequence was replaced by gi:399924.
+            [FUNCTION] DNA POLYMERASE III IS A COMPLEX, MULTICHAIN ENZYME
+            RESPONSIBLE FOR MOST OF THE REPLICATIVE SYNTHESIS IN BACTERIA. THIS
+            DNA POLYMERASE ALSO EXHIBITS 3&apos; TO 5&apos; EXONUCLEASE ACTIVITY.
+            [FUNCTION] THE EXACT FUNCTION OF THE THETA SUBUNIT IS UNKNOWN.
+            [CATALYTIC ACTIVITY] N DEOXYNUCLEOSIDE TRIPHOSPHATE = N
+            PYROPHOSPHATE + DNA(N).
+            [SUBUNIT] CONTAINS A CORE (COMPOSED OF ALPHA, EPSILON, AND THETA
+            CHAINS) THAT ASSOCIATES WITH A TAU SUBUNIT WHICH ALLOW THE CORE
+            DIMERIZAZION TO FORM THE POLIII&apos; COMPLEX. POLIII&apos; ASSOCIATES WITH
+            THE GAMMA COMPLEX (COMPOSED OF CHAINS GAMMA, DELTA, DELTA&apos;, PSI,
+            AND CHI) AND WITH THE BETA CHAIN. THE FINAL COMPOSITION OF THE
+            COMPLEX IS: (ALPHA,EPSILON,THETA)[2]-TAU[2]-(GAMMA,DELTA,DELTA&apos;,
+            PSI,CHI)[2]-BETA[4].
+FEATURES             Location/Qualifiers
+     source          1..76
+                     /organism=&quot;unknown&quot;
+     gene            1..76
+                     /gene=&quot;HOLE&quot;
+     Org             1..76
+                     /gene=&quot;HOLE&quot;
+     Protein         1..76
+                     /gene=&quot;HOLE&quot;
+                     /product=&quot;DNA POLYMERASE III, THETA SUBUNIT.&quot;
+                     /EC_number=&quot;2.7.7.7&quot;
+     Region          67
+                     /gene=&quot;HOLE&quot;
+                     /region_name=&quot;Conflict&quot;
+                     /experiment=&quot;experimental evidence, no additional details
+                     recorded&quot;
+                     /note=&quot;A -&gt; S (IN REF. 2).&quot;
+ORIGIN      
+        1 mlknlakldq temdkvnvdl aaagvafker ynmpviaeav ereqpehlrs wfrerliahr
+       61 lasvnlarlp yepklk
+//
+
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now this is where it starts to get interesting. Let's search for our favourite gene and then download the first five records:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="kn">from</span> <span class="nn">Bio</span> <span class="kn">import</span> <span class="n">Entrez</span><span class="p">,</span> <span class="n">SeqIO</span>
+<span class="n">Entrez</span><span class="o">.</span><span class="n">email</span> <span class="o">=</span> <span class="s">&quot;martin.jones@ed.ac.uk&quot;</span>
+<span class="n">mysearch</span> <span class="o">=</span> <span class="n">Entrez</span><span class="o">.</span><span class="n">esearch</span><span class="p">(</span><span class="n">db</span><span class="o">=</span><span class="s">&quot;nucleotide&quot;</span><span class="p">,</span> <span class="n">term</span><span class="o">=</span><span class="s">&quot;COX1&quot;</span><span class="p">,</span> <span class="n">retmax</span><span class="o">=</span><span class="s">&quot;5&quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">Entrez</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">mysearch</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">accession</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s">&#39;IdList&#39;</span><span class="p">]:</span>
+    <span class="n">genbank</span> <span class="o">=</span> <span class="n">Entrez</span><span class="o">.</span><span class="n">efetch</span><span class="p">(</span><span class="n">db</span><span class="o">=</span><span class="s">&quot;nucleotide&quot;</span><span class="p">,</span><span class="nb">id</span><span class="o">=</span><span class="n">accession</span><span class="p">,</span>
+<span class="n">rettype</span><span class="o">=</span><span class="s">&quot;gb&quot;</span><span class="p">)</span>
+    <span class="n">record</span> <span class="o">=</span> <span class="n">SeqIO</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="n">genbank</span><span class="p">,</span> <span class="s">&quot;genbank&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">description</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Onchocerca dewittei japonica mitochondrial COX1 gene for cytochrome c oxidase subunit 1, partial cds, isolate: OdjFukuoka.
+Onchocerca takaokai mitochondrial cox1 gene for cytochrome c oxidase subunit 1, partial cds, isolate: #2-2b.
+Onchocerca takaokai mitochondrial cox1 gene for cytochrome c oxidase subunit 1, partial cds, isolate: #9.
+Onchocerca takaokai mitochondrial cox1 gene for cytochrome c oxidase subunit 1, partial cds, isolate: #11-2.
+Apteroperla tikumana mitochondrion, complete genome.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we have a collection of record objects, we can do all the interesting things (get features, etc.)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exercises">Exercises<a class="anchor-link" href="#Exercises">&#182;</a></h2><p>How many complete COX1 protein records are there for nematodes? What is their average length? Write a function that will answer the question for any gene name and any taxonomic group. Hint: it's easiest to figure out the query first using the NCBI web site.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># ignore this cell, it&#39;s for loading custom js code</span>
@@ -842,7 +985,7 @@ TIDRXVRSYS
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[41]:</div>
 
 
 <div class="output_subarea output_javascript output_execute_result">
@@ -885,7 +1028,7 @@ setInterval(regentoc,1000);
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># ignore this cell, it&#39;s for loading custom css code</span>
@@ -901,7 +1044,7 @@ setInterval(regentoc,1000);
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[42]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <style>

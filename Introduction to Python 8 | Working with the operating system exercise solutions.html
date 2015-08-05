@@ -3,7 +3,7 @@
 <head>
 
 <meta charset="utf-8" />
-<title>Introduction to Python 7 | Dictionaries exercise solutions</title>
+<title>Introduction to Python 8 | Working with the operating system exercise solutions</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -176,7 +176,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><h1 id="toctitle">Dictionaries exercise solutions</h1></p>
+<p><h1 id="toctitle">Exercise solutions</h1></p>
 <ul id="toc"/>
 </div>
 </div>
@@ -186,21 +186,22 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="DNA-translation">DNA translation<a class="anchor-link" href="#DNA-translation">&#182;</a></h2><p>First, we need to think about splitting up the DNA into codons. We can do the first few manually:</p>
+<h2 id="Binning-DNA-sequences">Binning DNA sequences<a class="anchor-link" href="#Binning-DNA-sequences">&#182;</a></h2><p>First, get a list of the files we need to process. We only want the ones ending in <code>.dna</code>.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ATGTTCGGT&quot;</span>
-<span class="n">codon1</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
-<span class="n">codon2</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
-<span class="n">codon3</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="mi">6</span><span class="p">:</span><span class="mi">9</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">codon1</span><span class="p">,</span> <span class="n">codon2</span><span class="p">,</span> <span class="n">codon3</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">os</span>
+<span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s">&quot;dna_files/&quot;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">file_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&quot;.dna&quot;</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;reading sequences from &quot;</span> <span class="o">+</span> <span class="n">file_name</span><span class="p">)</span>
+        
+        
 </pre></div>
 
 </div>
@@ -213,7 +214,16 @@ div#notebook {
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>(&apos;ATG&apos;, &apos;TTC&apos;, &apos;GGT&apos;)
+<pre>reading sequences from xaf.dna
+reading sequences from xaj.dna
+reading sequences from xai.dna
+reading sequences from xad.dna
+reading sequences from xab.dna
+reading sequences from xac.dna
+reading sequences from xae.dna
+reading sequences from xaa.dna
+reading sequences from xag.dna
+reading sequences from xah.dna
 </pre>
 </div>
 </div>
@@ -227,99 +237,8 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>until we see the pattern. The start position goes up by three each time, and the stop position is always three greater than the start. So with a range:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ATGTTCGGT&quot;</span> 
-<span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span> 
-    <span class="n">codon</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> 
-    <span class="k">print</span><span class="p">(</span><span class="s">&quot;one codon is &quot;</span> <span class="o">+</span> <span class="n">codon</span><span class="p">)</span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>one codon is ATG
-one codon is TTC
-one codon is GGT
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This works for the particular sequence, but we need a more general solution. We always start at zero, and always go up by three, but the middle argument to range is tricky. We need the last start position to be two bases back from the end of the sequence:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ATGTTCGTGACGAGGGT&quot;</span> 
-
-<span class="c"># calculate the start position for the final codon</span>
-<span class="n">last_codon_start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> 
-
-<span class="c"># process the dna sequence in three base chunks</span>
-<span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">last_codon_start</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span> 
-    <span class="n">codon</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> 
-    <span class="k">print</span><span class="p">(</span><span class="s">&quot;one codon is &quot;</span> <span class="o">+</span> <span class="n">codon</span><span class="p">)</span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>one codon is ATG
-one codon is TTC
-one codon is GTG
-one codon is ACG
-one codon is AGG
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>This version will work for any length DNA sequence.</p>
-<p>Getting the amino acid for a given codon is quite easy, just look it up:</p>
+<p>Now open each file and process each line. Remember to construct the path the file using the folder name plus the file name.</p>
+<p>First thing is to calculate the length:</p>
 
 </div>
 </div>
@@ -329,33 +248,17 @@ one codon is AGG
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">gencode</span> <span class="o">=</span> <span class="p">{</span>
-<span class="s">&#39;ATA&#39;</span><span class="p">:</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;ATC&#39;</span><span class="p">:</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;ATT&#39;</span><span class="p">:</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;ATG&#39;</span><span class="p">:</span><span class="s">&#39;M&#39;</span><span class="p">,</span>
-<span class="s">&#39;ACA&#39;</span><span class="p">:</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;ACC&#39;</span><span class="p">:</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;ACG&#39;</span><span class="p">:</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;ACT&#39;</span><span class="p">:</span><span class="s">&#39;T&#39;</span><span class="p">,</span>
-<span class="s">&#39;AAC&#39;</span><span class="p">:</span><span class="s">&#39;N&#39;</span><span class="p">,</span> <span class="s">&#39;AAT&#39;</span><span class="p">:</span><span class="s">&#39;N&#39;</span><span class="p">,</span> <span class="s">&#39;AAA&#39;</span><span class="p">:</span><span class="s">&#39;K&#39;</span><span class="p">,</span> <span class="s">&#39;AAG&#39;</span><span class="p">:</span><span class="s">&#39;K&#39;</span><span class="p">,</span>
-<span class="s">&#39;AGC&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="s">&#39;AGT&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="s">&#39;AGA&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="s">&#39;AGG&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span>
-<span class="s">&#39;CTA&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="s">&#39;CTC&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="s">&#39;CTG&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="s">&#39;CTT&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span>
-<span class="s">&#39;CCA&#39;</span><span class="p">:</span><span class="s">&#39;P&#39;</span><span class="p">,</span> <span class="s">&#39;CCC&#39;</span><span class="p">:</span><span class="s">&#39;P&#39;</span><span class="p">,</span> <span class="s">&#39;CCG&#39;</span><span class="p">:</span><span class="s">&#39;P&#39;</span><span class="p">,</span> <span class="s">&#39;CCT&#39;</span><span class="p">:</span><span class="s">&#39;P&#39;</span><span class="p">,</span>
-<span class="s">&#39;CAC&#39;</span><span class="p">:</span><span class="s">&#39;H&#39;</span><span class="p">,</span> <span class="s">&#39;CAT&#39;</span><span class="p">:</span><span class="s">&#39;H&#39;</span><span class="p">,</span> <span class="s">&#39;CAA&#39;</span><span class="p">:</span><span class="s">&#39;Q&#39;</span><span class="p">,</span> <span class="s">&#39;CAG&#39;</span><span class="p">:</span><span class="s">&#39;Q&#39;</span><span class="p">,</span>
-<span class="s">&#39;CGA&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="s">&#39;CGC&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="s">&#39;CGG&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="s">&#39;CGT&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span>
-<span class="s">&#39;GTA&#39;</span><span class="p">:</span><span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="s">&#39;GTC&#39;</span><span class="p">:</span><span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="s">&#39;GTG&#39;</span><span class="p">:</span><span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="s">&#39;GTT&#39;</span><span class="p">:</span><span class="s">&#39;V&#39;</span><span class="p">,</span>
-<span class="s">&#39;GCA&#39;</span><span class="p">:</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;GCC&#39;</span><span class="p">:</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;GCG&#39;</span><span class="p">:</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;GCT&#39;</span><span class="p">:</span><span class="s">&#39;A&#39;</span><span class="p">,</span>
-<span class="s">&#39;GAC&#39;</span><span class="p">:</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;GAT&#39;</span><span class="p">:</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;GAA&#39;</span><span class="p">:</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;GAG&#39;</span><span class="p">:</span><span class="s">&#39;E&#39;</span><span class="p">,</span>
-<span class="s">&#39;GGA&#39;</span><span class="p">:</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;GGC&#39;</span><span class="p">:</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;GGG&#39;</span><span class="p">:</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;GGT&#39;</span><span class="p">:</span><span class="s">&#39;G&#39;</span><span class="p">,</span>
-<span class="s">&#39;TCA&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="s">&#39;TCC&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="s">&#39;TCG&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="s">&#39;TCT&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span>
-<span class="s">&#39;TTC&#39;</span><span class="p">:</span><span class="s">&#39;F&#39;</span><span class="p">,</span> <span class="s">&#39;TTT&#39;</span><span class="p">:</span><span class="s">&#39;F&#39;</span><span class="p">,</span> <span class="s">&#39;TTA&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="s">&#39;TTG&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span>
-<span class="s">&#39;TAC&#39;</span><span class="p">:</span><span class="s">&#39;Y&#39;</span><span class="p">,</span> <span class="s">&#39;TAT&#39;</span><span class="p">:</span><span class="s">&#39;Y&#39;</span><span class="p">,</span> <span class="s">&#39;TAA&#39;</span><span class="p">:</span><span class="s">&#39;_&#39;</span><span class="p">,</span> <span class="s">&#39;TAG&#39;</span><span class="p">:</span><span class="s">&#39;_&#39;</span><span class="p">,</span>
-<span class="s">&#39;TGC&#39;</span><span class="p">:</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;TGT&#39;</span><span class="p">:</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;TGA&#39;</span><span class="p">:</span><span class="s">&#39;_&#39;</span><span class="p">,</span> <span class="s">&#39;TGG&#39;</span><span class="p">:</span><span class="s">&#39;W&#39;</span><span class="p">}</span>
+<div class=" highlight hl-ipython2"><pre><span class="c"># look at each file</span>
+<span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s">&quot;dna_files/&quot;</span><span class="p">):</span> 
+    <span class="k">if</span> <span class="n">file_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&quot;.dna&quot;</span><span class="p">):</span> 
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;reading sequences from &quot;</span> <span class="o">+</span> <span class="n">file_name</span><span class="p">)</span> 
+        <span class="n">dna_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;dna_files/&quot;</span> <span class="o">+</span> <span class="n">file_name</span><span class="p">)</span>
 
-
-<span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ATGTTCGTGACGAGGGT&quot;</span> 
-
-<span class="n">last_codon_start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> 
-
-<span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">last_codon_start</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span> 
-    <span class="n">codon</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> 
-    <span class="n">aa</span> <span class="o">=</span> <span class="n">gencode</span><span class="p">[</span><span class="n">codon</span><span class="p">]</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">codon</span><span class="p">,</span> <span class="n">aa</span><span class="p">)</span> 
+        <span class="c"># look at each line </span>
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">dna_file</span><span class="p">:</span> 
+            <span class="n">dna</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span> 
+            <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> 
+            <span class="k">print</span><span class="p">(</span><span class="s">&quot;found a dna sequence with length &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">length</span><span class="p">))</span> 
 </pre></div>
 
 </div>
@@ -368,11 +271,116 @@ one codon is AGG
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>(&apos;ATG&apos;, &apos;M&apos;)
-(&apos;TTC&apos;, &apos;F&apos;)
-(&apos;GTG&apos;, &apos;V&apos;)
-(&apos;ACG&apos;, &apos;T&apos;)
-(&apos;AGG&apos;, &apos;R&apos;)
+<pre>reading sequences from xaf.dna
+found a dna sequence with length 242
+found a dna sequence with length 714
+found a dna sequence with length 291
+found a dna sequence with length 313
+found a dna sequence with length 926
+found a dna sequence with length 738
+found a dna sequence with length 516
+found a dna sequence with length 218
+found a dna sequence with length 558
+found a dna sequence with length 465
+reading sequences from xaj.dna
+found a dna sequence with length 121
+found a dna sequence with length 442
+found a dna sequence with length 520
+found a dna sequence with length 866
+found a dna sequence with length 969
+found a dna sequence with length 672
+found a dna sequence with length 138
+found a dna sequence with length 922
+found a dna sequence with length 652
+found a dna sequence with length 749
+reading sequences from xai.dna
+found a dna sequence with length 317
+found a dna sequence with length 382
+found a dna sequence with length 324
+found a dna sequence with length 747
+found a dna sequence with length 353
+found a dna sequence with length 878
+found a dna sequence with length 692
+found a dna sequence with length 806
+found a dna sequence with length 118
+found a dna sequence with length 556
+reading sequences from xad.dna
+found a dna sequence with length 949
+found a dna sequence with length 453
+found a dna sequence with length 988
+found a dna sequence with length 420
+found a dna sequence with length 767
+found a dna sequence with length 221
+found a dna sequence with length 316
+found a dna sequence with length 573
+found a dna sequence with length 231
+found a dna sequence with length 409
+reading sequences from xab.dna
+found a dna sequence with length 833
+found a dna sequence with length 390
+found a dna sequence with length 355
+found a dna sequence with length 968
+found a dna sequence with length 999
+found a dna sequence with length 257
+found a dna sequence with length 909
+found a dna sequence with length 236
+found a dna sequence with length 943
+found a dna sequence with length 703
+reading sequences from xac.dna
+found a dna sequence with length 665
+found a dna sequence with length 165
+found a dna sequence with length 677
+found a dna sequence with length 454
+found a dna sequence with length 426
+found a dna sequence with length 600
+found a dna sequence with length 177
+found a dna sequence with length 888
+found a dna sequence with length 535
+found a dna sequence with length 974
+reading sequences from xae.dna
+found a dna sequence with length 600
+found a dna sequence with length 707
+found a dna sequence with length 853
+found a dna sequence with length 971
+found a dna sequence with length 279
+found a dna sequence with length 533
+found a dna sequence with length 452
+found a dna sequence with length 332
+found a dna sequence with length 990
+found a dna sequence with length 899
+reading sequences from xaa.dna
+found a dna sequence with length 333
+found a dna sequence with length 283
+found a dna sequence with length 380
+found a dna sequence with length 115
+found a dna sequence with length 753
+found a dna sequence with length 764
+found a dna sequence with length 234
+found a dna sequence with length 117
+found a dna sequence with length 906
+found a dna sequence with length 160
+reading sequences from xag.dna
+found a dna sequence with length 432
+found a dna sequence with length 818
+found a dna sequence with length 604
+found a dna sequence with length 879
+found a dna sequence with length 619
+found a dna sequence with length 500
+found a dna sequence with length 119
+found a dna sequence with length 341
+found a dna sequence with length 303
+found a dna sequence with length 469
+reading sequences from xah.dna
+found a dna sequence with length 575
+found a dna sequence with length 987
+found a dna sequence with length 141
+found a dna sequence with length 590
+found a dna sequence with length 833
+found a dna sequence with length 200
+found a dna sequence with length 539
+found a dna sequence with length 625
+found a dna sequence with length 363
+found a dna sequence with length 779
 </pre>
 </div>
 </div>
@@ -386,57 +394,7 @@ one codon is AGG
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now all we need to do is build up the protein sequence one amino acid at a time:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ATGTTCGTGACGAGGGT&quot;</span> 
-
-<span class="n">last_codon_start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> 
-
-<span class="n">protein</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
-<span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">last_codon_start</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span> 
-    <span class="n">codon</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> 
-    <span class="n">aa</span> <span class="o">=</span> <span class="n">gencode</span><span class="p">[</span><span class="n">codon</span><span class="p">]</span>
-    <span class="n">protein</span> <span class="o">=</span> <span class="n">protein</span> <span class="o">+</span> <span class="n">aa</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">codon</span><span class="p">,</span> <span class="n">aa</span><span class="p">,</span> <span class="n">protein</span><span class="p">)</span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>(&apos;ATG&apos;, &apos;M&apos;, &apos;M&apos;)
-(&apos;TTC&apos;, &apos;F&apos;, &apos;MF&apos;)
-(&apos;GTG&apos;, &apos;V&apos;, &apos;MFV&apos;)
-(&apos;ACG&apos;, &apos;T&apos;, &apos;MFVT&apos;)
-(&apos;AGG&apos;, &apos;R&apos;, &apos;MFVTR&apos;)
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We can see how one amino acid gets added to the <code>protein</code> string each time round the loop. At the end of the loop we have the complete protein:</p>
+<p>Now try each bin in turn to see if the sequence fits. Use a range to check the bounds on each bin:</p>
 
 </div>
 </div>
@@ -446,17 +404,27 @@ one codon is AGG
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ATGTTCGTGACGAGGGT&quot;</span> 
+<div class=" highlight hl-ipython2"><pre><span class="c"># go through each file in the folder</span>
+<span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s">&quot;dna_files&quot;</span><span class="p">):</span> 
 
-<span class="n">last_codon_start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> 
+  <span class="c"># check if it ends with .dna</span>
+  <span class="k">if</span> <span class="n">file_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&quot;.dna&quot;</span><span class="p">):</span> 
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;reading sequences from &quot;</span> <span class="o">+</span> <span class="n">file_name</span><span class="p">)</span> 
 
-<span class="n">protein</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
-<span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">last_codon_start</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span> 
-    <span class="n">codon</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> 
-    <span class="n">aa</span> <span class="o">=</span> <span class="n">gencode</span><span class="p">[</span><span class="n">codon</span><span class="p">]</span>
-    <span class="n">protein</span> <span class="o">=</span> <span class="n">protein</span> <span class="o">+</span> <span class="n">aa</span>
-    
-<span class="k">print</span><span class="p">(</span><span class="n">protein</span><span class="p">)</span> 
+    <span class="c"># open the file and process each line</span>
+    <span class="n">dna_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;dna_files/&quot;</span> <span class="o">+</span> <span class="n">file_name</span><span class="p">)</span> 
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">dna_file</span><span class="p">:</span>
+
+      <span class="c"># calculate the sequence length </span>
+      <span class="n">dna</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span> 
+      <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> 
+      <span class="k">print</span><span class="p">(</span><span class="s">&quot;sequence length is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">length</span><span class="p">))</span> 
+
+      <span class="c"># go through each bin and check if the sequence belongs in it</span>
+      <span class="k">for</span> <span class="n">bin_lower</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">100</span><span class="p">):</span> 
+        <span class="n">bin_upper</span> <span class="o">=</span> <span class="n">bin_lower</span> <span class="o">+</span> <span class="mi">99</span> 
+        <span class="k">if</span> <span class="n">length</span> <span class="o">&gt;=</span> <span class="n">bin_lower</span> <span class="ow">and</span> <span class="n">length</span> <span class="o">&lt;=</span> <span class="n">bin_upper</span><span class="p">:</span> 
+          <span class="k">print</span><span class="p">(</span><span class="s">&quot;bin is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">bin_lower</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot; to &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">bin_upper</span><span class="p">))</span> 
 </pre></div>
 
 </div>
@@ -469,7 +437,216 @@ one codon is AGG
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>MFVTR
+<pre>reading sequences from xaf.dna
+sequence length is 242
+bin is 200 to 299
+sequence length is 714
+bin is 700 to 799
+sequence length is 291
+bin is 200 to 299
+sequence length is 313
+bin is 300 to 399
+sequence length is 926
+bin is 900 to 999
+sequence length is 738
+bin is 700 to 799
+sequence length is 516
+bin is 500 to 599
+sequence length is 218
+bin is 200 to 299
+sequence length is 558
+bin is 500 to 599
+sequence length is 465
+bin is 400 to 499
+reading sequences from xaj.dna
+sequence length is 121
+bin is 100 to 199
+sequence length is 442
+bin is 400 to 499
+sequence length is 520
+bin is 500 to 599
+sequence length is 866
+bin is 800 to 899
+sequence length is 969
+bin is 900 to 999
+sequence length is 672
+bin is 600 to 699
+sequence length is 138
+bin is 100 to 199
+sequence length is 922
+bin is 900 to 999
+sequence length is 652
+bin is 600 to 699
+sequence length is 749
+bin is 700 to 799
+reading sequences from xai.dna
+sequence length is 317
+bin is 300 to 399
+sequence length is 382
+bin is 300 to 399
+sequence length is 324
+bin is 300 to 399
+sequence length is 747
+bin is 700 to 799
+sequence length is 353
+bin is 300 to 399
+sequence length is 878
+bin is 800 to 899
+sequence length is 692
+bin is 600 to 699
+sequence length is 806
+bin is 800 to 899
+sequence length is 118
+bin is 100 to 199
+sequence length is 556
+bin is 500 to 599
+reading sequences from xad.dna
+sequence length is 949
+bin is 900 to 999
+sequence length is 453
+bin is 400 to 499
+sequence length is 988
+bin is 900 to 999
+sequence length is 420
+bin is 400 to 499
+sequence length is 767
+bin is 700 to 799
+sequence length is 221
+bin is 200 to 299
+sequence length is 316
+bin is 300 to 399
+sequence length is 573
+bin is 500 to 599
+sequence length is 231
+bin is 200 to 299
+sequence length is 409
+bin is 400 to 499
+reading sequences from xab.dna
+sequence length is 833
+bin is 800 to 899
+sequence length is 390
+bin is 300 to 399
+sequence length is 355
+bin is 300 to 399
+sequence length is 968
+bin is 900 to 999
+sequence length is 999
+bin is 900 to 999
+sequence length is 257
+bin is 200 to 299
+sequence length is 909
+bin is 900 to 999
+sequence length is 236
+bin is 200 to 299
+sequence length is 943
+bin is 900 to 999
+sequence length is 703
+bin is 700 to 799
+reading sequences from xac.dna
+sequence length is 665
+bin is 600 to 699
+sequence length is 165
+bin is 100 to 199
+sequence length is 677
+bin is 600 to 699
+sequence length is 454
+bin is 400 to 499
+sequence length is 426
+bin is 400 to 499
+sequence length is 600
+bin is 600 to 699
+sequence length is 177
+bin is 100 to 199
+sequence length is 888
+bin is 800 to 899
+sequence length is 535
+bin is 500 to 599
+sequence length is 974
+bin is 900 to 999
+reading sequences from xae.dna
+sequence length is 600
+bin is 600 to 699
+sequence length is 707
+bin is 700 to 799
+sequence length is 853
+bin is 800 to 899
+sequence length is 971
+bin is 900 to 999
+sequence length is 279
+bin is 200 to 299
+sequence length is 533
+bin is 500 to 599
+sequence length is 452
+bin is 400 to 499
+sequence length is 332
+bin is 300 to 399
+sequence length is 990
+bin is 900 to 999
+sequence length is 899
+bin is 800 to 899
+reading sequences from xaa.dna
+sequence length is 333
+bin is 300 to 399
+sequence length is 283
+bin is 200 to 299
+sequence length is 380
+bin is 300 to 399
+sequence length is 115
+bin is 100 to 199
+sequence length is 753
+bin is 700 to 799
+sequence length is 764
+bin is 700 to 799
+sequence length is 234
+bin is 200 to 299
+sequence length is 117
+bin is 100 to 199
+sequence length is 906
+bin is 900 to 999
+sequence length is 160
+bin is 100 to 199
+reading sequences from xag.dna
+sequence length is 432
+bin is 400 to 499
+sequence length is 818
+bin is 800 to 899
+sequence length is 604
+bin is 600 to 699
+sequence length is 879
+bin is 800 to 899
+sequence length is 619
+bin is 600 to 699
+sequence length is 500
+bin is 500 to 599
+sequence length is 119
+bin is 100 to 199
+sequence length is 341
+bin is 300 to 399
+sequence length is 303
+bin is 300 to 399
+sequence length is 469
+bin is 400 to 499
+reading sequences from xah.dna
+sequence length is 575
+bin is 500 to 599
+sequence length is 987
+bin is 900 to 999
+sequence length is 141
+bin is 100 to 199
+sequence length is 590
+bin is 500 to 599
+sequence length is 833
+bin is 800 to 899
+sequence length is 200
+bin is 200 to 299
+sequence length is 539
+bin is 500 to 599
+sequence length is 625
+bin is 600 to 699
+sequence length is 363
+bin is 300 to 399
+sequence length is 779
+bin is 700 to 799
 </pre>
 </div>
 </div>
@@ -483,7 +660,7 @@ one codon is AGG
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This is a good candidate for a function, so let's turn it into one:</p>
+<p>Now create some new folders so that we can write each DNA sequence to the correct one:</p>
 
 </div>
 </div>
@@ -493,46 +670,13 @@ one codon is AGG
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">translate_dna</span><span class="p">(</span><span class="n">dna</span><span class="p">):</span> 
-    <span class="n">last_codon_start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> 
-    <span class="n">protein</span> <span class="o">=</span> <span class="s">&quot;&quot;</span> 
-    <span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">last_codon_start</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span> 
-        <span class="n">codon</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> 
-        <span class="n">aa</span> <span class="o">=</span> <span class="n">gencode</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">codon</span><span class="p">)</span> 
-        <span class="n">protein</span> <span class="o">=</span> <span class="n">protein</span> <span class="o">+</span> <span class="n">aa</span> 
-    <span class="k">return</span> <span class="n">protein</span> 
+<div class=" highlight hl-ipython2"><pre><span class="k">for</span> <span class="n">bin_lower</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">100</span><span class="p">):</span> 
+    <span class="n">bin_upper</span> <span class="o">=</span> <span class="n">bin_lower</span> <span class="o">+</span> <span class="mi">99</span> 
+    <span class="n">bin_folder_name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">bin_lower</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">bin_upper</span><span class="p">)</span> 
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">bin_folder_name</span><span class="p">)</span> 
 </pre></div>
 
 </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;ATGTTCGTGACGAGGGT&quot;</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&apos;MFVTR&apos;</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -542,7 +686,7 @@ one codon is AGG
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>And we'll try a few more DNA sequences to see what happens:</p>
+<p>We can now write out each DNA sequence to the correct bin based on the folder name:</p>
 
 </div>
 </div>
@@ -552,10 +696,46 @@ one codon is AGG
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;ATGTTCGGT&quot;</span><span class="p">))</span> 
-<span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;ATCGATCGATCGTTGCTTATCGATCAG&quot;</span><span class="p">))</span> 
-<span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;actgatcgtagctagctgacgtatcgtat&quot;</span><span class="p">))</span> 
-<span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;ACGATCGATCGTNACGTACGATCGTACTCG&quot;</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+ 
+<span class="c"># create a new folder for each bin </span>
+<span class="k">for</span> <span class="n">bin_lower</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">100</span><span class="p">):</span> 
+    <span class="n">bin_upper</span> <span class="o">=</span> <span class="n">bin_lower</span> <span class="o">+</span> <span class="mi">99</span> 
+    <span class="n">bin_folder_name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">bin_lower</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">bin_upper</span><span class="p">)</span> 
+    <span class="n">shutil</span><span class="o">.</span><span class="n">rmtree</span><span class="p">(</span><span class="n">bin_folder_name</span><span class="p">)</span>
+    <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">bin_folder_name</span><span class="p">)</span> 
+ 
+<span class="c"># create a variable to hold the sequence number</span>
+<span class="n">seq_number</span> <span class="o">=</span> <span class="mi">1</span> 
+
+<span class="c"># process all files that end in .dna</span>
+<span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s">&quot;dna_files/&quot;</span><span class="p">):</span> 
+  <span class="k">if</span> <span class="n">file_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&quot;.dna&quot;</span><span class="p">):</span> 
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;reading sequences from &quot;</span> <span class="o">+</span> <span class="n">file_name</span><span class="p">)</span> 
+    <span class="n">dna_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;dna_files/&quot;</span> <span class="o">+</span> <span class="n">file_name</span><span class="p">)</span> 
+
+    <span class="c"># for each line, calculate the sequence length</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">dna_file</span><span class="p">:</span> 
+      <span class="n">dna</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span> 
+      <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> 
+      <span class="k">print</span><span class="p">(</span><span class="s">&quot;sequence length is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">length</span><span class="p">))</span> 
+
+      <span class="c"># figure out which bin the sequence belongs in		</span>
+      <span class="k">for</span> <span class="n">bin_lower</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">100</span><span class="p">):</span> 
+        <span class="n">bin_upper</span> <span class="o">=</span> <span class="n">bin_lower</span> <span class="o">+</span> <span class="mi">99</span> 
+        <span class="k">if</span> <span class="n">length</span> <span class="o">&gt;=</span> <span class="n">bin_lower</span> <span class="ow">and</span> <span class="n">length</span> <span class="o">&lt;</span> <span class="n">bin_upper</span><span class="p">:</span> 
+
+          <span class="c"># once we know the correct bin, write out the sequence</span>
+          <span class="k">print</span><span class="p">(</span><span class="s">&quot;bin is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">bin_lower</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot; to &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">bin_upper</span><span class="p">))</span> 
+          <span class="n">bin_folder_name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">bin_lower</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;_&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">bin_upper</span><span class="p">)</span> 
+          <span class="n">output_path</span> <span class="o">=</span> <span class="n">bin_folder_name</span> <span class="o">+</span> <span class="s">&#39;/&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">seq_number</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;.dna&#39;</span> 
+          <span class="n">output</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_path</span><span class="p">,</span> <span class="s">&quot;w&quot;</span><span class="p">)</span> 
+          <span class="n">output</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> 
+          <span class="n">output</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> 
+
+          <span class="c"># increment the sequence number</span>
+          <span class="n">seq_number</span> <span class="o">=</span> <span class="n">seq_number</span><span class="o">+</span><span class="mi">1</span>
 </pre></div>
 
 </div>
@@ -568,30 +748,215 @@ one codon is AGG
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>MFG
-IDRSLLIDQ
+<pre>reading sequences from xaf.dna
+sequence length is 242
+bin is 200 to 299
+sequence length is 714
+bin is 700 to 799
+sequence length is 291
+bin is 200 to 299
+sequence length is 313
+bin is 300 to 399
+sequence length is 926
+bin is 900 to 999
+sequence length is 738
+bin is 700 to 799
+sequence length is 516
+bin is 500 to 599
+sequence length is 218
+bin is 200 to 299
+sequence length is 558
+bin is 500 to 599
+sequence length is 465
+bin is 400 to 499
+reading sequences from xaj.dna
+sequence length is 121
+bin is 100 to 199
+sequence length is 442
+bin is 400 to 499
+sequence length is 520
+bin is 500 to 599
+sequence length is 866
+bin is 800 to 899
+sequence length is 969
+bin is 900 to 999
+sequence length is 672
+bin is 600 to 699
+sequence length is 138
+bin is 100 to 199
+sequence length is 922
+bin is 900 to 999
+sequence length is 652
+bin is 600 to 699
+sequence length is 749
+bin is 700 to 799
+reading sequences from xai.dna
+sequence length is 317
+bin is 300 to 399
+sequence length is 382
+bin is 300 to 399
+sequence length is 324
+bin is 300 to 399
+sequence length is 747
+bin is 700 to 799
+sequence length is 353
+bin is 300 to 399
+sequence length is 878
+bin is 800 to 899
+sequence length is 692
+bin is 600 to 699
+sequence length is 806
+bin is 800 to 899
+sequence length is 118
+bin is 100 to 199
+sequence length is 556
+bin is 500 to 599
+reading sequences from xad.dna
+sequence length is 949
+bin is 900 to 999
+sequence length is 453
+bin is 400 to 499
+sequence length is 988
+bin is 900 to 999
+sequence length is 420
+bin is 400 to 499
+sequence length is 767
+bin is 700 to 799
+sequence length is 221
+bin is 200 to 299
+sequence length is 316
+bin is 300 to 399
+sequence length is 573
+bin is 500 to 599
+sequence length is 231
+bin is 200 to 299
+sequence length is 409
+bin is 400 to 499
+reading sequences from xab.dna
+sequence length is 833
+bin is 800 to 899
+sequence length is 390
+bin is 300 to 399
+sequence length is 355
+bin is 300 to 399
+sequence length is 968
+bin is 900 to 999
+sequence length is 999
+sequence length is 257
+bin is 200 to 299
+sequence length is 909
+bin is 900 to 999
+sequence length is 236
+bin is 200 to 299
+sequence length is 943
+bin is 900 to 999
+sequence length is 703
+bin is 700 to 799
+reading sequences from xac.dna
+sequence length is 665
+bin is 600 to 699
+sequence length is 165
+bin is 100 to 199
+sequence length is 677
+bin is 600 to 699
+sequence length is 454
+bin is 400 to 499
+sequence length is 426
+bin is 400 to 499
+sequence length is 600
+bin is 600 to 699
+sequence length is 177
+bin is 100 to 199
+sequence length is 888
+bin is 800 to 899
+sequence length is 535
+bin is 500 to 599
+sequence length is 974
+bin is 900 to 999
+reading sequences from xae.dna
+sequence length is 600
+bin is 600 to 699
+sequence length is 707
+bin is 700 to 799
+sequence length is 853
+bin is 800 to 899
+sequence length is 971
+bin is 900 to 999
+sequence length is 279
+bin is 200 to 299
+sequence length is 533
+bin is 500 to 599
+sequence length is 452
+bin is 400 to 499
+sequence length is 332
+bin is 300 to 399
+sequence length is 990
+bin is 900 to 999
+sequence length is 899
+reading sequences from xaa.dna
+sequence length is 333
+bin is 300 to 399
+sequence length is 283
+bin is 200 to 299
+sequence length is 380
+bin is 300 to 399
+sequence length is 115
+bin is 100 to 199
+sequence length is 753
+bin is 700 to 799
+sequence length is 764
+bin is 700 to 799
+sequence length is 234
+bin is 200 to 299
+sequence length is 117
+bin is 100 to 199
+sequence length is 906
+bin is 900 to 999
+sequence length is 160
+bin is 100 to 199
+reading sequences from xag.dna
+sequence length is 432
+bin is 400 to 499
+sequence length is 818
+bin is 800 to 899
+sequence length is 604
+bin is 600 to 699
+sequence length is 879
+bin is 800 to 899
+sequence length is 619
+bin is 600 to 699
+sequence length is 500
+bin is 500 to 599
+sequence length is 119
+bin is 100 to 199
+sequence length is 341
+bin is 300 to 399
+sequence length is 303
+bin is 300 to 399
+sequence length is 469
+bin is 400 to 499
+reading sequences from xah.dna
+sequence length is 575
+bin is 500 to 599
+sequence length is 987
+bin is 900 to 999
+sequence length is 141
+bin is 100 to 199
+sequence length is 590
+bin is 500 to 599
+sequence length is 833
+bin is 800 to 899
+sequence length is 200
+bin is 200 to 299
+sequence length is 539
+bin is 500 to 599
+sequence length is 625
+bin is 600 to 699
+sequence length is 363
+bin is 300 to 399
+sequence length is 779
+bin is 700 to 799
 </pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-12-06b698e53bf6&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">      1</span> <span class="ansigreen">print</span><span class="ansiyellow">(</span>translate_dna<span class="ansiyellow">(</span><span class="ansiblue">&quot;ATGTTCGGT&quot;</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">      2</span> <span class="ansigreen">print</span><span class="ansiyellow">(</span>translate_dna<span class="ansiyellow">(</span><span class="ansiblue">&quot;ATCGATCGATCGTTGCTTATCGATCAG&quot;</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">----&gt; 3</span><span class="ansiyellow"> </span><span class="ansigreen">print</span><span class="ansiyellow">(</span>translate_dna<span class="ansiyellow">(</span><span class="ansiblue">&quot;actgatcgtagctagctgacgtatcgtat&quot;</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">      4</span> <span class="ansigreen">print</span><span class="ansiyellow">(</span>translate_dna<span class="ansiyellow">(</span><span class="ansiblue">&quot;ACGATCGATCGTNACGTACGATCGTACTCG&quot;</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-
-<span class="ansigreen">&lt;ipython-input-10-fee9713c4113&gt;</span> in <span class="ansicyan">translate_dna</span><span class="ansiblue">(dna)</span>
-<span class="ansigreen">      5</span>         codon <span class="ansiyellow">=</span> dna<span class="ansiyellow">[</span>start<span class="ansiyellow">:</span>start<span class="ansiyellow">+</span><span class="ansicyan">3</span><span class="ansiyellow">]</span><span class="ansiyellow"></span>
-<span class="ansigreen">      6</span>         aa <span class="ansiyellow">=</span> gencode<span class="ansiyellow">.</span>get<span class="ansiyellow">(</span>codon<span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">----&gt; 7</span><span class="ansiyellow">         </span>protein <span class="ansiyellow">=</span> protein <span class="ansiyellow">+</span> aa<span class="ansiyellow"></span>
-<span class="ansigreen">      8</span>     <span class="ansigreen">return</span> protein<span class="ansiyellow"></span>
-
-<span class="ansired">TypeError</span>: cannot concatenate &apos;str&apos; and &apos;NoneType&apos; objects</pre>
 </div>
 </div>
 
@@ -604,7 +969,8 @@ IDRSLLIDQ
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We get an error on the third DNA sequence because it's in lower case. Change everything to upper case:</p>
+<h2 id="Kmer-counting">Kmer counting<a class="anchor-link" href="#Kmer-counting">&#182;</a></h2><p>To figure out which kmers occur more than the threshold number of times, we have to add up <strong>all</strong> the kmers for <strong>all</strong> the sequences in <strong>all</strong> the files before we know. So we need to build up the counts first, then process them.</p>
+<p>We'll start with a function to split a DNA sequence into kmers of a given length:</p>
 
 </div>
 </div>
@@ -614,30 +980,15 @@ IDRSLLIDQ
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">translate_dna</span><span class="p">(</span><span class="n">dna</span><span class="p">):</span> 
-    <span class="n">last_codon_start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> 
-    <span class="n">protein</span> <span class="o">=</span> <span class="s">&quot;&quot;</span> 
-    <span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">last_codon_start</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span> 
-        <span class="n">codon</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> 
-        <span class="n">aa</span> <span class="o">=</span> <span class="n">gencode</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">codon</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span> 
-        <span class="n">protein</span> <span class="o">=</span> <span class="n">protein</span> <span class="o">+</span> <span class="n">aa</span> 
-    <span class="k">return</span> <span class="n">protein</span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;ATGTTCGGT&quot;</span><span class="p">))</span> 
-<span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;ATCGATCGATCGTTGCTTATCGATCAG&quot;</span><span class="p">))</span> 
-<span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;actgatcgtagctagctgacgtatcgtat&quot;</span><span class="p">))</span> 
-<span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;ACGATCGATCGTNACGTACGATCGTACTCG&quot;</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">split_dna</span><span class="p">(</span><span class="n">dna</span><span class="p">,</span> <span class="n">kmer_size</span><span class="p">):</span> 
+    <span class="n">kmers</span> <span class="o">=</span> <span class="p">[]</span> 
+    <span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="n">kmer_size</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="p">):</span> 
+        <span class="n">kmer</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="n">kmer_size</span><span class="p">]</span> 
+        <span class="n">kmers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kmer</span><span class="p">)</span> 
+    <span class="k">return</span> <span class="n">kmers</span> 
+ 
+ 
+<span class="k">print</span><span class="p">(</span><span class="n">split_dna</span><span class="p">(</span><span class="s">&quot;AATGCTGCAT&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> 
 </pre></div>
 
 </div>
@@ -650,30 +1001,8 @@ IDRSLLIDQ
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>MFG
-IDRSLLIDQ
-TDRS_LTYR
+<pre>[&apos;AATG&apos;, &apos;ATGC&apos;, &apos;TGCT&apos;, &apos;GCTG&apos;, &apos;CTGC&apos;, &apos;TGCA&apos;, &apos;GCAT&apos;]
 </pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-14-06b698e53bf6&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">      2</span> <span class="ansigreen">print</span><span class="ansiyellow">(</span>translate_dna<span class="ansiyellow">(</span><span class="ansiblue">&quot;ATCGATCGATCGTTGCTTATCGATCAG&quot;</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">      3</span> <span class="ansigreen">print</span><span class="ansiyellow">(</span>translate_dna<span class="ansiyellow">(</span><span class="ansiblue">&quot;actgatcgtagctagctgacgtatcgtat&quot;</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">----&gt; 4</span><span class="ansiyellow"> </span><span class="ansigreen">print</span><span class="ansiyellow">(</span>translate_dna<span class="ansiyellow">(</span><span class="ansiblue">&quot;ACGATCGATCGTNACGTACGATCGTACTCG&quot;</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-
-<span class="ansigreen">&lt;ipython-input-13-e1bb02e8b8c0&gt;</span> in <span class="ansicyan">translate_dna</span><span class="ansiblue">(dna)</span>
-<span class="ansigreen">      5</span>         codon <span class="ansiyellow">=</span> dna<span class="ansiyellow">[</span>start<span class="ansiyellow">:</span>start<span class="ansiyellow">+</span><span class="ansicyan">3</span><span class="ansiyellow">]</span><span class="ansiyellow"></span>
-<span class="ansigreen">      6</span>         aa <span class="ansiyellow">=</span> gencode<span class="ansiyellow">.</span>get<span class="ansiyellow">(</span>codon<span class="ansiyellow">.</span>upper<span class="ansiyellow">(</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">----&gt; 7</span><span class="ansiyellow">         </span>protein <span class="ansiyellow">=</span> protein <span class="ansiyellow">+</span> aa<span class="ansiyellow"></span>
-<span class="ansigreen">      8</span>     <span class="ansigreen">return</span> protein<span class="ansiyellow"></span>
-
-<span class="ansired">TypeError</span>: cannot concatenate &apos;str&apos; and &apos;NoneType&apos; objects</pre>
 </div>
 </div>
 
@@ -686,7 +1015,76 @@ TDRS_LTYR
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now the third DNA sequence works but we get an error on the fourth one. What is wrong? Let's print out the codon at each step to figure it out:</p>
+<p>Now we can plug this into the code from the previous exercise for processing all sequences in all files. We will use a dict to keep track of the counts:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">os</span> 
+<span class="n">kmer_size</span> <span class="o">=</span> <span class="mi">6</span> 
+ 
+<span class="k">def</span> <span class="nf">split_dna</span><span class="p">(</span><span class="n">dna</span><span class="p">,</span> <span class="n">kmer_size</span><span class="p">):</span> 
+    <span class="n">kmers</span> <span class="o">=</span> <span class="p">[]</span> 
+    <span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="n">kmer_size</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="p">):</span> 
+        <span class="n">kmer</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="n">kmer_size</span><span class="p">]</span> 
+        <span class="n">kmers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kmer</span><span class="p">)</span> 
+    <span class="k">return</span> <span class="n">kmers</span> 
+ 
+<span class="n">kmer_counts</span> <span class="o">=</span> <span class="p">{}</span> 
+<span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s">&quot;dna_files/&quot;</span><span class="p">):</span> 
+    <span class="k">if</span> <span class="n">file_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&quot;.dna&quot;</span><span class="p">):</span> 
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;reading sequences from &quot;</span> <span class="o">+</span> <span class="n">file_name</span><span class="p">)</span> 
+        <span class="n">dna_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;dna_files/&quot;</span> <span class="o">+</span> <span class="n">file_name</span><span class="p">)</span> 
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">dna_file</span><span class="p">:</span> 
+            <span class="n">dna</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span> 
+            <span class="k">for</span> <span class="n">kmer</span> <span class="ow">in</span> <span class="n">split_dna</span><span class="p">(</span><span class="n">dna</span><span class="p">,</span> <span class="n">kmer_size</span><span class="p">):</span> 
+                <span class="n">current_count</span> <span class="o">=</span> <span class="n">kmer_counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">kmer</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> 
+                <span class="n">new_count</span> <span class="o">=</span> <span class="n">current_count</span> <span class="o">+</span> <span class="mi">1</span> 
+                <span class="n">kmer_counts</span><span class="p">[</span><span class="n">kmer</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_count</span> 
+ 
+<span class="k">print</span><span class="p">(</span><span class="n">kmer_counts</span><span class="p">)</span> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>reading sequences from xaf.dna
+reading sequences from xaj.dna
+reading sequences from xai.dna
+reading sequences from xad.dna
+reading sequences from xab.dna
+reading sequences from xac.dna
+reading sequences from xae.dna
+reading sequences from xaa.dna
+reading sequences from xag.dna
+reading sequences from xah.dna
+{&apos;gcagag&apos;: 11, &apos;aaataa&apos;: 13, &apos;ccatgg&apos;: 11, &apos;gcagac&apos;: 14, &apos;ctttaa&apos;: 12, &apos;gcagaa&apos;: 15, &apos;gttgat&apos;: 21, &apos;aactta&apos;: 13, &apos;caggta&apos;: 9, &apos;ttggaa&apos;: 13, &apos;caggtc&apos;: 12, &apos;cacgac&apos;: 16, &apos;agatac&apos;: 12, &apos;aacttg&apos;: 16, &apos;caggtg&apos;: 19, &apos;gttgac&apos;: 7, &apos;gttgaa&apos;: 7, &apos;gcagat&apos;: 15, &apos;gttgag&apos;: 22, &apos;ggtaac&apos;: 15, &apos;agatat&apos;: 15, &apos;ggtaaa&apos;: 10, &apos;caggtt&apos;: 18, &apos;ggtaag&apos;: 16, &apos;ttggat&apos;: 16, &apos;tacccg&apos;: 11, &apos;atggca&apos;: 16, &apos;tttggg&apos;: 14, &apos;ttaatt&apos;: 14, &apos;tttgga&apos;: 15, &apos;taccca&apos;: 18, &apos;cacgag&apos;: 15, &apos;agatag&apos;: 19, &apos;cagctt&apos;: 13, &apos;ttaata&apos;: 17, &apos;ttaatc&apos;: 12, &apos;aggcgc&apos;: 13, &apos;aacttc&apos;: 12, &apos;ttaatg&apos;: 13, &apos;gtttct&apos;: 14, &apos;ccgctc&apos;: 9, &apos;caatct&apos;: 13, &apos;ttggag&apos;: 13, &apos;tttagt&apos;: 10, &apos;gtttcg&apos;: 9, &apos;ggtacg&apos;: 14, &apos;cacgaa&apos;: 19, &apos;gtttca&apos;: 13, &apos;tttagg&apos;: 14, &apos;agataa&apos;: 12, &apos;tttagc&apos;: 12, &apos;caatcc&apos;: 10, &apos;ttgacc&apos;: 13, &apos;ctttat&apos;: 12, &apos;ttgaca&apos;: 14, &apos;ttgacg&apos;: 11, &apos;gttacc&apos;: 12, &apos;gttaca&apos;: 8, &apos;tggttc&apos;: 17, &apos;gttacg&apos;: 12, &apos;aggatt&apos;: 15, &apos;cggaaa&apos;: 23, &apos;tactcg&apos;: 13, &apos;ttgact&apos;: 10, &apos;aaatat&apos;: 14, &apos;gacact&apos;: 11, &apos;gccatc&apos;: 6, &apos;gcgtgt&apos;: 15, &apos;gttact&apos;: 18, &apos;gtagtc&apos;: 5, &apos;ggcccc&apos;: 15, &apos;gtagta&apos;: 12, &apos;ggtcca&apos;: 10, &apos;gtagtg&apos;: 16, &apos;ggtccg&apos;: 5, &apos;gattct&apos;: 16, &apos;ggccca&apos;: 9, &apos;atccgt&apos;: 18, &apos;gattcc&apos;: 18, &apos;gattca&apos;: 13, &apos;tttatc&apos;: 19, &apos;gattcg&apos;: 18, &apos;ggtcct&apos;: 17, &apos;gtagtt&apos;: 11, &apos;atccgc&apos;: 10, &apos;atccga&apos;: 13, &apos;atccgg&apos;: 16, &apos;tgtgcg&apos;: 18, &apos;cacgat&apos;: 6, &apos;ctacat&apos;: 12, &apos;cgacta&apos;: 5, &apos;actatg&apos;: 12, &apos;actatc&apos;: 8, &apos;acactt&apos;: 13, &apos;aacttt&apos;: 13, &apos;cgactc&apos;: 15, &apos;acactc&apos;: 13, &apos;acacta&apos;: 16, &apos;acactg&apos;: 10, &apos;tgccca&apos;: 12, &apos;tgccaa&apos;: 10, &apos;gatcat&apos;: 15, &apos;ccaacg&apos;: 15, &apos;ccgctt&apos;: 15, &apos;tcggtc&apos;: 6, &apos;accaaa&apos;: 17, &apos;tcggta&apos;: 10, &apos;gaagta&apos;: 6, &apos;tcggtg&apos;: 15, &apos;gaagtg&apos;: 5, &apos;agtaag&apos;: 12, &apos;taacat&apos;: 12, &apos;gatcag&apos;: 15, &apos;accaac&apos;: 13, &apos;gatcaa&apos;: 15, &apos;tcgagc&apos;: 15, &apos;agtaat&apos;: 13, &apos;gatata&apos;: 20, &apos;gaagtt&apos;: 10, &apos;tcggtt&apos;: 13, &apos;tgagac&apos;: 13, &apos;tgaatt&apos;: 13, &apos;atacac&apos;: 13, &apos;gatatg&apos;: 13, &apos;tgtgag&apos;: 17, &apos;tgtgaa&apos;: 14, &apos;tgtgac&apos;: 11, &apos;tgaatc&apos;: 12, &apos;tgaata&apos;: 11, &apos;tgaatg&apos;: 12, &apos;tgtgat&apos;: 12, &apos;cagctg&apos;: 18, &apos;ggttat&apos;: 13, &apos;ggcgag&apos;: 10, &apos;cagcta&apos;: 16, &apos;cacacg&apos;: 16, &apos;cctgta&apos;: 14, &apos;tttggc&apos;: 17, &apos;cacacc&apos;: 21, &apos;cacaca&apos;: 15, &apos;tcctat&apos;: 18, &apos;ccacag&apos;: 9, &apos;cactcc&apos;: 17, &apos;gccgac&apos;: 14, &apos;cactca&apos;: 17, &apos;tgatta&apos;: 7, &apos;cactcg&apos;: 19, &apos;gccgag&apos;: 10, &apos;gagtag&apos;: 15, &apos;ttgtcg&apos;: 14, &apos;ttgtcc&apos;: 14, &apos;ttgtca&apos;: 18, &apos;atgagc&apos;: 6, &apos;gccgat&apos;: 16, &apos;cactct&apos;: 10, &apos;ttgtct&apos;: 14, &apos;gagcta&apos;: 15, &apos;agtgaa&apos;: 13, &apos;tccact&apos;: 13, &apos;agtgag&apos;: 11, &apos;gagctg&apos;: 16, &apos;aatcat&apos;: 12, &apos;atgagg&apos;: 12, &apos;tacgat&apos;: 13, &apos;gaccta&apos;: 12, &apos;acccca&apos;: 11, &apos;atttga&apos;: 9, &apos;accccc&apos;: 10, &apos;atttgc&apos;: 12, &apos;gagctt&apos;: 16, &apos;agtgat&apos;: 16, &apos;atttgg&apos;: 19, &apos;aatcag&apos;: 15, &apos;tcctta&apos;: 13, &apos;aatcaa&apos;: 15, &apos;aatcac&apos;: 13, &apos;aagggg&apos;: 14, &apos;gaggtg&apos;: 11, &apos;gagtaa&apos;: 5, &apos;gaggta&apos;: 7, &apos;aaggga&apos;: 9, &apos;gaggtc&apos;: 11, &apos;ccagac&apos;: 9, &apos;gatact&apos;: 10, &apos;ccagag&apos;: 11, &apos;gaggtt&apos;: 19, &apos;aagggt&apos;: 15, &apos;gatacg&apos;: 17, &apos;gtggat&apos;: 17, &apos;gatacc&apos;: 12, &apos;ccagat&apos;: 12, &apos;tgcgat&apos;: 15, &apos;gcttag&apos;: 17, &apos;ccatcg&apos;: 11, &apos;ctaaat&apos;: 8, &apos;gcttac&apos;: 5, &apos;ccatcc&apos;: 5, &apos;gcttaa&apos;: 14, &apos;ccatca&apos;: 12, &apos;gacctt&apos;: 18, &apos;tgcgac&apos;: 20, &apos;tgcgag&apos;: 13, &apos;tagaaa&apos;: 13, &apos;ctaaag&apos;: 14, &apos;ccatct&apos;: 14, &apos;gcttat&apos;: 16, &apos;ctaaac&apos;: 15, &apos;ctaaaa&apos;: 17, &apos;gagtac&apos;: 12, &apos;tgtctt&apos;: 18, &apos;cctcgg&apos;: 15, &apos;cgcata&apos;: 10, &apos;cgcatc&apos;: 17, &apos;cgcatg&apos;: 11, &apos;tgtctg&apos;: 17, &apos;tgtctc&apos;: 11, &apos;tgtcta&apos;: 9, &apos;cgcatt&apos;: 20, &apos;cctcgc&apos;: 16, &apos;agcact&apos;: 11, &apos;gccaca&apos;: 9, &apos;tacgtc&apos;: 15, &apos;cctcga&apos;: 13, &apos;tacgtg&apos;: 15, &apos;agcacc&apos;: 8, &apos;agcaca&apos;: 13, &apos;agcacg&apos;: 8, &apos;gcctaa&apos;: 15, &apos;gccact&apos;: 17, &apos;tctacg&apos;: 13, &apos;cccgtc&apos;: 18, &apos;cccgta&apos;: 11, &apos;tcccat&apos;: 13, &apos;cccgtg&apos;: 14, &apos;ctcgta&apos;: 11, &apos;tcccaa&apos;: 19, &apos;tcccac&apos;: 10, &apos;ctcgtc&apos;: 16, &apos;cccgtt&apos;: 17, &apos;tcccag&apos;: 14, &apos;acgtcg&apos;: 21, &apos;cactag&apos;: 7, &apos;ctaccc&apos;: 16, &apos;ctacca&apos;: 11, &apos;cccaag&apos;: 13, &apos;tgcaac&apos;: 10, &apos;tgcaaa&apos;: 15, &apos;cccaac&apos;: 17, &apos;tgcaag&apos;: 15, &apos;cccaaa&apos;: 11, &apos;gcagtt&apos;: 16, &apos;tctggg&apos;: 7, &apos;acgtct&apos;: 15, &apos;cccaat&apos;: 13, &apos;tgcaat&apos;: 8, &apos;tagtgg&apos;: 10, &apos;caatcg&apos;: 11, &apos;tagtgc&apos;: 18, &apos;tagtga&apos;: 12, &apos;actgtg&apos;: 13, &apos;actcga&apos;: 14, &apos;ttaagg&apos;: 11, &apos;cgagat&apos;: 14, &apos;taaact&apos;: 10, &apos;ttaagc&apos;: 17, &apos;ttacgt&apos;: 14, &apos;aaaagg&apos;: 10, &apos;tagtgt&apos;: 12, &apos;aaaagc&apos;: 12, &apos;aggggg&apos;: 13, &apos;aaaaga&apos;: 16, &apos;ctacgc&apos;: 12, &apos;cgagag&apos;: 17, &apos;taaaca&apos;: 18, &apos;ttacga&apos;: 13, &apos;tttaga&apos;: 13, &apos;actcgt&apos;: 20, &apos;taagta&apos;: 10, &apos;cgagaa&apos;: 9, &apos;taaacg&apos;: 3, &apos;aatact&apos;: 11, &apos;acgtga&apos;: 18, &apos;tttgtt&apos;: 15, &apos;tttcct&apos;: 22, &apos;taaaga&apos;: 11, &apos;tttgta&apos;: 10, &apos;cagcgc&apos;: 22, &apos;tttgtg&apos;: 6, &apos;tactgt&apos;: 13, &apos;tcggca&apos;: 10, &apos;catctg&apos;: 8, &apos;gggggt&apos;: 14, &apos;catcta&apos;: 15, &apos;catctc&apos;: 15, &apos;tgacgt&apos;: 12, &apos;aattta&apos;: 18, &apos;gtgcgt&apos;: 16, &apos;gggggg&apos;: 9, &apos;catctt&apos;: 16, &apos;gggggc&apos;: 18, &apos;ggggga&apos;: 9, &apos;tcacta&apos;: 8, &apos;tgacgg&apos;: 15, &apos;tgacga&apos;: 9, &apos;tgacgc&apos;: 11, &apos;atattt&apos;: 12, &apos;tagcga&apos;: 12, &apos;ttgaaa&apos;: 14, &apos;atatta&apos;: 9, &apos;atattg&apos;: 18, &apos;gcacta&apos;: 12, &apos;ctatca&apos;: 10, &apos;ttggac&apos;: 14, &apos;ttgaac&apos;: 10, &apos;ctgcac&apos;: 11, &apos;tacaaa&apos;: 7, &apos;cgttag&apos;: 18, &apos;taacaa&apos;: 22, &apos;ggtctt&apos;: 11, &apos;cgttac&apos;: 9, &apos;gctgcg&apos;: 8, &apos;aatttc&apos;: 11, &apos;acggtg&apos;: 17, &apos;ccttag&apos;: 15, &apos;tacaac&apos;: 9, &apos;acttct&apos;: 8, &apos;caagcc&apos;: 8, &apos;ttaggg&apos;: 17, &apos;caagca&apos;: 10, &apos;cgttat&apos;: 9, &apos;caagcg&apos;: 19, &apos;ctacgt&apos;: 15, &apos;gctgct&apos;: 13, &apos;gtgtat&apos;: 14, &apos;gcactg&apos;: 18, &apos;gcgtgg&apos;: 17, &apos;ctatta&apos;: 15, &apos;ctattc&apos;: 12, &apos;ttaggc&apos;: 18, &apos;aatacc&apos;: 11, &apos;acgctt&apos;: 11, &apos;ctatcc&apos;: 11, &apos;cgaaca&apos;: 17, &apos;ctgcaa&apos;: 15, &apos;agtgcc&apos;: 7, &apos;tcacct&apos;: 14, &apos;gcaatc&apos;: 15, &apos;gcaata&apos;: 13, &apos;ggatat&apos;: 19, &apos;gcaatg&apos;: 15, &apos;gactaa&apos;: 8, &apos;gaagct&apos;: 20, &apos;cagaat&apos;: 9, &apos;tgttag&apos;: 15, &apos;gactag&apos;: 11, &apos;ggataa&apos;: 19, &apos;tcaccg&apos;: 19, &apos;tcacca&apos;: 11, &apos;acgctg&apos;: 10, &apos;tcaccc&apos;: 16, &apos;cagaaa&apos;: 10, &apos;gtaaac&apos;: 9, &apos;cagaac&apos;: 13, &apos;gtaaaa&apos;: 14, &apos;gaagcc&apos;: 15, &apos;gtaaag&apos;: 14, &apos;cagaag&apos;: 11, &apos;acaagg&apos;: 14, &apos;acaaga&apos;: 11, &apos;acaagc&apos;: 11, &apos;acacgt&apos;: 12, &apos;cccgct&apos;: 13, &apos;acacgc&apos;: 16, &apos;agtgct&apos;: 8, &apos;acacga&apos;: 12, &apos;acacgg&apos;: 14, &apos;cccgcg&apos;: 16, &apos;aaaact&apos;: 10, &apos;cccgcc&apos;: 7, &apos;acccaa&apos;: 13, &apos;cccgca&apos;: 10, &apos;ttcgcc&apos;: 16, &apos;cgaact&apos;: 10, &apos;aagatt&apos;: 10, &apos;taccta&apos;: 16, &apos;agcgtt&apos;: 11, &apos;ttaacc&apos;: 17, &apos;cgtctt&apos;: 11, &apos;aagata&apos;: 9, &apos;ctacct&apos;: 15, &apos;aagatc&apos;: 11, &apos;tacctc&apos;: 16, &apos;ttcagc&apos;: 16, &apos;aagatg&apos;: 14, &apos;cgtctc&apos;: 19, &apos;agcgta&apos;: 11, &apos;cgtcta&apos;: 8, &apos;agcgtc&apos;: 8, &apos;cgtctg&apos;: 15, &apos;ttaaga&apos;: 14, &apos;gagagc&apos;: 17, &apos;tgtgtc&apos;: 8, &apos;gagaga&apos;: 16, &apos;tgtgta&apos;: 21, &apos;ctcgct&apos;: 14, &apos;ttaacg&apos;: 16, &apos;tctcca&apos;: 10, &apos;agcctt&apos;: 11, &apos;tggtcg&apos;: 9, &apos;cacttg&apos;: 16, &apos;cctaac&apos;: 18, &apos;tctcct&apos;: 21, &apos;cacttc&apos;: 12, &apos;cctaag&apos;: 10, &apos;cactta&apos;: 14, &apos;ctcgcg&apos;: 14, &apos;tggtca&apos;: 15, &apos;agcctg&apos;: 17, &apos;attacc&apos;: 11, &apos;agcctc&apos;: 12, &apos;caggca&apos;: 11, &apos;gtaccc&apos;: 8, &apos;caggcc&apos;: 14, &apos;gtacca&apos;: 14, &apos;agagaa&apos;: 13, &apos;gtaccg&apos;: 16, &apos;caggcg&apos;: 13, &apos;gaaaga&apos;: 10, &apos;aaaacg&apos;: 9, &apos;gaaagc&apos;: 16, &apos;gcatct&apos;: 19, &apos;gcagta&apos;: 20, &apos;agagat&apos;: 26, &apos;gagcgg&apos;: 12, &apos;gagcga&apos;: 20, &apos;cgcagc&apos;: 10, &apos;gtacct&apos;: 15, &apos;gcatcc&apos;: 19, &apos;actccc&apos;: 14, &apos;gcatcg&apos;: 20, &apos;atatgg&apos;: 18, &apos;gtccat&apos;: 12, &apos;cgcgat&apos;: 18, &apos;tttatt&apos;: 15, &apos;agagta&apos;: 13, &apos;gtccag&apos;: 15, &apos;cgcgac&apos;: 10, &apos;gtccac&apos;: 11, &apos;cgcgag&apos;: 12, &apos;gtccaa&apos;: 9, &apos;accgaa&apos;: 16, &apos;ggtatt&apos;: 17, &apos;tccata&apos;: 13, &apos;ctgttg&apos;: 17, &apos;tccatc&apos;: 11, &apos;ggccag&apos;: 13, &apos;ctgttc&apos;: 20, &apos;tccatg&apos;: 22, &apos;ctgtta&apos;: 17, &apos;aattac&apos;: 13, &apos;aattaa&apos;: 13, &apos;aattag&apos;: 11, &apos;gagaaa&apos;: 11, &apos;tagcgc&apos;: 15, &apos;tccatt&apos;: 9, &apos;atggaa&apos;: 20, &apos;atggac&apos;: 6, &apos;atggag&apos;: 11, &apos;cgggaa&apos;: 20, &apos;gcgttt&apos;: 12, &apos;aacgtc&apos;: 16, &apos;atggat&apos;: 14, &apos;gataaa&apos;: 10, &apos;gggcaa&apos;: 8, &apos;atcctt&apos;: 12, &apos;cgcaat&apos;: 15, &apos;cctcct&apos;: 13, &apos;gccggc&apos;: 18, &apos;atcctc&apos;: 16, &apos;atccta&apos;: 15, &apos;gttaaa&apos;: 10, &apos;atcctg&apos;: 15, &apos;cctccc&apos;: 11, &apos;cctcca&apos;: 11, &apos;cctccg&apos;: 12, &apos;ggcggt&apos;: 17, &apos;cgcaca&apos;: 16, &apos;ttccta&apos;: 23, &apos;cgcacc&apos;: 15, &apos;ttcctc&apos;: 14, &apos;gtcacc&apos;: 11, &apos;cgcacg&apos;: 10, &apos;ttcctg&apos;: 16, &apos;tgtcgg&apos;: 12, &apos;taccac&apos;: 9, &apos;catggg&apos;: 14, &apos;tgtcgc&apos;: 15, &apos;catgga&apos;: 15, &apos;tgtcga&apos;: 18, &apos;catggc&apos;: 16, &apos;gcaacg&apos;: 14, &apos;gtcact&apos;: 15, &apos;ttcctt&apos;: 14, &apos;cgcact&apos;: 10, &apos;gcaaca&apos;: 14, &apos;atacga&apos;: 12, &apos;catggt&apos;: 18, &apos;caaata&apos;: 13, &apos;ttggcc&apos;: 10, &apos;caaatc&apos;: 15, &apos;caaatg&apos;: 12, &apos;ttcgtg&apos;: 10, &apos;tttcgt&apos;: 15, &apos;ttcgta&apos;: 21, &apos;ttcgtc&apos;: 17, &apos;gcgact&apos;: 17, &apos;tggaat&apos;: 18, &apos;ttcgtt&apos;: 17, &apos;tttcga&apos;: 13, &apos;tttcgc&apos;: 16, &apos;ggtgct&apos;: 15, &apos;catagg&apos;: 15, &apos;gcgacg&apos;: 12, &apos;gcgaca&apos;: 15, &apos;tggaac&apos;: 22, &apos;gcgacc&apos;: 13, &apos;cataga&apos;: 11, &apos;agtcag&apos;: 11, &apos;ctaact&apos;: 4, &apos;cttctt&apos;: 10, &apos;tggagc&apos;: 8, &apos;tgcggt&apos;: 8, &apos;cttcta&apos;: 15, &apos;cttctc&apos;: 15, &apos;cttctg&apos;: 18, &apos;tgtaag&apos;: 14, &apos;gcacca&apos;: 10, &apos;agagcg&apos;: 13, &apos;tgtaac&apos;: 15, &apos;tgtaaa&apos;: 10, &apos;cttgtt&apos;: 11, &apos;acttag&apos;: 13, &apos;tcttcg&apos;: 10, &apos;gtgcta&apos;: 17, &apos;tcttca&apos;: 14, &apos;acttac&apos;: 18, &apos;tcttcc&apos;: 16, &apos;tgtaat&apos;: 15, &apos;tcttct&apos;: 21, &apos;acttat&apos;: 9, &apos;cttagt&apos;: 16, &apos;cttgtg&apos;: 15, &apos;cttgta&apos;: 19, &apos;cttgtc&apos;: 17, &apos;cgagtt&apos;: 16, &apos;ccaacc&apos;: 12, &apos;taccag&apos;: 14, &apos;gtactt&apos;: 14, &apos;attgga&apos;: 14, &apos;gcaggg&apos;: 15, &apos;cacgga&apos;: 19, &apos;agatca&apos;: 11, &apos;cacggc&apos;: 13, &apos;ctactt&apos;: 15, &apos;aaatgg&apos;: 8, &apos;cacggg&apos;: 12, &apos;acagta&apos;: 13, &apos;gtactg&apos;: 11, &apos;ttttag&apos;: 8, &apos;cgagtg&apos;: 17, &apos;gtactc&apos;: 12, &apos;cgagta&apos;: 11, &apos;ttttac&apos;: 12, &apos;cgagtc&apos;: 14, &apos;gctctg&apos;: 10, &apos;gaagtc&apos;: 9, &apos;agatct&apos;: 16, &apos;cacggt&apos;: 16, &apos;aaatgt&apos;: 12, &apos;tggccg&apos;: 12, &apos;acctgt&apos;: 18, &apos;ctaacc&apos;: 20, &apos;gtgttt&apos;: 6, &apos;tggcca&apos;: 9, &apos;ccatat&apos;: 14, &apos;cacccc&apos;: 8, &apos;tgcggg&apos;: 14, &apos;acctgg&apos;: 14, &apos;attcag&apos;: 9, &apos;attcaa&apos;: 16, &apos;acctgc&apos;: 12, &apos;attcac&apos;: 22, &apos;acctga&apos;: 19, &apos;agctcg&apos;: 7, &apos;agctcc&apos;: 22, &apos;agctca&apos;: 12, &apos;acgggt&apos;: 10, &apos;gctgtt&apos;: 19, &apos;gtttat&apos;: 15, &apos;ttaagt&apos;: 18, &apos;ttccgt&apos;: 14, &apos;gaactt&apos;: 12, &apos;gctgtg&apos;: 13, &apos;gtttaa&apos;: 14, &apos;acgggg&apos;: 17, &apos;gtttac&apos;: 10, &apos;acggga&apos;: 11, &apos;gctgta&apos;: 10, &apos;gtttag&apos;: 13, &apos;gaactg&apos;: 8, &apos;gaactc&apos;: 10, &apos;gaacta&apos;: 7, &apos;ggcgcg&apos;: 4, &apos;acgtgg&apos;: 11, &apos;aatcta&apos;: 16, &apos;ggcgca&apos;: 13, &apos;actgag&apos;: 18, &apos;cggtgt&apos;: 15, &apos;cgggtt&apos;: 22, &apos;taccaa&apos;: 18, &apos;cgggtc&apos;: 14, &apos;cgggta&apos;: 19, &apos;cggtga&apos;: 14, &apos;gtgttg&apos;: 16, &apos;aggtgg&apos;: 14, &apos;ccggtg&apos;: 12, &apos;actgaa&apos;: 16, &apos;ggtcaa&apos;: 12, &apos;cgtgct&apos;: 14, &apos;ggtcac&apos;: 18, &apos;gagtca&apos;: 13, &apos;ggtcat&apos;: 9, &apos;cacgca&apos;: 15, &apos;aggtgt&apos;: 12, &apos;aggata&apos;: 10, &apos;aggatg&apos;: 13, &apos;tctgtg&apos;: 13, &apos;ctaatt&apos;: 9, &apos;tctgtc&apos;: 13, &apos;tctgta&apos;: 21, &apos;ccgtgt&apos;: 13, &apos;agcggg&apos;: 26, &apos;agcgga&apos;: 16, &apos;catgtc&apos;: 13, &apos;agcggc&apos;: 8, &apos;tctgtt&apos;: 16, &apos;agcggt&apos;: 9, &apos;gatcct&apos;: 14, &apos;catgtg&apos;: 11, &apos;agtagt&apos;: 9, &apos;tacttc&apos;: 14, &apos;gagcaa&apos;: 11, &apos;taacga&apos;: 11, &apos;agtagc&apos;: 12, &apos;agtaga&apos;: 14, &apos;accaga&apos;: 8, &apos;agtagg&apos;: 15, &apos;agttta&apos;: 14, &apos;gatccg&apos;: 20, &apos;cacact&apos;: 11, &apos;gagcgc&apos;: 14, &apos;tacttg&apos;: 11, &apos;tggttg&apos;: 13, &apos;cgactt&apos;: 19, &apos;ggtaca&apos;: 17, &apos;cgatct&apos;: 15, &apos;ggtacc&apos;: 10, &apos;atcagt&apos;: 10, &apos;atcggg&apos;: 14, &apos;gtggaa&apos;: 16, &apos;atcggc&apos;: 14, &apos;atcgga&apos;: 25, &apos;tggttt&apos;: 14, &apos;cgatcc&apos;: 16, &apos;cgatca&apos;: 14, &apos;tgtgcc&apos;: 11, &apos;cgatcg&apos;: 12, &apos;tgtgca&apos;: 12, &apos;cgactg&apos;: 11, &apos;atcggt&apos;: 9, &apos;atcagg&apos;: 17, &apos;atcaga&apos;: 12, &apos;atcagc&apos;: 9, &apos;ccggtc&apos;: 7, &apos;aagaca&apos;: 10, &apos;aagacc&apos;: 13, &apos;gctctc&apos;: 14, &apos;aagacg&apos;: 11, &apos;atccag&apos;: 18, &apos;acgcgc&apos;: 16, &apos;aagact&apos;: 12, &apos;ttgcag&apos;: 12, &apos;agaggc&apos;: 19, &apos;cctttc&apos;: 18, &apos;gccgcc&apos;: 11, &apos;ttgtaa&apos;: 16, &apos;gccgca&apos;: 12, &apos;ttgtac&apos;: 19, &apos;gccgcg&apos;: 9, &apos;cactaa&apos;: 14, &apos;ctcgtg&apos;: 11, &apos;cactac&apos;: 14, &apos;tgattg&apos;: 14, &apos;cactat&apos;: 9, &apos;ccccgc&apos;: 9, &apos;ttgtat&apos;: 11, &apos;ctcgtt&apos;: 17, &apos;ccggta&apos;: 13, &apos;gccgct&apos;: 14, &apos;cttaga&apos;: 9, &apos;ccccga&apos;: 15, &apos;gctcta&apos;: 13, &apos;tacctt&apos;: 10, &apos;agtgcg&apos;: 12, &apos;agtgca&apos;: 14, &apos;atttat&apos;: 14, &apos;tgattc&apos;: 18, &apos;cttcgc&apos;: 13, &apos;acccac&apos;: 23, &apos;atttac&apos;: 19, &apos;gtgtag&apos;: 15, &apos;atttaa&apos;: 11, &apos;acccag&apos;: 14, &apos;atttag&apos;: 17, &apos;gtgtac&apos;: 21, &apos;aaggaa&apos;: 8, &apos;aaggac&apos;: 14, &apos;aaggag&apos;: 25, &apos;ttcagt&apos;: 15, &apos;atatga&apos;: 16, &apos;gttttt&apos;: 12, &apos;gataat&apos;: 17, &apos;cgtcag&apos;: 16, &apos;aaggat&apos;: 14, &apos;actctt&apos;: 12, &apos;cccctg&apos;: 10, &apos;gataac&apos;: 15, &apos;gtgtaa&apos;: 8, &apos;cccctc&apos;: 11, &apos;ccccta&apos;: 15, &apos;ctgtgg&apos;: 15, &apos;ttcaga&apos;: 11, &apos;ttcagg&apos;: 14, &apos;ctgtga&apos;: 11, &apos;gtagaa&apos;: 7, &apos;gcttga&apos;: 16, &apos;ccataa&apos;: 20, &apos;gcttgc&apos;: 11, &apos;ccatac&apos;: 9, &apos;caaaga&apos;: 18, &apos;gcttgg&apos;: 11, &apos;caacgt&apos;: 13, &apos;ctgtgt&apos;: 10, &apos;cttttc&apos;: 10, &apos;cttcgt&apos;: 12, &apos;caacgc&apos;: 19, &apos;caaagt&apos;: 11, &apos;caacga&apos;: 15, &apos;tgcgga&apos;: 10, &apos;caacgg&apos;: 17, &apos;gcttgt&apos;: 17, &apos;ctaacg&apos;: 15, &apos;cggact&apos;: 18, &apos;tcaggg&apos;: 14, &apos;catgtt&apos;: 9, &apos;ggtccc&apos;: 10, &apos;gtagag&apos;: 11, &apos;tcagga&apos;: 8, &apos;catgta&apos;: 20, &apos;cggacg&apos;: 15, &apos;cggaca&apos;: 13, &apos;cggacc&apos;: 20, &apos;cgtatg&apos;: 12, &apos;tgtcct&apos;: 6, &apos;tcccgc&apos;: 17, &apos;tcccga&apos;: 14, &apos;tcccgg&apos;: 10, &apos;gccaat&apos;: 8, &apos;tcaggt&apos;: 19, &apos;tcaagg&apos;: 20, &apos;cttcgg&apos;: 10, &apos;cttcga&apos;: 12, &apos;tcaagc&apos;: 14, &apos;tcattt&apos;: 16, &apos;tcaaga&apos;: 14, &apos;gccaac&apos;: 9, &apos;gccaaa&apos;: 15, &apos;tatact&apos;: 13, &apos;gccaag&apos;: 20, &apos;tcccgt&apos;: 16, &apos;cttagc&apos;: 16, &apos;tcattc&apos;: 11, &apos;tcaagt&apos;: 14, &apos;tcatta&apos;: 17, &apos;cttagg&apos;: 19, &apos;tcattg&apos;: 16, &apos;tcaggc&apos;: 13, &apos;tactat&apos;: 15, &apos;actcta&apos;: 10, &apos;tcgcgt&apos;: 16, &apos;gaggag&apos;: 13, &apos;actctc&apos;: 3, &apos;acccat&apos;: 14, &apos;tgcact&apos;: 12, &apos;acgtaa&apos;: 15, &apos;acgtac&apos;: 10, &apos;agtttc&apos;: 12, &apos;acgtag&apos;: 16, &apos;cccaga&apos;: 9, &apos;cccagc&apos;: 24, &apos;tattgt&apos;: 15, &apos;cccagg&apos;: 12, &apos;ggttct&apos;: 19, &apos;aactgt&apos;: 12, &apos;cctgtc&apos;: 13, &apos;agtttt&apos;: 12, &apos;tgcacg&apos;: 11, &apos;acgtat&apos;: 16, &apos;gaggaa&apos;: 12, &apos;tgcacc&apos;: 9, &apos;gggaca&apos;: 9, &apos;gggacc&apos;: 8, &apos;cccagt&apos;: 8, &apos;gggacg&apos;: 17, &apos;ccacgt&apos;: 12, &apos;tagtaa&apos;: 15, &apos;atctct&apos;: 11, &apos;tagtac&apos;: 10, &apos;aaaaat&apos;: 8, &apos;actcat&apos;: 18, &apos;cctgtg&apos;: 17, &apos;cgaggt&apos;: 11, &apos;aaaaaa&apos;: 8, &apos;actcac&apos;: 22, &apos;aaaaac&apos;: 12, &apos;actcaa&apos;: 15, &apos;atctca&apos;: 10, &apos;actcag&apos;: 14, &apos;atctcc&apos;: 17, &apos;cgagga&apos;: 12, &apos;acatta&apos;: 13, &apos;cgaggc&apos;: 7, &apos;cgaggg&apos;: 15, &apos;gtgcac&apos;: 10, &apos;gcgctt&apos;: 17, &apos;gtgcaa&apos;: 10, &apos;gtgcag&apos;: 16, &apos;ggccta&apos;: 5, &apos;ccaaca&apos;: 13, &apos;aataga&apos;: 12, &apos;ggccaa&apos;: 15, &apos;ggcctt&apos;: 14, &apos;gcgctc&apos;: 13, &apos;gtgcat&apos;: 18, &apos;gcgcta&apos;: 14, &apos;ggccac&apos;: 11, &apos;accgac&apos;: 14, &apos;aatgct&apos;: 13, &apos;gcccta&apos;: 17, &apos;ggggat&apos;: 16, &apos;accgct&apos;: 16, &apos;gctatc&apos;: 16, &apos;accgta&apos;: 21, &apos;ggggaa&apos;: 11, &apos;aatgcg&apos;: 23, &apos;ggggac&apos;: 12, &apos;aatgcc&apos;: 16, &apos;ggggag&apos;: 7, &apos;aatgca&apos;: 10, &apos;tcgtgg&apos;: 10, &apos;ggtaat&apos;: 14, &apos;tcgtga&apos;: 9, &apos;accgcc&apos;: 14, &apos;tgactt&apos;: 12, &apos;ccacgg&apos;: 12, &apos;ctacaa&apos;: 8, &apos;accttg&apos;: 10, &apos;attctc&apos;: 16, &apos;attcta&apos;: 18, &apos;accttc&apos;: 12, &apos;attctg&apos;: 17, &apos;acctta&apos;: 19, &apos;ctacac&apos;: 19, &apos;cgtgcc&apos;: 8, &apos;atgtca&apos;: 14, &apos;atgtcc&apos;: 8, &apos;accttt&apos;: 11, &apos;atgtcg&apos;: 14, &apos;gagtcg&apos;: 9, &apos;cgttga&apos;: 13, &apos;atagca&apos;: 11, &apos;cgttgc&apos;: 16, &apos;atagcc&apos;: 10, &apos;cgttgg&apos;: 10, &apos;atagcg&apos;: 14, &apos;taacgc&apos;: 18, &apos;gctgag&apos;: 18, &apos;taacgg&apos;: 13, &apos;gctgac&apos;: 9, &apos;cgatta&apos;: 19, &apos;atagct&apos;: 12, &apos;cgttgt&apos;: 13, &apos;gctgat&apos;: 16, &apos;taacgt&apos;: 15, &apos;cagacc&apos;: 9, &apos;agggct&apos;: 12, &apos;cagaca&apos;: 12, &apos;gtaacg&apos;: 11, &apos;cagacg&apos;: 18, &apos;gtaaca&apos;: 18, &apos;cggggt&apos;: 13, &apos;aacgaa&apos;: 8, &apos;tagtca&apos;: 14, &apos;aaagct&apos;: 14, &apos;actact&apos;: 13, &apos;gggact&apos;: 13, &apos;gtaact&apos;: 17, &apos;cgggga&apos;: 12, &apos;agggca&apos;: 10, &apos;agggcc&apos;: 8, &apos;cagact&apos;: 9, &apos;aaagca&apos;: 18, &apos;actacc&apos;: 18, &apos;aaagcc&apos;: 9, &apos;actaca&apos;: 9, &apos;actacg&apos;: 9, &apos;aaagcg&apos;: 18, &apos;ccttca&apos;: 20, &apos;aatagc&apos;: 16, &apos;gactgt&apos;: 16, &apos;aatagg&apos;: 16, &apos;gtgacc&apos;: 11, &apos;gtgaca&apos;: 15, &apos;gtgacg&apos;: 11, &apos;ggatgt&apos;: 18, &apos;ctcgca&apos;: 14, &apos;tcgcaa&apos;: 10, &apos;gactgc&apos;: 9, &apos;gactga&apos;: 13, &apos;aatagt&apos;: 8, &apos;gactgg&apos;: 6, &apos;actcgc&apos;: 18, &apos;ggatgc&apos;: 16, &apos;gttgtg&apos;: 12, &apos;ggatga&apos;: 15, &apos;ggatgg&apos;: 15, &apos;gtgact&apos;: 11, &apos;tgcaca&apos;: 12, &apos;aataaa&apos;: 10, &apos;ccttcg&apos;: 12, &apos;agtgac&apos;: 9, &apos;ggcaat&apos;: 15, &apos;atttgt&apos;: 6, &apos;cggtcg&apos;: 8, &apos;gaggat&apos;: 12, &apos;acccct&apos;: 9, &apos;agtatc&apos;: 13, &apos;tggtcc&apos;: 9, &apos;gatctc&apos;: 14, &apos;agtatg&apos;: 10, &apos;gatctg&apos;: 23, &apos;aactgg&apos;: 13, &apos;ttattg&apos;: 15, &apos;gatctt&apos;: 12, &apos;agtatt&apos;: 11, &apos;atcgtg&apos;: 17, &apos;gcatag&apos;: 13, &apos;atcgtc&apos;: 13, &apos;gcataa&apos;: 11, &apos;atcgta&apos;: 15, &apos;gcatac&apos;: 14, &apos;cctact&apos;: 15, &apos;ccctct&apos;: 17, &apos;cgaccc&apos;: 16, &apos;gtgaac&apos;: 13, &apos;cgaccg&apos;: 10, &apos;gcatat&apos;: 13, &apos;atcgtt&apos;: 6, &apos;ggcctg&apos;: 15, &apos;cctacg&apos;: 13, &apos;cgacct&apos;: 18, &apos;cctacc&apos;: 14, &apos;agatta&apos;: 24, &apos;aacgcg&apos;: 17, &apos;agattc&apos;: 13, &apos;tagcgg&apos;: 13, &apos;acaggc&apos;: 9, &apos;tagtag&apos;: 11, &apos;agattg&apos;: 11, &apos;tccaca&apos;: 11, &apos;caggac&apos;: 10, &apos;tttttc&apos;: 16, &apos;caggaa&apos;: 17, &apos;gtacag&apos;: 11, &apos;caggag&apos;: 15, &apos;tttttg&apos;: 19, &apos;agagca&apos;: 15, &apos;gtacac&apos;: 13, &apos;acaggt&apos;: 20, &apos;agattt&apos;: 9, &apos;gtacat&apos;: 19, &apos;aacgcc&apos;: 20, &apos;agagct&apos;: 11, &apos;catgat&apos;: 9, &apos;tttttt&apos;: 12, &apos;caggat&apos;: 17, &apos;catcgt&apos;: 11, &apos;accccg&apos;: 11, &apos;cagtcg&apos;: 12, &apos;gcggag&apos;: 17, &apos;tccacg&apos;: 7, &apos;gtccct&apos;: 10, &apos;cagtcc&apos;: 13, &apos;gcggac&apos;: 13, &apos;cagtca&apos;: 9, &apos;catcga&apos;: 19, &apos;catcgc&apos;: 17, &apos;catcgg&apos;: 19, &apos;gcggat&apos;: 13, &apos;cagtct&apos;: 11, &apos;gtcccc&apos;: 9, &apos;ggccgc&apos;: 8, &apos;gtcccg&apos;: 12, &apos;ccctcc&apos;: 19, &apos;ggcaac&apos;: 15, &apos;atctcg&apos;: 19, &apos;aatcgt&apos;: 11, &apos;aaaaag&apos;: 10, &apos;gatgaa&apos;: 15, &apos;acagtt&apos;: 11, &apos;ggatcg&apos;: 11, &apos;gtccgt&apos;: 14, &apos;agaata&apos;: 10, &apos;atacaa&apos;: 5, &apos;cctcag&apos;: 11, &apos;tacgga&apos;: 17, &apos;cctcac&apos;: 13, &apos;atgggc&apos;: 17, &apos;agaatc&apos;: 10, &apos;atgggg&apos;: 8, &apos;cctcat&apos;: 14, &apos;gtcgga&apos;: 11, &apos;gtatcc&apos;: 13, &apos;aacccg&apos;: 18, &apos;aagggc&apos;: 9, &apos;atgggt&apos;: 16, &apos;cgtatt&apos;: 22, &apos;aggttg&apos;: 11, &apos;tacagt&apos;: 8, &apos;gccgaa&apos;: 13, &apos;aggttc&apos;: 25, &apos;tatcct&apos;: 14, &apos;aggtta&apos;: 18, &apos;cgtggg&apos;: 12, &apos;catgac&apos;: 13, &apos;aggagc&apos;: 20, &apos;tacagg&apos;: 13, &apos;aggaga&apos;: 19, &apos;tcggga&apos;: 14, &apos;aggagg&apos;: 13, &apos;tacagc&apos;: 15, &apos;tatccg&apos;: 12, &apos;tacaga&apos;: 12, &apos;ccagaa&apos;: 7, &apos;gcgaag&apos;: 14, &apos;aatatt&apos;: 14, &apos;gtcaac&apos;: 14, &apos;gcgaac&apos;: 9, &apos;ccgact&apos;: 13, &apos;gcgaaa&apos;: 14, &apos;gtcaag&apos;: 16, &apos;tgtcaa&apos;: 13, &apos;cgcaaa&apos;: 12, &apos;gtgatt&apos;: 19, &apos;cgcaag&apos;: 17, &apos;tgtcag&apos;: 16, &apos;ccgaca&apos;: 8, &apos;ccgacc&apos;: 14, &apos;gcgaat&apos;: 15, &apos;aatata&apos;: 7, &apos;gtgctg&apos;: 19, &apos;ccgacg&apos;: 15, &apos;gtgatg&apos;: 10, &apos;gtgatc&apos;: 16, &apos;tgtcat&apos;: 18, &apos;gtgata&apos;: 19, &apos;ggcctc&apos;: 16, &apos;tcaatg&apos;: 14, &apos;gacatg&apos;: 12, &apos;acgagt&apos;: 15, &apos;tgatgc&apos;: 15, &apos;acttgc&apos;: 9, &apos;tcaata&apos;: 14, &apos;gacata&apos;: 15, &apos;gaatat&apos;: 16, &apos;tggact&apos;: 16, &apos;tttcat&apos;: 13, &apos;ggatcc&apos;: 20, &apos;acgagg&apos;: 8, &apos;gacatt&apos;: 11, &apos;tgatgt&apos;: 6, &apos;acgagc&apos;: 18, &apos;acgaga&apos;: 14, &apos;tttcac&apos;: 15, &apos;tttcaa&apos;: 16, &apos;tttcag&apos;: 13, &apos;gaataa&apos;: 16, &apos;cggctg&apos;: 12, &apos;gtatcg&apos;: 15, &apos;cggctc&apos;: 13, &apos;cggcta&apos;: 17, &apos;ccgtct&apos;: 10, &apos;tacacc&apos;: 15, &apos;cggctt&apos;: 9, &apos;cagggt&apos;: 14, &apos;caccta&apos;: 14, &apos;tgtagc&apos;: 20, &apos;cacctc&apos;: 15, &apos;cgcgcg&apos;: 15, &apos;tgtagg&apos;: 6, &apos;gcgctg&apos;: 11, &apos;aacact&apos;: 12, &apos;agagga&apos;: 6, &apos;aaagtg&apos;: 10, &apos;tcatct&apos;: 14, &apos;aggcct&apos;: 11, &apos;acttcg&apos;: 14, &apos;aagtcg&apos;: 11, &apos;cacctt&apos;: 10, &apos;tgtagt&apos;: 14, &apos;acttca&apos;: 12, &apos;cgcgct&apos;: 12, &apos;aacacg&apos;: 16, &apos;gataca&apos;: 8, &apos;aacaca&apos;: 14, &apos;aacacc&apos;: 10, &apos;aagtca&apos;: 12, &apos;gcctga&apos;: 15, &apos;gggttg&apos;: 22, &apos;gttttc&apos;: 10, &apos;gggtta&apos;: 15, &apos;actttt&apos;: 12, &apos;gggttc&apos;: 14, &apos;gcctgg&apos;: 14, &apos;ttttct&apos;: 11, &apos;gggttt&apos;: 11, &apos;gcctgt&apos;: 10, &apos;acttta&apos;: 12, &apos;agctct&apos;: 14, &apos;ttttcg&apos;: 10, &apos;ttttcc&apos;: 19, &apos;ttttca&apos;: 10, &apos;tggcaa&apos;: 14, &apos;tggcac&apos;: 17, &apos;tttacg&apos;: 12, &apos;tggcag&apos;: 15, &apos;gcgcgg&apos;: 11, &apos;attcct&apos;: 12, &apos;agctat&apos;: 13, &apos;gcgcga&apos;: 12, &apos;actatt&apos;: 12, &apos;tggcat&apos;: 13, &apos;taacac&apos;: 14, &apos;tttact&apos;: 17, &apos;attccg&apos;: 18, &apos;agctaa&apos;: 15, &apos;gactat&apos;: 9, &apos;gcgcgt&apos;: 11, &apos;attccc&apos;: 11, &apos;ccaact&apos;: 10, &apos;agctag&apos;: 21, &apos;tggagg&apos;: 15, &apos;actagg&apos;: 9, &apos;gtttgt&apos;: 16, &apos;tggaga&apos;: 15, &apos;actttg&apos;: 18, &apos;ttgcat&apos;: 20, &apos;cctgga&apos;: 14, &apos;gtttgc&apos;: 12, &apos;gtttga&apos;: 13, &apos;gtttgg&apos;: 13, &apos;tgcgtt&apos;: 12, &apos;actata&apos;: 13, &apos;tgcgtc&apos;: 12, &apos;tgcgta&apos;: 14, &apos;ggaagt&apos;: 4, &apos;gcgggt&apos;: 25, &apos;tcgtgt&apos;: 11, &apos;gaagcg&apos;: 10, &apos;atgata&apos;: 11, &apos;atgatc&apos;: 17, &apos;cgcgcc&apos;: 16, &apos;atgatt&apos;: 12, &apos;gacaat&apos;: 12, &apos;acctcg&apos;: 15, &apos;aaacta&apos;: 10, &apos;ctctcg&apos;: 9, &apos;acaatt&apos;: 12, &apos;ctcctt&apos;: 18, &apos;taacag&apos;: 16, &apos;gcgtta&apos;: 16, &apos;acaatc&apos;: 13, &apos;acaatg&apos;: 14, &apos;ttgcac&apos;: 15, &apos;ctcctg&apos;: 19, &apos;ctccta&apos;: 18, &apos;gctaat&apos;: 15, &apos;ctcctc&apos;: 11, &apos;tagtct&apos;: 13, &apos;ctctca&apos;: 9, &apos;ggattt&apos;: 14, &apos;gacttc&apos;: 11, &apos;gactta&apos;: 11, &apos;gacttg&apos;: 17, &apos;caatca&apos;: 9, &apos;ggattc&apos;: 19, &apos;ggatta&apos;: 13, &apos;aacgtt&apos;: 21, &apos;ggattg&apos;: 17, &apos;gcgttg&apos;: 13, &apos;ttggtt&apos;: 11, &apos;accgcg&apos;: 12, &apos;gacttt&apos;: 14, &apos;ccctta&apos;: 13, &apos;gaaatg&apos;: 11, &apos;gaaata&apos;: 12, &apos;tctctt&apos;: 11, &apos;gaaatc&apos;: 15, &apos;cgatat&apos;: 14, &apos;accgca&apos;: 13, &apos;ccttac&apos;: 14, &apos;gaaatt&apos;: 14, &apos;tctctc&apos;: 11, &apos;tctcta&apos;: 17, &apos;tcgtgc&apos;: 15, &apos;cgatag&apos;: 7, &apos;tggggt&apos;: 13, &apos;cgatac&apos;: 10, &apos;caccgt&apos;: 17, &apos;agttgt&apos;: 9, &apos;aagaat&apos;: 16, &apos;aagaac&apos;: 10, &apos;aagaaa&apos;: 14, &apos;cgcgaa&apos;: 12, &apos;caccga&apos;: 18, &apos;gagtat&apos;: 14, &apos;caccgc&apos;: 18, &apos;gctaag&apos;: 12, &apos;gtgtcg&apos;: 12, &apos;atttcg&apos;: 17, &apos;gtgtcc&apos;: 10, &apos;atttca&apos;: 14, &apos;ttgtgt&apos;: 15, &apos;tccagc&apos;: 14, &apos;ctatgt&apos;: 13, &apos;atttct&apos;: 16, &apos;ttgtgc&apos;: 11, &apos;gtgtct&apos;: 14, &apos;ttgtgg&apos;: 11, &apos;gctaaa&apos;: 11, &apos;tcgatg&apos;: 9, &apos;gatagc&apos;: 11, &apos;tccggt&apos;: 12, &apos;gataga&apos;: 9, &apos;gatagg&apos;: 7, &apos;cattat&apos;: 17, &apos;ccgttt&apos;: 8, &apos;atgtaa&apos;: 13, &apos;atgtct&apos;: 12, &apos;acgacc&apos;: 19, &apos;ttcttt&apos;: 12, &apos;tagagt&apos;: 12, &apos;gatagt&apos;: 15, &apos;gtgctt&apos;: 7, &apos;agaagc&apos;: 8, &apos;ccgttg&apos;: 17, &apos;ccgtta&apos;: 16, &apos;ccgttc&apos;: 15, &apos;cgtgag&apos;: 17, &apos;cgtgaa&apos;: 13, &apos;ggcggc&apos;: 10, &apos;cgtgac&apos;: 12, &apos;aaggcc&apos;: 14, &apos;agttgc&apos;: 18, &apos;aaggca&apos;: 18, &apos;ctgtgc&apos;: 20, &apos;agccca&apos;: 16, &apos;gctcac&apos;: 8, &apos;cgtgat&apos;: 21, &apos;gtttcc&apos;: 16, &apos;cgatgg&apos;: 11, &apos;ctctag&apos;: 14, &apos;tgatct&apos;: 16, &apos;aaggct&apos;: 8, &apos;ctgtaa&apos;: 17, &apos;aacctt&apos;: 14, &apos;ctgtag&apos;: 9, &apos;cgtcac&apos;: 15, &apos;cgatgc&apos;: 12, &apos;aacctg&apos;: 17, &apos;ggcgta&apos;: 9, &apos;ggcgtg&apos;: 16, &apos;aaccta&apos;: 10, &apos;atcacg&apos;: 16, &apos;tagccg&apos;: 12, &apos;ggctag&apos;: 18, &apos;tacctg&apos;: 17, &apos;gtctgt&apos;: 11, &apos;ggctac&apos;: 11, &apos;ggctaa&apos;: 11, &apos;cggaat&apos;: 18, &apos;ttgatt&apos;: 9, &apos;tagagg&apos;: 13, &apos;gtctgg&apos;: 14, &apos;tacgta&apos;: 16, &apos;ggctat&apos;: 13, &apos;gtctgc&apos;: 16, &apos;attctt&apos;: 11, &apos;gtctga&apos;: 19, &apos;cggaag&apos;: 8, &apos;gggatt&apos;: 15, &apos;cggaac&apos;: 13, &apos;gccacc&apos;: 10, &apos;gcggga&apos;: 18, &apos;tgagtt&apos;: 17, &apos;tacatg&apos;: 15, &apos;accaag&apos;: 13, &apos;tacatc&apos;: 9, &apos;tacata&apos;: 19, &apos;tcgatt&apos;: 17, &apos;gccacg&apos;: 14, &apos;accaat&apos;: 10, &apos;tacatt&apos;: 13, &apos;tctagg&apos;: 24, &apos;cacagc&apos;: 13, &apos;cacaga&apos;: 17, &apos;ttatcg&apos;: 17, &apos;cacagg&apos;: 9, &apos;tgccgg&apos;: 14, &apos;tgccgc&apos;: 12, &apos;ttatca&apos;: 11, &apos;gagccg&apos;: 10, &apos;cacagt&apos;: 8, &apos;tgccgt&apos;: 13, &apos;gtcttg&apos;: 15, &apos;cgatgt&apos;: 4, &apos;cacgtg&apos;: 9, &apos;cacgta&apos;: 13, &apos;gtagcg&apos;: 8, &apos;acgtgc&apos;: 15, &apos;attgtt&apos;: 16, &apos;ctacga&apos;: 9, &apos;gcactt&apos;: 8, &apos;ctacgg&apos;: 13, &apos;gctgaa&apos;: 10, &apos;cacgtt&apos;: 12, &apos;gcggct&apos;: 9, &apos;ccttgc&apos;: 9, &apos;taaagt&apos;: 16, &apos;attgtg&apos;: 17, &apos;gcactc&apos;: 13, &apos;attgtc&apos;: 13, &apos;acgtgt&apos;: 13, &apos;attgta&apos;: 16, &apos;cggcgg&apos;: 8, &apos;gccttt&apos;: 16, &apos;taggat&apos;: 12, &apos;cggcgc&apos;: 14, &apos;ttaact&apos;: 15, &apos;cggcga&apos;: 12, &apos;tagtcc&apos;: 11, &apos;taaggt&apos;: 11, &apos;atctat&apos;: 12, &apos;tagtcg&apos;: 12, &apos;tacgtt&apos;: 8, &apos;ttaaca&apos;: 12, &apos;gccttg&apos;: 11, &apos;cggcgt&apos;: 6, &apos;gcctta&apos;: 12, &apos;gccttc&apos;: 21, &apos;aaaacc&apos;: 15, &apos;taaggg&apos;: 10, &apos;aaaaca&apos;: 17, &apos;gcagtg&apos;: 19, &apos;atctac&apos;: 13, &apos;taaggc&apos;: 16, &apos;atctaa&apos;: 18, &apos;taagga&apos;: 11, &apos;accgag&apos;: 18, &apos;ggttta&apos;: 15, &apos;gcccag&apos;: 15, &apos;ggtttc&apos;: 16, &apos;gcccaa&apos;: 12, &apos;gcccac&apos;: 12, &apos;ggtttg&apos;: 14, &apos;attcgt&apos;: 22, &apos;gtgccg&apos;: 11, &apos;gtgcca&apos;: 9, &apos;gtgccc&apos;: 14, &apos;tttatg&apos;: 10, &apos;gcccat&apos;: 16, &apos;accgat&apos;: 16, &apos;ggtttt&apos;: 9, &apos;tttata&apos;: 14, &apos;gtgcct&apos;: 6, &apos;agtctt&apos;: 18, &apos;cccccg&apos;: 17, &apos;gcggtc&apos;: 10, &apos;cataat&apos;: 16, &apos;gcggta&apos;: 12, &apos;aatgat&apos;: 10, &apos;gcggtg&apos;: 8, &apos;agtcaa&apos;: 13, &apos;cacaag&apos;: 14, &apos;ggggct&apos;: 9, &apos;aatgaa&apos;: 10, &apos;agtcat&apos;: 11, &apos;aatgac&apos;: 16, &apos;gcggtt&apos;: 13, &apos;aatgag&apos;: 7, &apos;ggggcc&apos;: 11, &apos;cacaaa&apos;: 8, &apos;ggggca&apos;: 13, &apos;ggggcg&apos;: 12, &apos;ttcggt&apos;: 5, &apos;ggaatc&apos;: 19, &apos;gtccgg&apos;: 10, &apos;gcggca&apos;: 14, &apos;cctttt&apos;: 16, &apos;cctggt&apos;: 9, &apos;atgctt&apos;: 14, &apos;ccttta&apos;: 12, &apos;gtccgc&apos;: 10, &apos;cctttg&apos;: 8, &apos;aaagac&apos;: 17, &apos;aaagaa&apos;: 13, &apos;actaag&apos;: 7, &apos;aaagag&apos;: 12, &apos;actaaa&apos;: 10, &apos;actaac&apos;: 16, &apos;taaagg&apos;: 11, &apos;gatgtt&apos;: 11, &apos;gtaacc&apos;: 12, &apos;actaat&apos;: 9, &apos;gtttta&apos;: 8, &apos;gttttg&apos;: 6, &apos;aaagat&apos;: 13, &apos;cgacgg&apos;: 8, &apos;gatgtg&apos;: 14, &apos;ttgttt&apos;: 8, &apos;gatgta&apos;: 9, &apos;gatgtc&apos;: 9, &apos;gaaggc&apos;: 11, &apos;agccga&apos;: 9, &apos;gaagga&apos;: 17, &apos;caatgc&apos;: 19, &apos;gaaggg&apos;: 8, &apos;gtagga&apos;: 8, &apos;agggat&apos;: 13, &apos;gtataa&apos;: 12, &apos;tattgg&apos;: 8, &apos;actttc&apos;: 14, &apos;tattgc&apos;: 16, &apos;tattga&apos;: 22, &apos;agggag&apos;: 6, &apos;gtatag&apos;: 18, &apos;agggac&apos;: 10, &apos;agggaa&apos;: 16, &apos;gtgaat&apos;: 11, &apos;cggggc&apos;: 7, &apos;gggaaa&apos;: 14, &apos;gggaag&apos;: 15, &apos;gccgga&apos;: 21, &apos;aataac&apos;: 21, &apos;gtgggc&apos;: 9, &apos;aataag&apos;: 9, &apos;tgtgtt&apos;: 7, &apos;gtgaag&apos;: 14, &apos;cgacga&apos;: 15, &apos;gtgaaa&apos;: 13, &apos;gggaat&apos;: 17, &apos;cggggg&apos;: 17, &apos;aataat&apos;: 13, &apos;cgcccg&apos;: 12, &apos;atgcta&apos;: 12, &apos;ctaccg&apos;: 15, &apos;acaaca&apos;: 12, &apos;acaacc&apos;: 15, &apos;acaacg&apos;: 16, &apos;ggtgat&apos;: 15, &apos;tactct&apos;: 13, &apos;gacaaa&apos;: 16, &apos;cgcccc&apos;: 11, &apos;caagct&apos;: 13, &apos;acaact&apos;: 14, &apos;acctaa&apos;: 16, &apos;taaagc&apos;: 15, &apos;tacggg&apos;: 10, &apos;ctcggg&apos;: 13, &apos;ctcgga&apos;: 14, &apos;cgcctg&apos;: 8, &apos;ctcggc&apos;: 11, &apos;acgtca&apos;: 21, &apos;ctcggt&apos;: 12, &apos;gccggg&apos;: 10, &apos;aaatgc&apos;: 5, &apos;cctagg&apos;: 13, &apos;taggac&apos;: 17, &apos;ctcagt&apos;: 7, &apos;tgggta&apos;: 15, &apos;ttagct&apos;: 12, &apos;cgacat&apos;: 13, &apos;tctcgc&apos;: 12, &apos;taccga&apos;: 14, &apos;atgcgt&apos;: 10, &apos;taccgc&apos;: 10, &apos;tctcgg&apos;: 13, &apos;taccgg&apos;: 13, &apos;cgacac&apos;: 14, &apos;ctcagg&apos;: 11, &apos;cgacaa&apos;: 16, &apos;cgacag&apos;: 12, &apos;ctcagc&apos;: 11, &apos;ctcaga&apos;: 13, &apos;atgcgg&apos;: 13, &apos;taccgt&apos;: 15, &apos;gctaac&apos;: 10, &apos;atgcga&apos;: 17, &apos;atgtac&apos;: 9, &apos;ttgatg&apos;: 18, &apos;acagac&apos;: 12, &apos;ctccac&apos;: 13, &apos;atgtag&apos;: 19, &apos;ttgatc&apos;: 16, &apos;acagag&apos;: 15, &apos;ttgata&apos;: 12, &apos;tctagt&apos;: 15, &apos;gagcct&apos;: 16, &apos;acgcat&apos;: 11, &apos;ccgggc&apos;: 9, &apos;cattag&apos;: 10, &apos;cgccct&apos;: 17, &apos;cattaa&apos;: 13, &apos;acagat&apos;: 20, &apos;cattac&apos;: 14, &apos;atgtat&apos;: 11, &apos;gagcca&apos;: 10, &apos;gagccc&apos;: 15, &apos;tctaga&apos;: 10, &apos;tctagc&apos;: 13, &apos;gcctca&apos;: 16, &apos;atcatg&apos;: 12, &apos;ggacct&apos;: 9, &apos;gctttg&apos;: 12, &apos;gtagcc&apos;: 23, &apos;gctttc&apos;: 17, &apos;ttgttc&apos;: 14, &apos;cagtaa&apos;: 18, &apos;ttgtta&apos;: 18, &apos;cagtac&apos;: 10, &apos;ttgttg&apos;: 10, &apos;catcat&apos;: 12, &apos;cagtag&apos;: 10, &apos;gctttt&apos;: 13, &apos;ggaccg&apos;: 16, &apos;ggacca&apos;: 12, &apos;ggaccc&apos;: 14, &apos;catcac&apos;: 12, &apos;agtaaa&apos;: 12, &apos;catcaa&apos;: 12, &apos;cagtat&apos;: 13, &apos;catcag&apos;: 8, &apos;ccaatc&apos;: 4, &apos;gtaagc&apos;: 19, &apos;tccgtg&apos;: 17, &apos;cctcaa&apos;: 13, &apos;ccaata&apos;: 14, &apos;tccgtc&apos;: 11, &apos;tccgta&apos;: 14, &apos;gctctt&apos;: 9, &apos;ctgaac&apos;: 13, &apos;atcatc&apos;: 16, &apos;tccgtt&apos;: 15, &apos;aacgag&apos;: 13, &apos;acggac&apos;: 20, &apos;aaaccg&apos;: 18, &apos;aaacca&apos;: 11, &apos;gctccc&apos;: 20, &apos;aaaccc&apos;: 9, &apos;gctcca&apos;: 14, &apos;ggcaca&apos;: 18, &apos;ccctat&apos;: 12, &apos;gagatt&apos;: 15, &apos;acggaa&apos;: 10, &apos;ggcacc&apos;: 15, &apos;aaacct&apos;: 17, &apos;gctcct&apos;: 19, &apos;aaaagt&apos;: 9, &apos;aacgac&apos;: 11, &apos;agtaac&apos;: 12, &apos;aacgat&apos;: 8, &apos;ccctac&apos;: 14, &apos;ccctaa&apos;: 12, &apos;cccggc&apos;: 20, &apos;cccgga&apos;: 12, &apos;cccggg&apos;: 14, &apos;tccaag&apos;: 11, &apos;ttattt&apos;: 12, &apos;gcgcct&apos;: 22, &apos;ccaatt&apos;: 10, &apos;tatcat&apos;: 15, &apos;aatcca&apos;: 17, &apos;gatgga&apos;: 12, &apos;tatcac&apos;: 9, &apos;gaatag&apos;: 8, &apos;tatcaa&apos;: 18, &apos;ggggta&apos;: 12, &apos;tatcag&apos;: 10, &apos;ttattc&apos;: 11, &apos;aatccg&apos;: 10, &apos;gcgaga&apos;: 12, &apos;catacc&apos;: 13, &apos;gcgagc&apos;: 11, &apos;cataca&apos;: 13, &apos;tttcca&apos;: 14, &apos;gcgagg&apos;: 10, &apos;cccatc&apos;: 12, &apos;gtcagc&apos;: 16, &apos;gcacgg&apos;: 17, &apos;aatttg&apos;: 11, &apos;gcacga&apos;: 13, &apos;gtcagg&apos;: 12, &apos;gcacgc&apos;: 12, &apos;ccgaat&apos;: 14, &apos;cccatt&apos;: 17, &apos;tgtcca&apos;: 15, &apos;cggatg&apos;: 14, &apos;tgtccg&apos;: 9, &apos;gcgagt&apos;: 19, &apos;catact&apos;: 10, &apos;ggcact&apos;: 18, &apos;gcaagc&apos;: 12, &apos;gcacgt&apos;: 7, &apos;ccgaaa&apos;: 13, &apos;actcgg&apos;: 10, &apos;gcaagg&apos;: 18, &apos;cctgcc&apos;: 11, &apos;gtcagt&apos;: 16, &apos;cctgca&apos;: 14, &apos;tgataa&apos;: 16, &apos;gtatta&apos;: 11, &apos;tgatac&apos;: 20, &apos;accata&apos;: 16, &apos;acgaat&apos;: 19, &apos;tgatag&apos;: 11, &apos;gtattg&apos;: 18, &apos;ccatag&apos;: 8, &apos;gaatct&apos;: 12, &apos;gcgcca&apos;: 14, &apos;acgaaa&apos;: 8, &apos;acgaac&apos;: 13, &apos;gtattt&apos;: 15, &apos;tgatat&apos;: 18, &apos;accatt&apos;: 13, &apos;gaatca&apos;: 15, &apos;gaatcc&apos;: 12, &apos;gaatcg&apos;: 17, &apos;aacaag&apos;: 9, &apos;atatcg&apos;: 8, &apos;tgttat&apos;: 13, &apos;tgctga&apos;: 11, &apos;aacaaa&apos;: 15, &apos;acggat&apos;: 18, &apos;cgctgt&apos;: 11, &apos;taaatt&apos;: 12, &apos;tgctgt&apos;: 16, &apos;tgcctt&apos;: 15, &apos;tgttac&apos;: 18, &apos;tgttaa&apos;: 15, &apos;cgctga&apos;: 13, &apos;agtctg&apos;: 14, &apos;cgctgc&apos;: 8, &apos;cgctgg&apos;: 5, &apos;ggttgt&apos;: 13, &apos;ttcatt&apos;: 9, &apos;taaacc&apos;: 12, &apos;atatca&apos;: 16, &apos;cgagac&apos;: 15, &apos;tcgttc&apos;: 17, &apos;tcgttg&apos;: 12, &apos;tagtat&apos;: 11, &apos;ggttgg&apos;: 12, &apos;ggttga&apos;: 15, &apos;ggttgc&apos;: 23, &apos;gagaag&apos;: 7, &apos;tcgttt&apos;: 6, &apos;tcagca&apos;: 12, &apos;taggca&apos;: 17, &apos;atcttt&apos;: 16, &apos;agctgc&apos;: 12, &apos;agctga&apos;: 14, &apos;agctgg&apos;: 23, &apos;agtcac&apos;: 13, &apos;ccccat&apos;: 9, &apos;agatgt&apos;: 15, &apos;cagctc&apos;: 13, &apos;ccttgg&apos;: 14, &apos;taggcc&apos;: 10, &apos;ccttga&apos;: 8, &apos;gcctag&apos;: 9, &apos;agagtt&apos;: 15, &apos;atcttg&apos;: 22, &apos;cctaca&apos;: 10, &apos;atctta&apos;: 8, &apos;agctgt&apos;: 14, &apos;atcttc&apos;: 16, &apos;ccttgt&apos;: 14, &apos;acgcgg&apos;: 14, &apos;agatgg&apos;: 24, &apos;agagtg&apos;: 13, &apos;gcctat&apos;: 9, &apos;agatgc&apos;: 12, &apos;ggaggg&apos;: 12, &apos;ggagga&apos;: 16, &apos;ggaggc&apos;: 15, &apos;tgtttt&apos;: 9, &apos;gcgcaa&apos;: 20, &apos;cgtgtc&apos;: 19, &apos;gcgcac&apos;: 15, &apos;tggcga&apos;: 17, &apos;acgtcc&apos;: 10, &apos;tggcgg&apos;: 13, &apos;acctct&apos;: 20, &apos;tttaac&apos;: 15, &apos;ggaggt&apos;: 6, &apos;atatct&apos;: 20, &apos;aagtac&apos;: 6, &apos;tttaat&apos;: 10, &apos;gagtgg&apos;: 28, &apos;cgccag&apos;: 11, &apos;acctca&apos;: 15, &apos;cgccaa&apos;: 12, &apos;gcgcat&apos;: 17, &apos;tggcgt&apos;: 12, &apos;gagtga&apos;: 10, &apos;aagtga&apos;: 12, &apos;aagtgc&apos;: 6, &apos;aagtgg&apos;: 20, &apos;cgtttt&apos;: 6, &apos;cccggt&apos;: 10, &apos;acggct&apos;: 10, &apos;aagtag&apos;: 13, &apos;aagtgt&apos;: 12, &apos;agtgga&apos;: 17, &apos;acggca&apos;: 8, &apos;acggcc&apos;: 17, &apos;cgtttg&apos;: 11, &apos;cgttta&apos;: 12, &apos;acggcg&apos;: 9, &apos;cgtttc&apos;: 14, &apos;accacg&apos;: 7, &apos;cagcga&apos;: 10, &apos;aaccgg&apos;: 22, &apos;ttatta&apos;: 12, &apos;ggcgga&apos;: 13, &apos;tccgac&apos;: 11, &apos;ggcggg&apos;: 11, &apos;tttgtc&apos;: 11, &apos;aaccga&apos;: 17, &apos;gatcta&apos;: 16, &apos;aaccgt&apos;: 13, &apos;ccggac&apos;: 18, &apos;ccattt&apos;: 15, &apos;gcttta&apos;: 9, &apos;cggatt&apos;: 19, &apos;tagact&apos;: 12, &apos;ttttta&apos;: 6, &apos;aggctt&apos;: 10, &apos;cagcgg&apos;: 19, &apos;aggtct&apos;: 14, &apos;tgcgct&apos;: 15, &apos;aggcta&apos;: 8, &apos;aggtca&apos;: 12, &apos;tagacc&apos;: 10, &apos;aggctg&apos;: 10, &apos;atagtc&apos;: 13, &apos;catacg&apos;: 11, &apos;agggtt&apos;: 14, &apos;tccgat&apos;: 11, &apos;gatcgg&apos;: 13, &apos;ctaaca&apos;: 13, &apos;agcgct&apos;: 12, &apos;gatcgc&apos;: 9, &apos;tatttg&apos;: 11, &apos;tttccc&apos;: 9, &apos;tatttc&apos;: 15, &apos;tattta&apos;: 15, &apos;agcgca&apos;: 16, &apos;agcgcc&apos;: 20, &apos;agggtg&apos;: 14, &apos;atagtg&apos;: 15, &apos;agcgcg&apos;: 17, &apos;agggtc&apos;: 16, &apos;tatttt&apos;: 11, &apos;cctgct&apos;: 12, &apos;gtcaga&apos;: 13, &apos;cgacca&apos;: 13, &apos;gcaagt&apos;: 17, &apos;acgccg&apos;: 13, &apos;ggctca&apos;: 9, &apos;tgtccc&apos;: 11, &apos;gggcgt&apos;: 15, &apos;ggcttc&apos;: 10, &apos;atcgct&apos;: 13, &apos;tgcgcg&apos;: 11, &apos;tagcag&apos;: 14, &apos;agcaag&apos;: 14, &apos;tagcac&apos;: 6, &apos;actgtt&apos;: 18, &apos;atcgcc&apos;: 8, &apos;atcgca&apos;: 10, &apos;atcgcg&apos;: 17, &apos;tgtggc&apos;: 11, &apos;tgtgga&apos;: 14, &apos;tgtggg&apos;: 11, &apos;ttgccg&apos;: 12, &apos;cggata&apos;: 18, &apos;taggga&apos;: 12, &apos;cgtaat&apos;: 14, &apos;tagggc&apos;: 10, &apos;tagggg&apos;: 14, &apos;tgtatt&apos;: 10, &apos;tcctct&apos;: 13, &apos;cggatc&apos;: 14, &apos;cgtaag&apos;: 13, &apos;tagggt&apos;: 15, &apos;aaccag&apos;: 13, &apos;cgtaaa&apos;: 15, &apos;acgcca&apos;: 12, &apos;ggctcc&apos;: 18, &apos;tcctcg&apos;: 12, &apos;tgtatg&apos;: 15, &apos;tcctca&apos;: 10, &apos;gcaaga&apos;: 7, &apos;tcctcc&apos;: 14, &apos;tgtatc&apos;: 17, &apos;ccgcca&apos;: 8, &apos;atagtt&apos;: 15, &apos;ggatag&apos;: 5, &apos;atacgg&apos;: 12, &apos;ctcatg&apos;: 14, &apos;ccgaag&apos;: 15, &apos;gacccg&apos;: 6, &apos;gaccca&apos;: 18, &apos;ctcata&apos;: 17, &apos;ctatag&apos;: 19, &apos;ggaaaa&apos;: 18, &apos;gaccct&apos;: 15, &apos;ctcatt&apos;: 18, &apos;gactcg&apos;: 15, &apos;accatc&apos;: 13, &apos;catttc&apos;: 13, &apos;cattta&apos;: 16, &apos;catttg&apos;: 11, &apos;gtattc&apos;: 16, &apos;ctataa&apos;: 19, &apos;ttgcct&apos;: 16, &apos;ctcgcc&apos;: 14, &apos;catttt&apos;: 18, &apos;accatg&apos;: 11, &apos;gtgcgc&apos;: 11, &apos;ccactg&apos;: 19, &apos;ggaaac&apos;: 18, &apos;gtgcgg&apos;: 10, &apos;acacct&apos;: 13, &apos;aagcag&apos;: 13, &apos;aagcaa&apos;: 7, &apos;caaact&apos;: 13, &apos;aagcac&apos;: 14, &apos;ctgtcc&apos;: 9, &apos;ctaggt&apos;: 21, &apos;ctgtcg&apos;: 15, &apos;aattcc&apos;: 9, &apos;caaaca&apos;: 10, &apos;aagcat&apos;: 19, &apos;caaacc&apos;: 14, &apos;cccata&apos;: 11, &apos;caaacg&apos;: 17, &apos;gttgga&apos;: 12, &apos;ctaggc&apos;: 10, &apos;gtatgt&apos;: 11, &apos;ctagga&apos;: 22, &apos;ggtgaa&apos;: 11, &apos;aacgta&apos;: 11, &apos;aacgtg&apos;: 16, &apos;ggctcg&apos;: 13, &apos;ggaatg&apos;: 15, &apos;cgtcct&apos;: 8, &apos;cggagt&apos;: 12, &apos;ggaata&apos;: 18, &apos;catatg&apos;: 17, &apos;gtctac&apos;: 12, &apos;ggctct&apos;: 14, &apos;catata&apos;: 17, &apos;ttccca&apos;: 11, &apos;cgtccg&apos;: 14, &apos;cggagc&apos;: 22, &apos;cgtccc&apos;: 9, &apos;ttcccg&apos;: 15, &apos;cgtcca&apos;: 14, &apos;acaggg&apos;: 10, &apos;gtcgtg&apos;: 7, &apos;accact&apos;: 10, &apos;gtcgta&apos;: 9, &apos;cttcct&apos;: 17, &apos;tcaact&apos;: 18, &apos;cgcttg&apos;: 10, &apos;cgctta&apos;: 11, &apos;cgcttc&apos;: 15, &apos;cttcca&apos;: 20, &apos;tcaacc&apos;: 17, &apos;gtatgg&apos;: 12, &apos;tcaaca&apos;: 10, &apos;accacc&apos;: 13, &apos;tttaag&apos;: 11, &apos;accaca&apos;: 16, &apos;cgcttt&apos;: 19, &apos;gtaggt&apos;: 17, &apos;gcagtc&apos;: 13, &apos;taatcg&apos;: 7, &apos;taatca&apos;: 15, &apos;acagga&apos;: 17, &apos;taatcc&apos;: 15, &apos;atattc&apos;: 17, &apos;taatct&apos;: 12, &apos;ctggac&apos;: 9, &apos;tagcaa&apos;: 17, &apos;aaattc&apos;: 17, &apos;tgcctg&apos;: 8, &apos;aaatta&apos;: 5, &apos;ccaagt&apos;: 18, &apos;aaattg&apos;: 12, &apos;tctaat&apos;: 13, &apos;agagcc&apos;: 10, &apos;tataca&apos;: 12, &apos;gtacaa&apos;: 12, &apos;gggaac&apos;: 13, &apos;aaattt&apos;: 13, &apos;aacaac&apos;: 19, &apos;cggcaa&apos;: 13, &apos;cggcac&apos;: 17, &apos;gggtgt&apos;: 8, &apos;tgctgc&apos;: 11, &apos;cggcag&apos;: 5, &apos;cctcgt&apos;: 8, &apos;atctgt&apos;: 17, &apos;ttaaat&apos;: 20, &apos;agcaaa&apos;: 13, &apos;gggtgc&apos;: 12, &apos;cggcat&apos;: 15, &apos;gggtgg&apos;: 11, &apos;atctga&apos;: 14, &apos;atctgc&apos;: 16, &apos;ttaaag&apos;: 15, &apos;gacgaa&apos;: 17, &apos;atctgg&apos;: 16, &apos;tcgtca&apos;: 14, &apos;agaact&apos;: 9, &apos;accggc&apos;: 15, &apos;gaacgt&apos;: 23, &apos;ttccct&apos;: 4, &apos;tcgtcg&apos;: 20, &apos;acggta&apos;: 8, &apos;gccccg&apos;: 16, &apos;gacgag&apos;: 13, &apos;gccccc&apos;: 17, &apos;gcccca&apos;: 5, &apos;gaacgg&apos;: 15, &apos;agaacg&apos;: 12, &apos;acggtc&apos;: 13, &apos;agaaca&apos;: 13, &apos;accggt&apos;: 18, &apos;gaacga&apos;: 6, &apos;gcccct&apos;: 13, &apos;gccgtc&apos;: 9, &apos;atagac&apos;: 5, &apos;aagttt&apos;: 12, &apos;tttccg&apos;: 14, &apos;cgttaa&apos;: 22, &apos;agtccg&apos;: 17, &apos;gacggt&apos;: 7, &apos;ctaagg&apos;: 13, &apos;ctaaga&apos;: 14, &apos;aatggt&apos;: 14, &apos;ctaagc&apos;: 10, &apos;aagttg&apos;: 12, &apos;aacaat&apos;: 13, &apos;aagtta&apos;: 11, &apos;ccaaga&apos;: 11, &apos;aagttc&apos;: 23, &apos;ttgggt&apos;: 11, &apos;ctaagt&apos;: 8, &apos;aatggc&apos;: 14, &apos;gacggg&apos;: 17, &apos;aatgga&apos;: 12, &apos;gacgga&apos;: 14, &apos;aatggg&apos;: 12, &apos;gacggc&apos;: 9, &apos;acatca&apos;: 7, &apos;gggcat&apos;: 12, &apos;attatc&apos;: 15, &apos;attatg&apos;: 13, &apos;tatgct&apos;: 7, &apos;gggcag&apos;: 12, &apos;attatt&apos;: 12, &apos;gggcac&apos;: 17, &apos;tatgcg&apos;: 8, &apos;tatgca&apos;: 8, &apos;tatgcc&apos;: 15, &apos;ataggt&apos;: 12, &apos;ataagg&apos;: 13, &apos;atgagt&apos;: 16, &apos;ataagc&apos;: 15, &apos;ataaga&apos;: 10, &apos;ctccga&apos;: 15, &apos;ctccgc&apos;: 11, &apos;atagat&apos;: 14, &apos;ctccgg&apos;: 14, &apos;atgaga&apos;: 9, &apos;ataagt&apos;: 14, &apos;ataggg&apos;: 14, &apos;atagga&apos;: 16, &apos;ataggc&apos;: 15, &apos;gtaggg&apos;: 10, &apos;ggtctc&apos;: 14, &apos;ctccgt&apos;: 11, &apos;ggtcta&apos;: 19, &apos;gcggaa&apos;: 18, &apos;tctggt&apos;: 17, &apos;aggggt&apos;: 14, &apos;atgcgc&apos;: 18, &apos;agggga&apos;: 15, &apos;aggggc&apos;: 12, &apos;tctggc&apos;: 11, &apos;agcgaa&apos;: 15, &apos;tctgga&apos;: 21, &apos;aaatac&apos;: 9, &apos;agcgag&apos;: 17, &apos;aatacg&apos;: 16, &apos;aataca&apos;: 12, &apos;tcgtta&apos;: 15, &apos;acaaat&apos;: 18, &apos;acaaac&apos;: 7, &apos;acaaaa&apos;: 9, &apos;ctattg&apos;: 10, &apos;acaaag&apos;: 12, &apos;ggactc&apos;: 15, &apos;gtccca&apos;: 10, &apos;ggtctg&apos;: 14, &apos;tttcgg&apos;: 10, &apos;acgcta&apos;: 16, &apos;taggtt&apos;: 20, &apos;aacgca&apos;: 13, &apos;acgctc&apos;: 8, &apos;actcca&apos;: 13, &apos;taggtg&apos;: 9, &apos;taggta&apos;: 18, &apos;taggtc&apos;: 15, &apos;ccaccg&apos;: 9, &apos;gagcac&apos;: 11, &apos;ggctgt&apos;: 13, &apos;ccggtt&apos;: 26, &apos;gaccgt&apos;: 17, &apos;gagcag&apos;: 24, &apos;taccat&apos;: 10, &apos;ccgtga&apos;: 22, &apos;ccgtgc&apos;: 13, &apos;gctact&apos;: 18, &apos;ccgtgg&apos;: 12, &apos;gtgttc&apos;: 9, &apos;gtgtta&apos;: 14, &apos;actgac&apos;: 12, &apos;gagcat&apos;: 10, &apos;aaatag&apos;: 19, &apos;gctaca&apos;: 17, &apos;caattg&apos;: 8, &apos;gctacc&apos;: 12, &apos;caatta&apos;: 16, &apos;caattc&apos;: 9, &apos;gctacg&apos;: 14, &apos;gtggag&apos;: 12, &apos;tactta&apos;: 14, &apos;gtggac&apos;: 16, &apos;agaggt&apos;: 16, &apos;acagcc&apos;: 11, &apos;acagca&apos;: 14, &apos;cattct&apos;: 17, &apos;acagcg&apos;: 11, &apos;atctag&apos;: 14, &apos;ccccgg&apos;: 14, &apos;ctacta&apos;: 13, &apos;gagagg&apos;: 6, &apos;agaggg&apos;: 9, &apos;tacttt&apos;: 17, &apos;cattcg&apos;: 10, &apos;ccgcct&apos;: 12, &apos;tcccca&apos;: 7, &apos;cattcc&apos;: 13, &apos;cattca&apos;: 14, &apos;acagct&apos;: 18, &apos;tcgcgg&apos;: 18, &apos;gtagac&apos;: 13, &apos;tcgcgc&apos;: 13, &apos;cagtgt&apos;: 17, &apos;tcgcga&apos;: 17, &apos;ggacat&apos;: 10, &apos;tttctg&apos;: 16, &apos;actcct&apos;: 13, &apos;ctaata&apos;: 13, &apos;cagtgc&apos;: 11, &apos;ctaatc&apos;: 13, &apos;cagtga&apos;: 15, &apos;gtagat&apos;: 14, &apos;cagtgg&apos;: 10, &apos;ctaatg&apos;: 17, &apos;tttgag&apos;: 18, &apos;ggacag&apos;: 7, &apos;cccaca&apos;: 8, &apos;ggacac&apos;: 12, &apos;aaccgc&apos;: 16, &apos;ggacaa&apos;: 11, &apos;tttctc&apos;: 12, &apos;ctactg&apos;: 13, &apos;agccat&apos;: 8, &apos;gcctac&apos;: 12, &apos;tactag&apos;: 11, &apos;ccgaac&apos;: 16, &apos;cgtagc&apos;: 12, &apos;gggtga&apos;: 10, &apos;cgaaag&apos;: 11, &apos;aacgct&apos;: 16, &apos;cgaaaa&apos;: 14, &apos;cgaaac&apos;: 10, &apos;gctcag&apos;: 9, &apos;aaacag&apos;: 13, &apos;tactaa&apos;: 5, &apos;ttcccc&apos;: 9, &apos;aaacac&apos;: 18, &apos;ttttga&apos;: 11, &apos;aaacaa&apos;: 12, &apos;ggcaag&apos;: 8, &apos;cgaaat&apos;: 15, &apos;gctcat&apos;: 15, &apos;tactac&apos;: 12, &apos;ggcaaa&apos;: 11, &apos;gtatga&apos;: 13, &apos;ccctca&apos;: 10, &apos;aaacat&apos;: 16, &apos;ccctcg&apos;: 10, &apos;cctgcg&apos;: 12, &apos;cctgtt&apos;: 14, &apos;cccact&apos;: 12, &apos;aggcca&apos;: 14, &apos;ttctgt&apos;: 14, &apos;tacact&apos;: 18, &apos;tccctt&apos;: 10, &apos;tctata&apos;: 13, &apos;tccctc&apos;: 16, &apos;tgcagt&apos;: 16, &apos;tcccta&apos;: 10, &apos;tacaca&apos;: 17, &apos;tccctg&apos;: 8, &apos;ttctgc&apos;: 12, &apos;ttctga&apos;: 26, &apos;ggaagg&apos;: 10, &apos;tagccc&apos;: 13, &apos;ggaagc&apos;: 17, &apos;ggaaga&apos;: 13, &apos;cataag&apos;: 15, &apos;cctgat&apos;: 20, &apos;cataaa&apos;: 10, &apos;cataac&apos;: 19, &apos;tgtttc&apos;: 10, &apos;gtatgc&apos;: 11, &apos;gtaaat&apos;: 10, &apos;ccgata&apos;: 10, &apos;tggagt&apos;: 10, &apos;cctgaa&apos;: 11, &apos;cctgac&apos;: 14, &apos;cctgag&apos;: 19, &apos;cgctac&apos;: 20, &apos;tgaaga&apos;: 18, &apos;cgctag&apos;: 20, &apos;tgatcc&apos;: 11, &apos;tgatca&apos;: 22, &apos;tacggc&apos;: 9, &apos;tgatcg&apos;: 13, &apos;acgact&apos;: 8, &apos;gtggtt&apos;: 8, &apos;ggatac&apos;: 5, &apos;cgctat&apos;: 11, &apos;gagatc&apos;: 13, &apos;agttgg&apos;: 12, &apos;tggggg&apos;: 11, &apos;acgaca&apos;: 17, &apos;acgacg&apos;: 7, &apos;tggggc&apos;: 8, &apos;agttga&apos;: 18, &apos;tgggga&apos;: 10, &apos;aacaga&apos;: 14, &apos;aacagc&apos;: 13, &apos;atggga&apos;: 13, &apos;tgttct&apos;: 12, &apos;gcaatt&apos;: 8, &apos;aacagg&apos;: 20, &apos;ttttgt&apos;: 12, &apos;gagatg&apos;: 20, &apos;tgttca&apos;: 15, &apos;tgttcc&apos;: 13, &apos;aacagt&apos;: 11, &apos;tgttcg&apos;: 13, &apos;agatga&apos;: 13, &apos;accagt&apos;: 11, &apos;acgatt&apos;: 8, &apos;tacggt&apos;: 12, &apos;gaggcg&apos;: 11, &apos;catccg&apos;: 15, &apos;gaggca&apos;: 21, &apos;catcca&apos;: 10, &apos;gaggcc&apos;: 17, &apos;catccc&apos;: 14, &apos;tctatt&apos;: 13, &apos;tataag&apos;: 14, &apos;ggccgt&apos;: 12, &apos;tataaa&apos;: 9, &apos;gtccga&apos;: 11, &apos;tataac&apos;: 20, &apos;acttgt&apos;: 22, &apos;catcct&apos;: 16, &apos;gaggct&apos;: 11, &apos;ttcatg&apos;: 10, &apos;gaagca&apos;: 14, &apos;cgccat&apos;: 7, &apos;ggccgg&apos;: 15, &apos;tataat&apos;: 15, &apos;acttga&apos;: 15, &apos;acttgg&apos;: 14, &apos;taaaat&apos;: 10, &apos;ggccga&apos;: 16, &apos;attcgc&apos;: 16, &apos;attcga&apos;: 9, &apos;acctag&apos;: 14, &apos;attcgg&apos;: 10, &apos;aactac&apos;: 8, &apos;cgccca&apos;: 18, &apos;acctac&apos;: 12, &apos;ccgcag&apos;: 10, &apos;ccgcaa&apos;: 13, &apos;ccgcac&apos;: 15, &apos;tttaaa&apos;: 13, &apos;acctat&apos;: 11, &apos;gtatca&apos;: 15, &apos;gcctcg&apos;: 16, &apos;tactcc&apos;: 11, &apos;gcgcag&apos;: 7, &apos;tactca&apos;: 16, &apos;gcctcc&apos;: 8, &apos;caatat&apos;: 10, &apos;ccgcat&apos;: 10, &apos;cctatg&apos;: 13, &apos;taactc&apos;: 12, &apos;attagt&apos;: 15, &apos;taacta&apos;: 15, &apos;acggag&apos;: 18, &apos;ccccgt&apos;: 12, &apos;cctata&apos;: 15, &apos;gatggc&apos;: 15, &apos;ggcacg&apos;: 19, &apos;gatggg&apos;: 18, &apos;gcgccc&apos;: 15, &apos;attagg&apos;: 10, &apos;aactcc&apos;: 13, &apos;gcgccg&apos;: 17, &apos;gacaag&apos;: 14, &apos;attagc&apos;: 8, &apos;taactt&apos;: 13, &apos;gatggt&apos;: 18, &apos;ataaaa&apos;: 9, &apos;tcctga&apos;: 19, &apos;gtcgaa&apos;: 11, &apos;aatgtt&apos;: 22, &apos;ctgcag&apos;: 21, &apos;aagtaa&apos;: 11, &apos;aggcgg&apos;: 18, &apos;caccct&apos;: 16, &apos;aatgtc&apos;: 16, &apos;aatgta&apos;: 13, &apos;aatgtg&apos;: 13, &apos;acctcc&apos;: 7, &apos;atagta&apos;: 11, &apos;aggcga&apos;: 13, &apos;ctgcat&apos;: 11, &apos;aagtat&apos;: 9, &apos;gttcct&apos;: 16, &apos;taaaag&apos;: 13, &apos;acaagt&apos;: 9, &apos;aaccaa&apos;: 17, &apos;agactg&apos;: 9, &apos;aaccac&apos;: 7, &apos;aggagt&apos;: 14, &apos;ctctaa&apos;: 15, &apos;agactc&apos;: 17, &apos;ttgccc&apos;: 15, &apos;agacta&apos;: 14, &apos;taatga&apos;: 15, &apos;gttccg&apos;: 13, &apos;gttcca&apos;: 12, &apos;cgccac&apos;: 11, &apos;gttccc&apos;: 10, &apos;ctctat&apos;: 10, &apos;agactt&apos;: 6, &apos;taaaaa&apos;: 9, &apos;aaccat&apos;: 14, &apos;gttggg&apos;: 8, &apos;tagaat&apos;: 13, &apos;gttggc&apos;: 11, &apos;aggtat&apos;: 9, &apos;gatcgt&apos;: 14, &apos;gttggt&apos;: 13, &apos;tagaac&apos;: 6, &apos;tagaag&apos;: 5, &apos;aggtag&apos;: 16, &apos;aggtaa&apos;: 17, &apos;aggtac&apos;: 8, &apos;tatcca&apos;: 13, &apos;ctttgt&apos;: 8, &apos;aggcgt&apos;: 9, &apos;acagaa&apos;: 11, &apos;tatccc&apos;: 15, &apos;agcgat&apos;: 16, &apos;ctttgg&apos;: 12, &apos;aggttt&apos;: 18, &apos;ctttgc&apos;: 17, &apos;ctttga&apos;: 10, &apos;agcgac&apos;: 11, &apos;ttgggg&apos;: 9, &apos;ttggga&apos;: 10, &apos;ttgggc&apos;: 12, &apos;tttgat&apos;: 7, &apos;ccacca&apos;: 14, &apos;ccaccc&apos;: 12, &apos;tcagac&apos;: 12, &apos;ccacct&apos;: 13, &apos;ccctag&apos;: 13, &apos;tttgac&apos;: 11, &apos;tttgaa&apos;: 7, &apos;ttttgc&apos;: 11, &apos;cagcag&apos;: 13, &apos;ctgact&apos;: 8, &apos;aacatg&apos;: 15, &apos;ttttgg&apos;: 14, &apos;atcgat&apos;: 14, &apos;tagcca&apos;: 15, &apos;tctatc&apos;: 17, &apos;tctatg&apos;: 8, &apos;ctgacg&apos;: 12, &apos;ctgacc&apos;: 13, &apos;ctgaca&apos;: 14, &apos;tggaca&apos;: 6, &apos;atcgag&apos;: 11, &apos;tagcct&apos;: 16, &apos;atcgaa&apos;: 16, &apos;atcgac&apos;: 13, &apos;cgtact&apos;: 10, &apos;gtcctt&apos;: 11, &apos;gtcaaa&apos;: 8, &apos;ccaggt&apos;: 8, &apos;taggaa&apos;: 18, &apos;taggag&apos;: 13, &apos;taaata&apos;: 16, &apos;gtccta&apos;: 9, &apos;cgtaca&apos;: 12, &apos;gtcctc&apos;: 8, &apos;cgtacc&apos;: 15, &apos;ccggga&apos;: 9, &apos;gtcctg&apos;: 15, &apos;cgtacg&apos;: 6, &apos;caccca&apos;: 16, &apos;ccaggg&apos;: 11, &apos;ccagga&apos;: 19, &apos;cacccg&apos;: 12, &apos;atacag&apos;: 13, &apos;ccaggc&apos;: 10, &apos;gaccat&apos;: 19, &apos;gtgtgc&apos;: 13, &apos;gtgtga&apos;: 16, &apos;gtgtgg&apos;: 8, &apos;cagcgt&apos;: 9, &apos;gaccag&apos;: 7, &apos;cgcaac&apos;: 13, &apos;gaccac&apos;: 14, &apos;gaccaa&apos;: 4, &apos;ggtgcc&apos;: 14, &apos;ccgggt&apos;: 18, &apos;tgtcac&apos;: 8, &apos;gtgtgt&apos;: 9, &apos;atggtc&apos;: 14, &apos;cagatg&apos;: 19, &apos;atggta&apos;: 18, &apos;atggtg&apos;: 15, &apos;cagatc&apos;: 16, &apos;acgccc&apos;: 17, &apos;cagata&apos;: 16, &apos;actccg&apos;: 8, &apos;gcggcg&apos;: 7, &apos;gtggcc&apos;: 15, &apos;tccgct&apos;: 10, &apos;acgcct&apos;: 14, &apos;cagatt&apos;: 14, &apos;atggtt&apos;: 19, &apos;tccgcc&apos;: 14, &apos;tccgca&apos;: 13, &apos;tccgcg&apos;: 11, &apos;gagtgt&apos;: 9, &apos;ctggga&apos;: 7, &apos;ttagtt&apos;: 11, &apos;ctgggc&apos;: 12, &apos;ataaac&apos;: 8, &apos;ctgggg&apos;: 14, &apos;ttatga&apos;: 13, &apos;gggcta&apos;: 7, &apos;gggctg&apos;: 15, &apos;ttatgg&apos;: 13, &apos;ccattc&apos;: 12, &apos;ccggaa&apos;: 15, &apos;ctgggt&apos;: 9, &apos;ttagtc&apos;: 17, &apos;ttagta&apos;: 11, &apos;gtcaat&apos;: 14, &apos;agcgtg&apos;: 11, &apos;ttatgt&apos;: 10, &apos;ccatta&apos;: 8, &apos;gggctt&apos;: 15, &apos;ttccac&apos;: 14, &apos;tctccg&apos;: 13, &apos;ttccaa&apos;: 12, &apos;ttccag&apos;: 12, &apos;aatatc&apos;: 14, &apos;aagccg&apos;: 13, &apos;ccattg&apos;: 17, &apos;aagccc&apos;: 14, &apos;ctatcg&apos;: 15, &apos;aagcca&apos;: 15, &apos;caaaat&apos;: 13, &apos;cacttt&apos;: 11, &apos;ttccat&apos;: 17, &apos;caaaac&apos;: 12, &apos;tctccc&apos;: 14, &apos;caaaaa&apos;: 7, &apos;aagcct&apos;: 7, &apos;caaaag&apos;: 9, &apos;tgtgtg&apos;: 13, &apos;cctaat&apos;: 15, &apos;ttacgc&apos;: 8, &apos;gcgatt&apos;: 20, &apos;ggtggc&apos;: 9, &apos;ggcatg&apos;: 10, &apos;cgtcat&apos;: 14, &apos;ggcata&apos;: 12, &apos;gtctct&apos;: 18, &apos;tggata&apos;: 12, &apos;tggatc&apos;: 20, &apos;tggatg&apos;: 21, &apos;gtctcc&apos;: 8, &apos;cgtcaa&apos;: 14, &apos;gtctca&apos;: 16, &apos;gcgatg&apos;: 16, &apos;gtctcg&apos;: 12, &apos;gcgata&apos;: 11, &apos;gaacat&apos;: 19, &apos;gcgatc&apos;: 14, &apos;tgatgg&apos;: 13, &apos;gcggcc&apos;: 11, &apos;taaatg&apos;: 11, &apos;tcaaat&apos;: 12, &apos;agccct&apos;: 16, &apos;gacagt&apos;: 10, &apos;aatcgc&apos;: 9, &apos;cttcat&apos;: 14, &apos;gagttt&apos;: 14, &apos;gacagg&apos;: 14, &apos;tcaatc&apos;: 11, &apos;cttcaa&apos;: 16, &apos;tcaaag&apos;: 17, &apos;gacagc&apos;: 14, &apos;tcaaaa&apos;: 10, &apos;gacaga&apos;: 15, &apos;tcaaac&apos;: 13, &apos;tcctag&apos;: 15, &apos;tcctac&apos;: 14, &apos;tgatga&apos;: 12, &apos;tgccct&apos;: 12, &apos;ctatct&apos;: 14, &apos;taatag&apos;: 13, &apos;tcatgt&apos;: 12, &apos;taatac&apos;: 16, &apos;taataa&apos;: 11, &apos;tgcccc&apos;: 15, &apos;ttgcca&apos;: 13, &apos;cctaaa&apos;: 18, &apos;tgcccg&apos;: 13, &apos;tgcttg&apos;: 14, &apos;taatat&apos;: 15, &apos;aggccc&apos;: 14, &apos;taagcc&apos;: 17, &apos;taagca&apos;: 11, &apos;taagcg&apos;: 13, &apos;gttatg&apos;: 11, &apos;gagagt&apos;: 13, &apos;gttatc&apos;: 15, &apos;gttata&apos;: 13, &apos;tgcgaa&apos;: 14, &apos;tcgggg&apos;: 9, &apos;taagct&apos;: 21, &apos;ttacta&apos;: 13, &apos;acgatc&apos;: 12, &apos;gttatt&apos;: 10, &apos;ttacgg&apos;: 11, &apos;aatatg&apos;: 20, &apos;tcatgc&apos;: 17, &apos;cggccc&apos;: 15, &apos;cggcca&apos;: 14, &apos;atacgt&apos;: 12, &apos;tcatga&apos;: 7, &apos;gggtat&apos;: 16, &apos;caaatt&apos;: 13, &apos;tcaatt&apos;: 13, &apos;gggtac&apos;: 21, &apos;gggtaa&apos;: 15, &apos;gggtag&apos;: 11, &apos;cggcct&apos;: 17, &apos;acatga&apos;: 13, &apos;tatata&apos;: 7, &apos;ggagtt&apos;: 12, &apos;gagtta&apos;: 20, &apos;acatgg&apos;: 15, &apos;tcgtac&apos;: 12, &apos;tcgtaa&apos;: 19, &apos;agaaat&apos;: 12, &apos;tcgtag&apos;: 8, &apos;agagag&apos;: 10, &apos;gaacaa&apos;: 10, &apos;ggagta&apos;: 7, &apos;gaacac&apos;: 14, &apos;ggagtc&apos;: 10, &apos;acatgt&apos;: 18, &apos;tatatt&apos;: 14, &apos;ggagtg&apos;: 14, &apos;agaaag&apos;: 15, &apos;ggcaga&apos;: 9, &apos;agaaac&apos;: 11, &apos;agaaaa&apos;: 9, &apos;tcgtat&apos;: 17, &apos;ggactt&apos;: 16, &apos;tggacc&apos;: 12, &apos;atatgc&apos;: 13, &apos;tagacg&apos;: 11, &apos;cagttc&apos;: 13, &apos;cagtta&apos;: 8, &apos;cagttg&apos;: 21, &apos;gtcggt&apos;: 18, &apos;gaatac&apos;: 10, &apos;aggctc&apos;: 18, &apos;acccgg&apos;: 14, &apos;aggccg&apos;: 16, &apos;gggctc&apos;: 9, &apos;gttagc&apos;: 15, &apos;tggacg&apos;: 11, &apos;cagttt&apos;: 14, &apos;ctggtt&apos;: 21, &apos;tgaact&apos;: 9, &apos;ttatgc&apos;: 4, &apos;tagaca&apos;: 14, &apos;gccagg&apos;: 12, &apos;tgaacg&apos;: 19, &apos;ctggtg&apos;: 13, &apos;ctggta&apos;: 12, &apos;gaaagg&apos;: 16, &apos;ctggtc&apos;: 9, &apos;tgaaca&apos;: 11, &apos;gggccg&apos;: 11, &apos;catatt&apos;: 17, &apos;gggccc&apos;: 13, &apos;gggcca&apos;: 14, &apos;ttcgcg&apos;: 15, &apos;ttcgca&apos;: 19, &apos;gacgcg&apos;: 13, &apos;ctccat&apos;: 12, &apos;ttagtg&apos;: 10, &apos;ttacag&apos;: 12, &apos;ttacaa&apos;: 12, &apos;atgaat&apos;: 10, &apos;ggtcgt&apos;: 11, &apos;ttcgct&apos;: 10, &apos;ctccaa&apos;: 11, &apos;ctccag&apos;: 12, &apos;acatac&apos;: 12, &apos;atgaac&apos;: 14, &apos;atgaaa&apos;: 12, &apos;atgaag&apos;: 12, &apos;caggct&apos;: 9, &apos;agacgg&apos;: 15, &apos;ctcttc&apos;: 14, &apos;ctctta&apos;: 12, &apos;agacgc&apos;: 9, &apos;ctcttg&apos;: 13, &apos;agacga&apos;: 14, &apos;cttaaa&apos;: 13, &apos;tctgat&apos;: 11, &apos;tattct&apos;: 16, &apos;agaagt&apos;: 6, &apos;gtggta&apos;: 10, &apos;agacgt&apos;: 17, &apos;agcaga&apos;: 12, &apos;ctcttt&apos;: 12, &apos;tctgaa&apos;: 24, &apos;tattcc&apos;: 10, &apos;tctgac&apos;: 12, &apos;tcagaa&apos;: 10, &apos;tattcg&apos;: 14, &apos;tctgag&apos;: 19, &apos;gatcga&apos;: 11, &apos;cgcgtg&apos;: 12, &apos;gcatca&apos;: 17, &apos;cgcgtc&apos;: 9, &apos;cgcgta&apos;: 9, &apos;tgacag&apos;: 22, &apos;taacca&apos;: 16, &apos;tgacac&apos;: 9, &apos;tgacaa&apos;: 12, &apos;cgcgtt&apos;: 15, &apos;tgccat&apos;: 11, &apos;tgacat&apos;: 14, &apos;cttgca&apos;: 11, &apos;cttgcc&apos;: 13, &apos;tgagga&apos;: 17, &apos;tgaggc&apos;: 19, &apos;tgaggg&apos;: 17, &apos;cttttg&apos;: 13, &apos;tcgagt&apos;: 15, &apos;ctttta&apos;: 16, &apos;gaaccc&apos;: 11, &apos;tgaggt&apos;: 15, &apos;agagac&apos;: 12, &apos;gataag&apos;: 14, &apos;tcgaga&apos;: 12, &apos;cttttt&apos;: 15, &apos;gaacca&apos;: 11, &apos;tcgagg&apos;: 12, &apos;atgccc&apos;: 8, &apos;gatttt&apos;: 8, &apos;atgcca&apos;: 13, &apos;atgccg&apos;: 17, &apos;gatttg&apos;: 13, &apos;agaagg&apos;: 12, &apos;atgcct&apos;: 17, &apos;gattta&apos;: 12, &apos;agggta&apos;: 17, &apos;tctaca&apos;: 15, &apos;tgtaga&apos;: 17, &apos;tctacc&apos;: 13, &apos;actgct&apos;: 20, &apos;tagctg&apos;: 11, &apos;taccct&apos;: 11, &apos;cgcgca&apos;: 14, &apos;ctcact&apos;: 17, &apos;ccgtac&apos;: 12, &apos;actgcc&apos;: 13, &apos;tctact&apos;: 14, &apos;actgcg&apos;: 8, &apos;ctcacc&apos;: 21, &apos;ctcaca&apos;: 12, &apos;ctcacg&apos;: 12, &apos;tacccc&apos;: 5, &apos;tatgag&apos;: 10, &apos;gtggca&apos;: 13, &apos;gcgtat&apos;: 14, &apos;ccgcta&apos;: 22, &apos;tatgac&apos;: 14, &apos;ccgctg&apos;: 7, &apos;tatgaa&apos;: 13, &apos;gtggcg&apos;: 9, &apos;tcggcg&apos;: 16, &apos;cacctg&apos;: 12, &apos;ctaggg&apos;: 11, &apos;tcggcc&apos;: 11, &apos;gatatt&apos;: 11, &apos;ccccaa&apos;: 11, &apos;gcgtag&apos;: 9, &apos;ccccac&apos;: 8, &apos;tatgat&apos;: 15, &apos;gtggct&apos;: 14, &apos;gcgtac&apos;: 9, &apos;ccccag&apos;: 10, &apos;gcgtaa&apos;: 11, &apos;gatatc&apos;: 21, &apos;tcggct&apos;: 14, &apos;cccatg&apos;: 12, &apos;acacag&apos;: 15, &apos;acacaa&apos;: 10, &apos;acacac&apos;: 16, &apos;gtaggc&apos;: 18, &apos;gacctg&apos;: 17, &apos;ggacgt&apos;: 27, &apos;gacctc&apos;: 9, &apos;acacat&apos;: 16, &apos;gcctct&apos;: 15, &apos;tttggt&apos;: 12, &apos;gcgggc&apos;: 15, &apos;gagtgc&apos;: 8, &apos;ggacgc&apos;: 17, &apos;gcgggg&apos;: 12, &apos;ggacgg&apos;: 9, &apos;atagag&apos;: 13, &apos;ggcgct&apos;: 16, &apos;cgctaa&apos;: 13, &apos;acttcc&apos;: 15, &apos;tacaag&apos;: 9, &apos;ggcagt&apos;: 16, &apos;gaaagt&apos;: 16, &apos;aaacga&apos;: 8, &apos;gctcgc&apos;: 10, &apos;aaacgc&apos;: 11, &apos;gctcga&apos;: 9, &apos;cgaacc&apos;: 16, &apos;gctcgg&apos;: 12, &apos;aaacgg&apos;: 9, &apos;tacaat&apos;: 12, &apos;ggcagc&apos;: 12, &apos;ggcagg&apos;: 15, &apos;ttaggt&apos;: 12, &apos;aaacgt&apos;: 12, &apos;gctcgt&apos;: 13, &apos;tggatt&apos;: 14, &apos;gagaat&apos;: 15, &apos;ggtatg&apos;: 10, &apos;ggtata&apos;: 14, &apos;ggtatc&apos;: 12, &apos;aggcat&apos;: 12, &apos;gcagcg&apos;: 12, &apos;aattat&apos;: 12, &apos;aaaggg&apos;: 16, &apos;aggcac&apos;: 21, &apos;tggtct&apos;: 18, &apos;aggcaa&apos;: 14, &apos;gtcggc&apos;: 14, &apos;aggcag&apos;: 20, &apos;gagaac&apos;: 16, &apos;gtcggg&apos;: 10, &apos;aaagga&apos;: 15, &apos;cggttt&apos;: 11, &apos;ctactc&apos;: 19, &apos;acgtta&apos;: 10, &apos;attggt&apos;: 12, &apos;acgttg&apos;: 11, &apos;gcacct&apos;: 11, &apos;ggaaag&apos;: 18, &apos;gctccg&apos;: 18, &apos;gaatgg&apos;: 18, &apos;gaatga&apos;: 7, &apos;gaatgc&apos;: 18, &apos;attggg&apos;: 7, &apos;gcaccc&apos;: 10, &apos;gcctgc&apos;: 9, &apos;attggc&apos;: 12, &apos;ggaaat&apos;: 17, &apos;gcaccg&apos;: 17, &apos;acgttt&apos;: 17, &apos;gaatgt&apos;: 20, &apos;tatcta&apos;: 10, &apos;ggcatc&apos;: 20, &apos;aatctg&apos;: 13, &apos;aattgg&apos;: 11, &apos;taagtt&apos;: 16, &apos;aattga&apos;: 18, &apos;aattgc&apos;: 13, &apos;atactg&apos;: 11, &apos;cgctcg&apos;: 13, &apos;atacta&apos;: 10, &apos;cgctca&apos;: 12, &apos;atactc&apos;: 11, &apos;cgctcc&apos;: 13, &apos;taagtg&apos;: 18, &apos;aattgt&apos;: 12, &apos;aatctt&apos;: 11, &apos;taagtc&apos;: 7, &apos;caccgg&apos;: 11, &apos;acccgt&apos;: 14, &apos;agttaa&apos;: 16, &apos;atactt&apos;: 12, &apos;agttac&apos;: 8, &apos;agttag&apos;: 9, &apos;gtgggt&apos;: 11, &apos;ggtggt&apos;: 11, &apos;gaagat&apos;: 12, &apos;tgctca&apos;: 10, &apos;tgctcc&apos;: 19, &apos;accctt&apos;: 13, &apos;gggcga&apos;: 7, &apos;tgctcg&apos;: 11, &apos;ttaaaa&apos;: 10, &apos;ggacga&apos;: 11, &apos;ggcatt&apos;: 11, &apos;tgaagg&apos;: 12, &apos;acccta&apos;: 9, &apos;accctc&apos;: 10, &apos;tgctct&apos;: 12, &apos;accctg&apos;: 15, &apos;gacgac&apos;: 12, &apos;acattt&apos;: 17, &apos;agcatt&apos;: 12, &apos;ccactt&apos;: 11, &apos;cgtata&apos;: 15, &apos;gacgta&apos;: 17, &apos;cgtatc&apos;: 21, &apos;gacgtc&apos;: 23, &apos;gaggac&apos;: 14, &apos;ggccat&apos;: 12, &apos;gccctt&apos;: 12, &apos;gacgtg&apos;: 17, &apos;tatacg&apos;: 9, &apos;agcatg&apos;: 13, &apos;acattg&apos;: 13, &apos;tatacc&apos;: 13, &apos;agcatc&apos;: 17, &apos;acattc&apos;: 17, &apos;agcata&apos;: 15, &apos;ggttca&apos;: 21, &apos;gccctc&apos;: 19, &apos;ggttcc&apos;: 12, &apos;accgtg&apos;: 15, &apos;gacgtt&apos;: 15, &apos;ctctac&apos;: 16, &apos;ggttcg&apos;: 19, &apos;accgtc&apos;: 12, &apos;gagtcc&apos;: 13, &apos;tcacaa&apos;: 14, &apos;ccttct&apos;: 18, &apos;ttgagt&apos;: 18, &apos;catgca&apos;: 15, &apos;gactcc&apos;: 7, &apos;ccgccg&apos;: 15, &apos;ccttcc&apos;: 10, &apos;ccgccc&apos;: 11, &apos;gagtct&apos;: 16, &apos;ttgagg&apos;: 19, &apos;tgtggt&apos;: 7, &apos;ttgagc&apos;: 19, &apos;ttgaga&apos;: 13, &apos;agaatt&apos;: 11, &apos;attata&apos;: 14, &apos;gatgat&apos;: 16, &apos;tcgggc&apos;: 14, &apos;ggagca&apos;: 11, &apos;ggagcc&apos;: 20, &apos;gtgagt&apos;: 11, &apos;ggagcg&apos;: 15, &apos;gatgac&apos;: 11, &apos;agaatg&apos;: 22, &apos;gatgag&apos;: 14, &apos;aatcgg&apos;: 15, &apos;catgag&apos;: 12, &apos;ggagct&apos;: 15, &apos;catgaa&apos;: 10, &apos;aagtct&apos;: 13, &apos;ctgcta&apos;: 15, &apos;tgattt&apos;: 12, &apos;tttacc&apos;: 11, &apos;ctgcca&apos;: 16, &apos;ctgccc&apos;: 14, &apos;tctgca&apos;: 20, &apos;ctgccg&apos;: 13, &apos;tttaca&apos;: 13, &apos;gtctat&apos;: 10, &apos;aagtcc&apos;: 11, &apos;tctgcg&apos;: 9, &apos;caaagc&apos;: 16, &apos;aatcga&apos;: 12, &apos;ctgcct&apos;: 9, &apos;tagcat&apos;: 17, &apos;cctggc&apos;: 16, &apos;ctctct&apos;: 12, &apos;cctggg&apos;: 15, &apos;aaccct&apos;: 5, &apos;ggtcgc&apos;: 11, &apos;gttcat&apos;: 13, &apos;aacccc&apos;: 15, &apos;ctccct&apos;: 12, &apos;aaccca&apos;: 12, &apos;ctctcc&apos;: 15, &apos;cagaga&apos;: 8, &apos;ttgcaa&apos;: 10, &apos;ataacc&apos;: 18, &apos;gttcag&apos;: 22, &apos;gttcac&apos;: 18, &apos;gttcaa&apos;: 20, &apos;ttactc&apos;: 11, &apos;ataaca&apos;: 22, &apos;ttactg&apos;: 17, &apos;cccgat&apos;: 7, &apos;gcgcgc&apos;: 13, &apos;ccaatg&apos;: 10, &apos;tcgata&apos;: 13, &apos;tcgatc&apos;: 14, &apos;cttcac&apos;: 18, &apos;ttactt&apos;: 15, &apos;atatgt&apos;: 12, &apos;tagagc&apos;: 8, &apos;tagaga&apos;: 18, &apos;catgcc&apos;: 12, &apos;agcccg&apos;: 15, &apos;ttaccg&apos;: 8, &apos;gttgta&apos;: 15, &apos;cttcag&apos;: 12, &apos;aaaatt&apos;: 8, &apos;agtttg&apos;: 13, &apos;cacgtc&apos;: 13, &apos;tgagtg&apos;: 11, &apos;tgagta&apos;: 15, &apos;agcccc&apos;: 10, &apos;tgagtc&apos;: 20, &apos;aaaatg&apos;: 4, &apos;aaaatc&apos;: 17, &apos;aaaata&apos;: 14, &apos;catgcg&apos;: 9, &apos;caagtt&apos;: 15, &apos;ccacat&apos;: 11, &apos;caccaa&apos;: 13, &apos;caatga&apos;: 8, &apos;tctgct&apos;: 11, &apos;tttgct&apos;: 12, &apos;caatgg&apos;: 11, &apos;atgctg&apos;: 11, &apos;caagtg&apos;: 17, &apos;ccacac&apos;: 13, &apos;caagtc&apos;: 13, &apos;ccacaa&apos;: 11, &apos;caagta&apos;: 13, &apos;tttgca&apos;: 15, &apos;tttgcc&apos;: 8, &apos;caatgt&apos;: 16, &apos;atgctc&apos;: 8, &apos;tttgcg&apos;: 17, &apos;gttagg&apos;: 18, &apos;agctac&apos;: 18, &apos;ctgaat&apos;: 14, &apos;tcctaa&apos;: 18, &apos;gttaga&apos;: 23, &apos;tgcctc&apos;: 12, &apos;cggtag&apos;: 6, &apos;ggggtt&apos;: 15, &apos;cggtac&apos;: 14, &apos;cggtaa&apos;: 11, &apos;ctgaaa&apos;: 14, &apos;gttagt&apos;: 8, &apos;attcca&apos;: 9, &apos;ctgaag&apos;: 20, &apos;ggggtg&apos;: 8, &apos;cggtat&apos;: 12, &apos;ggggtc&apos;: 20, &apos;cgtaac&apos;: 16, &apos;taggct&apos;: 18, &apos;agacaa&apos;: 15, &apos;atccct&apos;: 18, &apos;cccgac&apos;: 11, &apos;gcgtgc&apos;: 5, &apos;gattgg&apos;: 13, &apos;atatat&apos;: 12, &apos;gattgc&apos;: 13, &apos;ttccga&apos;: 10, &apos;gattga&apos;: 13, &apos;atcccg&apos;: 15, &apos;taggcg&apos;: 16, &apos;atcccc&apos;: 18, &apos;atccca&apos;: 13, &apos;atatag&apos;: 9, &apos;gattgt&apos;: 15, &apos;atataa&apos;: 13, &apos;atatac&apos;: 17, &apos;tccgag&apos;: 12, &apos;tgccta&apos;: 13, &apos;tccgaa&apos;: 14, &apos;tgctta&apos;: 10, &apos;actgta&apos;: 10, &apos;actgtc&apos;: 12, &apos;acgaag&apos;: 12, &apos;ccggag&apos;: 12, &apos;tgtata&apos;: 7, &apos;gaccga&apos;: 15, &apos;gaccgc&apos;: 11, &apos;tgcttc&apos;: 12, &apos;gaccgg&apos;: 11, &apos;cgaacg&apos;: 10, &apos;ggtcgg&apos;: 9, &apos;ccggat&apos;: 21, &apos;aggtga&apos;: 8, &apos;ggtcga&apos;: 8, &apos;gtaatg&apos;: 19, &apos;gtaata&apos;: 17, &apos;gagctc&apos;: 14, &apos;gtaatc&apos;: 9, &apos;acgcag&apos;: 18, &apos;acgcac&apos;: 12, &apos;acgcaa&apos;: 14, &apos;gtaatt&apos;: 11, &apos;ggcccg&apos;: 15, &apos;tggaag&apos;: 12, &apos;ctatat&apos;: 6, &apos;ttcaaa&apos;: 25, &apos;ttatat&apos;: 13, &apos;atcaag&apos;: 19, &apos;ctggaa&apos;: 20, &apos;atcaac&apos;: 21, &apos;atcaaa&apos;: 8, &apos;ttatac&apos;: 11, &apos;ttataa&apos;: 14, &apos;ttatag&apos;: 15, &apos;ccgtcc&apos;: 14, &apos;ccaagg&apos;: 15, &apos;atcaat&apos;: 12, &apos;ccaagc&apos;: 13, &apos;ctggat&apos;: 20, &apos;gttcta&apos;: 18, &apos;gtcatc&apos;: 10, &apos;cgtcgc&apos;: 10, &apos;gtcata&apos;: 5, &apos;cgtcga&apos;: 18, &apos;gtcatg&apos;: 20, &apos;cgtcgg&apos;: 19, &apos;gtcacg&apos;: 11, &apos;ctcatc&apos;: 12, &apos;ggcgtt&apos;: 7, &apos;gcaact&apos;: 12, &apos;gacccc&apos;: 13, &apos;cgtcgt&apos;: 13, &apos;gtcatt&apos;: 17, &apos;ttagcc&apos;: 13, &apos;gtctaa&apos;: 8, &apos;agccag&apos;: 14, &apos;agccac&apos;: 17, &apos;gaattt&apos;: 14, &apos;agccaa&apos;: 16, &apos;gtcaca&apos;: 17, &apos;gaatta&apos;: 10, &apos;gaattc&apos;: 20, &apos;ggctgg&apos;: 11, &apos;ggctga&apos;: 14, &apos;gaattg&apos;: 22, &apos;ggctgc&apos;: 11, &apos;ctgctc&apos;: 15, &apos;ttagaa&apos;: 12, &apos;cctatt&apos;: 13, &apos;cactgt&apos;: 12, &apos;gagata&apos;: 17, &apos;acccga&apos;: 9, &apos;gtatct&apos;: 20, &apos;acccgc&apos;: 10, &apos;ccgggg&apos;: 11, &apos;accagc&apos;: 15, &apos;cactgg&apos;: 13, &apos;gacaac&apos;: 12, &apos;accagg&apos;: 9, &apos;cactgc&apos;: 18, &apos;cctatc&apos;: 9, &apos;cactga&apos;: 17, &apos;caccac&apos;: 16, &apos;tcctgc&apos;: 13, &apos;caccag&apos;: 9, &apos;tcctgg&apos;: 19, &apos;aacatt&apos;: 16, &apos;taatgc&apos;: 20, &apos;aggact&apos;: 11, &apos;taatgg&apos;: 15, &apos;tcctgt&apos;: 14, &apos;caccat&apos;: 10, &apos;gcaacc&apos;: 8, &apos;tgccag&apos;: 18, &apos;ctattt&apos;: 13, &apos;taatgt&apos;: 15, &apos;tgcggc&apos;: 13, &apos;tgccac&apos;: 12, &apos;atcata&apos;: 11, &apos;gggtcg&apos;: 12, &apos;gggtca&apos;: 16, &apos;gggtcc&apos;: 17, &apos;caacag&apos;: 17, &apos;taagag&apos;: 13, &apos;caacaa&apos;: 12, &apos;taagaa&apos;: 16, &apos;caacac&apos;: 6, &apos;taagac&apos;: 15, &apos;gggtct&apos;: 15, &apos;atacat&apos;: 14, &apos;taagat&apos;: 9, &apos;caacat&apos;: 14, &apos;tggctc&apos;: 14, &apos;ttcaat&apos;: 15, &apos;tggcta&apos;: 22, &apos;tgtcgt&apos;: 10, &apos;tggctg&apos;: 12, &apos;gaaaac&apos;: 10, &apos;cgcctt&apos;: 20, &apos;cgaagt&apos;: 12, &apos;agcttt&apos;: 11, &apos;gagttg&apos;: 9, &apos;cgcctc&apos;: 14, &apos;ttcaag&apos;: 14, &apos;cgccta&apos;: 16, &apos;gagttc&apos;: 17, &apos;ttgtag&apos;: 14, &apos;ttcaac&apos;: 14, &apos;tggctt&apos;: 16, &apos;agcttc&apos;: 16, &apos;tgcgtg&apos;: 13, &apos;agctta&apos;: 15, &apos;agcttg&apos;: 17, &apos;gacgca&apos;: 18, &apos;gacgcc&apos;: 8, &apos;ttctag&apos;: 16, &apos;gccaga&apos;: 10, &apos;gccagc&apos;: 17, &apos;gcccgt&apos;: 18, &apos;agcagg&apos;: 15, &apos;tcagag&apos;: 9, &apos;cttaag&apos;: 16, &apos;acataa&apos;: 17, &apos;agcagc&apos;: 13, &apos;acatag&apos;: 13, &apos;cttaac&apos;: 13, &apos;gaacct&apos;: 9, &apos;gcccgc&apos;: 11, &apos;gccagt&apos;: 17, &apos;gcccga&apos;: 7, &apos;gcccgg&apos;: 18, &apos;gacgct&apos;: 8, &apos;agaaga&apos;: 9, &apos;cttaat&apos;: 11, &apos;tcagat&apos;: 18, &apos;agcagt&apos;: 23, &apos;gaaccg&apos;: 21, &apos;acatat&apos;: 22, &apos;agtcgt&apos;: 7, &apos;ctagcc&apos;: 10, &apos;ctagca&apos;: 14, &apos;ctagcg&apos;: 15, &apos;ctcgag&apos;: 11, &apos;cgaaga&apos;: 11, &apos;tgttta&apos;: 11, &apos;agtcgg&apos;: 13, &apos;agtcga&apos;: 13, &apos;ctagct&apos;: 21, &apos;agtcgc&apos;: 10, &apos;ttctgg&apos;: 13, &apos;cgaagg&apos;: 12, &apos;catagt&apos;: 11, &apos;ctcgac&apos;: 11, &apos;ctatga&apos;: 10, &apos;atgacg&apos;: 13, &apos;tgaaat&apos;: 8, &apos;atgaca&apos;: 14, &apos;atgacc&apos;: 15, &apos;cggccg&apos;: 12, &apos;gagcgt&apos;: 10, &apos;atgatg&apos;: 10, &apos;atgact&apos;: 12, &apos;tgaaaa&apos;: 13, &apos;tgaaac&apos;: 18, &apos;tgtttg&apos;: 16, &apos;tgaaag&apos;: 14, &apos;caattt&apos;: 11, &apos;tctgcc&apos;: 17, &apos;aactat&apos;: 12, &apos;ttacct&apos;: 17, &apos;gttgtt&apos;: 8, &apos;tattaa&apos;: 12, &apos;ctgctg&apos;: 14, &apos;tattac&apos;: 12, &apos;ttcgag&apos;: 12, &apos;ttggta&apos;: 10, &apos;ttggtc&apos;: 15, &apos;ttcgac&apos;: 13, &apos;ataacg&apos;: 15, &apos;ttcgaa&apos;: 15, &apos;ttggtg&apos;: 13, &apos;tattat&apos;: 9, &apos;aactag&apos;: 12, &apos;gttgtc&apos;: 19, &apos;ttaccc&apos;: 8, &apos;ctgctt&apos;: 12, &apos;ttacca&apos;: 16, &apos;aactaa&apos;: 15, &apos;ctcccg&apos;: 15, &apos;gtagca&apos;: 14, &apos;ctccca&apos;: 23, &apos;ataact&apos;: 20, &apos;ctcccc&apos;: 9, &apos;gttctt&apos;: 15, &apos;agacac&apos;: 13, &apos;ccagtc&apos;: 10, &apos;cttgac&apos;: 17, &apos;agacag&apos;: 12, &apos;cagccg&apos;: 15, &apos;ttgctg&apos;: 10, &apos;cagcca&apos;: 15, &apos;ttgcta&apos;: 11, &apos;cagccc&apos;: 15, &apos;ttgctc&apos;: 17, &apos;cttgag&apos;: 14, &apos;gttctg&apos;: 15, &apos;agacat&apos;: 8, &apos;gttctc&apos;: 16, &apos;ttgctt&apos;: 14, &apos;cagcct&apos;: 12, &apos;cgctct&apos;: 5, &apos;atacgc&apos;: 17, &apos;tgacca&apos;: 10, &apos;tgaccc&apos;: 11, &apos;tgaccg&apos;: 16, &apos;gaaaag&apos;: 16, &apos;tctcat&apos;: 14, &apos;tggaaa&apos;: 17, &apos;tgacct&apos;: 15, &apos;tggtgc&apos;: 13, &apos;tatatc&apos;: 10, &apos;ccagta&apos;: 11, &apos;gtacgt&apos;: 14, &apos;tgagaa&apos;: 11, &apos;tgagag&apos;: 17, &apos;ccagtg&apos;: 17, &apos;acatgc&apos;: 10, &apos;ctatgc&apos;: 10, &apos;gaaaaa&apos;: 15, &apos;gtacgg&apos;: 12, &apos;cagggg&apos;: 11, &apos;ccagtt&apos;: 14, &apos;gtacgc&apos;: 11, &apos;cagggc&apos;: 13, &apos;gtacga&apos;: 13, &apos;cccctt&apos;: 13, &apos;ctcaag&apos;: 13, &apos;ctcaaa&apos;: 11, &apos;ctcaac&apos;: 16, &apos;caaggg&apos;: 14, &apos;caggga&apos;: 12, &apos;gctagg&apos;: 17, &apos;caaggc&apos;: 19, &apos;gctaga&apos;: 19, &apos;caagga&apos;: 18, &apos;gctagc&apos;: 21, &apos;ctcaat&apos;: 11, &apos;taaatc&apos;: 11, &apos;cggttc&apos;: 15, &apos;tgagat&apos;: 9, &apos;gctagt&apos;: 18, &apos;caaggt&apos;: 16, &apos;cattgc&apos;: 14, &apos;cattga&apos;: 15, &apos;cattgg&apos;: 13, &apos;cgggac&apos;: 10, &apos;tctaac&apos;: 8, &apos;gctggt&apos;: 15, &apos;tctaag&apos;: 16, &apos;cgggat&apos;: 12, &apos;cattgt&apos;: 19, &apos;gctggg&apos;: 12, &apos;ccgtcg&apos;: 12, &apos;ccgtca&apos;: 14, &apos;gctgga&apos;: 16, &apos;tatgga&apos;: 12, &apos;tcacga&apos;: 17, &apos;tatggc&apos;: 20, &apos;tcacgc&apos;: 12, &apos;gcgtct&apos;: 12, &apos;tatggg&apos;: 10, &apos;tcacgg&apos;: 17, &apos;ggtggg&apos;: 14, &apos;tcggac&apos;: 15, &apos;ccccct&apos;: 8, &apos;gcgtca&apos;: 11, &apos;gcgtcc&apos;: 9, &apos;tcacgt&apos;: 16, &apos;tatggt&apos;: 16, &apos;gcgtcg&apos;: 7, &apos;cccccc&apos;: 7, &apos;gctgcc&apos;: 11, &apos;ccccca&apos;: 15, &apos;tcggat&apos;: 15, &apos;ctagtt&apos;: 12, &apos;cttgaa&apos;: 12, &apos;gaacag&apos;: 12, &apos;acaccg&apos;: 18, &apos;tcgccc&apos;: 15, &apos;tcgcca&apos;: 6, &apos;acaccc&apos;: 14, &apos;tcgccg&apos;: 14, &apos;acacca&apos;: 13, &apos;ccacta&apos;: 7, &apos;ctagtg&apos;: 11, &apos;ttccgg&apos;: 13, &apos;ctagtc&apos;: 15, &apos;ctagta&apos;: 13, &apos;agtcta&apos;: 11, &apos;agtctc&apos;: 10, &apos;ccactc&apos;: 15, &apos;tcgcct&apos;: 11, &apos;acaata&apos;: 8, &apos;ccctgg&apos;: 7, &apos;ccctga&apos;: 11, &apos;aagctt&apos;: 16, &apos;ccctgc&apos;: 14, &apos;gctgca&apos;: 10, &apos;agggcg&apos;: 12, &apos;tacacg&apos;: 7, &apos;ccctgt&apos;: 16, &apos;aagctc&apos;: 15, &apos;aagcta&apos;: 19, &apos;aagctg&apos;: 18, &apos;ttctcc&apos;: 18, &apos;ttctca&apos;: 19, &apos;ttctcg&apos;: 9, &apos;cgcggt&apos;: 9, &apos;gccgtg&apos;: 14, &apos;ttagac&apos;: 17, &apos;ggcttt&apos;: 10, &apos;ttagag&apos;: 15, &apos;gccgta&apos;: 13, &apos;atgcat&apos;: 11, &apos;ttctct&apos;: 13, &apos;ggctta&apos;: 16, &apos;gccgtt&apos;: 10, &apos;attgct&apos;: 7, &apos;aacggg&apos;: 13, &apos;ttagat&apos;: 14, &apos;ggcttg&apos;: 14, &apos;gccctg&apos;: 15, &apos;tcgaac&apos;: 15, &apos;gcatgt&apos;: 7, &apos;gatcac&apos;: 19, &apos;gaaaca&apos;: 13, &apos;tcgaag&apos;: 9, &apos;gaaacc&apos;: 14, &apos;tagatt&apos;: 18, &apos;tggtag&apos;: 11, &apos;gagact&apos;: 12, &apos;tggtac&apos;: 11, &apos;tggtaa&apos;: 12, &apos;tagatc&apos;: 17, &apos;gaaact&apos;: 20, &apos;tagata&apos;: 16, &apos;tagatg&apos;: 11, &apos;gcatgc&apos;: 10, &apos;tcgaat&apos;: 13, &apos;gcatga&apos;: 13, &apos;gagacg&apos;: 15, &apos;gtcgac&apos;: 14, &apos;tggtat&apos;: 16, &apos;gagacc&apos;: 14, &apos;gtcgag&apos;: 19, &apos;gagaca&apos;: 12, &apos;agttcc&apos;: 12, &apos;tgggcc&apos;: 12, &apos;agttca&apos;: 23, &apos;tgggca&apos;: 14, &apos;agttcg&apos;: 15, &apos;tgggcg&apos;: 9, &apos;gtagct&apos;: 10, &apos;ggaacc&apos;: 14, &apos;acttaa&apos;: 12, &apos;ggaaca&apos;: 14, &apos;ttccgc&apos;: 17, &apos;ggaacg&apos;: 20, &apos;cgggag&apos;: 10, &apos;gcacat&apos;: 19, &apos;attgaa&apos;: 22, &apos;tgggat&apos;: 13, &apos;attgac&apos;: 13, &apos;gtgctc&apos;: 12, &apos;tgggct&apos;: 15, &apos;agttct&apos;: 19, &apos;gcacac&apos;: 15, &apos;tcttga&apos;: 14, &apos;gcacaa&apos;: 13, &apos;tcttgc&apos;: 19, &apos;gcacag&apos;: 13, &apos;attgca&apos;: 14, &apos;tcttgg&apos;: 19, &apos;attttg&apos;: 10, &apos;tgttgg&apos;: 10, &apos;atttta&apos;: 18, &apos;tgttga&apos;: 11, &apos;attttc&apos;: 14, &apos;tgttgc&apos;: 17, &apos;attgcg&apos;: 16, &apos;ctgtca&apos;: 11, &apos;tgttgt&apos;: 19, &apos;attttt&apos;: 13, &apos;ggactg&apos;: 13, &apos;cgcgga&apos;: 22, &apos;aagaag&apos;: 12, &apos;ctgtct&apos;: 15, &apos;tctaaa&apos;: 15, &apos;ggacta&apos;: 14, &apos;ggttac&apos;: 15, &apos;ggttaa&apos;: 16, &apos;ggttag&apos;: 22, &apos;caaagg&apos;: 14, &apos;tgctat&apos;: 18, &apos;gtgtca&apos;: 12, &apos;tgctac&apos;: 12, &apos;ctttag&apos;: 11, &apos;tgctaa&apos;: 9, &apos;ggtgac&apos;: 16, &apos;tgctag&apos;: 16, &apos;ggccct&apos;: 18, &apos;ggtact&apos;: 13, &apos;aggaag&apos;: 9, &apos;aggaaa&apos;: 17, &apos;aggaac&apos;: 9, &apos;gaggga&apos;: 12, &apos;gagggc&apos;: 10, &apos;ggtgag&apos;: 10, &apos;gagggg&apos;: 15, &apos;tacgag&apos;: 14, &apos;tacgac&apos;: 12, &apos;tacgaa&apos;: 8, &apos;ctgttt&apos;: 14, &apos;ttcgat&apos;: 13, &apos;gagggt&apos;: 17, &apos;tcactt&apos;: 21, &apos;ttttat&apos;: 16, &apos;cgccgc&apos;: 17, &apos;ttcatc&apos;: 21, &apos;cgccga&apos;: 14, &apos;ttcata&apos;: 11, &apos;cgccgg&apos;: 18, &apos;gcaggc&apos;: 15, &apos;ccttat&apos;: 13, &apos;tcactg&apos;: 13, &apos;tctcga&apos;: 10, &apos;tcactc&apos;: 22, &apos;tactgc&apos;: 17, &apos;tactga&apos;: 11, &apos;aatctc&apos;: 6, &apos;tactgg&apos;: 11, &apos;ttgaag&apos;: 11, &apos;cgccgt&apos;: 10, &apos;cttatc&apos;: 16, &apos;tcatag&apos;: 9, &apos;cttata&apos;: 12, &apos;tcataa&apos;: 12, &apos;cttatg&apos;: 6, &apos;tcatac&apos;: 12, &apos;ggagat&apos;: 17, &apos;gatgct&apos;: 10, &apos;cgcagt&apos;: 15, &apos;ccttaa&apos;: 16, &apos;catgct&apos;: 15, &apos;attact&apos;: 15, &apos;gctggc&apos;: 12, &apos;ggagac&apos;: 14, &apos;tcatat&apos;: 12, &apos;ggagaa&apos;: 16, &apos;ggagag&apos;: 9, &apos;cttatt&apos;: 13, &apos;acagtg&apos;: 6, &apos;attaca&apos;: 14, &apos;catatc&apos;: 11, &apos;cgcagg&apos;: 11, &apos;gatgcg&apos;: 18, &apos;cgcaga&apos;: 13, &apos;gatgca&apos;: 15, &apos;attacg&apos;: 9, &apos;gatgcc&apos;: 12, &apos;agatcc&apos;: 19, &apos;gtctag&apos;: 18, &apos;ataatt&apos;: 22, &apos;acagtc&apos;: 7, &apos;cggaga&apos;: 11, &apos;ataatg&apos;: 16, &apos;agatcg&apos;: 11, &apos;ataatc&apos;: 15, &apos;ggaatt&apos;: 21, &apos;ataata&apos;: 8, &apos;ttgcgt&apos;: 18, &apos;ccgtaa&apos;: 12, &apos;gttcgt&apos;: 16, &apos;aacata&apos;: 16, &apos;ttgcga&apos;: 16, &apos;ttgcgc&apos;: 18, &apos;cggagg&apos;: 16, &apos;ttgcgg&apos;: 14, &apos;tcggaa&apos;: 18, &apos;gttcga&apos;: 19, &apos;ttttaa&apos;: 12, &apos;gttcgc&apos;: 15, &apos;gttcgg&apos;: 9, &apos;gcaggt&apos;: 11, &apos;ttggca&apos;: 15, &apos;aaatcg&apos;: 12, &apos;cacgcg&apos;: 17, &apos;ggtagt&apos;: 10, &apos;aaatcc&apos;: 18, &apos;cacgcc&apos;: 8, &apos;aaatca&apos;: 16, &apos;gttgca&apos;: 17, &apos;gttgcc&apos;: 15, &apos;gttgcg&apos;: 22, &apos;cacgct&apos;: 11, &apos;aaatct&apos;: 11, &apos;ggtagc&apos;: 11, &apos;ccatga&apos;: 12, &apos;ttggct&apos;: 14, &apos;ttggcg&apos;: 18, &apos;ggtagg&apos;: 18, &apos;gacatc&apos;: 8, &apos;tcggag&apos;: 14, &apos;gttgct&apos;: 20, &apos;gtcgtc&apos;: 15, &apos;ccgtag&apos;: 12, &apos;gcagct&apos;: 11, &apos;aacatc&apos;: 14, &apos;ctttct&apos;: 11, &apos;gaacgc&apos;: 17, &apos;ctttcc&apos;: 18, &apos;actctg&apos;: 15, &apos;ctttca&apos;: 20, &apos;gcagca&apos;: 10, &apos;ctttcg&apos;: 17, &apos;gcagcc&apos;: 15, &apos;tctctg&apos;: 15, &apos;tgacta&apos;: 10, &apos;tgactc&apos;: 8, &apos;gctatt&apos;: 12, &apos;tgactg&apos;: 11, &apos;attcat&apos;: 11, &apos;cgcggg&apos;: 21, &apos;gctata&apos;: 12, &apos;caatac&apos;: 15, &apos;ccacgc&apos;: 11, &apos;caataa&apos;: 12, &apos;caatag&apos;: 12, &apos;gctatg&apos;: 14, &apos;atgcag&apos;: 16, &apos;tggccc&apos;: 15, &apos;ggtaga&apos;: 6, &apos;caactc&apos;: 17, &apos;gttaac&apos;: 21, &apos;caacta&apos;: 15, &apos;caactg&apos;: 11, &apos;gttaag&apos;: 16, &apos;gtcgtt&apos;: 10, &apos;tagcgt&apos;: 8, &apos;cggtca&apos;: 10, &apos;cggtcc&apos;: 6, &apos;cttccc&apos;: 9, &apos;ctgagt&apos;: 18, &apos;cgataa&apos;: 9, &apos;gttaat&apos;: 22, &apos;caactt&apos;: 11, &apos;ctgagc&apos;: 17, &apos;ctgaga&apos;: 18, &apos;cggtct&apos;: 12, &apos;ctgagg&apos;: 20, &apos;tcaacg&apos;: 19, &apos;cgtggt&apos;: 14, &apos;atccat&apos;: 15, &apos;cttccg&apos;: 9, &apos;tggtta&apos;: 15, &apos;gattaa&apos;: 25, &apos;gattac&apos;: 10, &apos;gattag&apos;: 12, &apos;atccaa&apos;: 12, &apos;atccac&apos;: 6, &apos;cgtggc&apos;: 10, &apos;cgtgga&apos;: 14, &apos;atgcaa&apos;: 13, &apos;aggaat&apos;: 20, &apos;aggatc&apos;: 17, &apos;gattat&apos;: 16, &apos;aaagta&apos;: 9, &apos;aaagtc&apos;: 18, &apos;ccggct&apos;: 18, &apos;tcgctt&apos;: 12, &apos;tgctgg&apos;: 16, &apos;tggcct&apos;: 14, &apos;agtata&apos;: 14, &apos;ccggcc&apos;: 19, &apos;ccggca&apos;: 18, &apos;aaagtt&apos;: 16, &apos;tcgctg&apos;: 9, &apos;tcgctc&apos;: 13, &apos;tcgcta&apos;: 12, &apos;aaactg&apos;: 15, &apos;gtgcga&apos;: 18, &apos;cccttt&apos;: 10, &apos;cgcggc&apos;: 10, &apos;aaactc&apos;: 11, &apos;acgcga&apos;: 16, &apos;agtacg&apos;: 11, &apos;gcgttc&apos;: 4, &apos;agtacc&apos;: 10, &apos;ctatgg&apos;: 15, &apos;agtaca&apos;: 7, &apos;aaactt&apos;: 17, &apos;cccttc&apos;: 11, &apos;atgcac&apos;: 8, &apos;cccttg&apos;: 14, &apos;ttacat&apos;: 11, &apos;tacgct&apos;: 10, &apos;agtact&apos;: 10, &apos;cgaagc&apos;: 15, &apos;acgcgt&apos;: 11, &apos;ctggct&apos;: 12, &apos;gggata&apos;: 8, &apos;gggatc&apos;: 15, &apos;gggcgg&apos;: 12, &apos;aaatga&apos;: 13, &apos;gggatg&apos;: 16, &apos;ttatct&apos;: 20, &apos;atcaca&apos;: 15, &apos;atcacc&apos;: 9, &apos;ccaaat&apos;: 18, &apos;cgaatt&apos;: 21, &apos;cgatga&apos;: 16, &apos;ttcttg&apos;: 11, &apos;aggacg&apos;: 21, &apos;ctggcg&apos;: 11, &apos;ttcttc&apos;: 18, &apos;ctggca&apos;: 15, &apos;ttctta&apos;: 10, &apos;ctggcc&apos;: 12, &apos;ccaaaa&apos;: 9, &apos;cgaatc&apos;: 15, &apos;ccaaac&apos;: 15, &apos;cgaata&apos;: 11, &apos;atcact&apos;: 13, &apos;cgaatg&apos;: 14, &apos;ccaaag&apos;: 16, &apos;ttatcc&apos;: 17, &apos;cacaat&apos;: 10, &apos;aagagg&apos;: 10, &apos;aagaga&apos;: 19, &apos;aagagc&apos;: 16, &apos;aagcgt&apos;: 14, &apos;tatcga&apos;: 12, &apos;tctttg&apos;: 9, &apos;tcttta&apos;: 14, &apos;tctttc&apos;: 17, &apos;aagcgc&apos;: 14, &apos;aagagt&apos;: 16, &apos;aagcga&apos;: 17, &apos;aagcgg&apos;: 15, &apos;tatcgc&apos;: 13, &apos;cacaac&apos;: 17, &apos;tctttt&apos;: 13, &apos;gacacc&apos;: 12, &apos;agccgc&apos;: 9, &apos;tgggtt&apos;: 11, &apos;gacacg&apos;: 14, &apos;agccgg&apos;: 21, &apos;tacgca&apos;: 9, &apos;gtatac&apos;: 11, &apos;ccacga&apos;: 14, &apos;tgggtg&apos;: 11, &apos;gccggt&apos;: 19, &apos;tgggtc&apos;: 10, &apos;agccgt&apos;: 11, &apos;acgttc&apos;: 18, &apos;gtatat&apos;: 9, &apos;ggtgga&apos;: 16, &apos;tccaat&apos;: 7, &apos;aatttt&apos;: 18, &apos;aatcct&apos;: 14, &apos;gcattg&apos;: 15, &apos;tacgcg&apos;: 10, &apos;gcattc&apos;: 14, &apos;gcatta&apos;: 16, &apos;aatccc&apos;: 14, &apos;tccagg&apos;: 15, &apos;tccaac&apos;: 11, &apos;tccaaa&apos;: 15, &apos;gcattt&apos;: 10, &apos;tccaga&apos;: 12, &apos;ccagca&apos;: 11, &apos;atgtta&apos;: 13, &apos;ccagcc&apos;: 14, &apos;cgtagg&apos;: 14, &apos;atatcc&apos;: 13, &apos;cgtaga&apos;: 8, &apos;ccagcg&apos;: 25, &apos;atgttg&apos;: 14, &apos;atttcc&apos;: 6, &apos;agtggt&apos;: 15, &apos;cgtagt&apos;: 11, &apos;ttacac&apos;: 13, &apos;ttgaat&apos;: 13, &apos;atgttt&apos;: 18, &apos;ccagct&apos;: 20, &apos;gctgtc&apos;: 12, &apos;agtggc&apos;: 21, &apos;agtggg&apos;: 15, &apos;gcttcg&apos;: 11, &apos;caacct&apos;: 11, &apos;gcttca&apos;: 15, &apos;acgggc&apos;: 14, &apos;gcttcc&apos;: 15, &apos;ataccg&apos;: 13, &apos;ctacag&apos;: 12, &apos;atacca&apos;: 10, &apos;ataccc&apos;: 13, &apos;caaccg&apos;: 13, &apos;gcttct&apos;: 12, &apos;caaccc&apos;: 16, &apos;tgcgcc&apos;: 16, &apos;caacca&apos;: 12, &apos;tgcgca&apos;: 16, &apos;atacct&apos;: 13, &apos;tccagt&apos;: 16, &apos;tattca&apos;: 16, &apos;ctttac&apos;: 12, &apos;ttcact&apos;: 19, &apos;ttgtga&apos;: 13, &apos;ttcacg&apos;: 23, &apos;ttcacc&apos;: 19, &apos;ccgagg&apos;: 15, &apos;ttcaca&apos;: 12, &apos;acatct&apos;: 8, &apos;tggcgc&apos;: 9, &apos;cttact&apos;: 8, &apos;cctctg&apos;: 14, &apos;gcaaaa&apos;: 12, &apos;agcaac&apos;: 10, &apos;tcagcc&apos;: 17, &apos;cctctc&apos;: 17, &apos;cctcta&apos;: 15, &apos;tcagcg&apos;: 12, &apos;cttacg&apos;: 13, &apos;acatcg&apos;: 13, &apos;cttacc&apos;: 15, &apos;ccgagc&apos;: 12, &apos;cttaca&apos;: 13, &apos;acatcc&apos;: 16, &apos;ggcgcc&apos;: 16, &apos;cctctt&apos;: 19, &apos;tcagct&apos;: 11, &apos;agcaat&apos;: 13, &apos;gacgat&apos;: 7, &apos;tcccct&apos;: 19, &apos;ctagag&apos;: 12, &apos;tatctt&apos;: 23, &apos;ctagaa&apos;: 10, &apos;ctagac&apos;: 12, &apos;aggtcc&apos;: 10, &apos;cttgct&apos;: 13, &apos;ctagat&apos;: 20, &apos;tccccg&apos;: 6, &apos;tatctc&apos;: 22, &apos;tccccc&apos;: 13, &apos;tatctg&apos;: 19, &apos;gggagt&apos;: 7, &apos;cccacg&apos;: 21, &apos;tgcagc&apos;: 13, &apos;tttcta&apos;: 9, &apos;cccacc&apos;: 12, &apos;tgcagg&apos;: 15, &apos;tctcgt&apos;: 14, &apos;ccgatt&apos;: 14, &apos;tgaagt&apos;: 8, &apos;tttctt&apos;: 15, &apos;gggagg&apos;: 5, &apos;gggaga&apos;: 11, &apos;gggagc&apos;: 11, &apos;ccgagt&apos;: 9, &apos;tgaagc&apos;: 18, &apos;ccgatc&apos;: 16, &apos;ccgcga&apos;: 7, &apos;ccgatg&apos;: 10, &apos;ataaat&apos;: 12, &apos;cgagct&apos;: 13, &apos;aactct&apos;: 6, &apos;ttcgga&apos;: 12, &apos;ccgcgg&apos;: 19, &apos;ttcggc&apos;: 12, &apos;ccatgc&apos;: 14, &apos;atagaa&apos;: 8, &apos;ttcggg&apos;: 10, &apos;ccggcg&apos;: 8, &apos;aactca&apos;: 16, &apos;cgagcg&apos;: 15, &apos;ataaag&apos;: 10, &apos;cgagca&apos;: 19, &apos;ggcgac&apos;: 16, &apos;cgagcc&apos;: 9, &apos;aactcg&apos;: 15, &apos;acgatg&apos;: 8, &apos;agagtc&apos;: 7, &apos;taaaac&apos;: 17, &apos;acgata&apos;: 6, &apos;cttgga&apos;: 14, &apos;cttggc&apos;: 17, &apos;cagcat&apos;: 11, &apos;cttggg&apos;: 14, &apos;agaccc&apos;: 11, &apos;agacca&apos;: 9, &apos;agaccg&apos;: 12, &apos;taactg&apos;: 16, &apos;aactga&apos;: 13, &apos;cttgat&apos;: 10, &apos;cagcac&apos;: 8, &apos;cttggt&apos;: 12, &apos;cagcaa&apos;: 15, &apos;ttagga&apos;: 14, &apos;aacggt&apos;: 12, &apos;cttgcg&apos;: 11, &apos;agacct&apos;: 14, &apos;cggtgg&apos;: 9, &apos;ctggag&apos;: 12, &apos;tccggg&apos;: 15, &apos;gctcaa&apos;: 11, &apos;aggtcg&apos;: 10, &apos;cgggtg&apos;: 8, &apos;gggcct&apos;: 8, &apos;cggtgc&apos;: 14, &apos;tccggc&apos;: 10, &apos;tgagct&apos;: 22, &apos;atgtgt&apos;: 14, &apos;tccttt&apos;: 16, &apos;aaggtg&apos;: 11, &apos;tccgga&apos;: 17, &apos;aactgc&apos;: 12, &apos;aaggtc&apos;: 9, &apos;aaggta&apos;: 16, &apos;aacggc&apos;: 13, &apos;atgtgg&apos;: 9, &apos;tgagcg&apos;: 13, &apos;atgtga&apos;: 14, &apos;tgagca&apos;: 11, &apos;atgtgc&apos;: 15, &apos;tgagcc&apos;: 12, &apos;aaggtt&apos;: 14, &apos;tccttg&apos;: 10, &apos;aacgga&apos;: 16, &apos;tccttc&apos;: 16, &apos;taaccg&apos;: 16, &apos;actggg&apos;: 8, &apos;taaccc&apos;: 14, &apos;actggc&apos;: 11, &apos;caagaa&apos;: 11, &apos;caagac&apos;: 7, &apos;caagag&apos;: 15, &apos;actggt&apos;: 14, &apos;taacct&apos;: 21, &apos;caagat&apos;: 10, &apos;cggtta&apos;: 18, &apos;aaaggt&apos;: 13, &apos;actagt&apos;: 8, &apos;ggtcag&apos;: 14, &apos;cggttg&apos;: 17, &apos;ctgatt&apos;: 11, &apos;cgggcg&apos;: 14, &apos;cgttct&apos;: 14, &apos;cgggcc&apos;: 16, &apos;gaaacg&apos;: 10, &apos;cgggca&apos;: 12, &apos;aggtgc&apos;: 16, &apos;ctgatc&apos;: 13, &apos;ttaaac&apos;: 11, &apos;ctgata&apos;: 23, &apos;tcgaaa&apos;: 15, &apos;ctgatg&apos;: 8, &apos;actagc&apos;: 11, &apos;aaaggc&apos;: 7, &apos;actaga&apos;: 13, &apos;cgttcg&apos;: 12, &apos;cgggct&apos;: 10, &apos;cgttca&apos;: 14, &apos;tgcttt&apos;: 11, &apos;cgttcc&apos;: 14, &apos;gggcgc&apos;: 13, &apos;gtgagg&apos;: 16, &apos;ggatct&apos;: 18, &apos;tcatgg&apos;: 20, &apos;gtaagt&apos;: 10, &apos;gtgagc&apos;: 17, &apos;tcgggt&apos;: 10, &apos;gtgaga&apos;: 10, &apos;actgat&apos;: 8, &apos;tcacac&apos;: 19, &apos;cagagt&apos;: 8, &apos;tcacag&apos;: 9, &apos;gactca&apos;: 20, &apos;gtaaga&apos;: 15, &apos;gaagag&apos;: 21, &apos;gtgggg&apos;: 11, &apos;gaagaa&apos;: 11, &apos;gtggga&apos;: 21, &apos;gaagac&apos;: 7, &apos;gtaagg&apos;: 11, &apos;cagagg&apos;: 21, &apos;gactct&apos;: 12, &apos;catagc&apos;: 6, &apos;cagagc&apos;: 9, &apos;tcacat&apos;: 14, &apos;tcgcat&apos;: 20, &apos;accgga&apos;: 16, &apos;aaggcg&apos;: 13, &apos;tcgtcc&apos;: 11, &apos;cccgag&apos;: 13, &apos;tcgcag&apos;: 14, &apos;cccgaa&apos;: 14, &apos;gtcgat&apos;: 13, &apos;ctgtac&apos;: 17, &apos;tcgcac&apos;: 10, &apos;ggtgtc&apos;: 11, &apos;ggtgta&apos;: 8, &apos;cgtgca&apos;: 11, &apos;ggtgtg&apos;: 12, &apos;accggg&apos;: 8, &apos;gcatgg&apos;: 17, &apos;ctatac&apos;: 8, &apos;gatcca&apos;: 11, &apos;cgtgcg&apos;: 15, &apos;gtacta&apos;: 8, &apos;ggtgtt&apos;: 15, &apos;aggaca&apos;: 12, &apos;cgattg&apos;: 12, &apos;ctcgat&apos;: 14, &apos;gtcgcg&apos;: 18, &apos;cgattc&apos;: 16, &apos;gtcgca&apos;: 11, &apos;cgacgc&apos;: 10, &apos;gtcgcc&apos;: 8, &apos;cctaga&apos;: 12, &apos;cctagc&apos;: 15, &apos;ttctaa&apos;: 11, &apos;ttctac&apos;: 14, &apos;gtcgct&apos;: 9, &apos;cgacgt&apos;: 16, &apos;ttagca&apos;: 15, &apos;cgattt&apos;: 12, &apos;ttagcg&apos;: 11, &apos;atcatt&apos;: 16, &apos;ctcgaa&apos;: 11, &apos;ttctat&apos;: 19, &apos;cctagt&apos;: 10, &apos;tggtgg&apos;: 16, &apos;taattg&apos;: 12, &apos;taatta&apos;: 17, &apos;taattc&apos;: 8, &apos;tggtga&apos;: 19, &apos;tattag&apos;: 14, &apos;agtgtg&apos;: 11, &apos;tcgacg&apos;: 15, &apos;agtgta&apos;: 18, &apos;tcgaca&apos;: 14, &apos;agtgtc&apos;: 10, &apos;tcgacc&apos;: 11, &apos;taattt&apos;: 20, &apos;tcgact&apos;: 12, &apos;agtgtt&apos;: 11, &apos;tctcag&apos;: 8, &apos;gaaaat&apos;: 12, &apos;tctcaa&apos;: 13, &apos;tggtgt&apos;: 11, &apos;tctcac&apos;: 19, &apos;tcgtct&apos;: 16, &apos;agaacc&apos;: 11, &apos;agccta&apos;: 11, &apos;tgtact&apos;: 12, &apos;tgggag&apos;: 11, &apos;tgggaa&apos;: 12, &apos;tgggac&apos;: 15, &apos;tgcaga&apos;: 21, &apos;attgcc&apos;: 20, &apos;tgtacg&apos;: 19, &apos;tgtaca&apos;: 19, &apos;tgtacc&apos;: 17, &apos;attgat&apos;: 17, &apos;tgaacc&apos;: 11, &apos;ctgcgg&apos;: 8, &apos;ccatgt&apos;: 16, &apos;aattca&apos;: 15, &apos;gcagga&apos;: 15, &apos;aattcg&apos;: 15, &apos;gcgtga&apos;: 15, &apos;acggtt&apos;: 9, &apos;aattct&apos;: 15, &apos;gatttc&apos;: 14, &apos;atggcg&apos;: 13, &apos;accgtt&apos;: 14, &apos;gactac&apos;: 15, &apos;atggcc&apos;: 12, &apos;agtcca&apos;: 8, &apos;tcttgt&apos;: 9, &apos;actgga&apos;: 10, &apos;ggatca&apos;: 17, &apos;atggct&apos;: 24, &apos;agtccc&apos;: 11, &apos;gccatt&apos;: 13, &apos;ggcgtc&apos;: 10, &apos;cgtgtg&apos;: 10, &apos;tatcgg&apos;: 15, &apos;aggacc&apos;: 11, &apos;cgtgta&apos;: 11, &apos;tatagt&apos;: 20, &apos;gccata&apos;: 11, &apos;tacgcc&apos;: 20, &apos;gccatg&apos;: 8, &apos;tatagc&apos;: 14, &apos;tatcgt&apos;: 15, &apos;tataga&apos;: 8, &apos;cgtgtt&apos;: 12, &apos;tatagg&apos;: 19, &apos;ctgtat&apos;: 13, &apos;attaac&apos;: 12, &apos;tagcta&apos;: 18, &apos;attaaa&apos;: 20, &apos;cacata&apos;: 14, &apos;attaag&apos;: 17, &apos;attgag&apos;: 15, &apos;atgttc&apos;: 10, &apos;tatgtt&apos;: 13, &apos;ggcgat&apos;: 12, &apos;gcaaag&apos;: 14, &apos;ccgaga&apos;: 17, &apos;tagctc&apos;: 13, &apos;gcaaac&apos;: 20, &apos;ccgcgt&apos;: 7, &apos;gaaggt&apos;: 10, &apos;attaat&apos;: 14, &apos;ccgcgc&apos;: 15, &apos;gcaaat&apos;: 5, &apos;gtggtc&apos;: 12, &apos;tatgtg&apos;: 13, &apos;ggcgaa&apos;: 11, &apos;tatgta&apos;: 10, &apos;gtggtg&apos;: 18, &apos;tatgtc&apos;: 10, &apos;tcagta&apos;: 7, &apos;tgcatt&apos;: 12, &apos;tcagtc&apos;: 15, &apos;ccgtat&apos;: 23, &apos;tcagtg&apos;: 11, &apos;tcatcg&apos;: 22, &apos;gtcttt&apos;: 13, &apos;tcatcc&apos;: 15, &apos;tcatca&apos;: 8, &apos;attaga&apos;: 13, &apos;tgcatg&apos;: 13, &apos;gacaca&apos;: 11, &apos;tgcata&apos;: 14, &apos;tcagtt&apos;: 15, &apos;tgcatc&apos;: 21, &apos;agtcct&apos;: 12, &apos;ggaact&apos;: 9, &apos;gtcttc&apos;: 14, &apos;tgccga&apos;: 14, &apos;gtctta&apos;: 16, &apos;ggtgcg&apos;: 10, &apos;ctgcgt&apos;: 7, &apos;tagttg&apos;: 15, &apos;tgtgct&apos;: 18, &apos;tagttc&apos;: 16, &apos;tatatg&apos;: 9, &apos;tagtta&apos;: 7, &apos;aacctc&apos;: 17, &apos;tagttt&apos;: 11, &apos;tccacc&apos;: 13, &apos;ctgcga&apos;: 11, &apos;ctgcgc&apos;: 11, &apos;tcttac&apos;: 11, &apos;tcttaa&apos;: 11, &apos;tcttag&apos;: 15, &apos;actgca&apos;: 15, &apos;cacatc&apos;: 13, &apos;ggtgca&apos;: 16, &apos;cacatg&apos;: 14, &apos;ctctgt&apos;: 21, &apos;gatccc&apos;: 21, &apos;tcttat&apos;: 9, &apos;ctctgc&apos;: 13, &apos;ctctga&apos;: 7, &apos;ctctgg&apos;: 13, &apos;agttat&apos;: 14, &apos;cacatt&apos;: 19, &apos;tagctt&apos;: 13}
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We end up with a very big dict. Now we can go through the dict one item at a time and check if the kmer count is bigger than the cutoff:</p>
 
 </div>
 </div>
@@ -696,16 +1094,10 @@ TDRS_LTYR
 <div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">translate_dna</span><span class="p">(</span><span class="n">dna</span><span class="p">):</span> 
-    <span class="n">last_codon_start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> 
-    <span class="n">protein</span> <span class="o">=</span> <span class="s">&quot;&quot;</span> 
-    <span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">last_codon_start</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span> 
-        <span class="n">codon</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> 
-        <span class="k">print</span><span class="p">(</span><span class="n">codon</span><span class="p">)</span>
-        <span class="n">aa</span> <span class="o">=</span> <span class="n">gencode</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">codon</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span> 
-        <span class="n">protein</span> <span class="o">=</span> <span class="n">protein</span> <span class="o">+</span> <span class="n">aa</span> 
-    <span class="k">return</span> <span class="n">protein</span> 
-<span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;ACGATCGATCGTNACGTACGATCGTACTCG&quot;</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">count_cutoff</span> <span class="o">=</span> <span class="mi">23</span> 
+<span class="k">for</span> <span class="n">kmer</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">kmer_counts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span> 
+    <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="n">count_cutoff</span><span class="p">:</span> 
+        <span class="k">print</span><span class="p">(</span><span class="n">kmer</span> <span class="o">+</span> <span class="s">&quot; : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">))</span> 
 </pre></div>
 
 </div>
@@ -718,33 +1110,27 @@ TDRS_LTYR
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>ACG
-ATC
-GAT
-CGT
-NAC
+<pre>agagat : 26
+agcggg : 26
+atcgga : 25
+aaggag : 25
+cccagc : 24
+agatta : 24
+aggttc : 25
+gcgggt : 25
+tctagg : 24
+agatgg : 24
+gagtgg : 28
+ccggtt : 26
+gagcag : 24
+ttctga : 26
+tctgaa : 24
+ggacgt : 27
+ttcaaa : 25
+gattaa : 25
+ccagcg : 25
+atggct : 24
 </pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-17-5f05fd02ac2b&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">      8</span>         protein <span class="ansiyellow">=</span> protein <span class="ansiyellow">+</span> aa<span class="ansiyellow"></span>
-<span class="ansigreen">      9</span>     <span class="ansigreen">return</span> protein<span class="ansiyellow"></span>
-<span class="ansigreen">---&gt; 10</span><span class="ansiyellow"> </span><span class="ansigreen">print</span><span class="ansiyellow">(</span>translate_dna<span class="ansiyellow">(</span><span class="ansiblue">&quot;ACGATCGATCGTNACGTACGATCGTACTCG&quot;</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-
-<span class="ansigreen">&lt;ipython-input-17-5f05fd02ac2b&gt;</span> in <span class="ansicyan">translate_dna</span><span class="ansiblue">(dna)</span>
-<span class="ansigreen">      6</span>         <span class="ansigreen">print</span><span class="ansiyellow">(</span>codon<span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">      7</span>         aa <span class="ansiyellow">=</span> gencode<span class="ansiyellow">.</span>get<span class="ansiyellow">(</span>codon<span class="ansiyellow">.</span>upper<span class="ansiyellow">(</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">----&gt; 8</span><span class="ansiyellow">         </span>protein <span class="ansiyellow">=</span> protein <span class="ansiyellow">+</span> aa<span class="ansiyellow"></span>
-<span class="ansigreen">      9</span>     <span class="ansigreen">return</span> protein<span class="ansiyellow"></span>
-<span class="ansigreen">     10</span> <span class="ansigreen">print</span><span class="ansiyellow">(</span>translate_dna<span class="ansiyellow">(</span><span class="ansiblue">&quot;ACGATCGATCGTNACGTACGATCGTACTCG&quot;</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-
-<span class="ansired">TypeError</span>: cannot concatenate &apos;str&apos; and &apos;NoneType&apos; objects</pre>
 </div>
 </div>
 
@@ -757,13 +1143,7 @@ NAC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The error comes from the codon <code>NAC</code> i.e. there is an N in the sequence. The best way to fix it is to say that the amino acid for any codon that isn't in the dict is <code>X</code>, meaning unknown. To do this we just swich from</p>
-<div class="highlight"><pre><span class="n">aa</span> <span class="o">=</span> <span class="n">gencode</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">codon</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
-</pre></div>
-<p>to</p>
-<div class="highlight"><pre><span class="n">aa</span> <span class="o">=</span> <span class="n">gencode</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">codon</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="s">&#39;X&#39;</span><span class="p">)</span>
-</pre></div>
-<p>like this:</p>
+<p>Final step: replace hard coded values for the kmer size and cutoff with interactive options:</p>
 
 </div>
 </div>
@@ -773,16 +1153,33 @@ NAC
 <div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">translate_dna</span><span class="p">(</span><span class="n">dna</span><span class="p">):</span> 
-    <span class="n">last_codon_start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> 
-    <span class="n">protein</span> <span class="o">=</span> <span class="s">&quot;&quot;</span> 
-    <span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">last_codon_start</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span> 
-        <span class="n">codon</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> 
-        <span class="k">print</span><span class="p">(</span><span class="n">codon</span><span class="p">)</span>
-        <span class="n">aa</span> <span class="o">=</span> <span class="n">gencode</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">codon</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="s">&#39;X&#39;</span><span class="p">)</span> 
-        <span class="n">protein</span> <span class="o">=</span> <span class="n">protein</span> <span class="o">+</span> <span class="n">aa</span> 
-    <span class="k">return</span> <span class="n">protein</span> 
-<span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;ACGATCGATCGTNACGTACGATCGTACTCG&quot;</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">os</span> 
+
+<span class="n">kmer_size</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;enter the kmer size:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">))</span>
+<span class="n">cutoff</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">raw_input</span><span class="p">(</span><span class="s">&quot;enter the cutoff:</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">))</span>
+ 
+<span class="k">def</span> <span class="nf">split_dna</span><span class="p">(</span><span class="n">dna</span><span class="p">,</span> <span class="n">kmer_size</span><span class="p">):</span> 
+    <span class="n">kmers</span> <span class="o">=</span> <span class="p">[]</span> 
+    <span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="n">kmer_size</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="mi">1</span><span class="p">):</span> 
+        <span class="n">kmer</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="n">kmer_size</span><span class="p">]</span> 
+        <span class="n">kmers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">kmer</span><span class="p">)</span> 
+    <span class="k">return</span> <span class="n">kmers</span> 
+ 
+<span class="n">kmer_counts</span> <span class="o">=</span> <span class="p">{}</span> 
+<span class="k">for</span> <span class="n">file_name</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s">&quot;dna_files/&quot;</span><span class="p">):</span> 
+    <span class="k">if</span> <span class="n">file_name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&quot;.dna&quot;</span><span class="p">):</span> 
+        <span class="k">print</span><span class="p">(</span><span class="s">&quot;reading sequences from &quot;</span> <span class="o">+</span> <span class="n">file_name</span><span class="p">)</span> 
+        <span class="n">dna_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s">&quot;dna_files/&quot;</span> <span class="o">+</span> <span class="n">file_name</span><span class="p">)</span> 
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">dna_file</span><span class="p">:</span> 
+            <span class="n">dna</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">)</span> 
+            <span class="k">for</span> <span class="n">kmer</span> <span class="ow">in</span> <span class="n">split_dna</span><span class="p">(</span><span class="n">dna</span><span class="p">,</span> <span class="n">kmer_size</span><span class="p">):</span> 
+                <span class="n">current_count</span> <span class="o">=</span> <span class="n">kmer_counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">kmer</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> 
+                <span class="n">new_count</span> <span class="o">=</span> <span class="n">current_count</span> <span class="o">+</span> <span class="mi">1</span> 
+                <span class="n">kmer_counts</span><span class="p">[</span><span class="n">kmer</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_count</span> 
+                
+<span class="k">for</span> <span class="n">kmer</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">kmer_counts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span> 
+    <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="n">cutoff</span><span class="p">:</span> 
+        <span class="k">print</span><span class="p">(</span><span class="n">kmer</span> <span class="o">+</span> <span class="s">&quot; : &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">))</span> 
 </pre></div>
 
 </div>
@@ -795,17 +1192,40 @@ NAC
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>ACG
-ATC
-GAT
-CGT
-NAC
-GTA
-CGA
-TCG
-TAC
-TCG
-TIDRXVRSYS
+<pre>enter the kmer size:
+6
+enter the cutoff:
+23
+reading sequences from xaf.dna
+reading sequences from xaj.dna
+reading sequences from xai.dna
+reading sequences from xad.dna
+reading sequences from xab.dna
+reading sequences from xac.dna
+reading sequences from xae.dna
+reading sequences from xaa.dna
+reading sequences from xag.dna
+reading sequences from xah.dna
+agagat : 26
+agcggg : 26
+atcgga : 25
+aaggag : 25
+cccagc : 24
+agatta : 24
+aggttc : 25
+gcgggt : 25
+tctagg : 24
+agatgg : 24
+gagtgg : 28
+ccggtt : 26
+gagcag : 24
+ttctga : 26
+tctgaa : 24
+ggacgt : 27
+ttcaaa : 25
+gattaa : 25
+ccagcg : 25
+atggct : 24
 </pre>
 </div>
 </div>
@@ -814,15 +1234,57 @@ TIDRXVRSYS
 </div>
 
 </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Now we get a complete protein tranlsation - Notice that it has an X in the middle.</p>
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
 
 </div>
 </div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -885,7 +1347,7 @@ setInterval(regentoc,1000);
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># ignore this cell, it&#39;s for loading custom css code</span>
@@ -901,7 +1363,7 @@ setInterval(regentoc,1000);
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <style>

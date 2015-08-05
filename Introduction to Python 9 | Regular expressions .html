@@ -3,7 +3,7 @@
 <head>
 
 <meta charset="utf-8" />
-<title>Introduction to Python 7 | Dictionaries exercise solutions</title>
+<title>Introduction to Python 9 | Regular expressions </title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -176,7 +176,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><h1 id="toctitle">Dictionaries exercise solutions</h1></p>
+<p><h1 id="toctitle">Introduction to Python 9 | Regular expressions</h1></p>
 <ul id="toc"/>
 </div>
 </div>
@@ -186,48 +186,10 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="DNA-translation">DNA translation<a class="anchor-link" href="#DNA-translation">&#182;</a></h2><p>First, we need to think about splitting up the DNA into codons. We can do the first few manually:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ATGTTCGGT&quot;</span>
-<span class="n">codon1</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
-<span class="n">codon2</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">]</span>
-<span class="n">codon3</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="mi">6</span><span class="p">:</span><span class="mi">9</span><span class="p">]</span>
-<span class="k">print</span><span class="p">(</span><span class="n">codon1</span><span class="p">,</span> <span class="n">codon2</span><span class="p">,</span> <span class="n">codon3</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>(&apos;ATG&apos;, &apos;TTC&apos;, &apos;GGT&apos;)
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>until we see the pattern. The start position goes up by three each time, and the stop position is always three greater than the start. So with a range:</p>
+<h2 id="What-are-regular-expressions?">What are regular expressions?<a class="anchor-link" href="#What-are-regular-expressions?">&#182;</a></h2><p>Regular expressions (aka. <em>regex</em>) are a special mini-language for describing patterns in strings.</p>
+<p>Handy for working with patterns in DNA/protein, also text files of many different types.</p>
+<p>Also crop up in other tools: text editors, grep.</p>
+<h3 id="Regular-expression-module">Regular expression module<a class="anchor-link" href="#Regular-expression-module">&#182;</a></h3><p>The tools for using regular expressions live in the <code>re</code> module. We have to <code>import</code> the module, then use the module name when running functions:</p>
 
 </div>
 </div>
@@ -237,10 +199,59 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ATGTTCGGT&quot;</span> 
-<span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span> 
-    <span class="n">codon</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> 
-    <span class="k">print</span><span class="p">(</span><span class="s">&quot;one codon is &quot;</span> <span class="o">+</span> <span class="n">codon</span><span class="p">)</span> 
+<div class=" highlight hl-ipython2"><pre><span class="kn">import</span> <span class="nn">re</span>
+
+<span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;abc&#39;</span><span class="p">)</span>
+
+<span class="n">search</span><span class="p">(</span><span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;abc&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansired">---------------------------------------------------------------------------</span>
+<span class="ansired">NameError</span>                                 Traceback (most recent call last)
+<span class="ansigreen">&lt;ipython-input-3-0400199679be&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
+<span class="ansigreen">      3</span> re<span class="ansiyellow">.</span>search<span class="ansiyellow">(</span><span class="ansiblue">&apos;a&apos;</span><span class="ansiyellow">,</span> <span class="ansiblue">&apos;abc&apos;</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
+<span class="ansigreen">      4</span> <span class="ansiyellow"></span>
+<span class="ansigreen">----&gt; 5</span><span class="ansiyellow"> </span>search<span class="ansiyellow">(</span><span class="ansiblue">&apos;a&apos;</span><span class="ansiyellow">,</span> <span class="ansiblue">&apos;abc&apos;</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
+
+<span class="ansired">NameError</span>: name &apos;search&apos; is not defined</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Raw-strings">Raw strings<a class="anchor-link" href="#Raw-strings">&#182;</a></h2><p>Prefix a string with <code>r</code> to turn it into a raw string. Raw strings ignore special characters:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">my_string</span> <span class="o">=</span> <span class="s">&quot;hello</span><span class="se">\n</span><span class="s">world</span><span class="se">\t</span><span class="s">!&quot;</span>
+<span class="k">print</span><span class="p">(</span><span class="n">my_string</span><span class="p">)</span>
+
+<span class="n">my_raw_string</span> <span class="o">=</span> <span class="s">r&quot;hello\nworld\t!&quot;</span>
+<span class="k">print</span><span class="p">(</span><span class="n">my_raw_string</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -253,9 +264,9 @@ div#notebook {
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>one codon is ATG
-one codon is TTC
-one codon is GGT
+<pre>hello
+world	!
+hello\nworld\t!
 </pre>
 </div>
 </div>
@@ -269,7 +280,8 @@ one codon is GGT
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This works for the particular sequence, but we need a more general solution. We always start at zero, and always go up by three, but the middle argument to range is tricky. We need the last start position to be two bases back from the end of the sequence:</p>
+<h2 id="Searching-for-patterns-with-variation">Searching for patterns with variation<a class="anchor-link" href="#Searching-for-patterns-with-variation">&#182;</a></h2><p><code>re.search()</code> takes two arguments: a pattern and a string. It searches for the pattern in the string and returns <code>True</code> or <code>False</code>.</p>
+<p>Here is a boring pattern:</p>
 
 </div>
 </div>
@@ -279,15 +291,12 @@ one codon is GGT
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ATGTTCGTGACGAGGGT&quot;</span> 
+<div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ATCGCGAATTCAC&quot;</span>
 
-<span class="c"># calculate the start position for the final codon</span>
-<span class="n">last_codon_start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> 
-
-<span class="c"># process the dna sequence in three base chunks</span>
-<span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">last_codon_start</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span> 
-    <span class="n">codon</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> 
-    <span class="k">print</span><span class="p">(</span><span class="s">&quot;one codon is &quot;</span> <span class="o">+</span> <span class="n">codon</span><span class="p">)</span> 
+<span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">r&quot;GAATTC&quot;</span><span class="p">,</span> <span class="n">dna</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;restriction site found!&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;no restriction site!&quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -300,11 +309,7 @@ one codon is GGT
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>one codon is ATG
-one codon is TTC
-one codon is GTG
-one codon is ACG
-one codon is AGG
+<pre>restriction site found!
 </pre>
 </div>
 </div>
@@ -318,8 +323,8 @@ one codon is AGG
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This version will work for any length DNA sequence.</p>
-<p>Getting the amino acid for a given codon is quite easy, just look it up:</p>
+<p>Note that we don't really need a raw string in the example above, but it's a good habit.</p>
+<h3 id="Alternation">Alternation<a class="anchor-link" href="#Alternation">&#182;</a></h3><p>Here's an example of a pattern that's a bit more interesting. When there are two different possibilities we surround them with parentheses and separate with pipe characters:</p>
 
 </div>
 </div>
@@ -329,33 +334,12 @@ one codon is AGG
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">gencode</span> <span class="o">=</span> <span class="p">{</span>
-<span class="s">&#39;ATA&#39;</span><span class="p">:</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;ATC&#39;</span><span class="p">:</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;ATT&#39;</span><span class="p">:</span><span class="s">&#39;I&#39;</span><span class="p">,</span> <span class="s">&#39;ATG&#39;</span><span class="p">:</span><span class="s">&#39;M&#39;</span><span class="p">,</span>
-<span class="s">&#39;ACA&#39;</span><span class="p">:</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;ACC&#39;</span><span class="p">:</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;ACG&#39;</span><span class="p">:</span><span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;ACT&#39;</span><span class="p">:</span><span class="s">&#39;T&#39;</span><span class="p">,</span>
-<span class="s">&#39;AAC&#39;</span><span class="p">:</span><span class="s">&#39;N&#39;</span><span class="p">,</span> <span class="s">&#39;AAT&#39;</span><span class="p">:</span><span class="s">&#39;N&#39;</span><span class="p">,</span> <span class="s">&#39;AAA&#39;</span><span class="p">:</span><span class="s">&#39;K&#39;</span><span class="p">,</span> <span class="s">&#39;AAG&#39;</span><span class="p">:</span><span class="s">&#39;K&#39;</span><span class="p">,</span>
-<span class="s">&#39;AGC&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="s">&#39;AGT&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="s">&#39;AGA&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="s">&#39;AGG&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span>
-<span class="s">&#39;CTA&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="s">&#39;CTC&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="s">&#39;CTG&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="s">&#39;CTT&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span>
-<span class="s">&#39;CCA&#39;</span><span class="p">:</span><span class="s">&#39;P&#39;</span><span class="p">,</span> <span class="s">&#39;CCC&#39;</span><span class="p">:</span><span class="s">&#39;P&#39;</span><span class="p">,</span> <span class="s">&#39;CCG&#39;</span><span class="p">:</span><span class="s">&#39;P&#39;</span><span class="p">,</span> <span class="s">&#39;CCT&#39;</span><span class="p">:</span><span class="s">&#39;P&#39;</span><span class="p">,</span>
-<span class="s">&#39;CAC&#39;</span><span class="p">:</span><span class="s">&#39;H&#39;</span><span class="p">,</span> <span class="s">&#39;CAT&#39;</span><span class="p">:</span><span class="s">&#39;H&#39;</span><span class="p">,</span> <span class="s">&#39;CAA&#39;</span><span class="p">:</span><span class="s">&#39;Q&#39;</span><span class="p">,</span> <span class="s">&#39;CAG&#39;</span><span class="p">:</span><span class="s">&#39;Q&#39;</span><span class="p">,</span>
-<span class="s">&#39;CGA&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="s">&#39;CGC&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="s">&#39;CGG&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span> <span class="s">&#39;CGT&#39;</span><span class="p">:</span><span class="s">&#39;R&#39;</span><span class="p">,</span>
-<span class="s">&#39;GTA&#39;</span><span class="p">:</span><span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="s">&#39;GTC&#39;</span><span class="p">:</span><span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="s">&#39;GTG&#39;</span><span class="p">:</span><span class="s">&#39;V&#39;</span><span class="p">,</span> <span class="s">&#39;GTT&#39;</span><span class="p">:</span><span class="s">&#39;V&#39;</span><span class="p">,</span>
-<span class="s">&#39;GCA&#39;</span><span class="p">:</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;GCC&#39;</span><span class="p">:</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;GCG&#39;</span><span class="p">:</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;GCT&#39;</span><span class="p">:</span><span class="s">&#39;A&#39;</span><span class="p">,</span>
-<span class="s">&#39;GAC&#39;</span><span class="p">:</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;GAT&#39;</span><span class="p">:</span><span class="s">&#39;D&#39;</span><span class="p">,</span> <span class="s">&#39;GAA&#39;</span><span class="p">:</span><span class="s">&#39;E&#39;</span><span class="p">,</span> <span class="s">&#39;GAG&#39;</span><span class="p">:</span><span class="s">&#39;E&#39;</span><span class="p">,</span>
-<span class="s">&#39;GGA&#39;</span><span class="p">:</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;GGC&#39;</span><span class="p">:</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;GGG&#39;</span><span class="p">:</span><span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;GGT&#39;</span><span class="p">:</span><span class="s">&#39;G&#39;</span><span class="p">,</span>
-<span class="s">&#39;TCA&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="s">&#39;TCC&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="s">&#39;TCG&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="s">&#39;TCT&#39;</span><span class="p">:</span><span class="s">&#39;S&#39;</span><span class="p">,</span>
-<span class="s">&#39;TTC&#39;</span><span class="p">:</span><span class="s">&#39;F&#39;</span><span class="p">,</span> <span class="s">&#39;TTT&#39;</span><span class="p">:</span><span class="s">&#39;F&#39;</span><span class="p">,</span> <span class="s">&#39;TTA&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span> <span class="s">&#39;TTG&#39;</span><span class="p">:</span><span class="s">&#39;L&#39;</span><span class="p">,</span>
-<span class="s">&#39;TAC&#39;</span><span class="p">:</span><span class="s">&#39;Y&#39;</span><span class="p">,</span> <span class="s">&#39;TAT&#39;</span><span class="p">:</span><span class="s">&#39;Y&#39;</span><span class="p">,</span> <span class="s">&#39;TAA&#39;</span><span class="p">:</span><span class="s">&#39;_&#39;</span><span class="p">,</span> <span class="s">&#39;TAG&#39;</span><span class="p">:</span><span class="s">&#39;_&#39;</span><span class="p">,</span>
-<span class="s">&#39;TGC&#39;</span><span class="p">:</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;TGT&#39;</span><span class="p">:</span><span class="s">&#39;C&#39;</span><span class="p">,</span> <span class="s">&#39;TGA&#39;</span><span class="p">:</span><span class="s">&#39;_&#39;</span><span class="p">,</span> <span class="s">&#39;TGG&#39;</span><span class="p">:</span><span class="s">&#39;W&#39;</span><span class="p">}</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ATCGCGAATTCAC&quot;</span>
 
-
-<span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ATGTTCGTGACGAGGGT&quot;</span> 
-
-<span class="n">last_codon_start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> 
-
-<span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">last_codon_start</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span> 
-    <span class="n">codon</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> 
-    <span class="n">aa</span> <span class="o">=</span> <span class="n">gencode</span><span class="p">[</span><span class="n">codon</span><span class="p">]</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">codon</span><span class="p">,</span> <span class="n">aa</span><span class="p">)</span> 
+<span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">r&quot;GG(A|T)CC&quot;</span><span class="p">,</span> <span class="n">dna</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;restriction site found!&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;no restriction site!&quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -368,11 +352,7 @@ one codon is AGG
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>(&apos;ATG&apos;, &apos;M&apos;)
-(&apos;TTC&apos;, &apos;F&apos;)
-(&apos;GTG&apos;, &apos;V&apos;)
-(&apos;ACG&apos;, &apos;T&apos;)
-(&apos;AGG&apos;, &apos;R&apos;)
+<pre>no restriction site!
 </pre>
 </div>
 </div>
@@ -386,57 +366,7 @@ one codon is AGG
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now all we need to do is build up the protein sequence one amino acid at a time:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ATGTTCGTGACGAGGGT&quot;</span> 
-
-<span class="n">last_codon_start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> 
-
-<span class="n">protein</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
-<span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">last_codon_start</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span> 
-    <span class="n">codon</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> 
-    <span class="n">aa</span> <span class="o">=</span> <span class="n">gencode</span><span class="p">[</span><span class="n">codon</span><span class="p">]</span>
-    <span class="n">protein</span> <span class="o">=</span> <span class="n">protein</span> <span class="o">+</span> <span class="n">aa</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">codon</span><span class="p">,</span> <span class="n">aa</span><span class="p">,</span> <span class="n">protein</span><span class="p">)</span> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>(&apos;ATG&apos;, &apos;M&apos;, &apos;M&apos;)
-(&apos;TTC&apos;, &apos;F&apos;, &apos;MF&apos;)
-(&apos;GTG&apos;, &apos;V&apos;, &apos;MFV&apos;)
-(&apos;ACG&apos;, &apos;T&apos;, &apos;MFVT&apos;)
-(&apos;AGG&apos;, &apos;R&apos;, &apos;MFVTR&apos;)
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We can see how one amino acid gets added to the <code>protein</code> string each time round the loop. At the end of the loop we have the complete protein:</p>
+<h3 id="Character-groups">Character groups<a class="anchor-link" href="#Character-groups">&#182;</a></h3><p>A very common type of alternation is when we want to allow any one of a list of characters. We can write it like this:</p>
 
 </div>
 </div>
@@ -446,34 +376,12 @@ one codon is AGG
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ATGTTCGTGACGAGGGT&quot;</span> 
-
-<span class="n">last_codon_start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> 
-
-<span class="n">protein</span> <span class="o">=</span> <span class="s">&quot;&quot;</span>
-<span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">last_codon_start</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span> 
-    <span class="n">codon</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> 
-    <span class="n">aa</span> <span class="o">=</span> <span class="n">gencode</span><span class="p">[</span><span class="n">codon</span><span class="p">]</span>
-    <span class="n">protein</span> <span class="o">=</span> <span class="n">protein</span> <span class="o">+</span> <span class="n">aa</span>
-    
-<span class="k">print</span><span class="p">(</span><span class="n">protein</span><span class="p">)</span> 
+<div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ATCGCGAATTCAC&quot;</span>
+<span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">r&quot;GC(A|T|G|C)GC&quot;</span><span class="p">,</span> <span class="n">dna</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;restriction site found!&quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>MFVTR
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -483,7 +391,7 @@ one codon is AGG
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This is a good candidate for a function, so let's turn it into one:</p>
+<p>or with a shorthand like this:</p>
 
 </div>
 </div>
@@ -493,14 +401,8 @@ one codon is AGG
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">translate_dna</span><span class="p">(</span><span class="n">dna</span><span class="p">):</span> 
-    <span class="n">last_codon_start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> 
-    <span class="n">protein</span> <span class="o">=</span> <span class="s">&quot;&quot;</span> 
-    <span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">last_codon_start</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span> 
-        <span class="n">codon</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> 
-        <span class="n">aa</span> <span class="o">=</span> <span class="n">gencode</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">codon</span><span class="p">)</span> 
-        <span class="n">protein</span> <span class="o">=</span> <span class="n">protein</span> <span class="o">+</span> <span class="n">aa</span> 
-    <span class="k">return</span> <span class="n">protein</span> 
+<div class=" highlight hl-ipython2"><pre><span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">r&quot;GC[ATGC]GC&quot;</span><span class="p">,</span> <span class="n">dna</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;restriction site found!&quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -508,12 +410,25 @@ one codon is AGG
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Sometimes it's easier to describe a character group by listing the characters that are <strong>not</strong> allowed. Special rule: if the character group starts with ^ then it means any character except these ones:</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;ATGTTCGTGACGAGGGT&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ATCGCGYAATTCAC&quot;</span>
+
+<span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">r&quot;[^ATGC]&quot;</span><span class="p">,</span> <span class="n">dna</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;ambiguous base found!&quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -524,13 +439,11 @@ one codon is AGG
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[11]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&apos;MFVTR&apos;</pre>
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ambiguous base found!
+</pre>
 </div>
-
 </div>
 
 </div>
@@ -542,7 +455,61 @@ one codon is AGG
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>And we'll try a few more DNA sequences to see what happens:</p>
+<p>There are useful shortcuts for some commonly-used character groups. A full stop (aka dot, period) stands for any character.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Quantifiers">Quantifiers<a class="anchor-link" href="#Quantifiers">&#182;</a></h3><p>Another type of variation is the number of times something is repeated.</p>
+<p>A question mark means the thing preceding it is optional. In the pattern <code>GCG?Y</code>the second G is optional. The pattern will match <code>GCGY</code> and <code>GCY</code>.</p>
+<p>A plus means that the thing preceding it can be repeated more than once. In the pattern <code>GCG+Y</code> the second G can be repeated, so it matches <code>GCGY</code>, <code>GCGGY</code>, <code>GCGGGY</code>, etc. but <strong>not</strong> <code>GCY</code></p>
+<p>An asterisk is the most flexible quantifier; the thing preceding it optional, but can also be repeated. The pattern <code>GCG*Y</code> will match <code>GCY</code>, <code>GCGY</code>, <code>GCGGY</code>, <code>GCGGGY</code>, etc.</p>
+<p>For more specificity, we can specify a minimum and maximum number of repetitions:</p>
+<p><code>GCG{2,4}Y</code> will match <code>GCGGY</code>, <code>GCGGGY</code> and <code>GCGGGGY</code> but <strong>not</strong> <code>GCGY</code> or <code>GCGGGGGY</code>, etc.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Positions">Positions<a class="anchor-link" href="#Positions">&#182;</a></h3><p>Unlike all the stuff above, <strong>positions</strong> specify where the pattern has to match the string.</p>
+<p><code>^</code> means the start (don't get confused: it also means a negated character group as described earlier). So <code>^G</code> will match <code>GATC</code> but not <code>ATGC</code>.</p>
+<p><code>$</code> means the end, so the pattern <code>G$</code> will match <code>ATCG</code> but not <code>AGTC</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Combinations">Combinations<a class="anchor-link" href="#Combinations">&#182;</a></h3><p>The real power of regular expressions comes from combining all these features. Here's a complex regular expression that describes a full length messenger RNA with start codon and polyA tail:</p>
+<p><code>^ATG[ATGC]{30,1000}A{5,10}$</code></p>
+<p>Look at the features:</p>
+<ul>
+<li>string must start with ATG</li>
+<li>then between 30 and 1000 bases that must be A/T/G/C</li>
+<li>string must end with between 5 and 10 consecutive As</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Other-stuff-we-can-do-with-regular-expressions">Other stuff we can do with regular expressions<a class="anchor-link" href="#Other-stuff-we-can-do-with-regular-expressions">&#182;</a></h2><h3 id="Extracting-the-match">Extracting the match<a class="anchor-link" href="#Extracting-the-match">&#182;</a></h3><p>In an <code>if</code> statement, <code>re.search()</code> behaves like a true/false function, but in fact it returns a re match object. We can get that match object and use methods to get information from it. For example with our non-ATGC base example:</p>
 
 </div>
 </div>
@@ -552,10 +519,10 @@ one codon is AGG
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;ATGTTCGGT&quot;</span><span class="p">))</span> 
-<span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;ATCGATCGATCGTTGCTTATCGATCAG&quot;</span><span class="p">))</span> 
-<span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;actgatcgtagctagctgacgtatcgtat&quot;</span><span class="p">))</span> 
-<span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;ACGATCGATCGTNACGTACGATCGTACTCG&quot;</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ATCGCGYAATTCAC&quot;</span>
+
+<span class="k">if</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">r&quot;[^ATGC]&quot;</span><span class="p">,</span> <span class="n">dna</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;ambiguous base found!&quot;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -568,30 +535,8 @@ one codon is AGG
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>MFG
-IDRSLLIDQ
+<pre>ambiguous base found!
 </pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-12-06b698e53bf6&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">      1</span> <span class="ansigreen">print</span><span class="ansiyellow">(</span>translate_dna<span class="ansiyellow">(</span><span class="ansiblue">&quot;ATGTTCGGT&quot;</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">      2</span> <span class="ansigreen">print</span><span class="ansiyellow">(</span>translate_dna<span class="ansiyellow">(</span><span class="ansiblue">&quot;ATCGATCGATCGTTGCTTATCGATCAG&quot;</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">----&gt; 3</span><span class="ansiyellow"> </span><span class="ansigreen">print</span><span class="ansiyellow">(</span>translate_dna<span class="ansiyellow">(</span><span class="ansiblue">&quot;actgatcgtagctagctgacgtatcgtat&quot;</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">      4</span> <span class="ansigreen">print</span><span class="ansiyellow">(</span>translate_dna<span class="ansiyellow">(</span><span class="ansiblue">&quot;ACGATCGATCGTNACGTACGATCGTACTCG&quot;</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-
-<span class="ansigreen">&lt;ipython-input-10-fee9713c4113&gt;</span> in <span class="ansicyan">translate_dna</span><span class="ansiblue">(dna)</span>
-<span class="ansigreen">      5</span>         codon <span class="ansiyellow">=</span> dna<span class="ansiyellow">[</span>start<span class="ansiyellow">:</span>start<span class="ansiyellow">+</span><span class="ansicyan">3</span><span class="ansiyellow">]</span><span class="ansiyellow"></span>
-<span class="ansigreen">      6</span>         aa <span class="ansiyellow">=</span> gencode<span class="ansiyellow">.</span>get<span class="ansiyellow">(</span>codon<span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">----&gt; 7</span><span class="ansiyellow">         </span>protein <span class="ansiyellow">=</span> protein <span class="ansiyellow">+</span> aa<span class="ansiyellow"></span>
-<span class="ansigreen">      8</span>     <span class="ansigreen">return</span> protein<span class="ansiyellow"></span>
-
-<span class="ansired">TypeError</span>: cannot concatenate &apos;str&apos; and &apos;NoneType&apos; objects</pre>
 </div>
 </div>
 
@@ -604,40 +549,24 @@ IDRSLLIDQ
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We get an error on the third DNA sequence because it's in lower case. Change everything to upper case:</p>
+<p>We know that we found a non-ATGC base, but what was it? Calling <code>group()</code> on the match object will tell us:</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">translate_dna</span><span class="p">(</span><span class="n">dna</span><span class="p">):</span> 
-    <span class="n">last_codon_start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> 
-    <span class="n">protein</span> <span class="o">=</span> <span class="s">&quot;&quot;</span> 
-    <span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">last_codon_start</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span> 
-        <span class="n">codon</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> 
-        <span class="n">aa</span> <span class="o">=</span> <span class="n">gencode</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">codon</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span> 
-        <span class="n">protein</span> <span class="o">=</span> <span class="n">protein</span> <span class="o">+</span> <span class="n">aa</span> 
-    <span class="k">return</span> <span class="n">protein</span> 
-</pre></div>
+<div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;CGATCGGAAYCGATC&quot;</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">r&quot;[^ATGC]&quot;</span><span class="p">,</span> <span class="n">dna</span><span class="p">)</span>
 
-</div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;ATGTTCGGT&quot;</span><span class="p">))</span> 
-<span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;ATCGATCGATCGTTGCTTATCGATCAG&quot;</span><span class="p">))</span> 
-<span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;actgatcgtagctagctgacgtatcgtat&quot;</span><span class="p">))</span> 
-<span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;ACGATCGATCGTNACGTACGATCGTACTCG&quot;</span><span class="p">))</span>
+<span class="c"># m is now a match object</span>
+<span class="k">if</span> <span class="n">m</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;ambiguous base found!&quot;</span><span class="p">)</span>
+    <span class="n">ambig</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;the base is &quot;</span> <span class="o">+</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
 </pre></div>
 
 </div>
@@ -650,30 +579,9 @@ IDRSLLIDQ
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>MFG
-IDRSLLIDQ
-TDRS_LTYR
+<pre>ambiguous base found!
+the base is Y
 </pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-14-06b698e53bf6&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">      2</span> <span class="ansigreen">print</span><span class="ansiyellow">(</span>translate_dna<span class="ansiyellow">(</span><span class="ansiblue">&quot;ATCGATCGATCGTTGCTTATCGATCAG&quot;</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">      3</span> <span class="ansigreen">print</span><span class="ansiyellow">(</span>translate_dna<span class="ansiyellow">(</span><span class="ansiblue">&quot;actgatcgtagctagctgacgtatcgtat&quot;</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">----&gt; 4</span><span class="ansiyellow"> </span><span class="ansigreen">print</span><span class="ansiyellow">(</span>translate_dna<span class="ansiyellow">(</span><span class="ansiblue">&quot;ACGATCGATCGTNACGTACGATCGTACTCG&quot;</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-
-<span class="ansigreen">&lt;ipython-input-13-e1bb02e8b8c0&gt;</span> in <span class="ansicyan">translate_dna</span><span class="ansiblue">(dna)</span>
-<span class="ansigreen">      5</span>         codon <span class="ansiyellow">=</span> dna<span class="ansiyellow">[</span>start<span class="ansiyellow">:</span>start<span class="ansiyellow">+</span><span class="ansicyan">3</span><span class="ansiyellow">]</span><span class="ansiyellow"></span>
-<span class="ansigreen">      6</span>         aa <span class="ansiyellow">=</span> gencode<span class="ansiyellow">.</span>get<span class="ansiyellow">(</span>codon<span class="ansiyellow">.</span>upper<span class="ansiyellow">(</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">----&gt; 7</span><span class="ansiyellow">         </span>protein <span class="ansiyellow">=</span> protein <span class="ansiyellow">+</span> aa<span class="ansiyellow"></span>
-<span class="ansigreen">      8</span>     <span class="ansigreen">return</span> protein<span class="ansiyellow"></span>
-
-<span class="ansired">TypeError</span>: cannot concatenate &apos;str&apos; and &apos;NoneType&apos; objects</pre>
 </div>
 </div>
 
@@ -686,7 +594,54 @@ TDRS_LTYR
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now the third DNA sequence works but we get an error on the fourth one. What is wrong? Let's print out the codon at each step to figure it out:</p>
+<h3 id="Getting-the-position">Getting the position<a class="anchor-link" href="#Getting-the-position">&#182;</a></h3><p>Another thing we can do is get the position of the match with <code>start()</code> (also <code>end()</code>):</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;CGATCGGAAYCGATC&quot;</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">r&quot;[^ATGC]&quot;</span><span class="p">,</span> <span class="n">dna</span><span class="p">)</span>
+
+<span class="c"># m is now a match object</span>
+<span class="k">if</span> <span class="n">m</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;ambiguous base found!&quot;</span><span class="p">)</span>
+    <span class="n">ambig</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;the base is &quot;</span> <span class="o">+</span> <span class="n">m</span><span class="o">.</span><span class="n">group</span><span class="p">())</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&quot;the base is at position &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">m</span><span class="o">.</span><span class="n">start</span><span class="p">()))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>ambiguous base found!
+the base is Y
+the base is at position 9
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Splitting-a-string-with-a-regex">Splitting a string with a regex<a class="anchor-link" href="#Splitting-a-string-with-a-regex">&#182;</a></h3><p><code>re.split()</code> works just like regular <code>split()</code>, but takes a regular expression pattern as the separator. Here we split a DNA sequence whenever we see a non-ATGC base. Note pattern reuse!</p>
 
 </div>
 </div>
@@ -696,16 +651,11 @@ TDRS_LTYR
 <div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">translate_dna</span><span class="p">(</span><span class="n">dna</span><span class="p">):</span> 
-    <span class="n">last_codon_start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> 
-    <span class="n">protein</span> <span class="o">=</span> <span class="s">&quot;&quot;</span> 
-    <span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">last_codon_start</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span> 
-        <span class="n">codon</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> 
-        <span class="k">print</span><span class="p">(</span><span class="n">codon</span><span class="p">)</span>
-        <span class="n">aa</span> <span class="o">=</span> <span class="n">gencode</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">codon</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span> 
-        <span class="n">protein</span> <span class="o">=</span> <span class="n">protein</span> <span class="o">+</span> <span class="n">aa</span> 
-    <span class="k">return</span> <span class="n">protein</span> 
-<span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;ACGATCGATCGTNACGTACGATCGTACTCG&quot;</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ACTNGCATRGCTACGTYACGATSCGAWTCG&quot;</span>
+
+<span class="n">runs</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">r&quot;[^ATGC]&quot;</span><span class="p">,</span> <span class="n">dna</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">runs</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -718,33 +668,8 @@ TDRS_LTYR
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>ACG
-ATC
-GAT
-CGT
-NAC
+<pre>[&apos;ACT&apos;, &apos;GCAT&apos;, &apos;GCTACGT&apos;, &apos;ACGAT&apos;, &apos;CGA&apos;, &apos;TCG&apos;]
 </pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-17-5f05fd02ac2b&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">      8</span>         protein <span class="ansiyellow">=</span> protein <span class="ansiyellow">+</span> aa<span class="ansiyellow"></span>
-<span class="ansigreen">      9</span>     <span class="ansigreen">return</span> protein<span class="ansiyellow"></span>
-<span class="ansigreen">---&gt; 10</span><span class="ansiyellow"> </span><span class="ansigreen">print</span><span class="ansiyellow">(</span>translate_dna<span class="ansiyellow">(</span><span class="ansiblue">&quot;ACGATCGATCGTNACGTACGATCGTACTCG&quot;</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-
-<span class="ansigreen">&lt;ipython-input-17-5f05fd02ac2b&gt;</span> in <span class="ansicyan">translate_dna</span><span class="ansiblue">(dna)</span>
-<span class="ansigreen">      6</span>         <span class="ansigreen">print</span><span class="ansiyellow">(</span>codon<span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">      7</span>         aa <span class="ansiyellow">=</span> gencode<span class="ansiyellow">.</span>get<span class="ansiyellow">(</span>codon<span class="ansiyellow">.</span>upper<span class="ansiyellow">(</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">----&gt; 8</span><span class="ansiyellow">         </span>protein <span class="ansiyellow">=</span> protein <span class="ansiyellow">+</span> aa<span class="ansiyellow"></span>
-<span class="ansigreen">      9</span>     <span class="ansigreen">return</span> protein<span class="ansiyellow"></span>
-<span class="ansigreen">     10</span> <span class="ansigreen">print</span><span class="ansiyellow">(</span>translate_dna<span class="ansiyellow">(</span><span class="ansiblue">&quot;ACGATCGATCGTNACGTACGATCGTACTCG&quot;</span><span class="ansiyellow">)</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-
-<span class="ansired">TypeError</span>: cannot concatenate &apos;str&apos; and &apos;NoneType&apos; objects</pre>
 </div>
 </div>
 
@@ -757,32 +682,22 @@ NAC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The error comes from the codon <code>NAC</code> i.e. there is an N in the sequence. The best way to fix it is to say that the amino acid for any codon that isn't in the dict is <code>X</code>, meaning unknown. To do this we just swich from</p>
-<div class="highlight"><pre><span class="n">aa</span> <span class="o">=</span> <span class="n">gencode</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">codon</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
-</pre></div>
-<p>to</p>
-<div class="highlight"><pre><span class="n">aa</span> <span class="o">=</span> <span class="n">gencode</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">codon</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="s">&#39;X&#39;</span><span class="p">)</span>
-</pre></div>
-<p>like this:</p>
+<p>The output is a list of strings.</p>
+<p>Above, we exclude the bits of the string that matched the pattern and just keep the non-matching bits. For the opposite, use <code>re.findall()</code>. E.g. find all runs of A/T that are at least four bases long:</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">translate_dna</span><span class="p">(</span><span class="n">dna</span><span class="p">):</span> 
-    <span class="n">last_codon_start</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">dna</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span> 
-    <span class="n">protein</span> <span class="o">=</span> <span class="s">&quot;&quot;</span> 
-    <span class="k">for</span> <span class="n">start</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">last_codon_start</span><span class="p">,</span><span class="mi">3</span><span class="p">):</span> 
-        <span class="n">codon</span> <span class="o">=</span> <span class="n">dna</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> 
-        <span class="k">print</span><span class="p">(</span><span class="n">codon</span><span class="p">)</span>
-        <span class="n">aa</span> <span class="o">=</span> <span class="n">gencode</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">codon</span><span class="o">.</span><span class="n">upper</span><span class="p">(),</span> <span class="s">&#39;X&#39;</span><span class="p">)</span> 
-        <span class="n">protein</span> <span class="o">=</span> <span class="n">protein</span> <span class="o">+</span> <span class="n">aa</span> 
-    <span class="k">return</span> <span class="n">protein</span> 
-<span class="k">print</span><span class="p">(</span><span class="n">translate_dna</span><span class="p">(</span><span class="s">&quot;ACGATCGATCGTNACGTACGATCGTACTCG&quot;</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ACTGCATTATATCGTACGAAATTATACGCGCG&quot;</span>
+
+<span class="n">runs</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">r&quot;[AT]{4,}&quot;</span><span class="p">,</span> <span class="n">dna</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">runs</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -795,17 +710,7 @@ NAC
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>ACG
-ATC
-GAT
-CGT
-NAC
-GTA
-CGA
-TCG
-TAC
-TCG
-TIDRXVRSYS
+<pre>[&apos;ATTATAT&apos;, &apos;AAATTATA&apos;]
 </pre>
 </div>
 </div>
@@ -819,14 +724,83 @@ TIDRXVRSYS
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Now we get a complete protein tranlsation - Notice that it has an X in the middle.</p>
+<h3 id="Finding-multiple-matches">Finding multiple matches<a class="anchor-link" href="#Finding-multiple-matches">&#182;</a></h3><p>Some problems require complete match objects for multiple matches - use <code>re.finditer()</code>. E.g. using the same pattern and sequence, what are the start/stop positions of all runs of A/T?</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ACTGCATTATATCGTACGAAATTATACGCGCG&quot;</span>
+<span class="n">runs</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">finditer</span><span class="p">(</span><span class="s">r&quot;[AT]{3,100}&quot;</span><span class="p">,</span> <span class="n">dna</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">match</span> <span class="ow">in</span> <span class="n">runs</span><span class="p">:</span>
+    <span class="n">run_start</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+    <span class="n">run_end</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">end</span><span class="p">()</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">run_start</span><span class="p">,</span> <span class="n">run_end</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(5, 12)
+(18, 26)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exercises">Exercises<a class="anchor-link" href="#Exercises">&#182;</a></h2><h3 id="Accession-numbers,-again">Accession numbers, again<a class="anchor-link" href="#Accession-numbers,-again">&#182;</a></h3><p>Here's a list of made-up gene accession numbers:</p>
+<p><code>xkn59438, yhdck2, eihd39d9, chdsye847, hedle3455, xjhd53e, 45da, de37dp</code></p>
+<p>Write a program that will print only the accession names that satisfy the following criteria – treat each criterion separately:</p>
+<ul>
+<li>contain the number 5</li>
+<li>contain the letter d or e</li>
+<li>contain the letters d and e in that order</li>
+<li>contain the letters d and e in that order with a single letter between them</li>
+<li>contain both the letters d and e in any order</li>
+<li>start with x or y</li>
+<li>start with x or y and end with e</li>
+<li>contain three or more numbers in a row</li>
+<li>end with d followed by either a, r or p</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Double-digest">Double digest<a class="anchor-link" href="#Double-digest">&#182;</a></h3><p>Look at the file <em>long_dna.txt</em> which contains a made-up DNA sequence.</p>
+<p>Predict the fragment lengths that we will get if we digest the sequence with a made-up restriction enzyme <strong>AbcI</strong>, whose recognition site is <code>ANT*AAT</code> (easy).</p>
+<p>What will the fragment lengths be if we do a double digest with both <strong>AbcI</strong> and <strong>AbcII</strong>, whose recognition site is <code>GCRW*TG</code> (hard)? Can you predict the sequences of the fragments themselves?</p>
+<p>(asterisks indicate the position of the cut site)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># ignore this cell, it&#39;s for loading custom js code</span>
@@ -842,7 +816,7 @@ TIDRXVRSYS
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[3]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[25]:</div>
 
 
 <div class="output_subarea output_javascript output_execute_result">
@@ -885,7 +859,7 @@ setInterval(regentoc,1000);
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># ignore this cell, it&#39;s for loading custom css code</span>
@@ -901,7 +875,7 @@ setInterval(regentoc,1000);
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[24]:</div>
 
 <div class="output_html rendered_html output_subarea output_execute_result">
 <style>
@@ -932,6 +906,19 @@ div.output_subarea { max-width: calc(100%); }
 
 </div>
 
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre> 
+</pre></div>
+
+</div>
 </div>
 </div>
 
