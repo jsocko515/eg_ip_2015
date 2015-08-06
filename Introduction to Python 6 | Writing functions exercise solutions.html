@@ -89,6 +89,7 @@
 .highlight .nv { color: #19177C } /* Name.Variable */
 .highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
 .highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
 .highlight .mf { color: #666666 } /* Literal.Number.Float */
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
@@ -470,7 +471,7 @@ final percentage is 65.0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">get_aa_percentage</span><span class="p">(</span><span class="n">protein</span><span class="p">,</span> <span class="n">aa_list</span><span class="p">):</span> 
@@ -495,11 +496,11 @@ final percentage is 65.0
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[13]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[8]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>65.0</pre>
+<pre>65</pre>
 </div>
 
 </div>
@@ -520,11 +521,10 @@ final percentage is 65.0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="k">assert</span> <span class="n">get_aa_percentage</span><span class="p">(</span><span class="s">&quot;MSRSLLLRFLLFLLLLPPLP&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s">&quot;M&quot;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">5</span>
-<span class="k">assert</span> <span class="n">get_aa_percentage</span><span class="p">(</span><span class="s">&quot;MSRSLLLRFLLFLLLLPPLP&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;M&#39;</span><span class="p">,</span> <span class="s">&#39;L&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">55</span> 
 <span class="k">assert</span> <span class="n">get_aa_percentage</span><span class="p">(</span><span class="s">&quot;MSRSLLLRFLLFLLLLPPLP&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s">&#39;F&#39;</span><span class="p">,</span> <span class="s">&#39;S&#39;</span><span class="p">,</span> <span class="s">&#39;L&#39;</span><span class="p">])</span> <span class="o">==</span> <span class="mi">70</span>
 <span class="k">assert</span> <span class="n">get_aa_percentage</span><span class="p">(</span><span class="s">&quot;MSRSLLLRFLLFLLLLPPLP&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">65</span>
 </pre></div>
@@ -542,10 +542,10 @@ final percentage is 65.0
 <pre>
 <span class="ansired">---------------------------------------------------------------------------</span>
 <span class="ansired">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-18-714e3d4a7020&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">      2</span> <span class="ansigreen">assert</span> get_aa_percentage<span class="ansiyellow">(</span><span class="ansiblue">&quot;MSRSLLLRFLLFLLLLPPLP&quot;</span><span class="ansiyellow">,</span> <span class="ansiyellow">[</span><span class="ansiblue">&apos;M&apos;</span><span class="ansiyellow">,</span> <span class="ansiblue">&apos;L&apos;</span><span class="ansiyellow">]</span><span class="ansiyellow">)</span> <span class="ansiyellow">==</span> <span class="ansicyan">55</span><span class="ansiyellow"></span>
-<span class="ansigreen">      3</span> <span class="ansigreen">assert</span> get_aa_percentage<span class="ansiyellow">(</span><span class="ansiblue">&quot;MSRSLLLRFLLFLLLLPPLP&quot;</span><span class="ansiyellow">,</span> <span class="ansiyellow">[</span><span class="ansiblue">&apos;F&apos;</span><span class="ansiyellow">,</span> <span class="ansiblue">&apos;S&apos;</span><span class="ansiyellow">,</span> <span class="ansiblue">&apos;L&apos;</span><span class="ansiyellow">]</span><span class="ansiyellow">)</span> <span class="ansiyellow">==</span> <span class="ansicyan">70</span><span class="ansiyellow"></span>
-<span class="ansigreen">----&gt; 4</span><span class="ansiyellow"> </span><span class="ansigreen">assert</span> get_aa_percentage<span class="ansiyellow">(</span><span class="ansiblue">&quot;MSRSLLLRFLLFLLLLPPLP&quot;</span><span class="ansiyellow">)</span> <span class="ansiyellow">==</span> <span class="ansicyan">65</span><span class="ansiyellow"></span>
+<span class="ansigreen">&lt;ipython-input-10-db478eee4e03&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
+<span class="ansigreen">      1</span> <span class="ansigreen">assert</span> get_aa_percentage<span class="ansiyellow">(</span><span class="ansiblue">&quot;MSRSLLLRFLLFLLLLPPLP&quot;</span><span class="ansiyellow">,</span> <span class="ansiyellow">[</span><span class="ansiblue">&quot;M&quot;</span><span class="ansiyellow">]</span><span class="ansiyellow">)</span> <span class="ansiyellow">==</span> <span class="ansicyan">5</span><span class="ansiyellow"></span>
+<span class="ansigreen">      2</span> <span class="ansigreen">assert</span> get_aa_percentage<span class="ansiyellow">(</span><span class="ansiblue">&quot;MSRSLLLRFLLFLLLLPPLP&quot;</span><span class="ansiyellow">,</span> <span class="ansiyellow">[</span><span class="ansiblue">&apos;F&apos;</span><span class="ansiyellow">,</span> <span class="ansiblue">&apos;S&apos;</span><span class="ansiyellow">,</span> <span class="ansiblue">&apos;L&apos;</span><span class="ansiyellow">]</span><span class="ansiyellow">)</span> <span class="ansiyellow">==</span> <span class="ansicyan">70</span><span class="ansiyellow"></span>
+<span class="ansigreen">----&gt; 3</span><span class="ansiyellow"> </span><span class="ansigreen">assert</span> get_aa_percentage<span class="ansiyellow">(</span><span class="ansiblue">&quot;MSRSLLLRFLLFLLLLPPLP&quot;</span><span class="ansiyellow">)</span> <span class="ansiyellow">==</span> <span class="ansicyan">65</span><span class="ansiyellow"></span>
 
 <span class="ansired">TypeError</span>: get_aa_percentage() takes exactly 2 arguments (1 given)</pre>
 </div>
@@ -567,7 +567,7 @@ final percentage is 65.0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="k">def</span> <span class="nf">get_aa_percentage</span><span class="p">(</span><span class="n">protein</span><span class="p">,</span> <span class="n">aa_list</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span><span class="s">&#39;I&#39;</span><span class="p">,</span><span class="s">&#39;L&#39;</span><span class="p">,</span><span class="s">&#39;M&#39;</span><span class="p">,</span><span class="s">&#39;F&#39;</span><span class="p">,</span><span class="s">&#39;W&#39;</span><span class="p">,</span><span class="s">&#39;Y&#39;</span><span class="p">,</span><span class="s">&#39;V&#39;</span><span class="p">]):</span> 
@@ -875,7 +875,7 @@ False
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># ignore this cell, it&#39;s for loading custom js code</span>
@@ -891,7 +891,7 @@ False
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[4]:</div>
 
 
 <div class="output_subarea output_javascript output_execute_result">

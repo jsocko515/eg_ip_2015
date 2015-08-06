@@ -89,6 +89,7 @@
 .highlight .nv { color: #19177C } /* Name.Variable */
 .highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
 .highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mb { color: #666666 } /* Literal.Number.Bin */
 .highlight .mf { color: #666666 } /* Literal.Number.Float */
 .highlight .mh { color: #666666 } /* Literal.Number.Hex */
 .highlight .mi { color: #666666 } /* Literal.Number.Integer */
@@ -193,31 +194,23 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ATCGATCGATCGTACGCTGA&quot;</span>
 <span class="n">a_count</span> <span class="o">=</span> <span class="n">dna</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">)</span>
+
+
+
+
+
+
+
+
 <span class="n">a_count</span>
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>5</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -234,7 +227,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ATCGTATCGATGTACGCTGA&quot;</span>
@@ -243,23 +236,20 @@ div#notebook {
 <span class="n">g_count</span> <span class="o">=</span> <span class="n">dna</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&quot;G&quot;</span><span class="p">)</span>
 <span class="n">c_count</span> <span class="o">=</span> <span class="n">dna</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">a_count</span><span class="p">,</span> <span class="n">t_count</span><span class="p">,</span> <span class="n">g_count</span><span class="p">,</span> <span class="n">c_count</span><span class="p">)</span>
+
+
+
+
+
+
+
+
+
+
+<span class="n">g_count</span>
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>(5, 6, 5, 4)
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -287,35 +277,22 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">dinucleotides</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;AA&#39;</span><span class="p">,</span><span class="s">&#39;AT&#39;</span><span class="p">,</span><span class="s">&#39;AG&#39;</span><span class="p">,</span><span class="s">&#39;AC&#39;</span><span class="p">,</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;ATCGTATCGATGTACGCTGA&quot;</span>
+<span class="n">dinucleotides</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;AA&#39;</span><span class="p">,</span><span class="s">&#39;AT&#39;</span><span class="p">,</span><span class="s">&#39;AG&#39;</span><span class="p">,</span><span class="s">&#39;AC&#39;</span><span class="p">,</span>
                  <span class="s">&#39;TA&#39;</span><span class="p">,</span><span class="s">&#39;TT&#39;</span><span class="p">,</span><span class="s">&#39;TG&#39;</span><span class="p">,</span><span class="s">&#39;TC&#39;</span><span class="p">,</span>
                  <span class="s">&#39;GA&#39;</span><span class="p">,</span><span class="s">&#39;GT&#39;</span><span class="p">,</span><span class="s">&#39;GG&#39;</span><span class="p">,</span><span class="s">&#39;GC&#39;</span><span class="p">,</span>
                  <span class="s">&#39;CA&#39;</span><span class="p">,</span><span class="s">&#39;CT&#39;</span><span class="p">,</span><span class="s">&#39;CG&#39;</span><span class="p">,</span><span class="s">&#39;CT&#39;</span><span class="p">]</span>
 <span class="n">all_counts</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">dinucleotide</span> <span class="ow">in</span> <span class="n">dinucleotides</span><span class="p">:</span>
     <span class="n">count</span> <span class="o">=</span> <span class="n">dna</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">dinucleotide</span><span class="p">)</span>
-    <span class="n">all_counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+    <span class="n">all_counts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot; : &quot;</span> <span class="o">+</span> <span class="n">dinucleotide</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="n">all_counts</span><span class="p">)</span>
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[0, 3, 0, 1, 2, 0, 2, 2, 2, 2, 0, 1, 0, 1, 3, 1]
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -369,7 +346,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">enzymes</span> <span class="o">=</span> <span class="p">{</span> 
@@ -396,29 +373,14 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">enzymes</span><span class="p">[</span><span class="s">&#39;BisI&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">motif</span> <span class="o">=</span> <span class="n">enzymes</span><span class="p">[</span><span class="s">&#39;BisI&#39;</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">motif</span><span class="p">)</span>
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[15]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&apos;GCNGC&apos;</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -435,7 +397,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># create an empty dict</span>
@@ -443,27 +405,13 @@ div#notebook {
 
 <span class="c"># add one key/value pair at a time</span>
 <span class="n">enzymes</span><span class="p">[</span><span class="s">&#39;EcoRI&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;GAATTC&#39;</span>
-<span class="n">enzymes</span><span class="p">[</span><span class="s">&#39;AvaII&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;GG(A|T)CC&#39;</span>
-<span class="n">enzymes</span><span class="p">[</span><span class="s">&#39;BisI&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;GC[ATGC]GC&#39;</span>
-
-<span class="k">print</span><span class="p">(</span><span class="n">enzymes</span><span class="p">[</span><span class="s">&#39;BisI&#39;</span><span class="p">])</span>
+<span class="n">enzymes</span><span class="p">[</span><span class="s">&#39;AvaII&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;GGACC&#39;</span>
+<span class="n">enzymes</span><span class="p">[</span><span class="s">&#39;BisI&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;GCNGC&#39;</span>
+<span class="c">#print(enzymes)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">enzymes</span><span class="p">[</span><span class="s">&#39;EcoRI&#39;</span><span class="p">])</span>
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>GC[ATGC]GC
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -482,7 +430,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;AATGATGAACGAC&quot;</span> 
@@ -490,45 +438,19 @@ div#notebook {
                  <span class="s">&#39;TA&#39;</span><span class="p">,</span><span class="s">&#39;TT&#39;</span><span class="p">,</span><span class="s">&#39;TG&#39;</span><span class="p">,</span><span class="s">&#39;TC&#39;</span><span class="p">,</span> 
                  <span class="s">&#39;GA&#39;</span><span class="p">,</span><span class="s">&#39;GT&#39;</span><span class="p">,</span><span class="s">&#39;GG&#39;</span><span class="p">,</span><span class="s">&#39;GC&#39;</span><span class="p">,</span> 
                  <span class="s">&#39;CA&#39;</span><span class="p">,</span><span class="s">&#39;CT&#39;</span><span class="p">,</span><span class="s">&#39;CG&#39;</span><span class="p">,</span><span class="s">&#39;CT&#39;</span><span class="p">]</span> 
+
+
 <span class="n">all_counts</span> <span class="o">=</span> <span class="p">{}</span> 
 <span class="k">for</span> <span class="n">dinucleotide</span> <span class="ow">in</span> <span class="n">dinucleotides</span><span class="p">:</span> 
     <span class="n">count</span> <span class="o">=</span> <span class="n">dna</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">dinucleotide</span><span class="p">)</span> 
     <span class="k">print</span><span class="p">(</span><span class="s">&quot;count is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot; for &quot;</span> <span class="o">+</span> <span class="n">dinucleotide</span><span class="p">)</span> 
     <span class="n">all_counts</span><span class="p">[</span><span class="n">dinucleotide</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span> 
+    
+    
 <span class="k">print</span><span class="p">(</span><span class="n">all_counts</span><span class="p">)</span> 
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>count is 2 for AA
-count is 2 for AT
-count is 0 for AG
-count is 2 for AC
-count is 0 for TA
-count is 0 for TT
-count is 2 for TG
-count is 0 for TC
-count is 3 for GA
-count is 0 for GT
-count is 0 for GG
-count is 0 for GC
-count is 0 for CA
-count is 0 for CT
-count is 1 for CG
-count is 0 for CT
-{&apos;AA&apos;: 2, &apos;AC&apos;: 2, &apos;GT&apos;: 0, &apos;AG&apos;: 0, &apos;TT&apos;: 0, &apos;CG&apos;: 1, &apos;GG&apos;: 0, &apos;GC&apos;: 0, &apos;AT&apos;: 2, &apos;GA&apos;: 3, &apos;TG&apos;: 2, &apos;CT&apos;: 0, &apos;CA&apos;: 0, &apos;TC&apos;: 0, &apos;TA&apos;: 0}
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -546,29 +468,13 @@ count is 0 for CT
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="n">all_counts</span><span class="p">[</span><span class="s">&#39;AC&#39;</span><span class="p">]</span>
+<div class=" highlight hl-ipython2"><pre><span class="n">all_counts</span><span class="p">[</span><span class="s">&#39;GA&#39;</span><span class="p">]</span>
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[20]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>2</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -585,14 +491,18 @@ count is 0 for CT
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">dna</span> <span class="o">=</span> <span class="s">&quot;AATGATCGATCGTACGCTGA&quot;</span>
 <span class="n">counts</span> <span class="o">=</span> <span class="p">{}</span>
+
+
 <span class="k">for</span> <span class="n">base1</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">]:</span>
     <span class="k">for</span> <span class="n">base2</span> <span class="ow">in</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;T&#39;</span><span class="p">,</span> <span class="s">&#39;G&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">]:</span>
         <span class="n">dinucleotide</span> <span class="o">=</span> <span class="n">base1</span> <span class="o">+</span> <span class="n">base2</span>
+        
+        
         <span class="n">count</span> <span class="o">=</span> <span class="n">dna</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">dinucleotide</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">count</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">counts</span><span class="p">[</span><span class="n">dinucleotide</span><span class="p">]</span> <span class="o">=</span> <span class="n">count</span>
@@ -630,7 +540,7 @@ count is 0 for CT
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">counts</span><span class="p">[</span><span class="s">&#39;AA&#39;</span><span class="p">]</span>
@@ -640,51 +550,16 @@ count is 0 for CT
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[24]:</div>
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>1</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">counts</span><span class="p">[</span><span class="s">&#39;AG&#39;</span><span class="p">]</span>
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">KeyError</span>                                  Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-25-a6391b73dd70&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">----&gt; 1</span><span class="ansiyellow"> </span>counts<span class="ansiyellow">[</span><span class="ansiblue">&apos;AG&apos;</span><span class="ansiyellow">]</span><span class="ansiyellow"></span>
-
-<span class="ansired">KeyError</span>: &apos;AG&apos;</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -701,11 +576,12 @@ count is 0 for CT
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;AA&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-<span class="k">print</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;AG&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<div class=" highlight hl-ipython2"><pre><span class="c">#print(counts.get(&#39;AA&#39;, 0))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;NG&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -718,8 +594,7 @@ count is 0 for CT
 
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>1
-0
+<pre>0
 </pre>
 </div>
 </div>
@@ -740,7 +615,7 @@ count is 0 for CT
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">counts</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
@@ -754,7 +629,7 @@ count is 0 for CT
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">Out[27]:</div>
+<div class="output_area"><div class="prompt output_prompt">Out[39]:</div>
 
 
 <div class="output_text output_subarea output_execute_result">
@@ -779,11 +654,13 @@ count is 0 for CT
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="k">for</span> <span class="n">dinucleotide</span> <span class="ow">in</span> <span class="n">counts</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-    <span class="k">if</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">dinucleotide</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+    <span class="n">dinuc_count</span> <span class="o">=</span> <span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">dinucleotide</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">dinuc_count</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
         <span class="k">print</span><span class="p">(</span><span class="n">dinucleotide</span><span class="p">)</span>
 </pre></div>
 
@@ -819,7 +696,7 @@ TC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="k">for</span> <span class="n">dinucleotide</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">counts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -852,14 +729,14 @@ TC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Lookup-vs.-iteration">Lookup vs. iteration<a class="anchor-link" href="#Lookup-vs.-iteration">&#182;</a></h3><p>Remember, we don't need to write a loop if we just want to get a single value. If we are looking for the count for 'AC' then we <strong>dont</strong> need to do this:</p>
+<h3 id="Lookup-vs.-iteration">Lookup vs. iteration<a class="anchor-link" href="#Lookup-vs.-iteration">&#182;</a></h3><p>Remember, we don't need to write a loop if we just want to get a single value. If we are looking for the count for 'AT' then we <strong>dont</strong> need to do this:</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="k">for</span> <span class="n">dinucleotide</span><span class="p">,</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">counts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -868,20 +745,6 @@ TC
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>3
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -898,27 +761,13 @@ TC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="k">print</span><span class="p">(</span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;AT&#39;</span><span class="p">))</span>
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>3
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -935,7 +784,7 @@ TC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="n">gencode</span> <span class="o">=</span> <span class="p">{</span>
@@ -976,7 +825,7 @@ TC
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># ignore this cell, it&#39;s for loading custom js code</span>
@@ -988,54 +837,10 @@ TC
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[1]:</div>
-
-
-<div class="output_subarea output_javascript output_execute_result">
-<script type="text/javascript">
-
-function regentoc() {
-    document.getElementById("toc").innerHTML = "";
-    var currenth2 = 0;
-    $("h2,h3").not("#Contents").each(function(mainIndex) {
-        el = $(this);
-        title = el.attr("id");
-        text = el.html();
-        link = "#" + el.attr("id");
-        if ( document.getElementById(title).tagName == "H2" ) {
-            currenth2 += 1;
-            newLine =
-                "<li class='maintoc'>" +
-                   "<a href='" + link + "'>" + text + "</a>" +
-                "</li>" +
-                "<ul id='h2" + currenth2 + "'></ul>";
-            document.getElementById("toc").innerHTML += newLine;
-        } else if ( document.getElementById(title).tagName=="H3" ) {
-            h1list = document.getElementById("h2"+currenth2);
-            newLine = "<li class='subtoc'>" + "<a href='" + link + "'>" + text + "</a>" + "</li>";
-            h1list.innerHTML += newLine;
-        }
-    });
-}
- 
-setInterval(regentoc,1000);
-
-</script>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span class="c"># ignore this cell, it&#39;s for loading custom css code</span>
@@ -1044,44 +849,6 @@ setInterval(regentoc,1000);
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">Out[2]:</div>
-
-<div class="output_html rendered_html output_subarea output_execute_result">
-<style>
-div.output_text{
-        max-height:400px;
-        overflow:scroll;
-}
-
-div#notebook {
-  font-family: 'PT Serif' !important;
-} 
-
-div.CodeMirror, div.output_area pre, div.output_wrapper, div.prompt {
-  font-family: 'Source Code Pro', monospace !important;
-}
-
-.output_text {
-  background-color: #f0f0f0;
-}
-
-
-.prompt { display: none; }
-div.output_subarea { max-width: calc(100%); }
-</style>
-
-
-</div>
-
-</div>
-
 </div>
 </div>
 
